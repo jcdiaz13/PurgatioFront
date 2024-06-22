@@ -1,9 +1,8 @@
-import React from "react";
+
 import {
   Container,
   Title,
   FormContainer,
-  Label,
   Input,
   ButtonContainer,
   StyledLink,
@@ -19,10 +18,10 @@ function Home() {
         <Input type="text" />
         <ButtonContainer>
           <StyledLink to="/joinlobby">
-            <Button>Crear sala</Button>
+            <Button>Unirse a sala</Button>
           </StyledLink>
           <StyledLink to="/createlobby">
-            <Button>Unirse a sala</Button>
+            <Button>Crear sala</Button>
           </StyledLink>
         </ButtonContainer>
       </FormContainer>
