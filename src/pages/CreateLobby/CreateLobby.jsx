@@ -16,8 +16,8 @@ function CreateLobby() {
 
   return (
     <Container>
-      <Title>Crear nueva sala</Title>
       <FormContainer>
+        <Title>Crea nueva sala </Title>
         <h2>Selecciona un avatar</h2>
         <AvatarContainer>Avatar</AvatarContainer>
         <h2>{playerName}</h2>
