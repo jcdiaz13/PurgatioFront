@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Container = styled.div`
@@ -44,10 +43,6 @@ export const ButtonContainer = styled.div`
   width: 100%;
   margin-top: 1rem;
   gap: 10px; /* Añade un espacio entre los botones */
-`;
-
-export const StyledLink = styled(Link)`
-  text-decoration: none;
 `;
 
 export const Button = styled.button`
