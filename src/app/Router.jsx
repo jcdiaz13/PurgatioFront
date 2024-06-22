@@ -7,11 +7,15 @@ import Fairy from "../pages/Fairy/Fairy";
 import Mage from "../pages/Mage/Mage";
 import Sins from "../pages/Sins/Sins";
 import Punishments from "../pages/Punishments/Punishments";
+import CreateLobby from "../pages/CreateLobby/CreateLobby";
+import JoinLobby from "../pages/JoinLobby/JoinLobby";
 
 const Router = () => (
   <BrowserRouter>
     <Routes>
       <Route index element={<Home />} />
+      <Route path="/createlobby" element={<CreateLobby />} />
+      <Route path="/joinlobby" element={<JoinLobby />} />
       <Route path="/avatar" element={<AvatarSelection />} />
       <Route path="/lobby" element={<Lobby />} />
       <Route path="/executioner" element={<Executioner />} />

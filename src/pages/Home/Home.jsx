@@ -6,6 +6,7 @@ import {
   Label,
   Input,
   ButtonContainer,
+  StyledLink,
   Button,
 } from "./Home.styles";
 
@@ -17,8 +18,12 @@ function Home() {
         <h2>Nombre del jugador</h2>
         <Input type="text" />
         <ButtonContainer>
-          <Button>Crear sala</Button>
-          <Button>Unirse a sala</Button>
+          <StyledLink to="/joinlobby">
+            <Button>Crear sala</Button>
+          </StyledLink>
+          <StyledLink to="/createlobby">
+            <Button>Unirse a sala</Button>
+          </StyledLink>
         </ButtonContainer>
       </FormContainer>
     </Container>
