@@ -22,8 +22,8 @@ export const FormContainer = styled.div`
   width: 500px;
   height: 200px;
   padding: 2rem;
-  background: white;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   border-radius: 8px;
   border: 1px solid #ccc;
 `;
@@ -59,13 +59,5 @@ export const Button = styled.button`
 
   &:hover {
     background-color: #0056b3;
-  }
-
-  &:nth-of-type(2) {
-    background-color: #28a745;
-
-    &:hover {
-      background-color: #218838;
-    }
   }
 `;

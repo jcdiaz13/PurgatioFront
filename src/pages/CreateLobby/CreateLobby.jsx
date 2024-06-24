@@ -1,4 +1,5 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
+import { PlayerContext } from "../../app/contexts/PlayerContext";
 import {
   Container,
   Title,
@@ -8,18 +9,54 @@ import {
   StyledLink,
   Button,
   AvatarContainer,
+  AvatarPopup,
+  AvatarOption,
+  Overlay,
 } from "./CreateLobby.styles";
-import { PlayerContext } from "../../app/contexts/PlayerContext";
+
+// Lista de avatares disponibles
+const avatars = [
+  "Avatar 1",
+  "Avatar 2",
+  "Avatar 3",
+  "Avatar 4",
+  "Avatar 5",
+  "Avatar 6",
+  "Avatar 7",
+  "Avatar 8",
+];
 
 function CreateLobby() {
-  const { playerName } = useContext(PlayerContext); // Obtener el nombre del jugador desde el contexto
+  const { playerName } = useContext(PlayerContext);
+  const [isAvatarPopupOpen, setIsAvatarPopupOpen] = useState(false);
+  const [selectedAvatar, setSelectedAvatar] = useState(null);
+
+  // Función para manejar el clic en el contenedor de avatar
+  const handleAvatarClick = () => {
+    setIsAvatarPopupOpen(true);
+  };
+
+  // Función para manejar la selección de un avatar
+  const handleAvatarSelect = (avatar) => {
+    setSelectedAvatar(avatar);
+    setIsAvatarPopupOpen(false);
+  };
 
   return (
     <Container>
-      <FormContainer>
-        <Title>Crea nueva sala </Title>
+      {/* Muestra el overlay si el pop-up está abierto */}
+      {isAvatarPopupOpen && <Overlay />}
+
+      {/* Contenedor del formulario */}
+      <FormContainer isPopupOpen={isAvatarPopupOpen}>
+        <Title>Crear nueva sala</Title>
         <h2>Selecciona un avatar</h2>
-        <AvatarContainer>Avatar</AvatarContainer>
+
+        {/* Contenedor de avatar que muestra el avatar seleccionado*/}
+        <AvatarContainer onClick={handleAvatarClick}>
+          {selectedAvatar ? selectedAvatar : "Avatar"}
+        </AvatarContainer>
+
         <h2>{playerName}</h2>
         <Input type="text" placeholder="Introduce el número de sala" />
         <ButtonContainer>
@@ -31,6 +68,20 @@ function CreateLobby() {
           </StyledLink>
         </ButtonContainer>
       </FormContainer>
+
+      {/* Pop-up de selección de avatar */}
+      {isAvatarPopupOpen && (
+        <AvatarPopup>
+          {avatars.map((avatar) => (
+            <AvatarOption
+              key={avatar}
+              onClick={() => handleAvatarSelect(avatar)}
+            >
+              {avatar}
+            </AvatarOption>
+          ))}
+        </AvatarPopup>
+      )}
     </Container>
   );
 }
