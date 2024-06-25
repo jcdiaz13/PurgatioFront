@@ -39,15 +39,10 @@ export const FormContainer = styled.div`
   z-index: 2;
   opacity: ${({ isPopupOpen }) => (isPopupOpen ? 0.2 : 1)};
   transition: opacity 0.3s ease;
-`;
 
-export const Input = styled.input`
-  padding: 0.5rem;
-  margin-bottom: 1rem;
-  border: 1px solid black;
-  border-radius: 4px;
-  font-size: 1rem;
-  width: 50%;
+  h2 {
+    margin-top: 2.5rem;
+  }
 `;
 
 export const ButtonContainer = styled.div`

@@ -4,7 +4,6 @@ import {
   Container,
   Title,
   FormContainer,
-  Input,
   ButtonContainer,
   StyledLink,
   Button,
@@ -58,7 +57,6 @@ function CreateLobby() {
         </AvatarContainer>
 
         <h2>{playerName}</h2>
-        <Input type="text" placeholder="Introduce el número de sala" />
         <ButtonContainer>
           <StyledLink to="/">
             <Button>Volver</Button>
@@ -68,8 +66,6 @@ function CreateLobby() {
           </StyledLink>
         </ButtonContainer>
       </FormContainer>
-
-      {/* Pop-up de selección de avatar */}
       {isAvatarPopupOpen && (
         <AvatarPopup>
           {avatars.map((avatar) => (
