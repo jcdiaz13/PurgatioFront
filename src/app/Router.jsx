@@ -1,6 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "../pages/Home/Home";
-import AvatarSelection from "../pages/AvatarSelection/AvatarSelection";
 import Lobby from "../pages/Lobby/Lobby";
 import Executioner from "../pages/Executioner/Executioner";
 import Fairy from "../pages/Fairy/Fairy";
@@ -16,7 +15,6 @@ const Router = () => (
       <Route index element={<Home />} />
       <Route path="/createlobby" element={<CreateLobby />} />
       <Route path="/joinlobby" element={<JoinLobby />} />
-      <Route path="/avatar" element={<AvatarSelection />} />
       <Route path="/lobby" element={<Lobby />} />
       <Route path="/executioner" element={<Executioner />} />
       <Route path="/mage" element={<Mage />} />

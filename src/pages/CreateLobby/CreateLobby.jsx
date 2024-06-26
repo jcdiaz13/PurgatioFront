@@ -1,5 +1,6 @@
 import { useContext, useState } from "react";
 import { PlayerContext } from "../../app/contexts/PlayerContext";
+import { useNavigate } from "react-router-dom";
 import {
   Container,
   Title,
@@ -26,9 +27,21 @@ const avatars = [
 ];
 
 function CreateLobby() {
-  const { playerName } = useContext(PlayerContext);
+  const { playerName, setPlayerName } = useContext(PlayerContext);
   const [isAvatarPopupOpen, setIsAvatarPopupOpen] = useState(false);
   const [selectedAvatar, setSelectedAvatar] = useState(null);
+  const navigate = useNavigate();
+
+  const handleCreateLobby = () => {
+    const trimmedName = playerName.trim();
+    if (trimmedName) {
+      setPlayerName(trimmedName);
+      console.log(playerName);
+      navigate("/lobby");
+    } else {
+      alert("Por favor ingrese un nombre antes de continuar.");
+    }
+  };
 
   // Función para manejar el clic en el contenedor de avatar
   const handleAvatarClick = () => {
@@ -41,6 +54,10 @@ function CreateLobby() {
     setIsAvatarPopupOpen(false);
   };
 
+  const handleInputChange = (e) => {
+    setPlayerName(e.target.value);
+  };
+
   return (
     <Container>
       {/* Muestra el overlay si el pop-up está abierto */}
@@ -51,21 +68,26 @@ function CreateLobby() {
         <Title>Crear nueva sala</Title>
         <h2>Selecciona un avatar</h2>
 
-        {/* Contenedor de avatar que muestra el avatar seleccionado*/}
+        {/* Contenedor de avatar que muestra el avatar seleccionado */}
         <AvatarContainer onClick={handleAvatarClick}>
           {selectedAvatar ? selectedAvatar : "Avatar"}
         </AvatarContainer>
 
-        <h2>{playerName}</h2>
+        {/* Campo de entrada controlado para el nombre del jugador */}
+        <input
+          type="text"
+          value={playerName}
+          onChange={handleInputChange}
+          placeholder="Ingresa tu nombre"
+        />
         <ButtonContainer>
           <StyledLink to="/">
             <Button>Volver</Button>
           </StyledLink>
-          <StyledLink to="/lobby">
-            <Button>Jugar</Button>
-          </StyledLink>
+          <Button onClick={handleCreateLobby}>Crear sala</Button>
         </ButtonContainer>
       </FormContainer>
+
       {isAvatarPopupOpen && (
         <AvatarPopup>
           {avatars.map((avatar) => (

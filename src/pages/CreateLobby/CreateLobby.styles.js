@@ -30,7 +30,9 @@ export const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   width: 500px;
+  height: 500px;
   padding: 2rem;
   background: white;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
@@ -43,17 +45,25 @@ export const FormContainer = styled.div`
   h2 {
     margin-top: 2.5rem;
   }
+
+  input {
+    margin: 1rem 0;
+    padding: 0.5rem;
+    width: 50%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
 `;
 
 export const ButtonContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 1rem;
   width: 75%;
-  margin-top: 1rem;
+  margin-top: 2rem;
 `;
 
 export const StyledLink = styled(Link)`
-  flex: 1;
   text-decoration: none;
   display: flex;
   justify-content: center;
@@ -61,7 +71,6 @@ export const StyledLink = styled(Link)`
 
 export const Button = styled.button`
   padding: 0.5rem 1rem;
-  margin: 0.5rem 0;
   border: none;
   border-radius: 4px;
   font-size: 1rem;
@@ -70,6 +79,7 @@ export const Button = styled.button`
   cursor: pointer;
   width: 120px;
   text-align: center;
+  height: 40px; /* Altura fija para ambos botones */
 
   &:hover {
     background-color: #0056b3;

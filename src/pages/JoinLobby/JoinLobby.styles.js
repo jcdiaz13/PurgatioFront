@@ -31,6 +31,7 @@ export const FormContainer = styled.div`
   flex-direction: column;
   align-items: center;
   width: 500px;
+  height: 550px;
   padding: 2rem;
   background: white;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
@@ -91,16 +92,17 @@ export const Button = styled.button`
 `;
 
 export const AvatarContainer = styled.div`
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
-  background-color: #ccc;
+  background-color: #ccc;   
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 1.5rem;
   cursor: pointer;
   border: black 1px solid;
+  margin-top: 3rem;
 `;
 
 export const AvatarPopup = styled.div`
