@@ -13,6 +13,9 @@ import {
   AvatarOption,
   Overlay,
 } from "./CreateLobby.styles";
+import { createRoom } from '../../app/services/room';
+import { createPlayer } from '../../app/services/player';
+
 
 // Lista de avatares disponibles
 const avatars = [
@@ -27,16 +30,24 @@ const avatars = [
 ];
 
 function CreateLobby() {
-  const { playerName, setPlayerName } = useContext(PlayerContext);
+  const { playerName, setPlayerName, setRoomId } = useContext(PlayerContext);
   const [isAvatarPopupOpen, setIsAvatarPopupOpen] = useState(false);
   const [selectedAvatar, setSelectedAvatar] = useState(null);
   const navigate = useNavigate();
 
-  const handleCreateLobby = () => {
+  const handleCreateLobby = async () => {
     const trimmedName = playerName.trim();
     if (trimmedName) {
       setPlayerName(trimmedName);
       console.log(playerName);
+
+      const room = await createRoom({});
+      setRoomId(room.data.id);
+
+      const player = await createPlayer({
+        playerName,
+        roomId: room.data.id
+      });
       navigate("/difficulty");
     } else {
       alert("Por favor ingrese un nombre antes de continuar.");
