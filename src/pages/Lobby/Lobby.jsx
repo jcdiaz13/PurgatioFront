@@ -1,4 +1,4 @@
-import { LobbyContainer, CirclesContainer, Circle ,Title,Container,Box,Popup,Overlay} from "./Lobby.styles";
+import { Title,Container,Box,Popup,Overlay} from "./Lobby.styles";
 import { useContext,useState } from "react";
 import { PlayerContext } from "../../app/contexts/PlayerContext";
 import verdugo from '../../app/img/pikaso_texttoimage_35mm-film-photography-bloody-executioner-avatar-pi.jpeg'
@@ -43,6 +43,7 @@ const Lobby = () => {
     setPopup(null);
   };
   return (
+
     <>   
     <Title>{playerName}, elige tu destino! </Title>
     <div>
@@ -62,6 +63,7 @@ const Lobby = () => {
       )}
     </div>
     </>
+
   );
 };
 
