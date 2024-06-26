@@ -29,7 +29,7 @@ const avatars = [
 ];
 
 function JoinLobby() {
-  const { playerName } = useContext(PlayerContext); // Obtener el nombre del jugador desde el contexto
+  const { playerName, setPlayerName } = useContext(PlayerContext);
   const [isAvatarPopupOpen, setIsAvatarPopupOpen] = useState(false);
   const [selectedAvatar, setSelectedAvatar] = useState(null);
 
@@ -44,6 +44,10 @@ function JoinLobby() {
     setIsAvatarPopupOpen(false);
   };
 
+  const handleInputChange = (e) => {
+    setPlayerName(e.target.value);
+  };
+
   return (
     <Container>
       {/* Muestra el overlay si el pop-up está abierto */}
@@ -56,15 +60,22 @@ function JoinLobby() {
         <AvatarContainer onClick={handleAvatarClick}>
           {selectedAvatar ? selectedAvatar : "Avatar"}
         </AvatarContainer>
-        <h2>{playerName}</h2>
 
+        {/* Campo de entrada controlado para el nombre del jugador */}
+        <Input
+          type="text"
+          value={playerName}
+          onChange={handleInputChange}
+          placeholder="Ingresa tu nombre"
+        />
         <Input type="text" placeholder="Introduce el número de sala" />
+
         <ButtonContainer>
           <StyledLink to="/">
             <Button>Volver</Button>
           </StyledLink>
           <StyledLink to="/lobby">
-            <Button>Jugar</Button>
+            <Button>Unirse</Button>
           </StyledLink>
         </ButtonContainer>
       </FormContainer>
