@@ -1,45 +1,68 @@
-import { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { Container, FormContainer, Input, ButtonContainer, Button, ButtonTrash } from './Punishments.styles';
-import { FaTrashAlt, FaArrowLeft } from 'react-icons/fa';
-
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Container, FormContainer, Textarea, ButtonContainer, Button } from './Punishments.styles';
+import { FaArrowLeft } from 'react-icons/fa';
+import sinsData from '../../app/jsons/gameMastersSins.json';
+import punishmentsData from '../../app/jsons/gameMasters.json';
 
 const Punishments = () => {
-  const location = useLocation();
-  const { text } = location.state || { text: '' }; // Texto introducido por el usuario
-  const [punishment, setPunishment] = useState('');
+
+  const [randomPunishment, setRandomPunishment] = useState('');
+  const [randomSin, setRandomSin] = useState('');
+  const [isTextareaModified, setIsTextareaModified] = useState(false);
   const navigate = useNavigate();
+  const suggest = `Sugerencia: ${randomPunishment}`;
+
+  useEffect(() => {
+    // Función para seleccionar una frase aleatoria
+    const getRandomSin = () => {
+      const randomCategory = sinsData[Math.floor(Math.random() * sinsData.length)];
+      const randomSin = randomCategory.sins[Math.floor(Math.random() * randomCategory.sins.length)];
+      return randomSin;
+    };
+    setRandomSin(getRandomSin());
+  }, []);
+
+  useEffect(() => {
+    // Función para seleccionar un castigo aleatorio
+    const getRandomPunishment = () => {
+      const randomCategory = punishmentsData[Math.floor(Math.random() * punishmentsData.length)];
+      const randomPunishment = randomCategory.punishments[Math.floor(Math.random() * randomCategory.punishments.length)];
+      return randomPunishment;
+    };
+    setRandomPunishment(getRandomPunishment());
+  }, []);
 
   const handlePunishmentChange = (e) => {
-    setPunishment(e.target.value);
-  };
-
-  const handleClearPunishment = () => {
-    setPunishment("");
+    setRandomPunishment(e.target.value);
+    setIsTextareaModified(true); // Marca como modificado al cambiar el texto
   };
 
   const handleGoToSins = () => {
     navigate('/sins');
   };
 
+  const handleNext = () => {
+    if (!isTextareaModified) {
+      alert("Por favor, modifique el texto antes de continuar.");
+      return;
+    }
+    navigate('/');
+  };
+
   return (
     <Container>
       <FormContainer>
         <h1>Castigos</h1>
-        <p>Texto introducido: {text}</p>
-        <Input
-          type="text"
-          value={punishment}
+        <p>{randomSin}</p>
+        <Textarea
+
           onChange={handlePunishmentChange}
-          placeholder="Escribe un castigo"
+          placeholder={suggest}
         />
         <ButtonContainer>
-
-          <Button onClick={handleGoToSins}> <FaArrowLeft /></Button>
-          <ButtonTrash onClick={handleClearPunishment}>
-            <FaTrashAlt />
-          </ButtonTrash>
-          <Button>Enviar</Button>
+          <Button onClick={handleGoToSins}><FaArrowLeft /> Volver</Button>
+          <Button onClick={handleNext}>Enviar</Button>
         </ButtonContainer>
       </FormContainer>
     </Container>
