@@ -2,6 +2,8 @@
   {
     "name": "executioner",
     "id": "1",
+    "description": "Descripción de executioner",
+    "img": "img",
     "punishments": [
       "Comer una rodaja de limón sin hacer gestos.",
       "Enviar un mensaje vergonzoso a alguien en tu lista de contactos (previamente aprobado por los jugadores).",
@@ -18,6 +20,8 @@
   {
     "name": "mage",
     "id": "2",
+    "description": "Descripción de mage",
+    "img": "img",
     "punishments": [
       "Hacer 20 sentadillas.",
       "Comer una cucharadita de mostaza.",
@@ -34,6 +38,11 @@
   {
     "name": "fairy",
     "id": "3",
+<<<<<<< HEAD
+=======
+    "description": "Descripción de fairy",
+    "img": "img",
+>>>>>>> 127cdba583a3068381d5b4dd1f4ec59ffac5cfb3
     "punishments": [
       "Hacer 10 saltos en el lugar.",
       "Cantar una canción infantil durante 30 segundos.",
