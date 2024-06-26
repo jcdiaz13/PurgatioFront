@@ -2,6 +2,9 @@ import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
 	body {
-		//tipo de fuente para toda la app
+		@font-face {
+  font-family: Punish;
+  src: url(TheWildBreathofZelda.otf);
+}
 	}
 `;
