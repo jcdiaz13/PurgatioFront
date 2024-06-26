@@ -51,6 +51,7 @@ const Lobby = () => {
     setPopup(null);
   };
   return (
+
     <>   
     <Title>{playerName}, elige tu destino! </Title>
     <div>
@@ -70,6 +71,7 @@ const Lobby = () => {
       )}
     </div>
     </>
+
   );
 };
 
