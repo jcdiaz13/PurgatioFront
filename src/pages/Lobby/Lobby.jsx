@@ -8,7 +8,7 @@ const Lobby = () => {
   return (
     <LobbyContainer>
       <CirclesContainer>
-        <h1>{playerName}, elige tu destino </h1>
+        <h1>{playerName}, escoge el modo de juego </h1>
         <Circle>
           <h2>VERDUGO</h2>
         </Circle>

@@ -92,8 +92,8 @@ export const Button = styled.button`
 `;
 
 export const AvatarContainer = styled.div`
-  width: 150px;
-  height: 150px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
   background-color: #ccc;   
   display: flex;
@@ -102,7 +102,8 @@ export const AvatarContainer = styled.div`
   font-size: 1.5rem;
   cursor: pointer;
   border: black 1px solid;
-  margin-top: 3rem;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
 `;
 
 export const AvatarPopup = styled.div`
