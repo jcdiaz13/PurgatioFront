@@ -15,22 +15,23 @@ export const Title = styled.h1`
   color: #333;
   margin-bottom: 2rem;
 `;
-
+//PopUp
 export const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 80%;
-  max-width: 800px; /* Añadido para limitar el ancho máximo */
+  max-width: 800px;
   padding: 2rem;
-  background-color: white;
+  background-color: #fff; /* Cambia el color de fondo del modal */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   border-radius: 8px;
-  border: 1px solid #ccc;
+  border: 1px radius  #ccc;
 `;
 
-export const Input = styled.input`
-  padding: 0.8rem; /* Ajustado el padding para que sea más proporcionado */
+
+export const Textarea = styled.textarea`
+  padding: 1.5rem; /* Ajustado el padding para que sea más proporcionado */
   margin-bottom: 1rem;
   border: 1px solid #ccc;
   border-radius: 4px;
