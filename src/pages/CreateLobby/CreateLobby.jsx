@@ -37,7 +37,7 @@ function CreateLobby() {
     if (trimmedName) {
       setPlayerName(trimmedName);
       console.log(playerName);
-      navigate("/lobby");
+      navigate("/difficulty");
     } else {
       alert("Por favor ingrese un nombre antes de continuar.");
     }
