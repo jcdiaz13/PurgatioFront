@@ -1,5 +1,5 @@
-import { Title,Container,Box,Popup,Overlay} from "./Lobby.styles";
-import { useContext,useState } from "react";
+import { Title, Container, Box, Popup, Overlay } from "./Lobby.styles";
+import { useContext, useState } from "react";
 import { PlayerContext } from "../../app/contexts/PlayerContext";
 import verdugo from '../../app/img/pikaso_texttoimage_35mm-film-photography-bloody-executioner-avatar-pi.jpeg'
 import mago from '../../app/img/rendering-wizard-controlling-magic.jpg'
@@ -21,7 +21,7 @@ const PopupContent = ({ closePopup,id, image, description }) => (
   </>
 );
 const Lobby = () => {
-  const { playerName } = useContext(PlayerContext); // Obtener el nombre del jugador desde el contexto
+  const { playerName, roomId } = useContext(PlayerContext); // Obtener el nombre del jugador desde el contexto
 
   const [popup, setPopup] = useState(null);
 
@@ -51,27 +51,25 @@ const Lobby = () => {
     setPopup(null);
   };
   return (
-
-    <>   
-    <Title>{playerName}, elige tu destino! </Title>
-    <div>
-      <Container>
-        {popups.map((popup, index) => (
-          <Box key={index} onClick={() => handleClick(index)}>
-            <img src={popup.image}></img>
-                 </Box>
-        ))}
-      </Container>
-      {popup && (
-        <PopupContent
-          closePopup={closePopup}
-          image={popup.image}
-          description={popup.description}
-        />
-      )}
-    </div>
+    <>
+      <Title>{playerName}, elige tu destino! </Title>
+      <div>
+        <Container>
+          {popups.map((popup, index) => (
+            <Box key={index} onClick={() => handleClick(index)}>
+              <img src={popup.image}></img>
+            </Box>
+          ))}
+        </Container>
+        {popup && (
+          <PopupContent
+            closePopup={closePopup}
+            image={popup.image}
+            description={popup.description}
+          />
+        )}
+      </div>
     </>
-
   );
 };
 
