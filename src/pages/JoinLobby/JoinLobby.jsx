@@ -66,7 +66,7 @@ function JoinLobby() {
           type="text"
           value={playerName}
           onChange={handleInputChange}
-          placeholder="Introduce tu nombre"
+          placeholder="Ingresa tu nombre"
         />
         <Input type="text" placeholder="Introduce el número de sala" />
 
