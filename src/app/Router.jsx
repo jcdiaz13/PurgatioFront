@@ -9,11 +9,12 @@ import Punishments from "../pages/Punishments/Punishments";
 import CreateLobby from "../pages/CreateLobby/CreateLobby";
 import JoinLobby from "../pages/JoinLobby/JoinLobby";
 import QRCodeGenerator from "../pages/QrCodeGenerator/QrCodeGenerator";
+import Borrar from "../pages/Verdict/Verdict"
 
 const Router = () => (
   <BrowserRouter>
     <Routes>
-      <Route index element={<Home />} />
+      <Route index element={<Borrar />} />
       <Route path="/createlobby" element={<CreateLobby />} />
       <Route path="/joinlobby" element={<JoinLobby />} />
       <Route path="/lobby" element={<Lobby />} />
