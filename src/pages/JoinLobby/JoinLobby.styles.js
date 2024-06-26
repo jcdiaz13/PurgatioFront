@@ -92,8 +92,8 @@ export const Button = styled.button`
 `;
 
 export const AvatarContainer = styled.div`
-  width: 150px;
-  height: 150px;
+  width: 130px;
+  height: 130px;
   border-radius: 50%;
   background-color: #ccc;   
   display: flex;
