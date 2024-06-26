@@ -27,7 +27,7 @@ export const FormContainer = styled.div`
   border: 1px solid #ccc;
 `;
 
-export const Input = styled.input`
+export const Textarea = styled.textarea`
   padding: 0.8rem; /* Ajustado el padding para que sea más proporcionado */
   margin-bottom: 1rem;
   border: 1px solid #ccc;

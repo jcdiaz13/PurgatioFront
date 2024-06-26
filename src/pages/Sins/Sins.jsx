@@ -1,19 +1,32 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Container, FormContainer, Input, ButtonContainer, Button, ButtonTrash, Title } from './Sins.styles';
-import { FaTrashAlt } from 'react-icons/fa';
+import { Container, FormContainer, Textarea, ButtonContainer, Button, Title } from './Sins.styles';
+import { FaArrowRight, FaArrowLeft } from 'react-icons/fa';
+import sinsData from '../../app/jsons/gameMastersSins.json';
 
 function Sins() {
-  const [text, setText] = useState("¿Cuál es el colmo de Aladdín? Tener mal genio.");
+  const [text, setText] = useState("")
   const navigate = useNavigate();
+  const [randomSin, setRandomSin] = useState("");
+  const suggest = `Sugerencia: ${randomSin}`;
+
+  useEffect(() => {
+    // Función para seleccionar una frase aleatoria
+    const getRandomSin = () => {
+      const randomCategory = sinsData[Math.floor(Math.random() * sinsData.length)];
+      const randomSin = randomCategory.sins[Math.floor(Math.random() * randomCategory.sins.length)];
+      return randomSin;
+    };
+
+    setRandomSin(getRandomSin());
+  }, []);
 
   const handleInputChange = (e) => {
+    // setRandomSin(e.target.value);
     setText(e.target.value);
   };
 
-  const handleClearText = () => {
-    setText("");
-  };
+
   // Punishers
   const handleNext = () => {
     if (text === "") {
@@ -22,17 +35,19 @@ function Sins() {
     }
     navigate('/punishments');
   };
+  const handleGoLobby = () => {
+    navigate('/lobby');
+  };
 
   return (
     <Container>
       <FormContainer>
         <Title>Pecados</Title>
-        <Input type="text" value={text} onChange={handleInputChange} placeholder="Introduce un texto" />
+        {/* <textarea id="descriptionEvent" rows={10} cols={50} /> */}
+        <Textarea type="text" value={text} onChange={handleInputChange} placeholder={suggest} />
         <ButtonContainer>
-          <ButtonTrash onClick={handleClearText}>
-            <FaTrashAlt />
-          </ButtonTrash>
-          <Button onClick={handleNext}>Siguiente</Button>
+          <Button onClick={handleGoLobby}><FaArrowLeft /></Button>
+          <Button onClick={handleNext}><FaArrowRight /></Button>
         </ButtonContainer>
       </FormContainer>
     </Container>
