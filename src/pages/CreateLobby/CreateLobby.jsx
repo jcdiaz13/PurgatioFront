@@ -48,7 +48,7 @@ function CreateLobby() {
         playerName,
         roomId: room.data.id
       });
-      navigate("/lobby");
+      navigate("/difficulty");
     } else {
       alert("Por favor ingrese un nombre antes de continuar.");
     }
