@@ -1,17 +1,22 @@
-import { LobbyContainer, CirclesContainer, Circle ,Title,Container,Box,Popup,Overlay} from "./Lobby.styles";
+import { Title,Container,Box,Popup,Overlay} from "./Lobby.styles";
 import { useContext,useState } from "react";
 import { PlayerContext } from "../../app/contexts/PlayerContext";
 import verdugo from '../../app/img/pikaso_texttoimage_35mm-film-photography-bloody-executioner-avatar-pi.jpeg'
 import mago from '../../app/img/rendering-wizard-controlling-magic.jpg'
 import hada from '../../app/img/pikaso_texttoimage_sweet-fairy-impressive-surreal-cinematic-lighting-.jpeg'
+import {StyledLink, Button} from '../JoinLobby/JoinLobby.styles';
 
-const PopupContent = ({ closePopup, image, description }) => (
+const PopupContent = ({ closePopup,id, image, description }) => (
   <>
     <Overlay onClick={closePopup} />
     <Popup>
       <img src={image} alt="" width="225px" />
       <p>{description}</p>
       <button onClick={closePopup}>Close</button>
+      <StyledLink to={`/${id}`}>
+            <Button>Start</Button>
+          </StyledLink>
+      
     </Popup>
   </>
 );
@@ -22,16 +27,19 @@ const Lobby = () => {
 
   const popups = [
     {
+      id:1,
       image: verdugo,
-      description: 'Verdugo',
+      description: 'Executioner',
     },
     {
+      id:2,
       image: mago,
-      description: 'Mago',
+      description: 'Mage',
     },
     {
+      id:3,
       image: hada,
-      description: 'Hada',
+      description: 'Fairy',
     },
   ];
 

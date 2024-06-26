@@ -16,9 +16,9 @@ const Router = () => (
       <Route path="/createlobby" element={<CreateLobby />} />
       <Route path="/joinlobby" element={<JoinLobby />} />
       <Route path="/lobby" element={<Lobby />} />
-      <Route path="/executioner" element={<Executioner />} />
-      <Route path="/mage" element={<Mage />} />
-      <Route path="/fairy" element={<Fairy />} />
+      <Route path="/1" element={<Executioner />} />
+      <Route path="/2" element={<Mage />} />
+      <Route path="/3" element={<Fairy />} />
       <Route path="/sins" element={<Sins />} />
       <Route path="/punishments" element={<Punishments />} />
       <Route path="*" element={<div>404</div>} />
