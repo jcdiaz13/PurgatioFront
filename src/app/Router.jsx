@@ -9,6 +9,7 @@ import Punishments from "../pages/Punishments/Punishments";
 import CreateLobby from "../pages/CreateLobby/CreateLobby";
 import JoinLobby from "../pages/JoinLobby/JoinLobby";
 import QRCodeGenerator from "../pages/QrCodeGenerator/QrCodeGenerator";
+import Lobby from "../pages/Lobby/Lobby";
 
 const Router = () => (
   <BrowserRouter>
@@ -17,6 +18,7 @@ const Router = () => (
       <Route path="/createlobby" element={<CreateLobby />} />
       <Route path="/joinlobby" element={<JoinLobby />} />
       <Route path="/difficulty" element={<Difficulty />} />
+      <Route path="/lobby" element={<Lobby />} />
       <Route path="/executioner" element={<Executioner />} />
       <Route path="/mage" element={<Mage />} />
       <Route path="/fairy" element={<Fairy />} />
