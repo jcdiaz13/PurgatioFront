@@ -7,7 +7,7 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 95vh;
   background-color: white;
 `;
 
@@ -23,7 +23,7 @@ export const Overlay = styled.div`
 
 export const Title = styled.h1`
   font-size: 3rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 `;
 
 export const FormContainer = styled.div`
@@ -31,15 +31,17 @@ export const FormContainer = styled.div`
   flex-direction: column;
   align-items: center;
   width: 500px;
-  height: 550px;
+  height: 600px;
   padding: 2rem;
-  background: white;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-  border-radius: 8px;
-  border: 1px solid black;
+  background: white; 
   z-index: 2;
   opacity: ${({ isPopupOpen }) => (isPopupOpen ? 0.2 : 1)};
   transition: opacity 0.3s ease;
+
+  h2{
+    margin-bottom: 0px;
+  }
+  
 `;
 
 export const Input = styled.input`
