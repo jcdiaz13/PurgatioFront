@@ -1,0 +1,56 @@
+[
+  {
+    "name": "executioner",
+    "id": "1",
+    "description": "Descripción de executioner",
+    "img": "img",
+    "sins": [
+      "Executioner Sin 1: Rompió una promesa importante.",
+      "Executioner Sin 2: Robó un objeto valioso.",
+      "Executioner Sin 3: Engañó a un amigo cercano.",
+      "Executioner Sin 4: Actuó con arrogancia en una situación crítica.",
+      "Executioner Sin 5: Traicionó la confianza de su familia.",
+      "Executioner Sin 6: Hizo trampa en una competencia importante.",
+      "Executioner Sin 7: Ignoró las súplicas de ayuda de alguien en necesidad.",
+      "Executioner Sin 8: Usó su poder para oprimir a los débiles.",
+      "Executioner Sin 9: Se aprovechó de la ignorancia de otros para beneficio propio.",
+      "Executioner Sin 10: Cometió un acto de venganza injustificado."
+    ]
+  },
+  {
+    "name": "mage",
+    "id": "2",
+    "description": "Descripción de mage",
+    "img": "img",
+    "sins": [
+      "Mage Sin 1: Utilizó magia oscura para obtener poder.",
+      "Mage Sin 2: Experimentó con hechizos peligrosos sin consideración por las consecuencias.",
+      "Mage Sin 3: Ocultó información crucial para proteger sus intereses.",
+      "Mage Sin 4: Abandonó a sus discípulos en un momento de necesidad.",
+      "Mage Sin 5: Manipuló a otros mediante encantamientos.",
+      "Mage Sin 6: Rompió el código de ética de los magos.",
+      "Mage Sin 7: Traicionó a su mentor en busca de poder.",
+      "Mage Sin 8: Usó magia para controlar la voluntad de otros.",
+      "Mage Sin 9: Se apropió de los conocimientos de otros magos sin reconocimiento.",
+      "Mage Sin 10: Invocó criaturas de otros planos para aterrorizar a los inocentes."
+    ]
+  },
+  {
+    "name": "fairy",
+    "id": "3",
+    "description": "Descripción de fairy",
+    "img": "img",
+    "sins": [
+      "Fairy Sin 1: Rompió las reglas del reino de las hadas.",
+      "Fairy Sin 2: Usó polvo de hadas para causar estragos.",
+      "Fairy Sin 3: Se burló de los humanos y sus costumbres.",
+      "Fairy Sin 4: Ignoró sus deberes en el bosque encantado.",
+      "Fairy Sin 5: Se alió con fuerzas oscuras por diversión.",
+      "Fairy Sin 6: Ocultó secretos del consejo de hadas.",
+      "Fairy Sin 7: Jugó trucos maliciosos a otros seres mágicos.",
+      "Fairy Sin 8: Desobedeció a la reina de las hadas.",
+      "Fairy Sin 9: Se aprovechó de la confianza de los animales del bosque.",
+      "Fairy Sin 10: Causó discordia entre los habitantes del reino mágico."
+    ]
+  }
+]
