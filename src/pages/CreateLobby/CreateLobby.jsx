@@ -15,7 +15,7 @@ import {
 } from "./CreateLobby.styles";
 import { createRoom } from '../../app/services/room';
 import { createPlayer } from '../../app/services/player';
-import { CgLaptop } from "react-icons/cg";
+
 
 // Lista de avatares disponibles
 const avatars = [
