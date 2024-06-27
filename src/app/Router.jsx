@@ -7,7 +7,7 @@ import CreateLobby from "../pages/CreateLobby/CreateLobby";
 import JoinLobby from "../pages/JoinLobby/JoinLobby";
 import QRCodeGenerator from "../pages/QrCodeGenerator/QrCodeGenerator";
 import Lobby from "../pages/Lobby/Lobby";
-
+import Verdict from "../pages/Verdict/Verdict"
 const Router = () => (
   <BrowserRouter>
     <Routes>
@@ -19,7 +19,9 @@ const Router = () => (
       <Route path="/sins" element={<Sins />} />
       <Route path="/punishments" element={<Punishments />} />
       <Route path="/qr" element={<QRCodeGenerator />}></Route>
+      <Route path="/verdict" element={<Verdict />}></Route>
       <Route path="*" element={<div>404</div>} />
+      
     </Routes>
   </BrowserRouter>
 );
