@@ -10,18 +10,6 @@ import {
 import { FaArrowLeft } from "react-icons/fa";
 import sinsData from "../../app/jsons/gameMastersSins.json";
 import punishmentsData from "../../app/jsons/gameMasters.json";
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import {
-  Container,
-  FormContainer,
-  Textarea,
-  ButtonContainer,
-  Button,
-} from "./Punishments.styles";
-import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-import sinsData from "../../app/jsons/gameMastersSins.json";
-import punishmentsData from "../../app/jsons/gameMasters.json";
 
 const Punishments = () => {
   const [randomPunishment, setRandomPunishment] = useState("");
@@ -73,7 +61,6 @@ const Punishments = () => {
       return;
     }
     navigate("/");
-    navigate("/verdict");
   };
 
   return (
@@ -90,13 +77,6 @@ const Punishments = () => {
           <Link to="/verdict">
             <Button>Enviar</Button>
           </Link>
-          <Button onClick={handleGoToSins}>
-            {" "}
-            <FaArrowLeft />
-          </Button>
-          <Button onClick={handleNext}>
-            <FaArrowRight />
-          </Button>
         </ButtonContainer>
       </FormContainer>
     </Container>
