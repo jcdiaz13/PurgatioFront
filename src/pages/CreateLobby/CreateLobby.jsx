@@ -74,7 +74,7 @@ function CreateLobby() {
       {isAvatarPopupOpen && <Overlay />}
 
       {/* Contenedor del formulario */}
-      <FormContainer isPopupOpen={isAvatarPopupOpen}>
+      <FormContainer ispopupopen={isAvatarPopupOpen}>
         <Title>Crear nueva sala</Title>
         <h2>Selecciona un avatar</h2>
 
