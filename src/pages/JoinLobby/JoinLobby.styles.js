@@ -95,13 +95,8 @@ export const Button = styled.button`
 `;
 
 export const AvatarContainer = styled.div`
-<<<<<<< HEAD
-  width: 130px;
-  height: 130px;
-=======
   width: 120px;
   height: 120px;
->>>>>>> 4af35642eb721004589ea2041952adab63844fc4
   border-radius: 50%;
   background-color: #ccc;   
   display: flex;
