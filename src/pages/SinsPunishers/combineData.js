@@ -1,33 +1,35 @@
-// combineData.js
 export const combineData = (sinsDataArrays, punishmentsDataArrays) => {
   const combinedData = [];
 
-  // Determinamos el mínimo entre la longitud de sinsDataArrays y punishmentsDataArrays
-  const minLength = Math.min(sinsDataArrays.length, punishmentsDataArrays.length);
+  // Verificar y manejar casos donde los datos no son arrays estándar
+  if (!Array.isArray(sinsDataArrays) || !Array.isArray(punishmentsDataArrays)) {
+    console.error('Los datos de entrada no son arrays válidos');
+    return combinedData; // Devolver un array vacío si los datos no son válidos
+  }
 
-  // Iteramos hasta el mínimo de los dos arrays
-  for (let i = 0; i < minLength; i++) {
-    const sinsData = sinsDataArrays[i];
-    const punishmentsData = punishmentsDataArrays[i];
-
-    if (!sinsData || !punishmentsData) {
-      continue; // Salta esta iteración si alguno de los datos es undefined
+  // Iterar sobre sinsDataArrays (asumiendo que puede ser un array de objetos)
+  sinsDataArrays.forEach((sinsData, index) => {
+    // Verificar si punishmentsDataArrays[index] es un objeto con propiedad "punishments"
+    const punishmentsData = punishmentsDataArrays[index];
+    if (typeof punishmentsData !== 'object' || !punishmentsData.hasOwnProperty('punishments')) {
+      console.error(`Los datos en el índice ${index} de punishmentsDataArrays no son válidos`);
+      return; // Saltar esta iteración si no es un objeto válido con propiedad "punishments"
     }
 
-    // Iteramos sobre los personajes en sinsData
-    sinsData.forEach((character, index) => {
-      // Verificamos si punishmentsData tiene suficientes elementos
-      const punishment = punishmentsData.punishments[index] || ''; // Por si no hay suficientes punishments
+    // Iterar sobre los personajes en sinsData
+    sinsData.forEach((character) => {
+      const combined = character.sins.map((sin, idx) => ({
+        sin,
+        punishment: punishmentsData.punishments[idx] || 'Sin castigo definido', // Manejar el caso donde no hay castigo definido
+      }));
 
-      const combined = {
+      combinedData.push({
         ...character,
-        punishment, // Asignamos el castigo directamente
-      };
-
-      combinedData.push(combined);
+        punishments: punishmentsData.punishments,
+        combined,
+      });
     });
-  }
+  });
 
   return combinedData;
 };
-

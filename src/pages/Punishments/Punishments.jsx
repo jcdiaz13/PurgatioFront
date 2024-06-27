@@ -55,11 +55,7 @@ const Punishments = () => {
       <FormContainer>
         <h1>Castigos</h1>
         <p>{randomSin}</p>
-        <Textarea
-
-          onChange={handlePunishmentChange}
-          placeholder={suggest}
-        />
+        <Textarea onChange={handlePunishmentChange} placeholder={suggest} />
         <ButtonContainer>
           <Button onClick={handleGoToSins}><FaArrowLeft /> Volver</Button>
           <Button onClick={handleNext}>Enviar</Button>

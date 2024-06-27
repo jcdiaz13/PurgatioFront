@@ -3,7 +3,10 @@
 import { useState } from 'react';
 import { combineData } from './combineData'; // Importa la función combineData
 import combinedData from '../../app/jsons/gameMasters.json'; // Importa los datos combinados desde el archivo JSON
-import { containerStyle, imageStyle, tableStyle, buttonStyle, } from './DisplayCombine.style'; // Importa los estilos desde el archivo styles
+import {
+  CharacterContainer, CharacterDescription, CharacterImage, CombinedTable, TableHeader, TableCell,
+  CombineButton, ActiveCombination, ActiveCombinationTitle, ActiveCombinationText,
+} from './DisplayCombine.style'; // Importa los styled components desde el archivo
 
 const DisplayCombinedData = () => {
   // Combina los datos de sins y punishments usando combineData
@@ -22,49 +25,44 @@ const DisplayCombinedData = () => {
   return (
     <div>
       {combinedCharacters.map((character) => (
-        <div key={character.id} style={containerStyle}>
+        <CharacterContainer key={character.id}>
           <h2>{character.name}</h2>
-          <p>{character.description}</p>
-          <img src={character.img} alt={character.name} style={imageStyle} />
-          <table style={tableStyle}>
+          <CharacterDescription>{character.description}</CharacterDescription>
+          <CharacterImage src={character.img} alt={character.name} />
+          <CombinedTable>
             <thead>
               <tr>
-                <th>Sin</th>
-                <th>Punishment</th>
-                <th>Combine</th>
+                <TableHeader>Sin</TableHeader>
+                <TableHeader>Punishment</TableHeader>
+                <TableHeader>Combine</TableHeader>
               </tr>
             </thead>
             <tbody>
               {character.combined.map((pair, index) => (
                 <tr key={index}>
-                  <td>{pair.sin}</td>
-                  <td>{pair.punishment}</td>
-                  <td>
-                    <button
-                      style={buttonStyle}
-                      onClick={() =>
-                        handleCombine(character.id, pair.sin, pair.punishment)
-                      }
-                    >
+                  <TableCell>{pair.sin}</TableCell>
+                  <TableCell>{pair.punishment}</TableCell>
+                  <TableCell>
+                    <CombineButton onClick={() => handleCombine(character.id, pair.sin, pair.punishment)}>
                       Combine
-                    </button>
-                  </td>
+                    </CombineButton>
+                  </TableCell>
                 </tr>
               ))}
             </tbody>
-          </table>
-        </div>
+          </CombinedTable>
+        </CharacterContainer>
       ))}
       {/* Muestra la combinación activa si existe */}
       {activeCombination && (
-        <div style={{ marginTop: '20px' }}>
-          <h3>Última combinación:</h3>
-          <p>
+        <ActiveCombination>
+          <ActiveCombinationTitle>Última combinación:</ActiveCombinationTitle>
+          <ActiveCombinationText>
             Personaje: {activeCombination.characterId} <br />
             Sin: {activeCombination.sin} <br />
             Punishment: {activeCombination.punishment}
-          </p>
-        </div>
+          </ActiveCombinationText>
+        </ActiveCombination>
       )}
     </div>
   );
