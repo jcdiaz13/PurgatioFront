@@ -53,6 +53,8 @@ export const Element = styled.p`
 export const Judge = styled.div`
   position: relative;
   * {
+    top: 18%;
+    /* transform: translate(-50%, -50%); */
     background-color: white;
     border: 1px solid grey;
     border-radius: 13px;

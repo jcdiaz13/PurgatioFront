@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Container, FormContainer, Input, ButtonContainer, Button, ButtonTrash } from './Punishments.styles';
 import { FaTrashAlt, FaArrowLeft } from 'react-icons/fa';
 
@@ -39,7 +39,9 @@ const Punishments = () => {
           <ButtonTrash onClick={handleClearPunishment}>
             <FaTrashAlt />
           </ButtonTrash>
-          <Button>Enviar</Button>
+          <Link to="/verdict">
+          <Button >Enviar</Button>
+          </Link>
         </ButtonContainer>
       </FormContainer>
     </Container>

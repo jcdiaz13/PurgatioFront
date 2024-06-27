@@ -55,6 +55,8 @@ const Verdict = () => {
   const handleClick = () => {
     setIsPopupOpen(!isPopupOpen); // Toggle popup visibility on button click
   };
+
+
   return (
     <>
       <Container>
@@ -84,9 +86,9 @@ const Verdict = () => {
               })}
             </Content>
           </Column>
-          <Judge>
+          {/* <Judge >
             <FaGavel />
-          </Judge>
+          </Judge> */}
           <Column>
             <Header>Castigo</Header>
             <Content>
