@@ -1,10 +1,40 @@
-import styled from 'styled-components';
+import styled,{css} from 'styled-components';
+import mago from "../../app/img/rendering-wizard-controlling-magic.jpg"
+import hada from "../../app/img/pikaso_texttoimage_sweet-fairy-impressive-surreal-cinematic-lighting-.jpeg"
+import verdugo from "../../app/img/pikaso_texttoimage_35mm-film-photography-bloody-executioner-avatar-pi.jpeg"
 
-export const Title=styled.h1`
-margin-top: 50px;
+export const PlayerContainer=styled.div`
+width: 300px;
+height: auto;
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+align-items: center;
+margin: auto;
+gap: 20px;
+`
+export const Player=styled.div` 
+width: 100px;
+height: 100px;
+background-color: white;
+border: solid 1px black;
+  border-radius: 50%;
+  font-size: 15px;
+  display: flex;
+  justify-content: center;
+align-items: center;
+margin: auto;
+p{
 display: flex;
 justify-content: center;
 align-items: center;
+margin-left:15px;
+}
+;
+ 
+`
+export const Gif=styled.div`
+background-image: url(https://i.pinimg.com/originals/bb/52/20/bb5220dccb70fed4d9bd101efad8476d.gif);
 `
 export const LobbyContainer = styled.div`
   display: flex;
@@ -12,6 +42,7 @@ export const LobbyContainer = styled.div`
   align-items: center;
   background-color: white;
   padding: 10px;
+  object-fit: cover;
 `;
 
 export const CirclesContainer = styled.div`
@@ -49,27 +80,76 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  height: 915px;
   padding: 20px;
+  ${({ theme }) =>
+    theme.name === "verdugo" &&
+    css`
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/d05f52cc-6333-4fe6-90f7-c4f417c8b9ac/dfrch0w-f3b61d02-05e7-422a-9eb7-221bf7f023b6.png/v1/fill/w_1024,h_683,q_80,strp/tower_of_blood_by_weirddarkness_dfrch0w-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NjgzIiwicGF0aCI6IlwvZlwvZDA1ZjUyY2MtNjMzMy00ZmU2LTkwZjctYzRmNDE3YzhiOWFjXC9kZnJjaDB3LWYzYjYxZDAyLTA1ZTctNDIyYS05ZWI3LTIyMWJmN2YwMjNiNi5wbmciLCJ3aWR0aCI6Ijw9MTAyNCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.zj2RNYPFDDdv6KD5w4nPPyN-zbhJiH40fm-HqEW2ez4");
+`}
+${({ theme }) =>
+    theme.name === "mago" &&
+    css`
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("https://i.pinimg.com/originals/c8/4f/22/c84f223d53773a3ce0f5dc2818d7db25.gif");
+`}
+${({ theme }) =>
+    theme.name === "hada" &&
+    css`
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("https://i.pinimg.com/originals/1b/45/63/1b456377a9dce67a7dc3630260aa7572.gif");
+`}
 `;
 
 export const Box = styled.div`
- width: 225px;
+ 
+  ${({ theme }) =>
+    theme.name === "verdugo" &&
+    css`
+     display: flex;
+  width: 225px;
   height: 225px;
   border: solid 1px black;
+  background-color: red;
   border-radius: 50%;
   margin-bottom: 20px;
-  display: flex;
+  background-image: url("../../app/img/pikaso_texttoimage_sweet-fairy-impressive-surreal-cinematic-lighting-.jpeg");
   justify-content: center;
   align-items: center;
-  background-color: white;
-  cursor: pointer;
-   img{
-    border: solid 1px black;
+   `}
+
+   ${({ theme }) =>
+    theme.name === "hada" &&
+    css`
+    display: flex;
+  width: 225px;
+  height: 225px;
+  border: solid 1px black;
+  background-color: pink;
   border-radius: 50%;
-    width: 225px;
-    height: 225px;
-    object-fit: cover;
-   }
+  margin-bottom: 20px;
+  background-image: url("../../app/img/pikaso_texttoimage_sweet-fairy-impressive-surreal-cinematic-lighting-.jpeg");
+  justify-content: center;
+  align-items: center;
+   `}
+   ${({ theme }) =>
+    theme.name === "mago" &&
+    css`
+      display: flex;
+  width: 225px;
+  height: 225px;
+  border: solid 1px black;
+  background-color: blue;
+  border-radius: 50%;
+  margin-bottom: 20px;
+  background-image: url("../../app/img/pikaso_texttoimage_sweet-fairy-impressive-surreal-cinematic-lighting-.jpeg");
+  justify-content: center;
+  align-items: center;
+   `}
 `;
 
 export const Popup = styled.div`
