@@ -20,7 +20,7 @@ const PopupContent = ({ closePopup, image, description }) => (
     </Popup>
   </>
 );
-const Lobby = () => {
+const Difficulty = () => {
   const { playerName } = useContext(PlayerContext); // Obtener el nombre del jugador desde el contexto
 
   const [popup, setPopup] = useState(null);
@@ -73,4 +73,4 @@ const Lobby = () => {
   );
 };
 
-export default Lobby;
+export default Difficulty;
