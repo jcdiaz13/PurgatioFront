@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Container, FormContainer, Textarea, ButtonContainer, Button } from './Punishments.styles';
 import { FaArrowLeft } from 'react-icons/fa';
 import sinsData from '../../app/jsons/gameMastersSins.json';
@@ -57,8 +57,11 @@ const Punishments = () => {
         <p>{randomSin}</p>
         <Textarea onChange={handlePunishmentChange} placeholder={suggest} />
         <ButtonContainer>
-          <Button onClick={handleGoToSins}><FaArrowLeft /> Volver</Button>
-          <Button onClick={handleNext}>Enviar</Button>
+
+          <Button onClick={handleGoToSins}> <FaArrowLeft /></Button>
+          <Link to="/verdict">
+          <Button >Enviar</Button>
+          </Link>
         </ButtonContainer>
       </FormContainer>
     </Container>
