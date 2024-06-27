@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Container, FormContainer, Textarea, ButtonContainer, Button } from './Punishments.styles';
-import { FaArrowLeft } from 'react-icons/fa';
+import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import sinsData from '../../app/jsons/gameMastersSins.json';
 import punishmentsData from '../../app/jsons/gameMasters.json';
 
@@ -47,7 +47,7 @@ const Punishments = () => {
       alert("Por favor, modifique el texto antes de continuar.");
       return;
     }
-    navigate('/');
+    navigate('/verdict');
   };
 
   return (
@@ -57,11 +57,8 @@ const Punishments = () => {
         <p>{randomSin}</p>
         <Textarea onChange={handlePunishmentChange} placeholder={suggest} />
         <ButtonContainer>
-
           <Button onClick={handleGoToSins}> <FaArrowLeft /></Button>
-          <Link to="/verdict">
-          <Button >Enviar</Button>
-          </Link>
+          <Button onClick={handleNext}><FaArrowRight /></Button>
         </ButtonContainer>
       </FormContainer>
     </Container>
