@@ -38,11 +38,8 @@
   {
     "name": "fairy",
     "id": "3",
-<<<<<<< HEAD
-=======
     "description": "Descripción de fairy",
     "img": "img",
->>>>>>> 127cdba583a3068381d5b4dd1f4ec59ffac5cfb3
     "punishments": [
       "Hacer 10 saltos en el lugar.",
       "Cantar una canción infantil durante 30 segundos.",

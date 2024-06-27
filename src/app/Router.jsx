@@ -1,12 +1,12 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "../pages/Home/Home";
-import Difficulty from "../pages/Difficulty/Difficulty";
-import Sins from "../pages/Sins/Sins";
-import Punishments from "../pages/Punishments/Punishments";
 import CreateLobby from "../pages/CreateLobby/CreateLobby";
 import JoinLobby from "../pages/JoinLobby/JoinLobby";
-import QRCodeGenerator from "../pages/QrCodeGenerator/QrCodeGenerator";
+import Difficulty from "../pages/Difficulty/Difficulty";
 import Lobby from "../pages/Lobby/Lobby";
+import Sins from "../pages/Sins/Sins";
+import Punishments from "../pages/Punishments/Punishments";
+import QRCodeGenerator from "../pages/QrCodeGenerator/QrCodeGenerator";
 
 const Router = () => (
   <BrowserRouter>
