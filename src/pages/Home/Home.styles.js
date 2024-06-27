@@ -1,19 +1,23 @@
 import styled from 'styled-components';
 
+
+
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-color: #f7f7f7;
+  background-image : url(https://i.pinimg.com/originals/37/6a/39/376a3925f8b6d181006e1f9750870735.gif);
+  background-repeat: no-repeat;
+  background-size: cover;
 `;
 
 export const Title = styled.h1`
   font-size: 3rem;
-  color: #333;
+  color: white;
   margin-bottom: 2rem;
-`;
+ `;
 
 export const FormContainer = styled.div`
   display: flex;
@@ -51,13 +55,13 @@ export const Button = styled.button`
   border: none;
   border-radius: 4px;
   font-size: 1rem;
-  background-color: #007bff;
+  background-color: #006633;
   color: white;
   cursor: pointer;
   width: 130px;
   text-align: center;
 
   &:hover {
-    background-color: #0056b3;
+    background-color: #32CD32;
   }
 `;

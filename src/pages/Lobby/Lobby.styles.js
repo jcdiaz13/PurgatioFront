@@ -1,29 +1,71 @@
-import styled from 'styled-components';
+import styled,{css} from 'styled-components';
+import mago from "../../app/img/rendering-wizard-controlling-magic.jpg"
+import hada from "../../app/img/pikaso_texttoimage_sweet-fairy-impressive-surreal-cinematic-lighting-.jpeg"
+import verdugo from "../../app/img/pikaso_texttoimage_35mm-film-photography-bloody-executioner-avatar-pi.jpeg"
 
+export const PlayerContainer=styled.div`
+width: 300px;
+height: auto;
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+align-items: center;
+margin: auto;
+gap: 20px;
+`
+export const Player=styled.div` 
+width: 100px;
+height: 100px;
+background-color: white;
+border: solid 1px black;
+  border-radius: 50%;
+  font-size: 15px;
+  display: flex;
+  justify-content: center;
+align-items: center;
+margin: auto;
+p{
+display: flex;
+justify-content: center;
+align-items: center;
+margin-left:15px;
+}
+;
+ 
+`
+export const Gif=styled.div`
+background-image: url(https://i.pinimg.com/originals/bb/52/20/bb5220dccb70fed4d9bd101efad8476d.gif);
+`
 export const LobbyContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #f0f0f0;
-  padding: 20px;
+  background-color: white;
+  padding: 10px;
+  object-fit: cover;
 `;
 
 export const CirclesContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: beige;
-  border: 1px solid black;
-  border-radius: 10px;
-  width: 60%;
+  width: 90%;
   h1 {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
 `;
-
+export const Overlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);  
+  z-index: 999;
+`;
 export const Circle = styled.div`
-  width: 250px;
-  height: 250px;
+  width: 225px;
+  height: 225px;
   border: solid 1px black;
   border-radius: 50%;
   margin-bottom: 20px;
@@ -32,3 +74,93 @@ export const Circle = styled.div`
   align-items: center;
   background-color: white;
 `;
+
+export const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 915px;
+  padding: 20px;
+  ${({ theme }) =>
+    theme.name === "verdugo" &&
+    css`
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/d05f52cc-6333-4fe6-90f7-c4f417c8b9ac/dfrch0w-f3b61d02-05e7-422a-9eb7-221bf7f023b6.png/v1/fill/w_1024,h_683,q_80,strp/tower_of_blood_by_weirddarkness_dfrch0w-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NjgzIiwicGF0aCI6IlwvZlwvZDA1ZjUyY2MtNjMzMy00ZmU2LTkwZjctYzRmNDE3YzhiOWFjXC9kZnJjaDB3LWYzYjYxZDAyLTA1ZTctNDIyYS05ZWI3LTIyMWJmN2YwMjNiNi5wbmciLCJ3aWR0aCI6Ijw9MTAyNCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.zj2RNYPFDDdv6KD5w4nPPyN-zbhJiH40fm-HqEW2ez4");
+`}
+${({ theme }) =>
+    theme.name === "mago" &&
+    css`
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("https://i.pinimg.com/originals/c8/4f/22/c84f223d53773a3ce0f5dc2818d7db25.gif");
+`}
+${({ theme }) =>
+    theme.name === "hada" &&
+    css`
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("https://i.pinimg.com/originals/1b/45/63/1b456377a9dce67a7dc3630260aa7572.gif");
+`}
+`;
+
+export const Box = styled.div`
+ 
+  ${({ theme }) =>
+    theme.name === "verdugo" &&
+    css`
+     display: flex;
+  width: 225px;
+  height: 225px;
+  border: solid 1px black;
+  background-color: red;
+  border-radius: 50%;
+  margin-bottom: 20px;
+  background-image: url("../../app/img/pikaso_texttoimage_sweet-fairy-impressive-surreal-cinematic-lighting-.jpeg");
+  justify-content: center;
+  align-items: center;
+   `}
+
+   ${({ theme }) =>
+    theme.name === "hada" &&
+    css`
+    display: flex;
+  width: 225px;
+  height: 225px;
+  border: solid 1px black;
+  background-color: pink;
+  border-radius: 50%;
+  margin-bottom: 20px;
+  background-image: url("../../app/img/pikaso_texttoimage_sweet-fairy-impressive-surreal-cinematic-lighting-.jpeg");
+  justify-content: center;
+  align-items: center;
+   `}
+   ${({ theme }) =>
+    theme.name === "mago" &&
+    css`
+      display: flex;
+  width: 225px;
+  height: 225px;
+  border: solid 1px black;
+  background-color: blue;
+  border-radius: 50%;
+  margin-bottom: 20px;
+  background-image: url("../../app/img/pikaso_texttoimage_sweet-fairy-impressive-surreal-cinematic-lighting-.jpeg");
+  justify-content: center;
+  align-items: center;
+   `}
+`;
+
+export const Popup = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  z-index: 1000;
+  
+`;
+

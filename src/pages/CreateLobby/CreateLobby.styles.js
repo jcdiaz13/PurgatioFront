@@ -8,7 +8,9 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-color: white;
+  background-image: url(https://i.pinimg.com/originals/37/6a/39/376a3925f8b6d181006e1f9750870735.gif);
+  background-repeat: no-repeat;
+  background-size: cover;
 `;
 
 export const Overlay = styled.div`
@@ -22,11 +24,13 @@ export const Overlay = styled.div`
 `;
 
 export const Title = styled.h1`
-  font-size: 3rem;
-  margin-bottom: 2rem;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  margin-top: 0rem;
 `;
 
 export const FormContainer = styled.div`
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -34,10 +38,7 @@ export const FormContainer = styled.div`
   width: 500px;
   height: 500px;
   padding: 2rem;
-  background: white;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-  border-radius: 8px;
-  border: 1px solid black;
+  color: white;
   z-index: 2;
   opacity: ${({ isPopupOpen }) => (isPopupOpen ? 0.2 : 1)};
   transition: opacity 0.3s ease;
@@ -74,7 +75,7 @@ export const Button = styled.button`
   border: none;
   border-radius: 4px;
   font-size: 1rem;
-  background-color: #007bff;
+  background-color: #006633;
   color: white;
   cursor: pointer;
   width: 120px;
@@ -82,7 +83,7 @@ export const Button = styled.button`
   height: 40px; /* Altura fija para ambos botones */
 
   &:hover {
-    background-color: #0056b3;
+    background-color: #32CD32;
   }
 
   &:nth-of-type(2) {
@@ -95,8 +96,8 @@ export const Button = styled.button`
 `;
 
 export const AvatarContainer = styled.div`
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   background-color: #ccc;
   display: flex;

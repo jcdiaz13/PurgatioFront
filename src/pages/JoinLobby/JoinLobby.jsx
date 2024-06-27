@@ -74,7 +74,7 @@ function JoinLobby() {
           <StyledLink to="/">
             <Button>Volver</Button>
           </StyledLink>
-          <StyledLink to="/lobby">
+          <StyledLink to="/difficulty">
             <Button>Unirse</Button>
           </StyledLink>
         </ButtonContainer>
