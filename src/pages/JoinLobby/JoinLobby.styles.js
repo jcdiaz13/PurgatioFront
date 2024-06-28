@@ -10,6 +10,8 @@ export const Container = styled.div`
   height: 100vh;
  
   background-image: url("https://i.pinimg.com/originals/37/6a/39/376a3925f8b6d181006e1f9750870735.gif");
+  background-repeat: no-repeat;
+  background-size: cover;
 `;
 
 export const Overlay = styled.div`
