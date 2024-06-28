@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 export const ContainerAll = styled.div`
 background-color: blue;
+margin: 0;
+
 `
 export const Title=styled.h1`
 margin-top: 50px;
@@ -19,7 +21,15 @@ export const CirclesContainer = styled.div`
     margin-bottom: 10px;
   }
 `;
-
+export const Overlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);  
+  z-index: 999;
+`;
 export const Circle = styled.div`
   width: 225px;
   height: 225px;
@@ -41,7 +51,7 @@ export const Container = styled.div`
 `;
 
 export const Box = styled.div`
-  width: 225px;
+ width: 225px;
   height: 225px;
   border: solid 1px black;
   border-radius: 50%;
@@ -51,13 +61,13 @@ export const Box = styled.div`
   align-items: center;
   background-color: white;
   cursor: pointer;
-  img{
+   img{
     border: solid 1px black;
   border-radius: 50%;
     width: 225px;
     height: 225px;
     object-fit: cover;
-  }
+   }
 `;
 
 export const Popup = styled.div`
