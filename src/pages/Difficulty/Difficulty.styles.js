@@ -2,6 +2,8 @@ import styled from 'styled-components';
 export const Container = styled.div`
   display: grid;
   background:url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoBdN3q0IRAb88OTyJA4eIxUX-l1xLZgTt8A&s');
+  background-size: cover;
+  background-repeat: no-repeat;
   width: 100%;
   height: 100vh;
   align-items: center;
