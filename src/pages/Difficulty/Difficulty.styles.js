@@ -53,7 +53,7 @@ export const Container = styled.div`
 `;
 
 export const Box = styled.div`
- width: 225px;
+  width: 225px;
   height: 225px;
   border: solid 1px black;
   border-radius: 50%;
@@ -63,13 +63,13 @@ export const Box = styled.div`
   align-items: center;
   background-color: white;
   cursor: pointer;
-   img{
+  img{
     border: solid 1px black;
   border-radius: 50%;
     width: 225px;
     height: 225px;
     object-fit: cover;
-   }
+  }
 `;
 
 export const Popup = styled.div`
