@@ -1,18 +1,14 @@
 import styled from 'styled-components';
 
+export const ContainerAll = styled.div`
+background-color: blue;
+`
 export const Title=styled.h1`
 margin-top: 50px;
 display: flex;
 justify-content: center;
 align-items: center;
 `
-export const LobbyContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: white;
-  padding: 10px;
-`;
 
 export const CirclesContainer = styled.div`
   display: flex;
@@ -23,15 +19,7 @@ export const CirclesContainer = styled.div`
     margin-bottom: 10px;
   }
 `;
-export const Overlay = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.7);  
-  z-index: 999;
-`;
+
 export const Circle = styled.div`
   width: 225px;
   height: 225px;

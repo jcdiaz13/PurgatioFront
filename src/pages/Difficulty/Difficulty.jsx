@@ -1,4 +1,4 @@
-import { Title,Container,Box,Popup,Overlay} from "./Difficulty.styles";
+import { Title,Container,Box,Popup,Overlay, ContainerAll} from "./Difficulty.styles";
 import { useContext,useState } from "react";
 import { PlayerContext } from "../../app/contexts/PlayerContext";
 import verdugo from '../../app/img/pikaso_texttoimage_35mm-film-photography-bloody-executioner-avatar-pi.jpeg'
@@ -51,10 +51,8 @@ const Difficulty = () => {
     setPopup(null);
   };
   return (
-
-    <>   
-    <Title>{playerName}, elige tu destino! </Title>
-    <div>
+    <ContainerAll>   
+    <Title>{playerName}, elige tu destino! </Title>   
       <Container>
         {popups.map((popup, index) => (
           <Box key={index} onClick={() => handleClick(index)}>
@@ -68,9 +66,8 @@ const Difficulty = () => {
           image={popup.image}
           description={popup.description}
         />
-      )}
-    </div>
-    </>
+      )}    
+    </ContainerAll>
 
   );
 };
