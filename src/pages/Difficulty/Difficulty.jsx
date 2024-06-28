@@ -1,5 +1,6 @@
 
-import { Title, Container, Box, Popup, Overlay, ContainerAll } from "./Difficulty.styles";
+
+import { Title, Container, Box, Popup, ContainerAll, Overlay } from "./Difficulty.styles";
 import { useContext, useState } from "react";
 import { PlayerContext } from "../../app/contexts/PlayerContext";
 import verdugo from "../../app/img/pikaso_texttoimage_35mm-film-photography-bloody-executioner-avatar-pi.jpeg";
