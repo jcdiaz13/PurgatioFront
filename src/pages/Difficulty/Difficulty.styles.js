@@ -1,63 +1,44 @@
 import styled from 'styled-components';
-
-export const ContainerAll = styled.div`
-background-color: blue;
-`
-export const Title=styled.h1`
-margin-top: 50px;
-display: flex;
-justify-content: center;
-align-items: center;
-`
-
-export const CirclesContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 90%;
-  h1 {
-    margin-bottom: 10px;
-  }
-`;
-
-export const Circle = styled.div`
-  width: 225px;
-  height: 225px;
-  border: solid 1px black;
-  border-radius: 50%;
-  margin-bottom: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: white;
-`;
-
 export const Container = styled.div`
+  display: grid;
+  background:url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoBdN3q0IRAb88OTyJA4eIxUX-l1xLZgTt8A&s');
+  width: 100%;
+  height: 100vh;
+  align-items: center;
+`;
+export const BoxContainer = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  padding: 20px;
+  
+`;
+export const Title = styled.h1`
+justify-content: center;
+display: flex;
+text-align: center;
+align-items: center;
+margin-bottom:0;
+padding:10px;
+margin: 10px;
+background-color: red;
 `;
 
 export const Box = styled.div`
-  width: 225px;
+display: flex;
+ width: 225px;
   height: 225px;
   border: solid 1px black;
   border-radius: 50%;
   margin-bottom: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: white;
   cursor: pointer;
-  img{
+   img{
     border: solid 1px black;
   border-radius: 50%;
     width: 225px;
     height: 225px;
     object-fit: cover;
-  }
+   }
 `;
 
 export const Popup = styled.div`
@@ -70,6 +51,15 @@ export const Popup = styled.div`
   box-shadow: 0 5px 15px rgba(0,0,0,0.3);
   z-index: 1000;
   
+`;
+export const Overlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);  
+  z-index: 999;
 `;
 
 

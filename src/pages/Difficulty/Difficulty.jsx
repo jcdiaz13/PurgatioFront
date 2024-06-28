@@ -1,26 +1,15 @@
 
 
-import { Title, Container, Box, Popup, ContainerAll, Overlay } from "./Difficulty.styles";
+
+import { Title, Container, Box, BoxContainer } from "./Difficulty.styles";
 import { useContext, useState } from "react";
 import { PlayerContext } from "../../app/contexts/PlayerContext";
+import GlobalStyle from "../../app/style/createGlobal.styles";
 import verdugo from "../../app/img/pikaso_texttoimage_35mm-film-photography-bloody-executioner-avatar-pi.jpeg";
 import mago from "../../app/img/rendering-wizard-controlling-magic.jpg";
 import hada from "../../app/img/pikaso_texttoimage_sweet-fairy-impressive-surreal-cinematic-lighting-.jpeg";
-import { StyledLink, Button } from "../JoinLobby/JoinLobby.styles";
+import PopupContent from "./PopupContent"
 
-const PopupContent = ({ closePopup, image, description }) => (
-  <>
-    <Overlay onClick={closePopup} />
-    <Popup>
-      <img src={image} alt="" width="225px" />
-      <p>{description}</p>
-      <button onClick={closePopup}>Close</button>
-      <StyledLink to={`/lobby`}>
-        <Button>Start</Button>
-      </StyledLink>
-    </Popup>
-  </>
-);
 const Difficulty = () => {
   const { playerName } = useContext(PlayerContext); // Obtener el nombre del jugador desde el contexto
 
@@ -52,23 +41,32 @@ const Difficulty = () => {
     setPopup(null);
   };
   return (
-    <ContainerAll>
-      <Title>{playerName}, elige tu destino! </Title>
+    <>
+      <GlobalStyle />
       <Container>
-        {popups.map((popup, index) => (
-          <Box key={index} onClick={() => handleClick(index)}>
-            <img src={popup.image}></img>
-          </Box>
-        ))}
+
+
+
+        <BoxContainer>
+          <Title>{playerName}, elige tu destino! </Title>
+
+          {popups.map((popup, index) => (
+            <Box key={index} onClick={() => handleClick(index)}>
+              <img src={popup.image}></img>
+            </Box>
+          ))}
+        </BoxContainer>
+        {popup && (
+          <PopupContent
+            closePopup={closePopup}
+            image={popup.image}
+            description={popup.description}
+          />
+        )}
       </Container>
-      {popup && (
-        <PopupContent
-          closePopup={closePopup}
-          image={popup.image}
-          description={popup.description}
-        />
-      )}
-    </ContainerAll>
+    </>
+
+
   );
 };
 
