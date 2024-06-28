@@ -12,6 +12,7 @@ import PopupContent from "./PopupContent"
 
 const Difficulty = () => {
   const { playerName } = useContext(PlayerContext); // Obtener el nombre del jugador desde el contexto
+  
 
   const [popup, setPopup] = useState(null);
 

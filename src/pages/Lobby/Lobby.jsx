@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
-import { Box, Container, CirclesContainer, Player ,PlayerContainer} from './Lobby.styles'
+import { Link } from "react-router-dom";
+import { Box, Container, Player, PlayerContainer } from "./Lobby.styles";
 import Theme from "../../components/Theme";
 // import verdugo from "../../app/img/pikaso_texttoimage_35mm-film-photography-bloody-executioner-avatar-pi.jpeg";
 // import mago from "../../app/img/rendering-wizard-controlling-magic.jpg";
@@ -51,23 +51,20 @@ const Lobby = () => {
   return (
     <Theme>
       <Container>
+        <Box></Box>
+        <Link to="/sins">
+          <button>START</button>
+        </Link>
+        <PlayerContainer>
+          {players.map((player, index) => (
+            <Player key={index}>
+              <p>{player.name + " / " + player.image}</p>
+            </Player>
+          ))}
+        </PlayerContainer>
+      </Container>
+    </Theme>
+  );
+};
 
-    <Box></Box>
-   <Link to="/sins">
-    <button>START</button>
-    </Link>
-    <PlayerContainer>
-    {players.map((player, index) => (
-          <Player key={index}>
-            <p>{player.name+" / "+player.image}</p>            
-                 </Player>                 
-    ))}
-    </PlayerContainer>
-    </Container>
-</Theme >
-
-  )
-}
-
-export default Lobby
-
+export default Lobby;
