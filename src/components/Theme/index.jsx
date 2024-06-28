@@ -5,7 +5,7 @@ import {hadaTheme} from "./themes/hadaTheme";
 
 const Theme = ({ children }) => {
   return (
-    <ThemeProvider theme={verdugoTheme}>
+    <ThemeProvider theme={hadaTheme}>
       {children}
     </ThemeProvider>
   );

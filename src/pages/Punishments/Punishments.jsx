@@ -10,6 +10,7 @@ import {
 import { FaArrowLeft } from "react-icons/fa";
 import sinsData from "../../app/jsons/gameMastersSins.json";
 import punishmentsData from "../../app/jsons/gameMasters.json";
+import Theme from '../../components/Theme';
 
 const Punishments = () => {
   const [randomPunishment, setRandomPunishment] = useState("");
@@ -64,6 +65,7 @@ const Punishments = () => {
   };
 
   return (
+    <Theme>
     <Container>
       <FormContainer>
         <h1>Castigos</h1>
@@ -80,6 +82,7 @@ const Punishments = () => {
         </ButtonContainer>
       </FormContainer>
     </Container>
+    </Theme>
   );
 };
 
