@@ -1,11 +1,29 @@
 import { Link } from 'react-router-dom';
 import { Box, Container, CirclesContainer, Player ,PlayerContainer} from './Lobby.styles'
 import Theme from "../../components/Theme";
+import {getRoomId} from '../../app/services/room';
+import {useContext, useState,useEffect} from 'react';
+import {PlayerContext} from '../../app/contexts/PlayerContext';
 // import verdugo from "../../app/img/pikaso_texttoimage_35mm-film-photography-bloody-executioner-avatar-pi.jpeg";
 // import mago from "../../app/img/rendering-wizard-controlling-magic.jpg";
 // import hada from "../../app/img/pikaso_texttoimage_sweet-fairy-impressive-surreal-cinematic-lighting-.jpeg";
 
 const Lobby = () => {
+  const { playerName, setPlayerName, roomId,setRoomId } = useContext(PlayerContext);
+  const [selectedAvatar, setSelectedAvatar] = useState(null);
+ 
+  const handleGetRoomId = async () => {
+    try {
+      const response = await getRoomId({});
+      setRoomId(response.data.id);
+    } catch (error) {
+      console.error('Error getting room ID:', error);
+    }
+  };
+
+  useEffect(() => {
+    handleGetRoomId();
+  }, []);
   const players = [
     {
       id: 1,
@@ -48,12 +66,14 @@ const Lobby = () => {
       image: "Avatar",
     },
   ];
+  
   return (
     <Theme>
       <Container>
 
     <Box></Box>
-   <Link to="/sins">
+    <p>Room ID: {roomId}</p>  
+    <Link to="/sins">
     <button>START</button>
     </Link>
     <PlayerContainer>
