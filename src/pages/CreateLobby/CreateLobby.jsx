@@ -94,7 +94,9 @@ function CreateLobby() {
           <StyledLink to="/">
             <Button>Volver</Button>
           </StyledLink>
+          <StyledLink to="/difficulty">         
           <Button onClick={handleCreateLobby}>Crear sala</Button>
+          </StyledLink>
         </ButtonContainer>
       </FormContainer>
 

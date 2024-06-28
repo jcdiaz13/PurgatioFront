@@ -17,6 +17,7 @@ export const Title = styled.h1`
   font-size: 3rem;
   color: white;
   margin-bottom: 2rem;
+  text-align: center;
  `;
 
 export const FormContainer = styled.div`
