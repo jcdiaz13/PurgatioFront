@@ -13,9 +13,8 @@ import {
   AvatarOption,
   Overlay,
 } from "./CreateLobby.styles";
-import { createRoom } from '../../app/services/room';
-import { createPlayer } from '../../app/services/player';
-
+import { createRoom } from "../../app/services/room";
+import { createPlayer } from "../../app/services/player";
 
 // Lista de avatares disponibles
 const avatars = [
@@ -44,9 +43,9 @@ function CreateLobby() {
       const room = await createRoom({});
       setRoomId(room.data.id);
 
-      const player = await createPlayer({
+      await createPlayer({
         playerName,
-        roomId: room.data.id
+        roomId: room.data.id,
       });
       navigate("/difficulty");
     } else {
@@ -75,7 +74,7 @@ function CreateLobby() {
       {isAvatarPopupOpen && <Overlay />}
 
       {/* Contenedor del formulario */}
-      <FormContainer isPopupOpen={isAvatarPopupOpen}>
+      <FormContainer ispopupopen={isAvatarPopupOpen}>
         <Title>Crear nueva sala</Title>
         <h2>Selecciona un avatar</h2>
 

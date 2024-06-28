@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Container = styled.div`
   position: relative;
@@ -40,7 +40,7 @@ export const FormContainer = styled.div`
   padding: 2rem;
   color: white;
   z-index: 2;
-  opacity: ${({ isPopupOpen }) => (isPopupOpen ? 0.2 : 1)};
+  opacity: ${({ ispopupopen }) => (ispopupopen ? 0.2 : 1)};
   transition: opacity 0.3s ease;
 
   h2 {
