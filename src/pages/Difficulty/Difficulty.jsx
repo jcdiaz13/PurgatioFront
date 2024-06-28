@@ -1,11 +1,6 @@
-<<<<<<< HEAD
-import { Title,Container,Box,Popup,Overlay, ContainerAll} from "./Difficulty.styles";
-import { useContext,useState } from "react";
-=======
-/* eslint-disable react/prop-types */
-import { Title, Container, Box, Popup, Overlay } from "./Difficulty.styles";
+
+import { Title, Container, Box, Popup, Overlay, ContainerAll } from "./Difficulty.styles";
 import { useContext, useState } from "react";
->>>>>>> f65ef1b0b1c932c5210a2aafa7731699924ab425
 import { PlayerContext } from "../../app/contexts/PlayerContext";
 import verdugo from "../../app/img/pikaso_texttoimage_35mm-film-photography-bloody-executioner-avatar-pi.jpeg";
 import mago from "../../app/img/rendering-wizard-controlling-magic.jpg";
@@ -56,13 +51,13 @@ const Difficulty = () => {
     setPopup(null);
   };
   return (
-    <ContainerAll>   
-    <Title>{playerName}, elige tu destino! </Title>   
+    <ContainerAll>
+      <Title>{playerName}, elige tu destino! </Title>
       <Container>
         {popups.map((popup, index) => (
           <Box key={index} onClick={() => handleClick(index)}>
             <img src={popup.image}></img>
-                 </Box>
+          </Box>
         ))}
       </Container>
       {popup && (
@@ -71,7 +66,7 @@ const Difficulty = () => {
           image={popup.image}
           description={popup.description}
         />
-      )}    
+      )}
     </ContainerAll>
   );
 };
