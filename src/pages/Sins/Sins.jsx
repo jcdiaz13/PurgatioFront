@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Container, FormContainer, Textarea, ButtonContainer, Button, Title } from './Sins.styles';
+import { Container, FormContainer, Textarea, ButtonContainer, Button, Title, SubTitle } from './Sins.styles';
 import { FaArrowRight, FaArrowLeft } from 'react-icons/fa';
 import sinsData from '../../app/jsons/gameMastersSins.json';
+import Theme from '../../components/Theme';
 
 function Sins() {
   const [text, setText] = useState("")
@@ -40,9 +41,11 @@ function Sins() {
   };
 
   return (
+    <Theme>
     <Container>
       <FormContainer>
         <Title>Pecados</Title>
+        <SubTitle>Escribe uno de tus pecados:</SubTitle>
         {/* <textarea id="descriptionEvent" rows={10} cols={50} /> */}
         <Textarea type="text" value={text} onChange={handleInputChange} placeholder={suggest} />
         <ButtonContainer>
@@ -51,6 +54,7 @@ function Sins() {
         </ButtonContainer>
       </FormContainer>
     </Container>
+    </Theme>
   );
 }
 
