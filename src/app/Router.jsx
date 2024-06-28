@@ -21,7 +21,7 @@ const Router = () => (
       <Route path="/qr" element={<QRCodeGenerator />}></Route>
       <Route path="/verdict" element={<Verdict />}></Route>
       <Route path="*" element={<div>404</div>} />
-      
+
     </Routes>
   </BrowserRouter>
 );
