@@ -1,25 +1,15 @@
-import { Title,Container,Box,Popup,Overlay} from "./Difficulty.styles";
-import { useContext,useState } from "react";
-import { PlayerContext } from "../../app/contexts/PlayerContext";
-import verdugo from '../../app/img/pikaso_texttoimage_35mm-film-photography-bloody-executioner-avatar-pi.jpeg'
-import mago from '../../app/img/rendering-wizard-controlling-magic.jpg'
-import hada from '../../app/img/pikaso_texttoimage_sweet-fairy-impressive-surreal-cinematic-lighting-.jpeg'
-import {StyledLink, Button} from '../JoinLobby/JoinLobby.styles';
 
-const PopupContent = ({ closePopup,id, image, description }) => (
-  <>
-    <Overlay onClick={closePopup} />
-    <Popup>
-      <img src={image} alt="" width="225px" />
-      <p>{description}</p>
-      <button onClick={closePopup}>Close</button>
-      <StyledLink to={`/lobby`}>
-            <Button>Start</Button>
-          </StyledLink>
-      
-    </Popup>
-  </>
-);
+
+
+import { Title, Container, Box, BoxContainer } from "./Difficulty.styles";
+import { useContext, useState } from "react";
+import { PlayerContext } from "../../app/contexts/PlayerContext";
+import GlobalStyle from "../../app/style/createGlobal.styles";
+import verdugo from "../../app/img/pikaso_texttoimage_35mm-film-photography-bloody-executioner-avatar-pi.jpeg";
+import mago from "../../app/img/rendering-wizard-controlling-magic.jpg";
+import hada from "../../app/img/pikaso_texttoimage_sweet-fairy-impressive-surreal-cinematic-lighting-.jpeg";
+import PopupContent from "./PopupContent"
+
 const Difficulty = () => {
   const { playerName } = useContext(PlayerContext); // Obtener el nombre del jugador desde el contexto
 
@@ -27,19 +17,19 @@ const Difficulty = () => {
 
   const popups = [
     {
-      id:1,
+      id: 1,
       image: verdugo,
-      description: 'Executioner',
+      description: "Executioner",
     },
     {
-      id:2,
+      id: 2,
       image: mago,
-      description: 'Mage',
+      description: "Mage",
     },
     {
-      id:3,
+      id: 3,
       image: hada,
-      description: 'Fairy',
+      description: "Fairy",
     },
   ];
 
@@ -51,29 +41,33 @@ const Difficulty = () => {
     setPopup(null);
   };
   return (
-
-    <>   
-    <Title>{playerName}, elige tu destino! </Title>
-    <div>
+    <>
+      <GlobalStyle />
       <Container>
-        {popups.map((popup, index) => (
-          <Box key={index} onClick={() => handleClick(index)}>
-            <img src={popup.image}></img>
-                 </Box>
-        ))}
+
+
+
+        <BoxContainer>
+          <Title>{playerName}, elige tu destino! </Title>
+
+          {popups.map((popup, index) => (
+            <Box key={index} onClick={() => handleClick(index)}>
+              <img src={popup.image}></img>
+            </Box>
+          ))}
+        </BoxContainer>
+        {popup && (
+          <PopupContent
+            closePopup={closePopup}
+            image={popup.image}
+            description={popup.description}
+          />
+        )}
       </Container>
-      {popup && (
-        <PopupContent
-          closePopup={closePopup}
-          image={popup.image}
-          description={popup.description}
-        />
-      )}
-    </div>
     </>
+
 
   );
 };
 
 export default Difficulty;
-

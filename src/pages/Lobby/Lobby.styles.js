@@ -2,6 +2,10 @@ import styled, { css } from 'styled-components';
 import mago from "../../app/img/rendering-wizard-controlling-magic.jpg"
 import hada from "../../app/img/pikaso_texttoimage_sweet-fairy-impressive-surreal-cinematic-lighting-.jpeg"
 import verdugo from "../../app/img/pikaso_texttoimage_35mm-film-photography-bloody-executioner-avatar-pi.jpeg"
+import styled, { css } from 'styled-components';
+// import mago from "../../app/img/rendering-wizard-controlling-magic.jpg"
+// import hada from "../../app/img/pikaso_texttoimage_sweet-fairy-impressive-surreal-cinematic-lighting-.jpeg"
+// import verdugo from "../../app/img/pikaso_texttoimage_35mm-film-photography-bloody-executioner-avatar-pi.jpeg"
 
 export const PlayerContainer = styled.div`
 width: 300px;
@@ -74,7 +78,7 @@ export const Circle = styled.div`
   align-items: center;
   background-color: white;
 `;
-export const Id=styled.p`
+export const Id = styled.p`
 color:white;
 `
 export const Container = styled.div`
@@ -82,7 +86,9 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 915px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
   padding: 20px;
   ${({ theme }) =>
     theme.name === "verdugo" &&

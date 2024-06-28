@@ -1,14 +1,20 @@
-import { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { Container, FormContainer, Textarea, ButtonContainer, Button } from './Punishments.styles';
-import { FaArrowLeft } from 'react-icons/fa';
-import sinsData from '../../app/jsons/gameMastersSins.json';
-import punishmentsData from '../../app/jsons/gameMasters.json';
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import {
+  Container,
+  FormContainer,
+  Textarea,
+  ButtonContainer,
+  Button,
+} from "./Punishments.styles";
+import { FaArrowLeft } from "react-icons/fa";
+import sinsData from "../../app/jsons/gameMastersSins.json";
+import punishmentsData from "../../app/jsons/gameMasters.json";
+import Theme from '../../components/Theme';
 
 const Punishments = () => {
-
-  const [randomPunishment, setRandomPunishment] = useState('');
-  const [randomSin, setRandomSin] = useState('');
+  const [randomPunishment, setRandomPunishment] = useState("");
+  const [randomSin, setRandomSin] = useState("");
   const [isTextareaModified, setIsTextareaModified] = useState(false);
   const navigate = useNavigate();
   const suggest = `Sugerencia: ${randomPunishment}`;
@@ -16,8 +22,12 @@ const Punishments = () => {
   useEffect(() => {
     // Función para seleccionar una frase aleatoria
     const getRandomSin = () => {
-      const randomCategory = sinsData[Math.floor(Math.random() * sinsData.length)];
-      const randomSin = randomCategory.sins[Math.floor(Math.random() * randomCategory.sins.length)];
+      const randomCategory =
+        sinsData[Math.floor(Math.random() * sinsData.length)];
+      const randomSin =
+        randomCategory.sins[
+          Math.floor(Math.random() * randomCategory.sins.length)
+        ];
       return randomSin;
     };
     setRandomSin(getRandomSin());
@@ -26,8 +36,12 @@ const Punishments = () => {
   useEffect(() => {
     // Función para seleccionar un castigo aleatorio
     const getRandomPunishment = () => {
-      const randomCategory = punishmentsData[Math.floor(Math.random() * punishmentsData.length)];
-      const randomPunishment = randomCategory.punishments[Math.floor(Math.random() * randomCategory.punishments.length)];
+      const randomCategory =
+        punishmentsData[Math.floor(Math.random() * punishmentsData.length)];
+      const randomPunishment =
+        randomCategory.punishments[
+          Math.floor(Math.random() * randomCategory.punishments.length)
+        ];
       return randomPunishment;
     };
     setRandomPunishment(getRandomPunishment());
@@ -39,7 +53,7 @@ const Punishments = () => {
   };
 
   const handleGoToSins = () => {
-    navigate('/sins');
+    navigate("/sins");
   };
 
   const handleNext = () => {
@@ -47,28 +61,28 @@ const Punishments = () => {
       alert("Por favor, modifique el texto antes de continuar.");
       return;
     }
-    navigate('/');
+    navigate("/");
   };
 
   return (
+    <Theme>
     <Container>
       <FormContainer>
         <h1>Castigos</h1>
         <p>{randomSin}</p>
-        <Textarea
-
-          onChange={handlePunishmentChange}
-          placeholder={suggest}
-        />
+        <Textarea onChange={handlePunishmentChange} placeholder={suggest} />
         <ButtonContainer>
-
-          <Button onClick={handleGoToSins}> <FaArrowLeft /></Button>
+          <Button onClick={handleGoToSins}>
+            {" "}
+            <FaArrowLeft />
+          </Button>
           <Link to="/verdict">
-          <Button >Enviar</Button>
+            <Button>Enviar</Button>
           </Link>
         </ButtonContainer>
       </FormContainer>
     </Container>
+    </Theme>
   );
 };
 

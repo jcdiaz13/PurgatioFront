@@ -1,20 +1,49 @@
-import styled from 'styled-components';
+import styled ,{css}from 'styled-components';
 
-export const Container = styled.div`
+
+export const Container = styled.body`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 95vh;
-  background-color: #fff;
+  height: 100vh;
+  ${({ theme }) =>
+    theme.name === "verdugo" &&
+    css`
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/d05f52cc-6333-4fe6-90f7-c4f417c8b9ac/dfrch0w-f3b61d02-05e7-422a-9eb7-221bf7f023b6.png/v1/fill/w_1024,h_683,q_80,strp/tower_of_blood_by_weirddarkness_dfrch0w-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NjgzIiwicGF0aCI6IlwvZlwvZDA1ZjUyY2MtNjMzMy00ZmU2LTkwZjctYzRmNDE3YzhiOWFjXC9kZnJjaDB3LWYzYjYxZDAyLTA1ZTctNDIyYS05ZWI3LTIyMWJmN2YwMjNiNi5wbmciLCJ3aWR0aCI6Ijw9MTAyNCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.zj2RNYPFDDdv6KD5w4nPPyN-zbhJiH40fm-HqEW2ez4");
+`}
+${({ theme }) =>
+    theme.name === "mago" &&
+    css`
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("https://i.pinimg.com/originals/c8/4f/22/c84f223d53773a3ce0f5dc2818d7db25.gif");
+`}
+${({ theme }) =>
+    theme.name === "hada" &&
+    css`
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("https://i.pinimg.com/originals/1b/45/63/1b456377a9dce67a7dc3630260aa7572.gif");
+`}
 `;
 
 
 export const Title = styled.h1`
   font-size: 3rem;
-  color: #333;
+  color: white;
   margin-bottom: 2rem;
 `;
+
+export const SubTitle=styled.p`
+color: red;
+margin: 0;
+margin-bottom: 20px;
+
+;
+`
 //PopUp
 export const FormContainer = styled.div`
   display: flex;
@@ -23,7 +52,7 @@ export const FormContainer = styled.div`
   width: 80%;
   max-width: 800px;
   padding: 2rem;
-  background-color: #fff; /* Cambia el color de fondo del modal */
+ /* Cambia el color de fondo del modal */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   border-radius: 8px;
   border: 1px radius  #ccc;
@@ -37,6 +66,8 @@ export const Textarea = styled.textarea`
   border-radius: 4px;
   font-size: 1rem;
   width: 100%; /* Ajustado para que ocupe todo el ancho disponible */
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
 `;
 
 export const ButtonContainer = styled.div`
