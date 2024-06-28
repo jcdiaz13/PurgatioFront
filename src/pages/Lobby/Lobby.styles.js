@@ -80,7 +80,9 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 915px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
   padding: 20px;
   ${({ theme }) =>
     theme.name === "verdugo" &&
