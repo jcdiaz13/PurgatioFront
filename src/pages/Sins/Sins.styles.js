@@ -6,7 +6,7 @@ export const Container = styled.body`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 95vh;
+  height: 100vh;
   ${({ theme }) =>
     theme.name === "verdugo" &&
     css`
