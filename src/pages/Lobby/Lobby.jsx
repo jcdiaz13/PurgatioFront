@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
-import { Box, Container, Player, PlayerContainer } from "./Lobby.styles";
+import { Link } from 'react-router-dom';
+import { Box, Container, CirclesContainer, Player ,PlayerContainer} from './Lobby.styles'
 import Theme from "../../components/Theme";
 import {getRoomId} from '../../app/services/room';
 import {useContext, useState,useEffect} from 'react';
@@ -87,8 +87,7 @@ const Lobby = () => {
 };
 
     <Box></Box>
-    <p>Room ID: {roomId}</p>  
-    <Link to="/sins">
+   <Link to="/sins">
     <button>START</button>
     </Link>
     <PlayerContainer>
