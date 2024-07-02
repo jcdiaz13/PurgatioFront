@@ -1,14 +1,13 @@
-import { Popup, Overlay } from './Difficulty.styles';
-import { StyledLink, Button } from '../JoinLobby/JoinLobby.styles';
+import { Popup, Overlay,StyledLink, Button,ButtonClose, Box } from './PopupContent.styles';
 import PropTypes from 'prop-types';
 
-const PopupContent = ({ closePopup, image, description }) => (
+const PopupContent = ({ closePopup, image,name, description }) => (
   <>
     <Overlay onClick={closePopup} />
-    <Popup>
-      <img src={image} alt="" width="225px" />
-      <p>{description}</p>
-      <button onClick={closePopup}>Close</button>
+    <Popup><ButtonClose onClick={closePopup}> X</ButtonClose>
+    <Box><img src={image} alt="" width="225px" /></Box>
+    <p>{name}</p>
+      <p>{description}</p>      
       <StyledLink to={`/lobby`}>
         <Button>Start</Button>
       </StyledLink>
@@ -19,6 +18,7 @@ const PopupContent = ({ closePopup, image, description }) => (
 PopupContent.propTypes = {
   closePopup: PropTypes.func.isRequired,
   image: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
 };
 
