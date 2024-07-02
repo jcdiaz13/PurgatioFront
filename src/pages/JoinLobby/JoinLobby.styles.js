@@ -7,8 +7,6 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
- 
   background-image: url("https://i.pinimg.com/originals/37/6a/39/376a3925f8b6d181006e1f9750870735.gif");
   background-repeat: no-repeat;
   background-size: cover;
@@ -33,8 +31,6 @@ export const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 420px;
-  height: 600px;
   padding: 2rem;
  color: white;
   z-index: 2;

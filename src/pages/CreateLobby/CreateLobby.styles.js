@@ -35,8 +35,6 @@ export const FormContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 500px;
-  height: 500px;
   padding: 2rem;
   color: white;
   z-index: 2;
