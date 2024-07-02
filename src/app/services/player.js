@@ -15,7 +15,6 @@ export const joinRoom = async (obj) => {
     }
 };
 
-
 // GET PLAYERS BY ROOM ID
 export const getPlayersByRoomId = async (roomId) => {
   try {
