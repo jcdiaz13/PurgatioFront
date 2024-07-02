@@ -6,18 +6,19 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  height: 100vh;
+  justify-content: center;  
   background-image : url(https://i.pinimg.com/originals/37/6a/39/376a3925f8b6d181006e1f9750870735.gif);
   background-repeat: no-repeat;
   background-size: cover;
+  height: 100vh;
 `;
 
 export const Title = styled.h1`
-  font-size: 3rem;
+  font-size: 4rem;
   color: white;
-  margin-bottom: 2rem;
+  margin-bottom: 40px;
   text-align: center;
+  font-family: Goddes;  
  `;
 
 export const FormContainer = styled.div`
@@ -31,15 +32,6 @@ export const FormContainer = styled.div`
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   border-radius: 8px;
   border: 1px solid #ccc;
-`;
-
-export const Input = styled.input`
-  padding: 0.5rem;
-  margin-bottom: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 1rem;
-  width: 50%;
 `;
 
 export const ButtonContainer = styled.div`
@@ -63,6 +55,12 @@ export const Button = styled.button`
   text-align: center;
 
   &:hover {
-    background-color: #32CD32;
+    background-color: #66FFB2;
+    color: black;
   }
+  &:active {
+  background-color: #CCFFE5;
+  box-shadow: 0 2px white;
+  transform: translateY(4px);
+}
 `;

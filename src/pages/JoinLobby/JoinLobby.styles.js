@@ -84,16 +84,15 @@ export const Button = styled.button`
   text-align: center;
 
   &:hover {
-    background-color: #32CD32;
+    background-color: #66FFB2;
+    color: black;
   }
 
-  &:nth-of-type(2) {
-    background-color: #28a745;
-
-    &:hover {
-      background-color: #218838;
-    }
-  }
+  &:active {
+  background-color: #CCFFE5;
+  box-shadow: 0 2px white;
+  transform: translateY(4px);
+}
 `;
 
 export const AvatarContainer = styled.div`

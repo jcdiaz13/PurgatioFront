@@ -19,16 +19,19 @@ const Difficulty = () => {
     {
       id: 1,
       image: verdugo,
-      description: "Executioner",
+      name: "Verdugo",
+      description: "Esta es la dificultad mas alocada, con pecados e histroias mas locas y castigos más severos!",
     },
     {
       id: 2,
       image: mago,
+      name: "Mago",
       description: "Mage",
     },
     {
       id: 3,
       image: hada,
+      name: "Hada",
       description: "Fairy",
     },
   ];
@@ -60,6 +63,7 @@ const Difficulty = () => {
           <PopupContent
             closePopup={closePopup}
             image={popup.image}
+            name={popup.name}
             description={popup.description}
           />
         )}

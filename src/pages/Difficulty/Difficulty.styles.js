@@ -1,10 +1,12 @@
 import styled from 'styled-components';
 export const Container = styled.div`
   display: grid;
-  background:url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoBdN3q0IRAb88OTyJA4eIxUX-l1xLZgTt8A&s');
+  background:url('https://i.pinimg.com/originals/37/6a/39/376a3925f8b6d181006e1f9750870735.gif');
   width: 100%;
   height: 100vh;
   align-items: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 `;
 export const BoxContainer = styled.div`
   display: flex;
@@ -21,19 +23,20 @@ align-items: center;
 margin-bottom:0;
 padding:10px;
 margin: 10px;
-background-color: red;
+color: white;
+font-size: 25px;
 `;
 
 export const Box = styled.div`
 display: flex;
  width: 225px;
   height: 225px;
-  border: solid 1px black;
   border-radius: 50%;
   margin-bottom: 20px;
   cursor: pointer;
    img{
-    border: solid 1px black;
+    border: solid 5px black;
+    box-shadow: 1px 1px 30px black;
   border-radius: 50%;
     width: 225px;
     height: 225px;
