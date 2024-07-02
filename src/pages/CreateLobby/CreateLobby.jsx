@@ -36,7 +36,7 @@ function CreateLobby() {
 
   const handleCreateLobby = async () => {
     const trimmedName = playerName.trim();
-    if (trimmedName) {
+    if (trimmedName && selectedAvatar !== null) {
       setPlayerName(trimmedName);
       console.log(playerName);
 
@@ -49,7 +49,12 @@ function CreateLobby() {
       });
       navigate("/difficulty");
     } else {
-      alert("Por favor ingrese un nombre antes de continuar.");
+      if (!trimmedName) {
+        alert("Por favor ingrese un nombre antes de continuar.");
+      }
+      if (selectedAvatar === null) {
+        alert("Por favor selecciona un avatar antes de continuar.");
+      }
     }
   };
 
@@ -94,9 +99,7 @@ function CreateLobby() {
           <StyledLink to="/">
             <Button>Volver</Button>
           </StyledLink>
-          <StyledLink to="/difficulty">         
           <Button onClick={handleCreateLobby}>Crear sala</Button>
-          </StyledLink>
         </ButtonContainer>
       </FormContainer>
 
