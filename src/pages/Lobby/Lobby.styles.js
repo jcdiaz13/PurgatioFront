@@ -74,9 +74,7 @@ export const Circle = styled.div`
   align-items: center;
   background-color: white;
 `;
-export const Id = styled.p`
-color:white;
-`
+
 export const Container = styled.div`
   display: flex;
   justify-content: center;
