@@ -11,11 +11,9 @@ import {
   AvatarContainer,
   AvatarPopup,
   AvatarOption,
-  Overlay,Input
+  Overlay,
+  Input,
 } from "./CreateLobby.styles";
-import { createRoom } from "../../app/services/room";
-import { createPlayer } from "../../app/services/player";
-
 
 // Lista de avatares disponibles
 const avatars = [
@@ -30,39 +28,35 @@ const avatars = [
 ];
 
 function CreateLobby() {
-  const { playerName, setPlayerName, setRoomId } = useContext(PlayerContext);
+  const { playerName, setPlayerName } = useContext(PlayerContext);
   const [isAvatarPopupOpen, setIsAvatarPopupOpen] = useState(false);
   const [selectedAvatar, setSelectedAvatar] = useState(null);
   const navigate = useNavigate();
 
-  const handleCreateLobby = async () => {
+  const handlePlayerNameAndAvatar = () => {
     const trimmedName = playerName.trim();
-    if (trimmedName) {
-      const room = await createRoom({});
-      setRoomId(room.data.id);
-
-      await createPlayer({
-        playerName: trimmedName,
-        room: {
-          id: room.data.id
-        }
-      });
-
+    if (trimmedName && selectedAvatar !== null) {
+      setPlayerName(trimmedName);
       navigate("/difficulty");
+      console.log(trimmedName);
     } else {
-      alert("Por favor ingrese un nombre antes de continuar.");
+      if (!trimmedName) {
+        alert("Por favor ingrese un nombre antes de continuar.");
+      }
+      if (selectedAvatar === null) {
+        alert("Por favor selecciona un avatar antes de continuar.");
+      }
     }
   };
 
-const closePopup = () => {
-  setIsAvatarPopupOpen(null);
-};
-  // Función para manejar el clic en el contenedor de avatar
+  const closePopup = () => {
+    setIsAvatarPopupOpen(false); // Corregido para usar false
+  };
+
   const handleAvatarClick = () => {
     setIsAvatarPopupOpen(true);
   };
 
-  // Función para manejar la selección de un avatar
   const handleAvatarSelect = (avatar) => {
     setSelectedAvatar(avatar);
     setIsAvatarPopupOpen(false);
@@ -74,20 +68,13 @@ const closePopup = () => {
 
   return (
     <Container>
-      {/* Muestra el overlay si el pop-up está abierto */}
-      {isAvatarPopupOpen && <Overlay onClick={closePopup}/>}
-
-      {/* Contenedor del formulario */}
+      {isAvatarPopupOpen && <Overlay onClick={closePopup} />}
       <FormContainer $ispopupopen={isAvatarPopupOpen}>
         <Title>Crear nueva sala</Title>
         <h2>Selecciona un avatar</h2>
-
-        {/* Contenedor de avatar que muestra el avatar seleccionado */}
         <AvatarContainer onClick={handleAvatarClick}>
           {selectedAvatar ? selectedAvatar : "Avatar"}
         </AvatarContainer>
-
-        {/* Campo de entrada controlado para el nombre del jugador */}
         <Input
           type="text"
           value={playerName}
@@ -98,15 +85,11 @@ const closePopup = () => {
           <StyledLink to="/">
             <Button>Volver</Button>
           </StyledLink>
-          <StyledLink>
-            <Button onClick={handleCreateLobby}>Crear sala</Button>
-          </StyledLink>
+          <Button onClick={handlePlayerNameAndAvatar}>Crear sala</Button>
         </ButtonContainer>
       </FormContainer>
-     
       {isAvatarPopupOpen && (
-        
-        <AvatarPopup >          
+        <AvatarPopup>
           {avatars.map((avatar) => (
             <AvatarOption
               key={avatar}
@@ -116,7 +99,6 @@ const closePopup = () => {
             </AvatarOption>
           ))}
         </AvatarPopup>
-        
       )}
     </Container>
   );
