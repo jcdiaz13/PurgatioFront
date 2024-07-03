@@ -9,7 +9,7 @@ import { PlayerContext } from '../../app/contexts/PlayerContext';
 // import hada from "../../app/img/pikaso_texttoimage_sweet-fairy-impressive-surreal-cinematic-lighting-.jpeg";
 
 const Lobby = () => {
-  const { roomId, players, setPlayers } = useContext(PlayerContext);
+  const { roomId, admin, players, setPlayers } = useContext(PlayerContext);
 
   // const [selectedAvatar, setSelectedAvatar] = useState(null);
 
@@ -38,9 +38,11 @@ const Lobby = () => {
       <Container>
         <Box></Box>
         <p>Room ID: {roomId}</p>
-        <Link to="/sins">
+
+        {admin && <Link to="/sins">
           <button>START</button>
         </Link>
+        }
         <PlayerContainer>
           {players.map((player, index) => (
             <Player key={index}>

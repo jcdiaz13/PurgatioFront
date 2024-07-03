@@ -8,8 +8,7 @@ export const Popup = styled.div`
  color: white;
   padding: 20px;
   box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-  z-index: 1000;
-  
+  z-index: 1000;  
 `;
 export const Overlay = styled.div`
   position: fixed;
@@ -50,6 +49,7 @@ export const Button = styled.button`
   transform: translateY(4px);
 }
 `;
+
 export const ButtonClose=styled.button`
 position: absolute;
   border: none;
@@ -69,7 +69,8 @@ position: absolute;
   box-shadow: 0 2px white;
   transform: translateY(4px);
 }
-`
+`;
+
 export const Box = styled.div`
 display: flex;
  width: 225px;
@@ -85,3 +86,19 @@ display: flex;
     object-fit: cover;
    }
 `;
+
+export const Name = styled.h2` 
+background-color: black;
+font-family: Goddes;
+font-size: 25px;
+padding: 10px;
+box-sizing: border-box;
+text-align: center;
+border-radius: 50%;
+margin-bottom: 15px;
+box-shadow: 1px 1px 10px white;
+`
+export const Description=styled.p`
+text-align: center;
+margin-bottom: 15px;
+`
