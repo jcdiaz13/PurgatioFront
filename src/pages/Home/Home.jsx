@@ -14,7 +14,7 @@ function Home() {
 
   return (
     <Container>
-      <Title>PUNISH <br /> GAME</Title>
+      <Title>GAGU <br /> GAME</Title>
      
       <ButtonContainer>
         <Button onClick={handleCreateLobby}>Crear sala</Button>

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Box, Container, Player, PlayerContainer } from './Lobby.styles';
+import { Box, Container, Player, PlayerContainer ,Id,Button} from './Lobby.styles';
 import Theme from "../../components/Theme";
 import { getPlayersByRoomId } from '../../app/services/player';
 import { useContext, useEffect } from 'react';
@@ -22,7 +22,9 @@ const Lobby = () => {
         console.log(response.data);
       } catch (error) {
         console.error('Error showing players:', error);
-      } finally {
+
+      }finally{
+
         setTimeout(ShowPlayers, 5000);
       }
     };
@@ -36,11 +38,10 @@ const Lobby = () => {
   return (
     <Theme>
       <Container>
-        <Box></Box>
-        <p>Room ID: {roomId}</p>
 
-        {admin && <Link to="/sins">
-          <button>START</button>
+        <Id>Room ID: {roomId}</Id>
+        <Link to="/sins">
+
         </Link>
         }
         <PlayerContainer>

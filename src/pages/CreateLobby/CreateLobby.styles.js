@@ -10,16 +10,27 @@ export const Container = styled.div`
   background-image: url(https://i.pinimg.com/originals/37/6a/39/376a3925f8b6d181006e1f9750870735.gif);
   background-repeat: no-repeat;
   background-size: cover;
+  background-attachment: fixed;
 `;
 
 export const Overlay = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 1;
+  backdrop-filter: blur(7px);
+  z-index: 3;
+`;
+
+export const Input = styled.input`
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  margin-top:1rem;
+  border: 1px solid black;
+  border-radius: 4px;
+  width: 50%;
 `;
 
 export const Title = styled.h1`
@@ -29,21 +40,17 @@ export const Title = styled.h1`
 `;
 
 export const FormContainer = styled.div`
-
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 2rem;
+  justify-content: center; 
   color: white;
-  z-index: 2;
-  opacity: ${({ ispopupopen }) => (ispopupopen ? 0.2 : 1)};
+  z-index: 2; 
   transition: opacity 0.3s ease;
-
   h2 {
-    margin-top: 2.5rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
   }
-
   input {
     margin: 1rem 0;
     padding: 0.5rem;
@@ -104,26 +111,22 @@ export const AvatarContainer = styled.div`
 `;
 
 export const AvatarPopup = styled.div`
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
+  width: 280px;
   transform: translate(-50%, -50%);
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
-  width: 400px;
-  padding: 1rem;
-  background: white;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  align-items: center; 
   border-radius: 8px;
-  border: 1px solid black;
   z-index: 3;
 `;
 
 export const AvatarOption = styled.div`
-  width: 80px;
-  height: 80px;
+  width: 120px;
+  height: 120px;
   margin: 0.5rem;
   border-radius: 50%;
   background-color: white;
