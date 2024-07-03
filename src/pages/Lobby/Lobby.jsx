@@ -1,9 +1,9 @@
-import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Box, Container, Player, PlayerContainer } from './Lobby.styles';
 import Theme from "../../components/Theme";
-import { PlayerContext } from '../../app/contexts/PlayerContext';
 import { getPlayerByRoomId } from '../../app/services/player';
+import { useContext, useEffect, useState } from 'react';
+import { PlayerContext } from '../../app/contexts/PlayerContext';
 // import verdugo from "../../app/img/pikaso_texttoimage_35mm-film-photography-bloody-executioner-avatar-pi.jpeg";
 // import mago from "../../app/img/rendering-wizard-controlling-magic.jpg";
 // import hada from "../../app/img/pikaso_texttoimage_sweet-fairy-impressive-surreal-cinematic-lighting-.jpeg";
