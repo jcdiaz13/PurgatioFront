@@ -42,18 +42,18 @@ function Sins() {
 
   return (
     <Theme>
-    <Container>
-      <FormContainer>
-        <Title>Pecados</Title>
-        <SubTitle>Escribe uno de tus pecados:</SubTitle>
-        {/* <textarea id="descriptionEvent" rows={10} cols={50} /> */}
-        <Textarea type="text" value={text} onChange={handleInputChange} placeholder={suggest} />
-        <ButtonContainer>
-          <Button onClick={handleGoLobby}><FaArrowLeft /></Button>
-          <Button onClick={handleNext}><FaArrowRight /></Button>
-        </ButtonContainer>
-      </FormContainer>
-    </Container>
+      <Container>
+        <FormContainer>
+          <Title>Pecados</Title>
+          <SubTitle>Escribe uno de tus pecados:</SubTitle>
+          {/* <textarea id="descriptionEvent" rows={10} cols={50} /> */}
+          <Textarea type="text" value={text} onChange={handleInputChange} placeholder={suggest} />
+          <ButtonContainer>
+            <Button onClick={handleGoLobby}><FaArrowLeft /></Button>
+            <Button onClick={handleNext}><FaArrowRight /></Button>
+          </ButtonContainer>
+        </FormContainer>
+      </Container>
     </Theme>
   );
 }

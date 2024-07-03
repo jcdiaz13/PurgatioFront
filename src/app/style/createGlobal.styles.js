@@ -1,15 +1,11 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
-  /* Reset CSS */
-  /* http://meyerweb.com/eric/tools/css/reset/ 
-     v2.0 | 20110126
-     License: none (public domain)
-  */
-     @font-face {
-    font-family: Goddes;
-    src: url("../../MGN Goddess.ttf");
-}
+  @font-face {
+    font-family: 'Goddes';
+    src: url('../fonts/MGNGoddess.ttf') format('truetype');
+  }
+
   html, body, div, span, applet, object, iframe,
   h1, h2, h3, h4, h5, h6, p, blockquote, pre,
   a, abbr, acronym, address, big, cite, code,
@@ -62,16 +58,16 @@ const GlobalStyle = createGlobalStyle`
 
   /* Global Styles */
   html, body {
-    width: 100%;
-    height: 100vh !important;
-    background-color: red !important;
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    box-sizing: border-box;
-  }
-
-  *, *:before, *:after {
-    box-sizing: inherit;
+    height: 100%;
+    font-family:Goddes;
+    line-height: 1.6;
+    background-color: #fff;
+    color: #333;
+    background-image: url('https://pablomonteserin.com/wp-content/themes/m2/img/personas/pablo-monteserin.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
   }
 `;
 

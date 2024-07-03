@@ -1,4 +1,4 @@
-import styled ,{css}from 'styled-components';
+import styled, { css } from 'styled-components';
 
 
 export const Container = styled.body`
@@ -37,7 +37,7 @@ export const Title = styled.h1`
   margin-bottom: 2rem;
 `;
 
-export const SubTitle=styled.p`
+export const SubTitle = styled.p`
 color: red;
 margin: 0;
 margin-bottom: 20px;
