@@ -1,6 +1,8 @@
 import { createGlobalStyle } from 'styled-components';
+import Goddes from '../fonts/MGNGoddess.ttf';
 
-const GlobalStyle = createGlobalStyle`
+
+export const GlobalStyle = createGlobalStyle`
   /* Reset CSS */
   /* http://meyerweb.com/eric/tools/css/reset/ 
      v2.0 | 20110126
@@ -8,7 +10,7 @@ const GlobalStyle = createGlobalStyle`
   */
      @font-face {
     font-family: Goddes;
-    src: url("../../MGN Goddess.ttf");
+    src: url(${Goddes});
 }
   html, body, div, span, applet, object, iframe,
   h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -63,7 +65,8 @@ const GlobalStyle = createGlobalStyle`
   /* Global Styles */
   html, body {
     width: 100%;
-    height: 100%;
+    height: 100vh !important;
+    background-color: red !important;
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
     box-sizing: border-box;
