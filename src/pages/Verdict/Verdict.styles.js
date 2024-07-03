@@ -10,11 +10,8 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-<<<<<<< HEAD
-=======
   /* background-color: red; */
   background-attachment: fixed;
->>>>>>> 604a29ec26844511a98b18541ff586a9efde203e
 `;
 
 export const Table = styled.div`
