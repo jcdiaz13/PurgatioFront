@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import {
   Container,
   Title,
@@ -28,11 +28,16 @@ const avatars = [
 ];
 
 function JoinLobby() {
-  const { playerName, setPlayerName } = useContext(PlayerContext);
-  const [roomId, setRoomId] = useState('');
+  const { playerName, setPlayerName, roomId, setRoomId } = useContext(PlayerContext);
   const [isAvatarPopupOpen, setIsAvatarPopupOpen] = useState(false);
   const [selectedAvatar, setSelectedAvatar] = useState(null);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setPlayerName('');
+    setRoomId('');
+  }, [setPlayerName, setRoomId]);
+
 
   const handleAvatarClick = () => {
     setIsAvatarPopupOpen(true);
@@ -43,7 +48,7 @@ function JoinLobby() {
     setIsAvatarPopupOpen(false);
   };
 
-  const handleInputChange = (e) => {
+  const handleNameChange = (e) => {
     setPlayerName(e.target.value);
   };
 
@@ -59,6 +64,7 @@ function JoinLobby() {
           playerName: trimmedName,
           room: { id: roomId }
         });
+        setRoomId(roomId);
         navigate("/lobby");
       } catch (error) {
         alert("Error al crear el jugador. Por favor, inténtelo de nuevo.");
@@ -80,7 +86,7 @@ function JoinLobby() {
         <Input
           type="text"
           value={playerName}
-          onChange={handleInputChange}
+          onChange={handleNameChange}
           placeholder="Ingresa tu nombre"
         />
         <Input
