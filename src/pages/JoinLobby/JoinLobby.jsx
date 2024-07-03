@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import {
   Container,
   Title,
@@ -8,15 +8,14 @@ import {
   StyledLink,
   Button,
   AvatarContainer,
-} from "./JoinLobby.styles";
-import { PlayerContext } from "../../app/contexts/PlayerContext";
-import {
   AvatarPopup,
   AvatarOption,
   Overlay,
-} from "../CreateLobby/CreateLobby.styles";
+} from "./JoinLobby.styles";
+import { PlayerContext } from "../../app/contexts/PlayerContext";
+import { createPlayer } from '../../app/services/player';
+import { useNavigate } from 'react-router-dom';
 
-// Lista de avatares disponibles
 const avatars = [
   "Avatar 1",
   "Avatar 2",
@@ -29,54 +28,78 @@ const avatars = [
 ];
 
 function JoinLobby() {
-  const { playerName, setPlayerName } = useContext(PlayerContext);
+  const { playerName, setPlayerName, roomId, setRoomId } = useContext(PlayerContext);
   const [isAvatarPopupOpen, setIsAvatarPopupOpen] = useState(false);
   const [selectedAvatar, setSelectedAvatar] = useState(null);
+  const navigate = useNavigate();
 
-  // Función para manejar el clic en el contenedor de avatar
+  useEffect(() => {
+    setPlayerName('');
+    setRoomId('');
+  }, [setPlayerName, setRoomId]);
+
+
   const handleAvatarClick = () => {
     setIsAvatarPopupOpen(true);
   };
 
-  // Función para manejar la selección de un avatar
   const handleAvatarSelect = (avatar) => {
     setSelectedAvatar(avatar);
     setIsAvatarPopupOpen(false);
   };
 
-  const handleInputChange = (e) => {
+  const handleNameChange = (e) => {
     setPlayerName(e.target.value);
+  };
+
+  const handleRoomIdChange = (e) => {
+    setRoomId(e.target.value);
+  };
+
+  const handleJoinLobby = async () => {
+    const trimmedName = playerName.trim();
+    if (trimmedName && roomId) {
+      try {
+        await createPlayer({
+          playerName: trimmedName,
+          room: { id: roomId }
+        });
+        setRoomId(roomId);
+        navigate("/lobby");
+      } catch (error) {
+        alert("Error al crear el jugador. Por favor, inténtelo de nuevo.");
+      }
+    } else {
+      alert("Por favor ingrese un nombre y un ID de sala antes de continuar.");
+    }
   };
 
   return (
     <Container>
-      {/* Muestra el overlay si el pop-up está abierto */}
       {isAvatarPopupOpen && <Overlay />}
       <FormContainer isPopupOpen={isAvatarPopupOpen}>
         <Title>Unirse a una sala</Title>
         <h2>Selecciona un avatar</h2>
-
-        {/* Contenedor de avatar que muestra el avatar seleccionado*/}
         <AvatarContainer onClick={handleAvatarClick}>
           {selectedAvatar ? selectedAvatar : "Avatar"}
         </AvatarContainer>
-
-        {/* Campo de entrada controlado para el nombre del jugador */}
         <Input
           type="text"
           value={playerName}
-          onChange={handleInputChange}
+          onChange={handleNameChange}
           placeholder="Ingresa tu nombre"
         />
-        <Input type="text" placeholder="Introduce el número de sala" />
-
+        <Input
+          type="text"
+          value={roomId}
+          onChange={handleRoomIdChange}
+          placeholder="Introduce el número de sala"
+        />
         <ButtonContainer>
           <StyledLink to="/">
             <Button>Volver</Button>
           </StyledLink>
-          <StyledLink to="/difficulty">
-            <Button>Unirse</Button>
-          </StyledLink>
+          <Button onClick={handleJoinLobby}>Unirse</Button>
         </ButtonContainer>
       </FormContainer>
       {isAvatarPopupOpen && (

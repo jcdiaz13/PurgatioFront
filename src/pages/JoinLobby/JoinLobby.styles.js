@@ -7,7 +7,9 @@ export const Container = styled.body`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-   background-color: blue !important;
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
   background-image: url("https://i.pinimg.com/originals/37/6a/39/376a3925f8b6d181006e1f9750870735.gif");
   background-repeat: no-repeat;
   background-size: cover;

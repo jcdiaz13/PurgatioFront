@@ -1,9 +1,9 @@
-import styled,{css} from 'styled-components';
+import styled, { css } from 'styled-components';
 // import mago from "../../app/img/rendering-wizard-controlling-magic.jpg"
 // import hada from "../../app/img/pikaso_texttoimage_sweet-fairy-impressive-surreal-cinematic-lighting-.jpeg"
 // import verdugo from "../../app/img/pikaso_texttoimage_35mm-film-photography-bloody-executioner-avatar-pi.jpeg"
 
-export const PlayerContainer=styled.div`
+export const PlayerContainer = styled.div`
 width: 300px;
 height: auto;
 display: flex;
@@ -13,7 +13,7 @@ align-items: center;
 margin: auto;
 gap: 20px;
 `
-export const Player=styled.div` 
+export const Player = styled.div` 
 width: 100px;
 height: 100px;
 background-color: white;
@@ -33,7 +33,7 @@ margin-left:15px;
 ;
  
 `
-export const Gif=styled.div`
+export const Gif = styled.div`
 background-image: url(https://i.pinimg.com/originals/bb/52/20/bb5220dccb70fed4d9bd101efad8476d.gif);
 `
 export const LobbyContainer = styled.div`
@@ -74,7 +74,9 @@ export const Circle = styled.div`
   align-items: center;
   background-color: white;
 `;
-
+export const Id = styled.p`
+color:white;
+`
 export const Container = styled.div`
   display: flex;
   justify-content: center;
