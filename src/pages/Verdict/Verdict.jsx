@@ -61,7 +61,7 @@ const Verdict = () => {
     <>
       <Container>
         {isPopupOpen && <Overlay />}
-        <p>Judgement Day</p>
+        {/* <p>Judgement Day</p> */}
         <Table ispopupopen={isPopupOpen}>
           {/* <Column>
             <Header>

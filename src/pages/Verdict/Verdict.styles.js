@@ -1,11 +1,15 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.div`
-/* background-image: url("https://th.bing.com/th/id/OIG4.5YRZWM_rkyu6IHSB6pTR?w=1024&h=1024&rs=1&pid=ImgDetMain" ) !important; */
+  background-image: url("https://th.bing.com/th/id/OIG4.5YRZWM_rkyu6IHSB6pTR?w=1024&h=1024&rs=1&pid=ImgDetMain");
   background-size: cover;
-  background-repeat: no-repeat;
   background-position: center;
-  height: 100vh !important ;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const Table = styled.div`
@@ -14,8 +18,20 @@ export const Table = styled.div`
   justify-content: space-around;
   align-items: center;
   padding: 20px;
-  /* background-color: rgba(255, 255, 255, 0.9); */
+  background-color: rgba(255, 255, 255, 0.9);
   opacity: ${({ ispopupopen }) => (ispopupopen ? 0.2 : 1)};
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    padding: 10px;
+  }
+  
+  @media (max-width: 480px) {
+    justify-content: center;
+    padding: 5px;
+  }
 `;
 
 export const Column = styled.div`
@@ -52,14 +68,12 @@ export const Element = styled.p`
   font-size: small;
   padding: 0.6rem;
   cursor: pointer;
-  
 `;
 
 export const Judge = styled.div`
   position: relative;
   * {
     top: 18%;
-    /* transform: translate(-50%, -50%); */
     background-color: white;
     border: 1px solid grey;
     border-radius: 13px;
