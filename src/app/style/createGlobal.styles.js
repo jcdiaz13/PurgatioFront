@@ -1,14 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import Goddes from '../fonts/MGNGoddess.ttf';
 
-<<<<<<< HEAD
-const GlobalStyle = createGlobalStyle`
-  @font-face {
-    font-family: 'Goddes';
-    src: url('../fonts/MGNGoddess.ttf') format('truetype');
-  }
-
-=======
 
 export const GlobalStyle = createGlobalStyle`
   /* Reset CSS */
@@ -20,7 +12,6 @@ export const GlobalStyle = createGlobalStyle`
     font-family: Goddes;
     src: url(${Goddes});
 }
->>>>>>> 604a29ec26844511a98b18541ff586a9efde203e
   html, body, div, span, applet, object, iframe,
   h1, h2, h3, h4, h5, h6, p, blockquote, pre,
   a, abbr, acronym, address, big, cite, code,
