@@ -7,6 +7,7 @@ export const Container = styled.body`
   align-items: center;
   justify-content: center;
   height: 100vh;
+  background-attachment: fixed;
   ${({ theme }) =>
     theme.name === "verdugo" &&
     css`

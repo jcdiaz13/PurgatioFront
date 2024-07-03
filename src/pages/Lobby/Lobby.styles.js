@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
-// import mago from "../../app/img/rendering-wizard-controlling-magic.jpg"
-// import hada from "../../app/img/pikaso_texttoimage_sweet-fairy-impressive-surreal-cinematic-lighting-.jpeg"
-// import verdugo from "../../app/img/pikaso_texttoimage_35mm-film-photography-bloody-executioner-avatar-pi.jpeg"
+import mago from "../../app/img/rendering-wizard-controlling-magic.jpg"
+import hada from "../../app/img/pikaso_texttoimage_sweet-fairy-impressive-surreal-cinematic-lighting-.jpeg"
+import verdugo from "../../app/img/pikaso_texttoimage_35mm-film-photography-bloody-executioner-avatar-pi.jpeg"
 
 export const PlayerContainer = styled.div`
 width: 300px;
@@ -29,10 +29,30 @@ display: flex;
 justify-content: center;
 align-items: center;
 margin-left:15px;
+} 
+`;
+export const Button = styled.button`
+  padding: 0.5rem 1rem;
+  margin: 0.5rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  background-color: #006633;
+  color: white;
+  cursor: pointer;
+  width: 130px;
+  text-align: center;
+
+  &:hover {
+    background-color: #66FFB2;
+    color: black;
+  }
+  &:active {
+  background-color: #CCFFE5;
+  box-shadow: 0 2px white;
+  transform: translateY(4px);
 }
-;
- 
-`
+`;
 export const Gif = styled.div`
 background-image: url(https://i.pinimg.com/originals/bb/52/20/bb5220dccb70fed4d9bd101efad8476d.gif);
 `
@@ -76,10 +96,12 @@ export const Circle = styled.div`
 `;
 export const Id = styled.p`
 color:white;
+padding: 10px;
 `
 export const Container = styled.div`
   display: flex;
   justify-content: center;
+  background-attachment: fixed;
   align-items: center;
   flex-direction: column;
   background-repeat: no-repeat;
@@ -117,11 +139,13 @@ export const Box = styled.div`
      display: flex;
   width: 225px;
   height: 225px;
-  border: solid 1px black;
+  border: solid 4px black;
   background-color: red;
   border-radius: 50%;
   margin-bottom: 20px;
-  background-image: url("../../app/img/pikaso_texttoimage_sweet-fairy-impressive-surreal-cinematic-lighting-.jpeg");
+  background-image: url(${verdugo});
+  background-repeat: no-repeat;
+  background-size: cover;
   justify-content: center;
   align-items: center;
    `}
@@ -132,11 +156,12 @@ export const Box = styled.div`
     display: flex;
   width: 225px;
   height: 225px;
-  border: solid 1px black;
+  border: solid 4px black;
   background-color: pink;
   border-radius: 50%;
   margin-bottom: 20px;
-  background-image: url("../../app/img/pikaso_texttoimage_sweet-fairy-impressive-surreal-cinematic-lighting-.jpeg");
+  background-image: url(${hada});
+  background-size: cover;
   justify-content: center;
   align-items: center;
    `}
@@ -146,11 +171,12 @@ export const Box = styled.div`
       display: flex;
   width: 225px;
   height: 225px;
-  border: solid 1px black;
+  border: solid 4px black;
   background-color: blue;
   border-radius: 50%;
   margin-bottom: 20px;
-  background-image: url("../../app/img/pikaso_texttoimage_sweet-fairy-impressive-surreal-cinematic-lighting-.jpeg");
+  background-image: url(${mago});
+  background-size: cover;
   justify-content: center;
   align-items: center;
    `}

@@ -11,7 +11,7 @@ import {
   AvatarContainer,
   AvatarPopup,
   AvatarOption,
-  Overlay,
+  Overlay,Input
 } from "./CreateLobby.styles";
 import { createRoom } from "../../app/services/room";
 import { createPlayer } from "../../app/services/player";
@@ -54,6 +54,9 @@ function CreateLobby() {
     }
   };
 
+const closePopup = () => {
+  setIsAvatarPopupOpen(null);
+};
   // Función para manejar el clic en el contenedor de avatar
   const handleAvatarClick = () => {
     setIsAvatarPopupOpen(true);
@@ -72,10 +75,10 @@ function CreateLobby() {
   return (
     <Container>
       {/* Muestra el overlay si el pop-up está abierto */}
-      {isAvatarPopupOpen && <Overlay />}
+      {isAvatarPopupOpen && <Overlay onClick={closePopup}/>}
 
       {/* Contenedor del formulario */}
-      <FormContainer ispopupopen={isAvatarPopupOpen}>
+      <FormContainer $ispopupopen={isAvatarPopupOpen}>
         <Title>Crear nueva sala</Title>
         <h2>Selecciona un avatar</h2>
 
@@ -85,7 +88,7 @@ function CreateLobby() {
         </AvatarContainer>
 
         {/* Campo de entrada controlado para el nombre del jugador */}
-        <input
+        <Input
           type="text"
           value={playerName}
           onChange={handleInputChange}
@@ -100,9 +103,10 @@ function CreateLobby() {
           </StyledLink>
         </ButtonContainer>
       </FormContainer>
-
+     
       {isAvatarPopupOpen && (
-        <AvatarPopup>
+        
+        <AvatarPopup >          
           {avatars.map((avatar) => (
             <AvatarOption
               key={avatar}
@@ -112,6 +116,7 @@ function CreateLobby() {
             </AvatarOption>
           ))}
         </AvatarPopup>
+        
       )}
     </Container>
   );

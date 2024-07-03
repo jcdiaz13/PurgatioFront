@@ -20,19 +20,19 @@ const Difficulty = () => {
       id: 1,
       image: verdugo,
       name: "VERDUGO",
-      description: "Esta es la dificultad mas alocada, con pecados e histroias mas locas y castigos más severos!",
+      description: "Esta es la dificultad más alocada, con pecados e historias más locas y castigos más severos!",
     },
     {
       id: 2,
       image: mago,
       name: "MAGO",
-      description: "Esta es la dificultad estandar, podrás añadir tus pecados e historias y la gente te juzgara y castigará dependiendo de como sean!",
+      description: "Esta es la dificultad estándar, podrás añadir tus pecados e historias y la gente te juzgará y castigará dependiendo de la magnitud de ellos!",
     },
     {
       id: 3,
       image: hada,
       name: "HADA",
-      description: "Esta es la dificultad más 'light', podrás añadir tus pecados e historias y seleccionaras un castigo para el pecado en las opciones que te damos!",
+      description: "Esta es la dificultad más 'light', podrás añadir tus pecados e historias y seleccionarás un castigo para el pecado en las opciones que te mostramos!",
     },
   ];
 
@@ -47,9 +47,7 @@ const Difficulty = () => {
     <>
       <GlobalStyle />
       <Container>
-
-
-
+        
         <BoxContainer>
           <Title>{playerName}, elige tu destino! </Title>
 

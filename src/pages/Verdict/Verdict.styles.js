@@ -9,6 +9,7 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   /* background-color: red; */
+  background-attachment: fixed;
 `;
 
 export const Table = styled.div`

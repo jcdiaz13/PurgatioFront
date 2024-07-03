@@ -33,6 +33,9 @@ function JoinLobby() {
   const [selectedAvatar, setSelectedAvatar] = useState(null);
   const navigate = useNavigate();
 
+  const closePopup = () => {
+    setIsAvatarPopupOpen(null);
+  };
   useEffect(() => {
     setPlayerName('');
     setRoomId('');
@@ -76,8 +79,8 @@ function JoinLobby() {
 
   return (
     <Container>
-      {isAvatarPopupOpen && <Overlay />}
-      <FormContainer isPopupOpen={isAvatarPopupOpen}>
+      {isAvatarPopupOpen && <Overlay onClick={closePopup}/>}
+      <FormContainer $isPopupOpen={isAvatarPopupOpen}>
         <Title>Unirse a una sala</Title>
         <h2>Selecciona un avatar</h2>
         <AvatarContainer onClick={handleAvatarClick}>

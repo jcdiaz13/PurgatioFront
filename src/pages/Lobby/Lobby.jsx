@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Box, Container, Player, PlayerContainer } from './Lobby.styles';
+import { Box, Container, Player, PlayerContainer ,Id,Button} from './Lobby.styles';
 import Theme from "../../components/Theme";
 import { PlayerContext } from '../../app/contexts/PlayerContext';
 import { getPlayerByRoomId } from '../../app/services/player';
@@ -22,7 +22,7 @@ const Lobby = () => {
       } catch (error) {
         console.error('Error showing players:', error);
       }finally{
-        setTimeout(ShowPlayers, 500);
+        setTimeout(ShowPlayers, 5000);
       }
     };
     if (roomId) {
@@ -77,9 +77,9 @@ const Lobby = () => {
     <Theme>
       <Container>
         <Box></Box>
-        <p>Room ID: {roomId}</p>
+        <Id>Room ID: {roomId}</Id>
         <Link to="/sins">
-          <button>START</button>
+          <Button>START</Button>
         </Link>
         <PlayerContainer>
           {players.map((player, index) => (
