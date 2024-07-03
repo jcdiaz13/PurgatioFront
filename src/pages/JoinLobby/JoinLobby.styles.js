@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-
-export const Container = styled.body`
+export const Container = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
@@ -13,12 +12,7 @@ export const Container = styled.body`
   background-image: url("https://i.pinimg.com/originals/37/6a/39/376a3925f8b6d181006e1f9750870735.gif");
   background-repeat: no-repeat;
   background-size: cover;
-<<<<<<< HEAD
   background-attachment: fixed;
-=======
-  height: 100vh
- 
->>>>>>> 67eb6526f16e65fe560c3dd00ca4666210230f2d
 `;
 
 export const Overlay = styled.div`
@@ -41,6 +35,8 @@ export const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 420px;
+  height: 600px;
   padding: 2rem;
  color: white;
   z-index: 2;

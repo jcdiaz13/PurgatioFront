@@ -8,8 +8,7 @@ export const Popup = styled.div`
   align-items: center;
   transform: translate(-50%, -50%);
  color: white;
-  padding: 20px;
- 
+  padding: 20px; 
   z-index: 1000;  
 `;
 export const Overlay = styled.div`
