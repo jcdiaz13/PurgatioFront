@@ -7,23 +7,26 @@ export const Container = styled.div`
   align-items: center;
   background-repeat: no-repeat;
   background-size: cover;
+  background-attachment: fixed;
 `;
+
 export const BoxContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  
+  z-index: 2;
 `;
 export const Title = styled.h1`
 justify-content: center;
+font-family: Goddes;
 display: flex;
 text-align: center;
 align-items: center;
 margin-bottom:0;
 padding:10px;
 margin: 10px;
-color: white;
+color: #66FFB2;
 font-size: 25px;
 `;
 

@@ -11,6 +11,7 @@ export const Container = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   height: 100vh;
+  background-attachment: fixed;
 `;
 
 export const Title = styled.h1`

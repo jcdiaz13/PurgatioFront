@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-
-export const Container = styled.body`
+export const Container = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
@@ -13,18 +12,18 @@ export const Container = styled.body`
   background-image: url("https://i.pinimg.com/originals/37/6a/39/376a3925f8b6d181006e1f9750870735.gif");
   background-repeat: no-repeat;
   background-size: cover;
-  height: 100vh
- 
+  background-attachment: fixed;
 `;
 
 export const Overlay = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 1;
+  backdrop-filter: blur(7px);
+  z-index: 3;
 `;
 
 export const Title = styled.h1`
@@ -36,14 +35,17 @@ export const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 420px;
+  height: 600px;
   padding: 2rem;
  color: white;
   z-index: 2;
   opacity: ${({ isPopupOpen }) => (isPopupOpen ? 0.2 : 1)};
   transition: opacity 0.3s ease;
 
-  h2{
-    margin-bottom: 0px;
+  h2 {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
   }
   
 `;
@@ -54,8 +56,7 @@ export const Input = styled.input`
   margin-top:1rem;
   border: 1px solid black;
   border-radius: 4px;
-  font-size: 1rem;
-  width: 50%;
+  width: 60%;
 `;
 
 export const ButtonContainer = styled.div`
@@ -97,41 +98,34 @@ export const Button = styled.button`
 `;
 
 export const AvatarContainer = styled.div`
-  width: 120px;
-  height: 120px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
-  background-color: #ccc;   
+  background-color: #ccc;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 1.5rem;
   cursor: pointer;
   border: black 1px solid;
-  margin-top: 1rem;
-  margin-bottom: 0.5rem;
 `;
 
 export const AvatarPopup = styled.div`
-  position: absolute;
+ position: fixed;
   top: 50%;
   left: 50%;
+  width: 280px;
   transform: translate(-50%, -50%);
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
-  width: 400px;
-  padding: 1rem;
-  background: white;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  border-radius: 8px;
-  border: 1px solid black;
+  align-items: center;   
   z-index: 3;
 `;
 
 export const AvatarOption = styled.div`
-  width: 80px;
-  height: 80px;
+  width: 120px;
+  height: 120px;
   margin: 0.5rem;
   border-radius: 50%;
   background-color: white;

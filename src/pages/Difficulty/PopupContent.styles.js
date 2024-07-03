@@ -4,10 +4,11 @@ export const Popup = styled.div`
   position: fixed;
   top: 50%;
   left: 50%;
+  justify-content: center;
+  align-items: center;
   transform: translate(-50%, -50%);
  color: white;
-  padding: 20px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  padding: 20px; 
   z-index: 1000;  
 `;
 export const Overlay = styled.div`
@@ -16,7 +17,8 @@ export const Overlay = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.7);  
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(7px);
   z-index: 999;
 `;
 export const StyledLink = styled(Link)`
@@ -73,16 +75,17 @@ position: absolute;
 
 export const Box = styled.div`
 display: flex;
- width: 225px;
-  height: 225px;
-  border-radius: 50%;
-  margin-bottom: 20px;
+ width: 250px;
+  height: 250px;
+  border-radius: 50%; 
+  margin: auto;
   cursor: pointer;
    img{
     border: solid 7px black;
+    box-shadow: 1px 1px 30px black;
   border-radius: 50%;
-    width: 225px;
-    height: 225px;
+    width: 250px;
+    height: 250px;
     object-fit: cover;
    }
 `;
@@ -91,12 +94,14 @@ export const Name = styled.h2`
 background-color: black;
 font-family: Goddes;
 font-size: 25px;
-padding: 10px;
+margin: auto;
+width: 140px;
 box-sizing: border-box;
 text-align: center;
-border-radius: 50%;
+
+margin-top: 15px;
 margin-bottom: 15px;
-box-shadow: 1px 1px 30px white;
+box-shadow: 1px 1px 10px black;
 `
 export const Description=styled.p`
 text-align: center;
