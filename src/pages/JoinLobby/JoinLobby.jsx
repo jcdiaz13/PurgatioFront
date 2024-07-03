@@ -15,6 +15,8 @@ import {
 import { PlayerContext } from "../../app/contexts/PlayerContext";
 import { createPlayer } from '../../app/services/player';
 import { useNavigate } from 'react-router-dom';
+import { getPlayersByRoomId } from '../../app/services/player';
+
 
 const avatars = [
   "Avatar 1",
@@ -58,19 +60,25 @@ function JoinLobby() {
 
   const handleJoinLobby = async () => {
     const trimmedName = playerName.trim();
-    if (trimmedName && roomId) {
-      try {
-        await createPlayer({
-          playerName: trimmedName,
-          room: { id: roomId }
-        });
-        setRoomId(roomId);
-        navigate("/lobby");
-      } catch (error) {
-        alert("Error al crear el jugador. Por favor, inténtelo de nuevo.");
+    const players = await getPlayersByRoomId(roomId);
+    if (players.data.length < 2) {
+      if (trimmedName && roomId) {
+        try {
+          await createPlayer({
+            playerName: trimmedName,
+            room: { id: roomId }
+          });
+          setRoomId(roomId);
+          navigate("/lobby");
+        } catch (error) {
+          alert("Error al crear el jugador. Por favor, inténtelo de nuevo.");
+        }
+      } else {
+        alert("Por favor ingrese un nombre y un ID de sala antes de continuar.");
       }
-    } else {
-      alert("Por favor ingrese un nombre y un ID de sala antes de continuar.");
+    }
+    else {
+      alert("Limit exceeded. Max 2 players")
     }
   };
 
