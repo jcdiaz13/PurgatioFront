@@ -1,15 +1,18 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-export const Container = styled.div`
+export const Container = styled.body`
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+   background-color: blue !important;
   background-image: url("https://i.pinimg.com/originals/37/6a/39/376a3925f8b6d181006e1f9750870735.gif");
   background-repeat: no-repeat;
   background-size: cover;
+  height: 100vh
+ 
 `;
 
 export const Overlay = styled.div`
