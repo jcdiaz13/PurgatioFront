@@ -1,17 +1,17 @@
-import { Link } from 'react-router-dom';
-import { Box, Container, Player, PlayerContainer } from './Lobby.styles'
+import { useContext, useEffect, useState } from 'react';
+import { Gif, Box, Container, CirclesContainer, Player, PlayerContainer, Id } from './Lobby.styles';
 import Theme from "../../components/Theme";
-import {getRoomId} from '../../app/services/room';
-import {useContext, useState,useEffect} from 'react';
-import {PlayerContext} from '../../app/contexts/PlayerContext';
+import { getRoomId } from '../../app/services/room';
+import { useContext, useState, useEffect } from 'react';
+import { PlayerContext } from '../../app/contexts/PlayerContext';
 // import verdugo from "../../app/img/pikaso_texttoimage_35mm-film-photography-bloody-executioner-avatar-pi.jpeg";
 // import mago from "../../app/img/rendering-wizard-controlling-magic.jpg";
 // import hada from "../../app/img/pikaso_texttoimage_sweet-fairy-impressive-surreal-cinematic-lighting-.jpeg";
 
 const Lobby = () => {
-  const { playerName, setPlayerName, roomId,setRoomId } = useContext(PlayerContext);
+  const { playerName, setPlayerName, roomId, setRoomId } = useContext(PlayerContext);
   const [selectedAvatar, setSelectedAvatar] = useState(null);
- 
+
   const handleGetRoomId = async () => {
     try {
       const response = await getRoomId({});
@@ -66,26 +66,26 @@ const Lobby = () => {
       image: "Avatar",
     },
   ];
-  
+
   return (
     <Theme>
       <Container>
-    <Box></Box>
-    <p>Room ID: {roomId}</p>  
-    <Link to="/sins">
-    <button>START</button>
-    </Link>
-    <PlayerContainer>
-    {players.map((player, index) => (
-          <Player key={index}>
-            <p>{player.name+" / "+player.image}</p>            
-                 </Player>                 
-    ))}
-    </PlayerContainer>
-    </Container>
-</Theme >
+        <Box></Box>
+        <p>Room ID: {roomId}</p>
+        <Link to="/sins">
+          <button>START</button>
+        </Link>
+        <PlayerContainer>
+          {players.map((player, index) => (
+            <Player key={index}>
+              <p>{player.name + " / " + player.image}</p>
+            </Player>
+          ))}
+        </PlayerContainer>
+      </Container>
+    </Theme >
   )
 }
 
-export default Lobby
+export default Lobby;
 
