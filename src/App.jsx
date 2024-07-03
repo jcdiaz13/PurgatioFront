@@ -1,6 +1,5 @@
 import Router from "./app/Router";
-import { GlobalStyle } from "./globalstyles";
-
+import GlobalStyle from "./app/style/createGlobal.styles";
 const App = () => (
   <>
     <GlobalStyle />

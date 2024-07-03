@@ -63,7 +63,8 @@ const GlobalStyle = createGlobalStyle`
   /* Global Styles */
   html, body {
     width: 100%;
-    height: 100%;
+    height: 100vh !important;
+    background-color: red !important;
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
     box-sizing: border-box;
