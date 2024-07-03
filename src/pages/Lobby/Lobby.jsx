@@ -9,7 +9,7 @@ import { getPlayerByRoomId } from '../../app/services/player';
 // import hada from "../../app/img/pikaso_texttoimage_sweet-fairy-impressive-surreal-cinematic-lighting-.jpeg";
 
 const Lobby = () => {
-  const { roomId } = useContext(PlayerContext);
+  const { roomId, admin } = useContext(PlayerContext);
   const [players, setPlayers] = useState([]);
   // const [selectedAvatar, setSelectedAvatar] = useState(null);
 
@@ -77,9 +77,11 @@ const Lobby = () => {
       <Container>
         <Box></Box>
         <p>Room ID: {roomId}</p>
-        <Link to="/sins">
+        
+        {admin && <Link to="/sins">
           <button>START</button>
         </Link>
+}
         <PlayerContainer>
           {players.map((player, index) => (
             <Player key={index}>

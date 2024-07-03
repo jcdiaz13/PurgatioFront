@@ -6,10 +6,11 @@ export const PlayerContext = createContext();
 export const PlayerProvider = ({ children }) => {
   const [playerName, setPlayerName] = useState('');
   const [roomId, setRoomId] = useState(null);
+  const [admin, setAdmin] = useState(false);
 
 
   return (
-    <PlayerContext.Provider value={{ playerName, setPlayerName, roomId, setRoomId }}>
+    <PlayerContext.Provider value={{ playerName, setPlayerName, roomId, setRoomId, admin, setAdmin }}>
       {children}
     </PlayerContext.Provider>
   );
