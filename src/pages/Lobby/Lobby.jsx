@@ -21,9 +21,10 @@ const Lobby = () => {
         console.log(response.data);
       } catch (error) {
         console.error('Error showing players:', error);
+      }finally{
+        setTimeout(ShowPlayers, 500);
       }
     };
-
     if (roomId) {
       ShowPlayers();
     }

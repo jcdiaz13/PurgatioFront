@@ -96,7 +96,7 @@ box-sizing: border-box;
 text-align: center;
 border-radius: 50%;
 margin-bottom: 15px;
-box-shadow: 1px 1px 30px white;
+box-shadow: 1px 1px 10px white;
 `
 export const Description=styled.p`
 text-align: center;
