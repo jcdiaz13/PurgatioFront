@@ -1,13 +1,14 @@
-import { Popup, Overlay,StyledLink, Button,ButtonClose, Box } from './PopupContent.styles';
+import { Popup, Overlay,StyledLink, Button,ButtonClose, Box ,Name, Description} from './PopupContent.styles';
 import PropTypes from 'prop-types';
 
 const PopupContent = ({ closePopup, image,name, description }) => (
   <>
     <Overlay onClick={closePopup} />
-    <Popup><ButtonClose onClick={closePopup}> X</ButtonClose>
+    <Popup>
+    <ButtonClose onClick={closePopup}> X</ButtonClose>
     <Box><img src={image} alt="" width="225px" /></Box>
-    <p>{name}</p>
-      <p>{description}</p>      
+    <Name>{name}</Name>
+      <Description>{description}</Description>      
       <StyledLink to={`/lobby`}>
         <Button>Start</Button>
       </StyledLink>
