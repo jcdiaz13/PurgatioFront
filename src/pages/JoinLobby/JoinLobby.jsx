@@ -63,7 +63,7 @@ function JoinLobby() {
   const handleJoinLobby = async () => {
     const trimmedName = playerName.trim();
     const players = await getPlayersByRoomId(roomId);
-    if (players.data.length < 4) {
+    if (players.data.length < 6) {
       if (trimmedName && roomId) {
         try {
           await createPlayer({
@@ -81,7 +81,7 @@ function JoinLobby() {
         );
       }
     } else {
-      alert("Limit exceeded. Max 2 players");
+      alert("Limit exceeded. Max 6 players");
     }
   };
 
