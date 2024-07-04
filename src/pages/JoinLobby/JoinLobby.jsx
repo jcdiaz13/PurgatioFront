@@ -63,7 +63,7 @@ function JoinLobby() {
   const handleJoinLobby = async () => {
     const trimmedName = playerName.trim();
     const players = await getPlayersByRoomId(roomId);
-    if (players.data.length < 2) {
+    if (players.data.length < 4) {
       if (trimmedName && roomId) {
         try {
           await createPlayer({

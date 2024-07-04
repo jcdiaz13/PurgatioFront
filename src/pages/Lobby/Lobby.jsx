@@ -21,64 +21,28 @@ const Lobby = () => {
   // const [selectedAvatar, setSelectedAvatar] = useState(null);
 
   useEffect(() => {
-    const ShowPlayers = async () => {
-      try {
-        const response = await getPlayersByRoomId(roomId);
-        setPlayers(response.data);
-        console.log(response.data);
-      } catch (error) {
-        console.error("Error showing players:", error);
-      } finally {
-        setTimeout(ShowPlayers, 5000);
-      }
-    };
-    if (roomId) {
-      ShowPlayers();
-    }
-  }, [roomId]);
 
-  // const players = [
-  //   {
-  //     id: 1,
-  //     name: "Player1",
-  //     image: "Avatar",
-  //   },
-  //   {
-  //     id: 2,
-  //     name: "Player2",
-  //     image: "Avatar",
-  //   },
-  //   {
-  //     id: 3,
-  //     name: "Player3",
-  //     image: "Avatar",
-  //   },
-  //   {
-  //     id: 4,
-  //     name: "Player4",
-  //     image: "Avatar",
-  //   },
-  //   {
-  //     id: 5,
-  //     name: "Player5",
-  //     image: "Avatar",
-  //   },
-  //   {
-  //     id: 6,
-  //     name: "Player6",
-  //     image: "Avatar",
-  //   },
-  //   {
-  //     id: 7,
-  //     name: "Player7",
-  //     image: "Avatar",
-  //   },
-  //   {
-  //     id: 8,
-  //     name: "Player8",
-  //     image: "Avatar",
-  //   },
-  // ];
+    if (roomId) {
+      const timeoutId = setInterval(() => {
+        ShowPlayers();
+      }, 2000);
+
+      return () => clearTimeout(timeoutId);
+    }
+
+  }, []);
+
+  const ShowPlayers = async () => {
+    try {
+      const response = await getPlayersByRoomId(roomId);
+      setPlayers(response.data);
+      console.log(response.data);
+    } catch (error) {
+      console.error('Error showing players:', error);
+
+    }
+
+  };
 
   return (
     <Theme>
