@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Box, Container, Player, PlayerContainer ,Id,Button} from './Lobby.styles';
+import { Box, Container, Player, PlayerContainer, Id, Button } from './Lobby.styles';
 import Theme from "../../components/Theme";
 import { getPlayersByRoomId } from '../../app/services/player';
 import { useContext, useEffect } from 'react';
@@ -13,37 +13,38 @@ const Lobby = () => {
 
   // const [selectedAvatar, setSelectedAvatar] = useState(null);
 
-
   useEffect(() => {
-    const ShowPlayers = async () => {
-      try {
-        const response = await getPlayersByRoomId(roomId);
-        setPlayers(response.data);
-        console.log(response.data);
-      } catch (error) {
-        console.error('Error showing players:', error);
 
-      }finally{
-
-        setTimeout(ShowPlayers, 5000);
-      }
-    };
     if (roomId) {
-      ShowPlayers();
+      const timeoutId = setInterval(() => {
+        ShowPlayers();
+      }, 2000);
+
+      return () => clearTimeout(timeoutId);
     }
-  }, [roomId]);
 
+  }, []);
 
+  const ShowPlayers = async () => {
+    try {
+      const response = await getPlayersByRoomId(roomId);
+      setPlayers(response.data);
+      console.log(response.data);
+    } catch (error) {
+      console.error('Error showing players:', error);
+
+    }
+
+  };
 
   return (
     <Theme>
       <Container>
-
+        <Box></Box>
         <Id>Room ID: {roomId}</Id>
         <Link to="/sins">
-
+          <button>START</button>
         </Link>
-        }
         <PlayerContainer>
           {players.map((player, index) => (
             <Player key={index}>
