@@ -30,6 +30,7 @@ const Lobby = () => {
       return () => clearTimeout(timeoutId);
     }
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const ShowPlayers = async () => {
