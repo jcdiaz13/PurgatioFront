@@ -4,11 +4,7 @@ import { magoTheme } from "./themes/magoTheme";
 import { hadaTheme } from "./themes/hadaTheme";
 
 const Theme = ({ children }) => {
-  return (
-    <ThemeProvider theme={hadaTheme}>
-      {children}
-    </ThemeProvider>
-  );
+  return <ThemeProvider theme={verdugoTheme}>{children}</ThemeProvider>;
 };
 
 export default Theme;
