@@ -1,16 +1,23 @@
-import { Link } from 'react-router-dom';
-import { Box, Container, Player, PlayerContainer, Id, Button } from './Lobby.styles';
+import { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import {
+  Box,
+  Container,
+  Player,
+  PlayerContainer,
+  Id,
+  Button,
+} from "./Lobby.styles";
 import Theme from "../../components/Theme";
-import { getPlayersByRoomId } from '../../app/services/player';
-import { useContext, useEffect } from 'react';
-import { PlayerContext } from '../../app/contexts/PlayerContext';
+import { PlayerContext } from "../../app/contexts/PlayerContext";
+import { getPlayersByRoomId } from "../../app/services/player";
 // import verdugo from "../../app/img/pikaso_texttoimage_35mm-film-photography-bloody-executioner-avatar-pi.jpeg";
 // import mago from "../../app/img/rendering-wizard-controlling-magic.jpg";
 // import hada from "../../app/img/pikaso_texttoimage_sweet-fairy-impressive-surreal-cinematic-lighting-.jpeg";
 
 const Lobby = () => {
-  const { roomId, admin, players, setPlayers } = useContext(PlayerContext);
-
+  const { roomId } = useContext(PlayerContext);
+  const [players, setPlayers] = useState([]);
   // const [selectedAvatar, setSelectedAvatar] = useState(null);
 
   useEffect(() => {
@@ -43,7 +50,7 @@ const Lobby = () => {
         <Box></Box>
         <Id>Room ID: {roomId}</Id>
         <Link to="/sins">
-          <button>START</button>
+          <Button>START</Button>
         </Link>
         <PlayerContainer>
           {players.map((player, index) => (
@@ -53,9 +60,8 @@ const Lobby = () => {
           ))}
         </PlayerContainer>
       </Container>
-    </Theme >
-  )
-}
+    </Theme>
+  );
+};
 
 export default Lobby;
-
