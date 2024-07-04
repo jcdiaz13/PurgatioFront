@@ -13,10 +13,9 @@ import {
   Overlay,
 } from "./JoinLobby.styles";
 import { PlayerContext } from "../../app/contexts/PlayerContext";
-import { createPlayer } from '../../app/services/player';
-import { useNavigate } from 'react-router-dom';
-import { getPlayersByRoomId } from '../../app/services/player';
-
+import { createPlayer } from "../../app/services/player";
+import { useNavigate } from "react-router-dom";
+import { getPlayersByRoomId } from "../../app/services/player";
 
 const avatars = [
   "Avatar 1",
@@ -30,7 +29,8 @@ const avatars = [
 ];
 
 function JoinLobby() {
-  const { playerName, setPlayerName, roomId, setRoomId } = useContext(PlayerContext);
+  const { playerName, setPlayerName, roomId, setRoomId } =
+    useContext(PlayerContext);
   const [isAvatarPopupOpen, setIsAvatarPopupOpen] = useState(false);
   const [selectedAvatar, setSelectedAvatar] = useState(null);
   const navigate = useNavigate();
@@ -39,10 +39,9 @@ function JoinLobby() {
     setIsAvatarPopupOpen(null);
   };
   useEffect(() => {
-    setPlayerName('');
-    setRoomId('');
+    setPlayerName("");
+    setRoomId("");
   }, [setPlayerName, setRoomId]);
-
 
   const handleAvatarClick = () => {
     setIsAvatarPopupOpen(true);
@@ -69,7 +68,7 @@ function JoinLobby() {
         try {
           await createPlayer({
             playerName: trimmedName,
-            room: { id: roomId }
+            room: { id: roomId },
           });
           setRoomId(roomId);
           navigate("/lobby");
@@ -77,11 +76,12 @@ function JoinLobby() {
           alert("Error al crear el jugador. Por favor, inténtelo de nuevo.");
         }
       } else {
-        alert("Por favor ingrese un nombre y un ID de sala antes de continuar.");
+        alert(
+          "Por favor ingrese un nombre y un ID de sala antes de continuar."
+        );
       }
-    }
-    else {
-      alert("Limit exceeded. Max 4 players")
+    } else {
+      alert("Limit exceeded. Max 2 players");
     }
   };
 
