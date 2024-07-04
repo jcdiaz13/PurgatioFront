@@ -21,7 +21,6 @@ const Lobby = () => {
   // const [selectedAvatar, setSelectedAvatar] = useState(null);
 
   useEffect(() => {
-
     if (roomId) {
       const timeoutId = setInterval(() => {
         ShowPlayers();
@@ -30,6 +29,7 @@ const Lobby = () => {
       return () => clearTimeout(timeoutId);
     }
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const ShowPlayers = async () => {
@@ -38,10 +38,8 @@ const Lobby = () => {
       setPlayers(response.data);
       console.log(response.data);
     } catch (error) {
-      console.error('Error showing players:', error);
-
+      console.error("Error showing players:", error);
     }
-
   };
 
   return (
