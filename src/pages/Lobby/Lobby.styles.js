@@ -196,3 +196,9 @@ export const Popup = styled.div`
   
 `;
 
+export const RoomId = styled.div`
+  /* font-size: 20px; */
+  /* text-align: center; */
+  background-color: white;
+  `
+

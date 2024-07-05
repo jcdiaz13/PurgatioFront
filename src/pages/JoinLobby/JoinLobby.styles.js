@@ -40,7 +40,7 @@ export const FormContainer = styled.div`
   padding: 2rem;
  color: white;
   z-index: 2;
-  opacity: ${({ isPopupOpen }) => (isPopupOpen ? 0.2 : 1)};
+  opacity: ${({ ispopupopen }) => (ispopupopen ? 0.2 : 1)};
   transition: opacity 0.3s ease;
 
   h2 {
@@ -108,8 +108,16 @@ export const AvatarContainer = styled.div`
   font-size: 1.5rem;
   cursor: pointer;
   border: black 1px solid;
-`;
+  overflow: hidden; /* Añadido para que la imagen no se desborde */
 
+
+      img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Asegura que la imagen se recorte adecuadamente dentro del contenedor */
+    border-radius: 50%; /* Hace que la imagen también sea redonda */
+  }
+`;
 export const AvatarPopup = styled.div`
  position: fixed;
   top: 50%;
@@ -135,8 +143,16 @@ export const AvatarOption = styled.div`
   font-size: 0.9rem;
   border: black 1px solid;
   cursor: pointer;
+  overflow: hidden; /* Asegura que la imagen no se desborde del contenedor */
 
   &:hover {
     background-color: mediumaquamarine;
+  }
+
+    img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Asegura que la imagen se recorte adecuadamente dentro del contenedor */
+    border-radius: 50%; /* Hace que la imagen también sea redonda */
   }
 `;

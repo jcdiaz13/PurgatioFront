@@ -1,6 +1,3 @@
-
-
-
 import { Title, Container, Box, BoxContainer } from "./Difficulty.styles";
 import { useContext, useState } from "react";
 import { PlayerContext } from "../../app/contexts/PlayerContext";
@@ -8,7 +5,7 @@ import GlobalStyle from "../../app/style/createGlobal.styles";
 import verdugo from "../../app/img/pikaso_texttoimage_35mm-film-photography-bloody-executioner-avatar-pi.jpeg";
 import mago from "../../app/img/rendering-wizard-controlling-magic.jpg";
 import hada from "../../app/img/pikaso_texttoimage_sweet-fairy-impressive-surreal-cinematic-lighting-.jpeg";
-import PopupContent from "./PopupContent"
+import PopupContent from "./PopupContent";
 
 const Difficulty = () => {
   const { playerName } = useContext(PlayerContext); // Obtener el nombre del jugador desde el contexto
@@ -20,19 +17,22 @@ const Difficulty = () => {
       id: 1,
       image: verdugo,
       name: "VERDUGO",
-      description: "Esta es la dificultad más alocada, con pecados e historias más locas y castigos más severos!",
+      description:
+        "Esta es la dificultad más alocada, con pecados e historias más locas y castigos más severos!",
     },
     {
       id: 2,
       image: mago,
       name: "MAGO",
-      description: "Esta es la dificultad estándar, podrás añadir tus pecados e historias y la gente te juzgará y castigará dependiendo de la magnitud de ellos!",
+      description:
+        "Esta es la dificultad estándar, podrás añadir tus pecados e historias y la gente te juzgará y castigará dependiendo de la magnitud de ellos!",
     },
     {
       id: 3,
       image: hada,
       name: "HADA",
-      description: "Esta es la dificultad más 'light', podrás añadir tus pecados e historias y seleccionarás un castigo para el pecado en las opciones que te mostramos!",
+      description:
+        "Esta es la dificultad más 'light', podrás añadir tus pecados e historias y seleccionarás un castigo para el pecado en las opciones que te mostramos!",
     },
   ];
 
@@ -47,7 +47,6 @@ const Difficulty = () => {
     <>
       <GlobalStyle />
       <Container>
-        
         <BoxContainer>
           <Title>{playerName}, elige tu destino! </Title>
 
@@ -67,8 +66,6 @@ const Difficulty = () => {
         )}
       </Container>
     </>
-
-
   );
 };
 
