@@ -15,20 +15,21 @@ import {
   Description,
 } from "./PopupContent.styles";
 
-const PopupContent = ({ closePopup, image, name, description }) => {
-  const { playerName, setRoomId } = useContext(PlayerContext); // Obtener el nombre del jugador desde el contexto
+const PopupContent = ({ closePopup, image, name, description, difficulty }) => {
+  const { playerName, setRoomId, setPlayerId } = useContext(PlayerContext); // Obtener el nombre del jugador desde el contexto
   const navigate = useNavigate();
   const handleCreateRoom = async () => {
     try {
-      const room = await createRoom({});
+      const room = await createRoom({ gamemode: difficulty });
       setRoomId(room.data.id);
 
-      await createPlayer({
+      const player = await createPlayer({
         playerName: playerName,
         room: {
           id: room.data.id,
         },
       });
+      setPlayerId(player.data.id);
       navigate("/lobby");
     } catch (error) {
       console.error("Error creating room or player:", error);
@@ -58,6 +59,9 @@ PopupContent.propTypes = {
   image: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
+  difficulty: PropTypes.number.isRequired,
 };
 
 export default PopupContent;
+
+
