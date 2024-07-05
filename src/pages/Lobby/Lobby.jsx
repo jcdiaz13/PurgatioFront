@@ -30,7 +30,7 @@ const Lobby = () => {
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [roomId]);
 
   const ShowPlayers = async () => {
     try {

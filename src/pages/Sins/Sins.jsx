@@ -1,15 +1,25 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Container, FormContainer, Textarea, ButtonContainer, Button, Title, SubTitle } from './Sins.styles';
 import { FaArrowRight, FaArrowLeft } from 'react-icons/fa';
 import sinsData from '../../app/jsons/gameMastersSins.json';
 import Theme from '../../components/Theme';
+import { createSin } from '../../app/services/player';
+import { PlayerContext } from '../../app/contexts/PlayerContext'; // Ajusta la ruta según donde tengas PlayerContext
+
+
+
+
 
 function Sins() {
   const [text, setText] = useState("")
   const navigate = useNavigate();
   const [randomSin, setRandomSin] = useState("");
   const suggest = `Sugerencia: ${randomSin}`;
+  const { playerId } = useContext(PlayerContext);
+
+
+
 
   useEffect(() => {
     // Función para seleccionar una frase aleatoria
@@ -29,13 +39,21 @@ function Sins() {
 
 
   // Punishers
-  const handleNext = () => {
+  const handleNext = async () => {
     if (text === "") {
       alert("Introduzca un texto!!");
       return;
     }
-    navigate('/punishments');
+
+    try {
+      console.log('rrrrrrrrrrrr', text)
+      await createSin(playerId, { sin: text });
+      navigate('/punishments');
+    } catch (error) {
+      console.error("Error al crear el pecado:", error);
+    }
   };
+
   const handleGoLobby = () => {
     navigate('/lobby');
   };

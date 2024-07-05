@@ -41,7 +41,7 @@ const avatars = [
 ];
 
 function JoinLobby() {
-  const { playerName, setPlayerName, roomId, setRoomId } =
+  const { playerName, setPlayerName, roomId, setRoomId, setPlayerId } =
     useContext(PlayerContext);
   const [isAvatarPopupOpen, setIsAvatarPopupOpen] = useState(false);
   const [selectedAvatar, setSelectedAvatar] = useState(null);
@@ -78,10 +78,11 @@ function JoinLobby() {
     if (players.data.length < 6) {
       if (trimmedName && roomId) {
         try {
-          await createPlayer({
+          const player = await createPlayer({
             playerName: trimmedName,
             room: { id: roomId },
           });
+          setPlayerId(player.data.id);
           setRoomId(roomId);
           navigate("/lobby");
         } catch (error) {

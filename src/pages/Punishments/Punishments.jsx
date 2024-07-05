@@ -26,7 +26,7 @@ const Punishments = () => {
         sinsData[Math.floor(Math.random() * sinsData.length)];
       const randomSin =
         randomCategory.sins[
-          Math.floor(Math.random() * randomCategory.sins.length)
+        Math.floor(Math.random() * randomCategory.sins.length)
         ];
       return randomSin;
     };
@@ -40,7 +40,7 @@ const Punishments = () => {
         punishmentsData[Math.floor(Math.random() * punishmentsData.length)];
       const randomPunishment =
         randomCategory.punishments[
-          Math.floor(Math.random() * randomCategory.punishments.length)
+        Math.floor(Math.random() * randomCategory.punishments.length)
         ];
       return randomPunishment;
     };
@@ -66,22 +66,23 @@ const Punishments = () => {
 
   return (
     <Theme>
-    <Container>
-      <FormContainer>
-        <h1>Castigos</h1>
-        <p>{randomSin}</p>
-        <Textarea onChange={handlePunishmentChange} placeholder={suggest} />
-        <ButtonContainer>
-          <Button onClick={handleGoToSins}>
-            {" "}
-            <FaArrowLeft />
-          </Button>
-          <Link to="/verdict">
-            <Button>Enviar</Button>
-          </Link>
-        </ButtonContainer>
-      </FormContainer>
-    </Container>
+      <Container>
+        <FormContainer>
+          <h1>Castigos</h1>
+          {/* <p>{randomSin}</p> */}
+
+          <Textarea onChange={handlePunishmentChange} placeholder={suggest} />
+          <ButtonContainer>
+            <Button onClick={handleGoToSins}>
+              {" "}
+              <FaArrowLeft />
+            </Button>
+            <Link to="/verdict">
+              <Button>Enviar</Button>
+            </Link>
+          </ButtonContainer>
+        </FormContainer>
+      </Container>
     </Theme>
   );
 };
