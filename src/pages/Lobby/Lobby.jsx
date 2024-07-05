@@ -21,7 +21,6 @@ const Lobby = () => {
   // const [selectedAvatar, setSelectedAvatar] = useState(null);
 
   useEffect(() => {
-
     if (roomId) {
       const timeoutId = setInterval(() => {
         ShowPlayers();
@@ -39,10 +38,8 @@ const Lobby = () => {
       setPlayers(response.data);
       console.log(response.data);
     } catch (error) {
-      console.error('Error showing players:', error);
-
+      console.error("Error showing players:", error);
     }
-
   };
 
   return (

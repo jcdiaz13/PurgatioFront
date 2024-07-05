@@ -108,6 +108,15 @@ export const AvatarContainer = styled.div`
   font-size: 1.5rem;
   cursor: pointer;
   border: black 1px solid;
+  overflow: hidden; /* Añadido para que la imagen no se desborde */
+
+
+      img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Asegura que la imagen se recorte adecuadamente dentro del contenedor */
+    border-radius: 50%; /* Hace que la imagen también sea redonda */
+  }
 `;
 
 export const AvatarPopup = styled.div`
@@ -136,8 +145,16 @@ export const AvatarOption = styled.div`
   font-size: 0.9rem;
   border: black 1px solid;
   cursor: pointer;
+  overflow: hidden; /* Asegura que la imagen no se desborde del contenedor */
 
   &:hover {
     background-color: mediumaquamarine;
+  }
+
+    img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Asegura que la imagen se recorte adecuadamente dentro del contenedor */
+    border-radius: 50%; /* Hace que la imagen también sea redonda */
   }
 `;

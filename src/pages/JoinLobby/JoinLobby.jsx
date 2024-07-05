@@ -1,4 +1,19 @@
+/* eslint-disable react/jsx-key */
 import { useContext, useEffect, useState } from "react";
+import { PlayerContext } from "../../app/contexts/PlayerContext";
+import { useNavigate } from "react-router-dom";
+import { createPlayer } from "../../app/services/player";
+import { getPlayersByRoomId } from "../../app/services/player";
+import dwarf from "../../app/img/dwarf.jpg";
+import undead from "../../app/img/pikaso_texttoimage_35mm-film-photography-bloody-executioner-avatar-pi.jpeg";
+import wizard from "../../app/img/rendering-wizard-controlling-magic.jpg";
+import fairy from "../../app/img/pikaso_texttoimage_sweet-fairy-impressive-surreal-cinematic-lighting-.jpeg";
+import elf from "../../app/img/elf.jpg";
+import executione2 from "../../app/img/executione2.jpg";
+import witch from "../../app/img/witch.jpg";
+import minotaur from "../../app/img/minotaur.jpg";
+import interrogante from "../../app/img/interrogante.jpg";
+
 import {
   Container,
   Title,
@@ -12,20 +27,17 @@ import {
   AvatarOption,
   Overlay,
 } from "./JoinLobby.styles";
-import { PlayerContext } from "../../app/contexts/PlayerContext";
-import { createPlayer } from "../../app/services/player";
-import { useNavigate } from "react-router-dom";
-import { getPlayersByRoomId } from "../../app/services/player";
 
+// Lista de avatares disponibles
 const avatars = [
-  "Avatar 1",
-  "Avatar 2",
-  "Avatar 3",
-  "Avatar 4",
-  "Avatar 5",
-  "Avatar 6",
-  "Avatar 7",
-  "Avatar 8",
+  <img src={dwarf} />,
+  <img src={undead} />,
+  <img src={wizard} />,
+  <img src={fairy} />,
+  <img src={elf} />,
+  <img src={executione2} />,
+  <img src={witch} />,
+  <img src={minotaur} />,
 ];
 
 function JoinLobby() {
@@ -93,7 +105,7 @@ function JoinLobby() {
         <Title>Unirse a una sala</Title>
         <h2>Selecciona un avatar</h2>
         <AvatarContainer onClick={handleAvatarClick}>
-          {selectedAvatar ? selectedAvatar : "Avatar"}
+          {selectedAvatar ? selectedAvatar : <img src={interrogante} />}
         </AvatarContainer>
         <Input
           type="text"
