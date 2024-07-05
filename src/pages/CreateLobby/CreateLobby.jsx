@@ -10,6 +10,7 @@ import elf from "../../app/img/elf.jpg";
 import executione2 from "../../app/img/executione2.jpg";
 import witch from "../../app/img/witch.jpg";
 import minotaur from "../../app/img/minotaur.jpg";
+import interrogante from "../../app/img/interrogante.jpg";
 
 import {
   Container,
@@ -83,7 +84,7 @@ function CreateLobby() {
         <Title>Crear nueva sala</Title>
         <h2>Selecciona un avatar</h2>
         <AvatarContainer onClick={handleAvatarClick}>
-          {selectedAvatar ? selectedAvatar : "Avatar"}
+          {selectedAvatar ? selectedAvatar : <img src={interrogante} />}
         </AvatarContainer>
         <Input
           type="text"
