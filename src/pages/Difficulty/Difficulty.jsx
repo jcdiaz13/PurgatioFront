@@ -2,14 +2,13 @@ import { Title, Container, Box, BoxContainer } from "./Difficulty.styles";
 import { useContext, useState } from "react";
 import { PlayerContext } from "../../app/contexts/PlayerContext";
 import GlobalStyle from "../../app/style/createGlobal.styles";
-import verdugo from "../../app/img/executione2.jpg";
-import mago from "../../app/img/rendering-wizard-controlling-magic.jpg";
-import hada from "../../app/img/pikaso_texttoimage_sweet-fairy-impressive-surreal-cinematic-lighting-.jpeg";
+import verdugo from "../../app/gifs/Executioner.gif";
+import mago from "../../app/gifs/Wizard.gif";
+import hada from "../../app/gifs/fairy.gif";
 import PopupContent from "./PopupContent";
 
 const Difficulty = () => {
   const { playerName } = useContext(PlayerContext); // Obtener el nombre del jugador desde el contexto
-
   const [popup, setPopup] = useState(null);
 
   const popups = [
@@ -62,6 +61,7 @@ const Difficulty = () => {
             image={popup.image}
             name={popup.name}
             description={popup.description}
+            difficulty={popup.id}
           />
         )}
       </Container>

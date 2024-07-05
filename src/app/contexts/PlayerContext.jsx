@@ -9,9 +9,10 @@ export const PlayerProvider = ({ children }) => {
   const [roomId, setRoomId] = useState(null);
   const [admin, setAdmin] = useState(false);
   const [players, setPlayers] = useState([])
+  const [playerId, setPlayerId] = useState(null);
 
   return (
-    <PlayerContext.Provider value={{ playerName, setPlayerName, roomId, setRoomId, admin, setAdmin, players, setPlayers, selectedAvatar, setSelectedAvatar }}>
+    <PlayerContext.Provider value={{ playerName, setPlayerName, roomId, setRoomId, admin, setAdmin, players, setPlayers, selectedAvatar, setSelectedAvatar, playerId, setPlayerId }}>
       {children}
     </PlayerContext.Provider>
   );

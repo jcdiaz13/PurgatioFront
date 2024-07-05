@@ -64,16 +64,16 @@ export const GlobalStyle = createGlobalStyle`
 
   /* Global Styles */
   html, body {
-    width: 100%;
-    height: 100vh !important;
-    background-color: red !important;
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    box-sizing: border-box;
-  }
-
-  *, *:before, *:after {
-    box-sizing: inherit;
+    height: 100%;
+    font-family:Goddes;
+    line-height: 1.6;
+    background-color: #fff;
+    color: #333;
+    background-color: #000 !important;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
   }
 `;
 
