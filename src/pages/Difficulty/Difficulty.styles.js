@@ -2,12 +2,13 @@ import styled from 'styled-components';
 export const Container = styled.div`
   display: grid;
   background:url('https://i.pinimg.com/originals/37/6a/39/376a3925f8b6d181006e1f9750870735.gif');
-  width: 100%;
-  height: 100vh;
   align-items: center;
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
 `;
 
 export const BoxContainer = styled.div`
