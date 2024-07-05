@@ -69,7 +69,7 @@ export const GlobalStyle = createGlobalStyle`
     line-height: 1.6;
     background-color: #fff;
     color: #333;
-    background-image: url('https://i.pinimg.com/originals/37/6a/39/376a3925f8b6d181006e1f9750870735.gif');
+    background-color: #000 !important;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
