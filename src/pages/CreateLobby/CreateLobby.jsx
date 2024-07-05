@@ -1,15 +1,15 @@
+/* eslint-disable react/jsx-key */
 import { useContext, useState } from "react";
 import { PlayerContext } from "../../app/contexts/PlayerContext";
 import { useNavigate } from "react-router-dom";
-import dwarf from '../../app/img/dwarf.jpg';
-import undead from '../../app/img/pikaso_texttoimage_35mm-film-photography-bloody-executioner-avatar-pi.jpeg'
-import wizard from '../../app/img/rendering-wizard-controlling-magic.jpg'
-import fairy from '../../app/img/pikaso_texttoimage_sweet-fairy-impressive-surreal-cinematic-lighting-.jpeg'
-import elf from '../../app/img/elf.jpg';
-import executione2 from '../../app/img/executione2.jpg';
-import witch from '../../app/img/witch.jpg';
-import minotaur from '../../app/img/minotaur.jpg';
-
+import dwarf from "../../app/img/dwarf.jpg";
+import undead from "../../app/img/pikaso_texttoimage_35mm-film-photography-bloody-executioner-avatar-pi.jpeg";
+import wizard from "../../app/img/rendering-wizard-controlling-magic.jpg";
+import fairy from "../../app/img/pikaso_texttoimage_sweet-fairy-impressive-surreal-cinematic-lighting-.jpeg";
+import elf from "../../app/img/elf.jpg";
+import executione2 from "../../app/img/executione2.jpg";
+import witch from "../../app/img/witch.jpg";
+import minotaur from "../../app/img/minotaur.jpg";
 
 import {
   Container,
@@ -27,18 +27,19 @@ import {
 
 // Lista de avatares disponibles
 const avatars = [
-  <img src={dwarf}/>,
-  <img src={undead}/>,
-  <img src={wizard}/>,
-  <img src={fairy}/>,
-  <img src={elf}/>,
-  <img src={executione2}/>,
-  <img src={witch}/>,
-  <img src={minotaur}/>,
+  <img src={dwarf} />,
+  <img src={undead} />,
+  <img src={wizard} />,
+  <img src={fairy} />,
+  <img src={elf} />,
+  <img src={executione2} />,
+  <img src={witch} />,
+  <img src={minotaur} />,
 ];
 
 function CreateLobby() {
-  const { playerName, setPlayerName, selectedAvatar, setSelectedAvatar } = useContext(PlayerContext);
+  const { playerName, setPlayerName, selectedAvatar, setSelectedAvatar } =
+    useContext(PlayerContext);
   const [isAvatarPopupOpen, setIsAvatarPopupOpen] = useState(false);
   const navigate = useNavigate();
 
@@ -100,10 +101,7 @@ function CreateLobby() {
       {isAvatarPopupOpen && (
         <AvatarPopup>
           {avatars.map((avatar, i) => (
-            <AvatarOption
-              key={i}
-              onClick={() => handleAvatarSelect(avatar)}
-            >
+            <AvatarOption key={i} onClick={() => handleAvatarSelect(avatar)}>
               {avatar}
             </AvatarOption>
           ))}
