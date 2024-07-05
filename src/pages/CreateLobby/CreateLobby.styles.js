@@ -82,7 +82,7 @@ export const Button = styled.button`
   background-color: #006633;
   color: white;
   cursor: pointer;
-  width: 120px;
+  width: 100px;
   text-align: center;
   height: 40px; /* Altura fija para ambos botones */
 
@@ -101,13 +101,13 @@ export const AvatarContainer = styled.div`
   width: 150px;
   height: 150px;
   border-radius: 50%;
-  background-color: #ccc;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 1.5rem;
   cursor: pointer;
-  border: black 1px solid;
+  border: white 2px solid;
+  box-shadow: 4px 4px 60px #00CC66;
   overflow: hidden; /* Añadido para que la imagen no se desborde */
 
 
@@ -123,7 +123,7 @@ export const AvatarPopup = styled.div`
   position: fixed;
   top: 50%;
   left: 50%;
-  width: 280px;
+  width: 330px;
   transform: translate(-50%, -50%);
   display: flex;
   flex-wrap: wrap;
@@ -134,16 +134,16 @@ export const AvatarPopup = styled.div`
 `;
 
 export const AvatarOption = styled.div`
-  width: 120px;
-  height: 120px;
+  width: 140px;
+  height: 140px;
   margin: 0.5rem;
   border-radius: 50%;
-  background-color: white;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 0.9rem;
-  border: black 1px solid;
+  border: black 3px solid;
+  box-shadow: 2px 2px 40px black;
   cursor: pointer;
   overflow: hidden; /* Asegura que la imagen no se desborde del contenedor */
 

@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import mago from "../../app/img/rendering-wizard-controlling-magic.jpg"
 import hada from "../../app/img/pikaso_texttoimage_sweet-fairy-impressive-surreal-cinematic-lighting-.jpeg"
-import verdugo from "../../app/img/pikaso_texttoimage_35mm-film-photography-bloody-executioner-avatar-pi.jpeg"
+import verdugo from "../../app/img/executione2.jpg"
 
 export const PlayerContainer = styled.div`
 width: 300px;
