@@ -12,7 +12,7 @@ import elf from "../../app/img/elf.jpg";
 import executione2 from "../../app/img/executione2.jpg";
 import witch from "../../app/img/witch.jpg";
 import minotaur from "../../app/img/minotaur.jpg";
-import interrogante from "../../app/img/interrogante.jpg";
+import interrogante from "../../app/gifs/gnome.gif";
 
 import {
   Container,
