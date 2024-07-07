@@ -8,6 +8,7 @@ export const Container = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
+  overflow: hidden;
 `;
 
 export const BoxContainer = styled.div`

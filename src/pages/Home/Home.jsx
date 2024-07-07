@@ -14,7 +14,7 @@ function Home() {
 
   return (
     <Container>
-      <Title>GAGU <br /> GAME</Title>
+      <Title>PURGAT.io</Title>
      
       <ButtonContainer>
         <Button onClick={handleCreateLobby}>Crear sala</Button>

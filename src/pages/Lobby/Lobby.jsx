@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Box, Container, Player, PlayerContainer ,Id,Button} from './Lobby.styles';
 import Theme from "../../components/Theme";
 import { PlayerContext } from '../../app/contexts/PlayerContext';
-import { getPlayerByRoomId } from '../../app/services/player';
+import { getPlayersByRoomId } from '../../app/services/player';
 // import verdugo from "../../app/img/pikaso_texttoimage_35mm-film-photography-bloody-executioner-avatar-pi.jpeg";
 // import mago from "../../app/img/rendering-wizard-controlling-magic.jpg";
 // import hada from "../../app/img/pikaso_texttoimage_sweet-fairy-impressive-surreal-cinematic-lighting-.jpeg";
@@ -16,7 +16,7 @@ const Lobby = () => {
   useEffect(() => {
     const ShowPlayers = async () => {
       try {
-        const response = await getPlayerByRoomId(roomId);
+        const response = await getPlayersByRoomId(roomId);
         setPlayers(response.data);
         console.log(response.data);
       } catch (error) {

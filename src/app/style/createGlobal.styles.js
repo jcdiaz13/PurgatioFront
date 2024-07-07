@@ -66,7 +66,7 @@ export const GlobalStyle = createGlobalStyle`
   html, body {
     width: 100%;
     height: 100vh !important;
-    background-color: red !important;
+    //background-color: red !important;
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
     box-sizing: border-box;
