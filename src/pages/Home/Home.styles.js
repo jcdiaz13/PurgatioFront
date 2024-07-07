@@ -1,7 +1,14 @@
 import styled from 'styled-components';
+import LogoFront from '../../app/img/logo 300px.png'
 
 
+export const Logo = styled.img`
+width: 200px;
+height: 100px;
+background-image: url(${LogoFront});
+background-repeat: no-repeat;
 
+`
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -21,17 +28,6 @@ export const Title = styled.h1`
   text-align: center;
   font-family: Goddes;  
  `;
-
-export const FormContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 2rem;
-  background-color: white;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-  border-radius: 8px;
-  border: 1px solid #ccc;
-`;
 
 export const ButtonContainer = styled.div`
   display: flex;

@@ -1,6 +1,13 @@
-import { useContext, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Box, Container, Player, PlayerContainer ,Id,Button} from './Lobby.styles';
+import { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import {
+  Box,
+  Container,
+  Player,
+  PlayerContainer,
+  Id,
+  Button,
+} from "./Lobby.styles";
 import Theme from "../../components/Theme";
 import { PlayerContext } from '../../app/contexts/PlayerContext';
 import { getPlayersByRoomId } from '../../app/services/player';
@@ -26,52 +33,25 @@ const Lobby = () => {
       }
     };
     if (roomId) {
-      ShowPlayers();
+      const timeoutId = setInterval(() => {
+        ShowPlayers();
+      }, 2000);
+
+      return () => clearTimeout(timeoutId);
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [roomId]);
 
-  // const players = [
-  //   {
-  //     id: 1,
-  //     name: "Player1",
-  //     image: "Avatar",
-  //   },
-  //   {
-  //     id: 2,
-  //     name: "Player2",
-  //     image: "Avatar",
-  //   },
-  //   {
-  //     id: 3,
-  //     name: "Player3",
-  //     image: "Avatar",
-  //   },
-  //   {
-  //     id: 4,
-  //     name: "Player4",
-  //     image: "Avatar",
-  //   },
-  //   {
-  //     id: 5,
-  //     name: "Player5",
-  //     image: "Avatar",
-  //   },
-  //   {
-  //     id: 6,
-  //     name: "Player6",
-  //     image: "Avatar",
-  //   },
-  //   {
-  //     id: 7,
-  //     name: "Player7",
-  //     image: "Avatar",
-  //   },
-  //   {
-  //     id: 8,
-  //     name: "Player8",
-  //     image: "Avatar",
-  //   },
-  // ];
+  const ShowPlayers = async () => {
+    try {
+      const response = await getPlayersByRoomId(roomId);
+      setPlayers(response.data);
+      console.log(response.data);
+    } catch (error) {
+      console.error("Error showing players:", error);
+    }
+  };
 
   return (
     <Theme>
@@ -89,9 +69,8 @@ const Lobby = () => {
           ))}
         </PlayerContainer>
       </Container>
-    </Theme >
-  )
-}
+    </Theme>
+  );
+};
 
 export default Lobby;
-
