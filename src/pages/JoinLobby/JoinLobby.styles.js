@@ -1,14 +1,11 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 export const Container = styled.div`
-  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-repeat: no-repeat;
-  background-size: cover;
   background-image: url("https://i.pinimg.com/originals/37/6a/39/376a3925f8b6d181006e1f9750870735.gif");
   background-repeat: no-repeat;
   background-size: cover;
@@ -61,9 +58,12 @@ export const Input = styled.input`
 
 export const ButtonContainer = styled.div`
   display: flex;
-  justify-content: space-between;
-  width: 75%;
-  margin-top: 1rem;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+  width: 65%;
+  margin-top: 2rem;
 `;
 
 export const StyledLink = styled(Link)`
@@ -75,7 +75,6 @@ export const StyledLink = styled(Link)`
 
 export const Button = styled.button`
   padding: 0.5rem 1rem;
-  margin: 0.5rem 0;
   border: none;
   border-radius: 4px;
   font-size: 1rem;
@@ -101,13 +100,13 @@ export const AvatarContainer = styled.div`
   width: 150px;
   height: 150px;
   border-radius: 50%;
-  background-color: #ccc;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 1.5rem;
   cursor: pointer;
-  border: black 1px solid;
+  border: white 2px solid;
+  box-shadow: 4px 4px 60px #00CC66;
   overflow: hidden; /* Añadido para que la imagen no se desborde */
 
 
@@ -119,10 +118,10 @@ export const AvatarContainer = styled.div`
   }
 `;
 export const AvatarPopup = styled.div`
- position: fixed;
+ position: absolute;
   top: 50%;
   left: 50%;
-  width: 280px;
+  width: 330px;
   transform: translate(-50%, -50%);
   display: flex;
   flex-wrap: wrap;
@@ -132,16 +131,16 @@ export const AvatarPopup = styled.div`
 `;
 
 export const AvatarOption = styled.div`
-  width: 120px;
-  height: 120px;
+  width: 140px;
+  height: 140px;
   margin: 0.5rem;
   border-radius: 50%;
-  background-color: white;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 0.9rem;
-  border: black 1px solid;
+  border: black 3px solid;
+  box-shadow: 2px 2px 40px black;
   cursor: pointer;
   overflow: hidden; /* Asegura que la imagen no se desborde del contenedor */
 
