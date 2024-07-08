@@ -7,10 +7,12 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-image: url(https://i.pinimg.com/originals/37/6a/39/376a3925f8b6d181006e1f9750870735.gif);
+  background-image: url(https://i.gifer.com/3Q8c.gif);
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
+  background-position: center;
+  font-family: Pixellari;
 `;
 
 export const Overlay = styled.div`
@@ -31,6 +33,7 @@ export const Input = styled.input`
   border: 1px solid black;
   border-radius: 4px;
   width: 50%;
+  font-family: Pixellari;
 `;
 
 export const Title = styled.h1`
@@ -75,28 +78,28 @@ export const StyledLink = styled(Link)`
 `;
 
 export const Button = styled.button`
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 4px;
+  padding:10px;
+  margin: 0.5rem;
+  border-radius: 1px;
   font-size: 1rem;
-  background-color: #006633;
+  background-color: black;
   color: white;
   cursor: pointer;
-  width: 100px;
+  width: 90px;
   text-align: center;
-  height: 40px; /* Altura fija para ambos botones */
+  font-family: Pixellari;
+  height: 40px;
 
   &:hover {
-    background-color: #66FFB2;
-    color: black;  
+    background-color: #FDC500;
+    color: black;
   }
   &:active {
-  background-color: #CCFFE5;
-  box-shadow: 0 2px white;
+  background-color: #FFD500;
+  box-shadow: 0 2px #FFD500;
   transform: translateY(4px);
 }
 `;
-
 export const AvatarContainer = styled.div`
   width: 150px;
   height: 150px;
@@ -107,7 +110,7 @@ export const AvatarContainer = styled.div`
   font-size: 1.5rem;
   cursor: pointer;
   border: white 2px solid;
-  box-shadow: 4px 4px 60px #00CC66;
+  box-shadow: 4px 4px 60px #FFD500;
   overflow: hidden; /* Añadido para que la imagen no se desborde */
 
 

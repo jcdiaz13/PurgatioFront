@@ -1,5 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 import Goddes from '../fonts/MGNGoddess.ttf';
+import Title from '../fonts/Crang.ttf';
+import Pixellari from '../fonts/Pixellari.ttf';
 
 
 export const GlobalStyle = createGlobalStyle`
@@ -11,6 +13,14 @@ export const GlobalStyle = createGlobalStyle`
      @font-face {
     font-family: Goddes;
     src: url(${Goddes});
+}
+@font-face {
+    font-family: Title;
+    src: url(${Title});
+}
+@font-face {
+    font-family: Pixellari;
+    src: url(${Pixellari});
 }
   html, body, div, span, applet, object, iframe,
   h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -41,6 +51,7 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     line-height: 1;
+    font-family: Pixellari;
   }
 
   ol, ul {

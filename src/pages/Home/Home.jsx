@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { Container, Title, ButtonContainer, Button } from "./Home.styles";
+import { Container, Title, ButtonContainer, Button} from "./Home.styles";
 
 function Home() {
   const navigate = useNavigate();
@@ -14,7 +14,7 @@ function Home() {
 
   return (
     <Container>
-      <Title>PURGAT.IO</Title>
+      <Title>PURGATIO</Title>
       <ButtonContainer>
         <Button onClick={handleCreateLobby}>Crear sala</Button>
         <Button onClick={handleJoinLobby}>Unirse a sala</Button>

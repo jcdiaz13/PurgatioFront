@@ -35,13 +35,12 @@ export const Box = styled.div`
 display: flex;
  width: 225px;
   height: 225px;
-  border-radius: 50%;
   margin-bottom: 20px;
   cursor: pointer;
    img{
-    border: solid 5px black;
+    border: solid 4px black;
     box-shadow: 1px 1px 30px black;
-  border-radius: 50%;
+  border-radius: 5%;
     width: 225px;
     height: 225px;
     object-fit: cover;
