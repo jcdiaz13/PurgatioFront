@@ -54,7 +54,7 @@ export const FormContainer = styled.div`
   h2 {
     margin-top: 1.5rem;
     margin-bottom: 1.5rem;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
   }
   input {
     margin: 1rem 0;
@@ -79,17 +79,16 @@ export const StyledLink = styled(Link)`
 `;
 
 export const Button = styled.button`
-  padding:10px;
-  margin: 0.5rem;
-  border-radius: 1px;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
   font-size: 1rem;
   background-color: black;
   color: white;
   cursor: pointer;
-  width: 100px;
+  width: 91px;
   text-align: center;
   font-family: Pixellari;
-  height: 40px;
+  height: 35px;
 
   &:hover {
     background-color: #FDC500;
@@ -146,10 +145,17 @@ export const AvatarOption = styled.div`
   align-items: center;
   font-size: 0.9rem;
   border: black 3px solid;
-  box-shadow: 2px 2px 40px black;
+  box-shadow: 2px 2px 10px black;
   cursor: pointer;
   overflow: hidden; /* Asegura que la imagen no se desborde del contenedor */
+  &:hover {
+    box-shadow: 2px 2px 10px #FFD500;
+  }
+  &:active {
+  box-shadow: 2px 2px 10px #FFD500;
+  transform: translateY(4px);
 
+}
     img {
     width: 100%;
     height: 100%;

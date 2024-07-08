@@ -76,7 +76,6 @@ export const GlobalStyle = createGlobalStyle`
   /* Global Styles */
   html, body {
     height: 100%;
-    font-family:Goddes;
     line-height: 1.6;
     //background-color: #fff;
     color: #333;

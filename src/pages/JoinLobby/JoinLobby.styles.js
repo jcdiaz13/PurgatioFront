@@ -35,8 +35,6 @@ export const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 420px;
-  height: 600px;
   padding: 2rem;
  color: white;
   z-index: 2;
@@ -44,7 +42,7 @@ export const FormContainer = styled.div`
   transition: opacity 0.3s ease;
 
   h2 {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     margin-top: 1.5rem;
     margin-bottom: 1.5rem;
   }
@@ -144,10 +142,16 @@ export const AvatarOption = styled.div`
   align-items: center;
   font-size: 0.9rem;
   border: black 3px solid;
-  box-shadow: 2px 2px 40px black;
+  box-shadow: 2px 2px 20px black;
   cursor: pointer;
   overflow: hidden; /* Asegura que la imagen no se desborde del contenedor */
-
+  &:hover {
+    box-shadow: 2px 2px 10px #FFD500;
+  }
+  &:active {
+  box-shadow: 2px 2px 10px #FFD500;
+  transform: translateY(4px);
+}
 
     img {
     width: 100%;
