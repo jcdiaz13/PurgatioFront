@@ -26,7 +26,7 @@ export const Overlay = styled.div`
 `;
 
 export const Title = styled.h1`
-  font-size: 2rem;
+  font-size: 1.8rem;
   margin-bottom: 1rem;
   font-family: Title;
 `;
@@ -51,7 +51,7 @@ export const FormContainer = styled.div`
 
 export const Input = styled.input`
   padding: 0.5rem;
-  margin-bottom: 1rem;
+
   margin-top:1rem;
   border: 1px solid black;
   border-radius: 4px;

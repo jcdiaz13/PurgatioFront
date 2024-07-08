@@ -37,7 +37,7 @@ export const Input = styled.input`
 `;
 
 export const Title = styled.h1`
-  font-size: 2rem;
+  font-size: 1.8rem;
   margin-bottom: 1rem;
   margin-top: 0rem;
   font-family: Title;
@@ -69,7 +69,7 @@ export const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   gap: 1rem;
-  margin-top: 2rem;
+  margin-top: 1rem;
 `;
 
 export const StyledLink = styled(Link)`
@@ -154,7 +154,6 @@ export const AvatarOption = styled.div`
   &:active {
   box-shadow: 2px 2px 10px #FFD500;
   transform: translateY(4px);
-
 }
     img {
     width: 100%;
