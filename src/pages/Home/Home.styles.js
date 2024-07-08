@@ -46,7 +46,8 @@ export const Button = styled.button`
   background-color: black;
   color: white;
   cursor: pointer;
-  width: 130px;
+  width: 120px;
+  height: 40px;
   text-align: center;
   font-family: Pixellari;
 
@@ -58,6 +59,7 @@ export const Button = styled.button`
   background-color: #FFD500;
   box-shadow: 0 2px #FFD500;
   transform: translateY(4px);
+  color: black;
 }
 `;
 

@@ -37,9 +37,10 @@ export const Input = styled.input`
 `;
 
 export const Title = styled.h1`
-  font-size: 2.5rem;
+  font-size: 2rem;
   margin-bottom: 1rem;
   margin-top: 0rem;
+  font-family: Title;
 `;
 
 export const FormContainer = styled.div`
@@ -53,11 +54,12 @@ export const FormContainer = styled.div`
   h2 {
     margin-top: 1.5rem;
     margin-bottom: 1.5rem;
+    font-size: 1.5rem;
   }
   input {
     margin: 1rem 0;
     padding: 0.5rem;
-    width: 50%;
+    width: 180px;
     border: 1px solid #ccc;
     border-radius: 4px;
   }
@@ -67,7 +69,6 @@ export const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   gap: 1rem;
-  width: 75%;
   margin-top: 2rem;
 `;
 
@@ -85,7 +86,7 @@ export const Button = styled.button`
   background-color: black;
   color: white;
   cursor: pointer;
-  width: 90px;
+  width: 100px;
   text-align: center;
   font-family: Pixellari;
   height: 40px;
@@ -98,12 +99,13 @@ export const Button = styled.button`
   background-color: #FFD500;
   box-shadow: 0 2px #FFD500;
   transform: translateY(4px);
+  color: black;
 }
 `;
 export const AvatarContainer = styled.div`
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  border-radius: 5%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -112,13 +114,11 @@ export const AvatarContainer = styled.div`
   border: white 2px solid;
   box-shadow: 4px 4px 60px #FFD500;
   overflow: hidden; /* Añadido para que la imagen no se desborde */
-
-
       img {
     width: 100%;
     height: 100%;
     object-fit: cover; /* Asegura que la imagen se recorte adecuadamente dentro del contenedor */
-    border-radius: 50%; /* Hace que la imagen también sea redonda */
+    border-radius: 5%; /* Hace que la imagen también sea redonda */
   }
 `;
 
@@ -140,7 +140,7 @@ export const AvatarOption = styled.div`
   width: 140px;
   height: 140px;
   margin: 0.5rem;
-  border-radius: 50%;
+  border-radius: 5%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -150,14 +150,10 @@ export const AvatarOption = styled.div`
   cursor: pointer;
   overflow: hidden; /* Asegura que la imagen no se desborde del contenedor */
 
-  &:hover {
-    background-color: mediumaquamarine;
-  }
-
     img {
     width: 100%;
     height: 100%;
     object-fit: cover; /* Asegura que la imagen se recorte adecuadamente dentro del contenedor */
-    border-radius: 50%; /* Hace que la imagen también sea redonda */
+    border-radius: 5%; /* Hace que la imagen también sea redonda */
   }
 `;

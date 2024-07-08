@@ -4,7 +4,7 @@ import { PlayerContext } from "../../app/contexts/PlayerContext";
 import { useNavigate } from "react-router-dom";
 import { createPlayer } from "../../app/services/player";
 import { getPlayersByRoomId } from "../../app/services/player";
-import dwarf from "../../app/gifs/Dwarf.gif";
+import dwarf from "../../app/gifs/gatito.gif";
 import undead from "../../app/gifs/undead.gif";
 import wizard from "../../app/gifs/Wizard.gif";
 import fairy from "../../app/gifs/fairy.gif";
@@ -12,7 +12,7 @@ import elf from "../../app/gifs/elf.gif";
 import executione2 from "../../app/gifs/Executioner.gif";
 import witch from "../../app/gifs/witch.gif";
 import minotaur from "../../app/gifs/Minotaur.gif";
-import interrogante from "../../app/gifs/gnome.gif";
+import interrogante from "../../app/gifs/moveavatar.gif";
 
 import {
   Container,
