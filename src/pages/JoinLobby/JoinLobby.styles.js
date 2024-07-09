@@ -51,7 +51,7 @@ export const FormContainer = styled.div`
 
 export const Input = styled.input`
   padding: 0.5rem;
-
+font-family: Pixellari;
   margin-top:1rem;
   border: 1px solid black;
   border-radius: 4px;
