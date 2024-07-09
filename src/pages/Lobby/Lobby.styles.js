@@ -6,12 +6,12 @@ import verdugo from "../../app/assets/gifs/Executioner.gif";
 export const PlayerContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 40px 0px;
+  gap: 25px 0px;
   justify-items: center;
   align-items: center;
   width: 100%;
   max-width: 600px;
-  margin: 100px auto 40px;
+  margin: 20px auto;
 `;
 
 export const Button = styled.button`
@@ -45,7 +45,6 @@ export const Id = styled.p`
 
 export const Container = styled.div`
   display: flex;
-  justify-content: center;
   background-attachment: fixed;
   align-items: center;
   flex-direction: column;
@@ -84,16 +83,14 @@ export const Box = styled.div`
     theme.name === "verdugo" &&
     css`
       display: flex;
-      width: 225px;
-      height: 225px;
+      position: absolute;
+      width: 50vh;
+      height: 20vh;
       border: solid 4px black;
-      background-color: red;
       border-radius: 50%;
-      margin-bottom: 20px;
       background-image: url(${verdugo});
-      background-size: cover;
+      background-size: contain
       justify-content: center;
-      align-items: center;
     `}
 
   ${({ theme }) =>

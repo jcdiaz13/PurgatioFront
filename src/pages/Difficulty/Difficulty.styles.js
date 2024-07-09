@@ -5,10 +5,10 @@ export const Container = styled.div`
   align-items: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-attachment: fixed;
+  /* background-attachment: fixed; */
   height: 100vh;
   position: relative;
-  overflow: hidden;
+  /* overflow: hidden; */
 `;
 
 export const BoxContainer = styled.div`
