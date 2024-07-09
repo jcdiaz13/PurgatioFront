@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 export const Container = styled.div`
   display: grid;
-  background:url('https://i.pinimg.com/originals/37/6a/39/376a3925f8b6d181006e1f9750870735.gif');
+  background:url('https://i.gifer.com/3Q8c.gif');
   align-items: center;
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
   height: 100vh;
   position: relative;
-  overflow: hidden;
+  background-position: center;
 `;
 
 export const BoxContainer = styled.div`
@@ -20,29 +20,29 @@ export const BoxContainer = styled.div`
 `;
 export const Title = styled.h1`
 justify-content: center;
-font-family: Goddes;
 display: flex;
 text-align: center;
+font-family: Pixellari;
 align-items: center;
 margin-bottom:0;
 padding:10px;
 margin: 10px;
-color: #66FFB2;
+color: white;
 font-size: 25px;
 `;
 
 export const Box = styled.div`
 display: flex;
- width: 225px;
-  height: 225px;
+ width: 200px;
+  height: 200px;
   margin-bottom: 20px;
   cursor: pointer;
    img{
     border: solid 4px black;
-    box-shadow: 1px 1px 30px black;
+    background-color: black;
   border-radius: 5%;
-    width: 225px;
-    height: 225px;
+    width: 200px;
+    height: 200px;
     object-fit: cover;
    }
 `;

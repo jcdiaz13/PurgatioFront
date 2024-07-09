@@ -87,12 +87,11 @@ export const Button = styled.button`
   height: 35px;
 
   &:hover {
-    background-color: #FDC500;
+    background-color: #FF8C00;
     color: black;
   }
   &:active {
-  background-color: #FFD500;
-  box-shadow: 0 2px #FFD500;
+  background-color: #FF8C00;
   transform: translateY(4px);
   color: black;
 }
@@ -108,7 +107,6 @@ export const AvatarContainer = styled.div`
   font-size: 1.5rem;
   cursor: pointer;
   border: white 2px solid;
-  box-shadow: 4px 4px 60px #FFD500;
   overflow: hidden; /* Añadido para que la imagen no se desborde */
 
 
@@ -146,10 +144,10 @@ export const AvatarOption = styled.div`
   cursor: pointer;
   overflow: hidden; /* Asegura que la imagen no se desborde del contenedor */
   &:hover {
-    box-shadow: 2px 2px 10px #FFD500;
+    box-shadow: 2px 2px 10px #FF8C00;
   }
   &:active {
-  box-shadow: 2px 2px 10px #FFD500;
+  box-shadow: 2px 2px 10px #FF8C00;
   transform: translateY(4px);
 }
 

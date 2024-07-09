@@ -32,30 +32,28 @@ margin-left:15px;
 } 
 `;
 export const Button = styled.button`
-  padding: 0.5rem 1rem;
+  padding:10px;
   margin: 0.5rem;
-  border: none;
-  border-radius: 4px;
+  border-radius: 1px;
   font-size: 1rem;
-  background-color: #006633;
+  background-color: black;
   color: white;
   cursor: pointer;
-  width: 130px;
+  width: 120px;
+  height: 40px;
   text-align: center;
+  font-family: Pixellari;
 
   &:hover {
-    background-color: #66FFB2;
+    background-color: #FF8C00;
     color: black;
   }
   &:active {
-  background-color: #CCFFE5;
-  box-shadow: 0 2px white;
+  background-color: #FF8C00;
   transform: translateY(4px);
+  color: black;
 }
 `;
-export const Gif = styled.div`
-background-image: url(https://i.pinimg.com/originals/bb/52/20/bb5220dccb70fed4d9bd101efad8476d.gif);
-`
 export const LobbyContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -109,20 +107,20 @@ export const Container = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   height: 100vh;
-  padding: 20px;
+  background-position: center;
   ${({ theme }) =>
     theme.name === "verdugo" &&
     css`
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/3450511a-482f-43cd-ad8c-d2e242fafe46/desf83r-9d3c0738-688d-4c1e-95ae-6a72138ce896.jpg/v1/fit/w_828,h_1070,q_70,strp/blood_and_doom_hellish_background_by_g_hamm_desf83r-414w-2x.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTY1NCIsInBhdGgiOiJcL2ZcLzM0NTA1MTFhLTQ4MmYtNDNjZC1hZDhjLWQyZTI0MmZhZmU0NlwvZGVzZjgzci05ZDNjMDczOC02ODhkLTRjMWUtOTVhZS02YTcyMTM4Y2U4OTYuanBnIiwid2lkdGgiOiI8PTEyODAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.F2aUXRuMyaSv3kZyO5iaOETG7k7qTwOE9zt1nhXH-eU");
+  background-image: url("https://i.pinimg.com/564x/8d/c8/ea/8dc8ea23e5e65320278f40aef945ecb0.jpg");
 `}
 ${({ theme }) =>
     theme.name === "mago" &&
     css`
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url("https://i.pinimg.com/originals/c8/4f/22/c84f223d53773a3ce0f5dc2818d7db25.gif");
+  background-image: url("https://images.alphacoders.com/124/thumb-1920-1248273.png");
 `}
 ${({ theme }) =>
     theme.name === "hada" &&
@@ -134,7 +132,7 @@ ${({ theme }) =>
 `;
 
 export const Box = styled.div`
- 
+ margin-top: 20px;
   ${({ theme }) =>
     theme.name === "verdugo" &&
     css`
@@ -144,7 +142,6 @@ export const Box = styled.div`
   border: solid 4px black;
   background-color: red;
   border-radius: 50%;
-  margin-bottom: 20px;
   background-image: url(${verdugo});
   background-repeat: no-repeat;
   background-size: cover;
@@ -161,7 +158,6 @@ export const Box = styled.div`
   border: solid 4px black;
   background-color: pink;
   border-radius: 50%;
-  margin-bottom: 20px;
   background-image: url(${hada});
   background-size: cover;
   justify-content: center;
@@ -176,7 +172,6 @@ export const Box = styled.div`
   border: solid 4px black;
   background-color: blue;
   border-radius: 50%;
-  margin-bottom: 20px;
   background-image: url(${mago});
   background-size: cover;
   justify-content: center;

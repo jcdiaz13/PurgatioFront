@@ -7,8 +7,7 @@ export const Popup = styled.div`
   justify-content: center;
   align-items: center;
   transform: translate(-50%, -50%);
- color: white;
-  padding: 20px; 
+  color: white;
   z-index: 1000;  
 `;
 export const Overlay = styled.div`
@@ -29,26 +28,26 @@ export const StyledLink = styled(Link)`
 `;
 
 export const Button = styled.button`
-  padding: 0.5rem 1rem;
-  margin: 0.5rem 0;
-  border: none;
-  border-radius: 4px;
+ padding:10px;
+  margin: 0.5rem;
+  border-radius: 1px;
   font-size: 1rem;
-  background-color: #006633;
+  background-color: black;
   color: white;
   cursor: pointer;
   width: 120px;
+  height: 40px;
   text-align: center;
+  font-family: Pixellari;
 
   &:hover {
-    background-color: #66FFB2;
+    background-color: #7CFC00;
     color: black;
   }
-
   &:active {
-  background-color: #CCFFE5;
-  box-shadow: 0 2px white;
-  transform: translateY(4px);
+  background-color: #7CFC00;
+  transform: translateY(0px);
+  color: black;
 }
 `;
 
@@ -87,23 +86,21 @@ display: flex;
     width: 250px;
     height: 250px;
     object-fit: cover;
+    z-index: -1;
    }
 `;
 
 export const Name = styled.h2` 
-background-color: black;
-font-family: Goddes;
+font-family: Pixellari;
 font-size: 25px;
 margin: auto;
-width: 140px;
+width: 150px;
 box-sizing: border-box;
 text-align: center;
-
-margin-top: 15px;
-margin-bottom: 15px;
-box-shadow: 1px 1px 10px black;
-`
+margin-bottom: 10px;
+text-shadow: 2px 2px grey;
+`;
 export const Description=styled.p`
 text-align: center;
-margin-bottom: 15px;
+margin-bottom: 10px;
 `

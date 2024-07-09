@@ -2,9 +2,9 @@ import { Title, Container, Box, BoxContainer } from "./Difficulty.styles";
 import { useContext, useState } from "react";
 import { PlayerContext } from "../../app/contexts/PlayerContext";
 import GlobalStyle from "../../app/style/createGlobal.styles";
-import verdugo from "../../app/gifs/Executioner.gif";
-import mago from "../../app/gifs/Wizard.gif";
-import hada from "../../app/gifs/fairy.gif";
+import verdugo from "../../app/img/executioner2.jpg";
+import mago from "../../app/img/wizard2.jpg";
+import hada from "../../app/img/fairy2.jpg";
 import PopupContent from "./PopupContent";
 
 const Difficulty = () => {
