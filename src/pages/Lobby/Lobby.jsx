@@ -1,60 +1,58 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
-import {
-  Box,
-  Container,
-  Player,
-  PlayerContainer,
-  Id,
-  Button,
-} from "./Lobby.styles";
+import { Card } from "antd";
+import { Box, Container, PlayerContainer, Id, Button } from "./Lobby.styles";
 import Theme from "../../components/Theme";
 import { PlayerContext } from "../../app/contexts/PlayerContext";
 import { getPlayersByRoomId } from "../../app/services/player";
-// import verdugo from "../../app/img/pikaso_texttoimage_35mm-film-photography-bloody-executioner-avatar-pi.jpeg";
-// import mago from "../../app/img/rendering-wizard-controlling-magic.jpg";
-// import hada from "../../app/img/pikaso_texttoimage_sweet-fairy-impressive-surreal-cinematic-lighting-.jpeg";
+
+const { Meta } = Card;
 
 const Lobby = () => {
-  const { roomId } = useContext(PlayerContext);
-  const [players, setPlayers] = useState([]);
-  // const [selectedAvatar, setSelectedAvatar] = useState(null);
+  const { roomId, playerName, selectedAvatar, players, setPlayers } =
+    useContext(PlayerContext);
 
   useEffect(() => {
     if (roomId) {
-      const timeoutId = setInterval(() => {
-        ShowPlayers();
+      const intervalId = setInterval(() => {
+        fetchPlayers();
       }, 2000);
 
-      return () => clearTimeout(timeoutId);
+      return () => clearInterval(intervalId);
     }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [roomId]);
 
-  const ShowPlayers = async () => {
+  const fetchPlayers = async () => {
     try {
       const response = await getPlayersByRoomId(roomId);
       setPlayers(response.data);
-      console.log(response.data);
+      console.log("Fetched players:", response.data); // Verifica que la respuesta contenga los datos correctos
     } catch (error) {
-      console.error("Error showing players:", error);
+      console.error("Error fetching players:", error);
     }
   };
 
   return (
     <Theme>
       <Container>
-        <Box></Box>
+        <Box />
         <Id>Room ID: {roomId}</Id>
+        <div>
+          <Id>{playerName}</Id>
+        </div>
         <Link to="/sins">
           <Button>START</Button>
         </Link>
         <PlayerContainer>
           {players.map((player, index) => (
-            <Player key={index}>
-              <p>{player.playerName + " / " + player.image}</p>
-            </Player>
+            <Card
+              key={index}
+              hoverable
+              style={{ maxWidth: 150, maxHeight: 400 }}
+              cover={<img alt="example" src={selectedAvatar.props.src} />}
+            >
+              <Meta title={player.playerName} />
+            </Card>
           ))}
         </PlayerContainer>
       </Container>

@@ -70,6 +70,7 @@ function CreateLobby() {
 
   const handleAvatarSelect = (avatar) => {
     setSelectedAvatar(avatar);
+    console.log(avatar);
     setIsAvatarPopupOpen(false);
   };
 

@@ -201,4 +201,3 @@ export const RoomId = styled.div`
   /* text-align: center; */
   background-color: white;
   `
-
