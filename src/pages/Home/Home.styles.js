@@ -1,13 +1,13 @@
 import styled from 'styled-components';
-import LogoFront from '../../app/img/LOGOXDD.png'
+import LogoFront from '../../app/gifs/LOGO.gif'
 
 
-export const Logo = styled.img`
-width: 300px;
-height: 200px;
+
+export const Logo = styled.div`
+width: 279px;
+height: 77px;
+margin-bottom: 30px;
 background-image: url(${LogoFront});
-background-repeat: no-repeat;
-background-size: contain;
 `
 export const Container = styled.div`
   display: flex;
@@ -92,7 +92,7 @@ export const Button = styled.button`
 
 &:hover:before {
   color: black;
-  background-color:#FDC500 !important;
+  background-color:#FF8C00 !important;
   box-shadow: 0 -2px rgb(0 0 0 / 50%) inset, 0 2px rgb(255 255 255 / 20%) inset, -2px 0 rgb(255 255 255 / 20%) inset, 2px 0 rgb(0 0 0 / 50%) inset;
 }
 
@@ -107,7 +107,7 @@ export const Button = styled.button`
 
 &:active:after {
   color: black;
-  background-color:#FDC500 !important;
+  background-color:#FF8C00 !important;
   box-shadow: 0 0px 0 0 rgb(0 0 0 / 15%);
 }
 `;
