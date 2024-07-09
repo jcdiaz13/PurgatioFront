@@ -3,16 +3,26 @@ import { Link } from "react-router-dom";
 import { Card } from "antd";
 import { Box, Container, PlayerContainer, Id, Button } from "./Lobby.styles";
 import Theme from "../../components/Theme";
-import { PlayerContext } from "../../app/contexts/PlayerContext";
-import { getPlayersByRoomId } from "../../app/services/player";
 
 const { Meta } = Card;
+import { PlayerContext } from '../../app/contexts/PlayerContext';
+import { getPlayersByRoomId } from '../../app/services/player';
 
 const Lobby = () => {
   const { roomId, playerName, selectedAvatar, players, setPlayers } =
     useContext(PlayerContext);
 
   useEffect(() => {
+    const fetchPlayers = async () => {
+      try {
+        const response = await getPlayersByRoomId(roomId);
+        setPlayers(response.data);
+        console.log("Fetched players:", response.data);
+      } catch (error) {
+        console.error("Error fetching players:", error);
+      }
+    };
+
     if (roomId) {
       const intervalId = setInterval(() => {
         fetchPlayers();
@@ -20,17 +30,7 @@ const Lobby = () => {
 
       return () => clearInterval(intervalId);
     }
-  }, [roomId]);
-
-  const fetchPlayers = async () => {
-    try {
-      const response = await getPlayersByRoomId(roomId);
-      setPlayers(response.data);
-      console.log("Fetched players:", response.data); // Verifica que la respuesta contenga los datos correctos
-    } catch (error) {
-      console.error("Error fetching players:", error);
-    }
-  };
+  }, [roomId, setPlayers]);
 
   return (
     <Theme>
@@ -44,12 +44,18 @@ const Lobby = () => {
           <Button>START</Button>
         </Link>
         <PlayerContainer>
-          {players.map((player, index) => (
+          {players?.map((player, index) => (
             <Card
               key={index}
               hoverable
-              style={{ maxWidth: 150, maxHeight: 400 }}
-              cover={<img alt="example" src={selectedAvatar.props.src} />}
+              style={{ width: 150, height: 150, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}
+              cover={
+                selectedAvatar ? (
+                  <img alt="example" src={selectedAvatar.props.src} style={{ width: '100%', height: 'auto' }} />
+                ) : (
+                  <div>No Avatar</div>
+                )
+              }
             >
               <Meta title={player.playerName} />
             </Card>

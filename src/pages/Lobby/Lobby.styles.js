@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
-import mago from "../../app/img/rendering-wizard-controlling-magic.jpg"
-import hada from "../../app/img/pikaso_texttoimage_sweet-fairy-impressive-surreal-cinematic-lighting-.jpeg"
-import verdugo from "../../app/img/pikaso_texttoimage_35mm-film-photography-bloody-executioner-avatar-pi.jpeg"
+import mago from "../../app/gifs/Wizard.gif"
+import hada from "../../app/gifs/fairy.gif"
+import verdugo from "../../app/gifs/Executioner.gif"
 
 export const PlayerContainer = styled.div`
 width: 300px;
@@ -115,7 +115,7 @@ export const Container = styled.div`
     css`
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/d05f52cc-6333-4fe6-90f7-c4f417c8b9ac/dfrch0w-f3b61d02-05e7-422a-9eb7-221bf7f023b6.png/v1/fill/w_1024,h_683,q_80,strp/tower_of_blood_by_weirddarkness_dfrch0w-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NjgzIiwicGF0aCI6IlwvZlwvZDA1ZjUyY2MtNjMzMy00ZmU2LTkwZjctYzRmNDE3YzhiOWFjXC9kZnJjaDB3LWYzYjYxZDAyLTA1ZTctNDIyYS05ZWI3LTIyMWJmN2YwMjNiNi5wbmciLCJ3aWR0aCI6Ijw9MTAyNCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.zj2RNYPFDDdv6KD5w4nPPyN-zbhJiH40fm-HqEW2ez4");
+  background-image: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/3450511a-482f-43cd-ad8c-d2e242fafe46/desf83r-9d3c0738-688d-4c1e-95ae-6a72138ce896.jpg/v1/fit/w_828,h_1070,q_70,strp/blood_and_doom_hellish_background_by_g_hamm_desf83r-414w-2x.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTY1NCIsInBhdGgiOiJcL2ZcLzM0NTA1MTFhLTQ4MmYtNDNjZC1hZDhjLWQyZTI0MmZhZmU0NlwvZGVzZjgzci05ZDNjMDczOC02ODhkLTRjMWUtOTVhZS02YTcyMTM4Y2U4OTYuanBnIiwid2lkdGgiOiI8PTEyODAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.F2aUXRuMyaSv3kZyO5iaOETG7k7qTwOE9zt1nhXH-eU");
 `}
 ${({ theme }) =>
     theme.name === "mago" &&

@@ -81,9 +81,9 @@ display: flex;
   margin: auto;
   cursor: pointer;
    img{
-    border: solid 7px black;
+    border: solid 6px black;
     box-shadow: 1px 1px 30px black;
-  border-radius: 50%;
+  border-radius: 5%;
     width: 250px;
     height: 250px;
     object-fit: cover;
