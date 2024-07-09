@@ -1,12 +1,13 @@
-import { useContext, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Card } from "antd";
 import { Box, Container, PlayerContainer, Id, Button } from "./Lobby.styles";
 import Theme from "../../components/Theme";
-
-const { Meta } = Card;
 import { PlayerContext } from '../../app/contexts/PlayerContext';
 import { getPlayersByRoomId } from '../../app/services/player';
+import avatarImages from "../../app/utils/avatarImages";
+
+const { Meta } = Card;
 
 const Lobby = () => {
   const { roomId, playerName, selectedAvatar, players, setPlayers } =
@@ -48,16 +49,20 @@ const Lobby = () => {
             <Card
               key={index}
               hoverable
-              style={{ width: 150, height: 150, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}
+              style={{ width: 150, marginBottom: 20, padding: 0, border: 'none' }}
               cover={
                 selectedAvatar ? (
-                  <img alt="example" src={selectedAvatar.props.src} style={{ width: '100%', height: 'auto' }} />
+                  <img alt="avatar" src={selectedAvatar.props.src} style={{ width: '100%', height: 'auto' }} />
                 ) : (
                   <div>No Avatar</div>
                 )
               }
+              styles={{ body: { padding: '0px', } }} // Ajusta el padding del cuerpo de la tarjeta para reducir el espacio de la descripción
             >
-              <Meta title={player.playerName} />
+              <Meta
+                title={<span style={{ fontSize: 12, color: 'white', backgroundColor: 'black', padding: '4px', display: 'block', textAlign: 'center', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{player.playerName}</span>}
+                style={{ padding: 0, height: 'auto', lineHeight: 'unset' }}
+              />
             </Card>
           ))}
         </PlayerContainer>

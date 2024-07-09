@@ -2,15 +2,15 @@
 import { useContext, useState } from "react";
 import { PlayerContext } from "../../app/contexts/PlayerContext";
 import { useNavigate } from "react-router-dom";
-import dwarf from "../../app/gifs/gatito.gif";
-import undead from "../../app/gifs/undead.gif";
-import wizard from "../../app/gifs/Wizard.gif";
-import fairy from "../../app/gifs/fairy.gif";
-import elf from "../../app/gifs/elf.gif";
-import executione2 from "../../app/gifs/Executioner.gif";
-import witch from "../../app/gifs/witch.gif";
-import minotaur from "../../app/gifs/Minotaur.gif";
-import interrogante from "../../app/gifs/moveavatar.gif";
+import dwarf from "../../app/assets/gifs/gatito.gif";
+import undead from "../../app/assets/gifs/undead.gif";
+import wizard from "../../app/assets/gifs/Wizard.gif";
+import fairy from "../../app/assets/gifs/fairy.gif";
+import elf from "../../app/assets/gifs/elf.gif";
+import executione2 from "../../app/assets/gifs/Executioner.gif";
+import witch from "../../app/assets/gifs/witch.gif";
+import minotaur from "../../app/assets/gifs/Minotaur.gif";
+import interrogante from "../../app/assets/gifs/moveavatar.gif";
 
 import {
   Container,
