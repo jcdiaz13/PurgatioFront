@@ -2,15 +2,15 @@
 import { useContext, useState } from "react";
 import { PlayerContext } from "../../app/contexts/PlayerContext";
 import { useNavigate } from "react-router-dom";
-import dwarf from "../../app/img/dwarf.jpg";
-import undead from "../../app/img/pikaso_texttoimage_35mm-film-photography-bloody-executioner-avatar-pi.jpeg";
-import wizard from "../../app/img/rendering-wizard-controlling-magic.jpg";
-import fairy from "../../app/img/pikaso_texttoimage_sweet-fairy-impressive-surreal-cinematic-lighting-.jpeg";
-import elf from "../../app/img/elf.jpg";
-import executione2 from "../../app/img/executione2.jpg";
-import witch from "../../app/img/witch.jpg";
-import minotaur from "../../app/img/minotaur.jpg";
-import interrogante from "../../app/img/interrogante.jpg";
+import dwarf from "../../app/gifs/gatito.gif";
+import undead from "../../app/gifs/undead.gif";
+import wizard from "../../app/gifs/Wizard.gif";
+import fairy from "../../app/gifs/fairy.gif";
+import elf from "../../app/gifs/elf.gif";
+import executione2 from "../../app/gifs/Executioner.gif";
+import witch from "../../app/gifs/witch.gif";
+import minotaur from "../../app/gifs/Minotaur.gif";
+import interrogante from "../../app/gifs/moveavatar.gif";
 
 import {
   Container,
@@ -96,7 +96,7 @@ function CreateLobby() {
           <StyledLink to="/">
             <Button>Volver</Button>
           </StyledLink>
-          <Button onClick={handlePlayerNameAndAvatar}>Crear sala</Button>
+          <Button onClick={handlePlayerNameAndAvatar}>Crear</Button>
         </ButtonContainer>
       </FormContainer>
       {isAvatarPopupOpen && (
