@@ -52,13 +52,12 @@ export const Button = styled.button`
   font-family: Pixellari;
 
   &:hover {
-    background-color: #FDC500;
+    background-color: #FF8C00;
     color: black;
   }
   &:active {
-  background-color: #FFD500;
-  box-shadow: 0 2px #FFD500;
-  transform: translateY(4px);
+  background-color: #FF8C00;
+  transform: translateY(0px);
   color: black;
 }
 `;
