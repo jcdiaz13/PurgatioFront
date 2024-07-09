@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-key */
 import { useContext, useEffect, useState } from "react";
 import { PlayerContext } from "../../app/contexts/PlayerContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-rostauter-dom";
 import { createPlayer } from "../../app/services/player";
 import { getPlayersByRoomId } from "../../app/services/player";
 import dwarf from "../../app/gifs/gatito.gif";
