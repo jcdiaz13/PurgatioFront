@@ -92,7 +92,7 @@ export const Button = styled.button`
 
 &:hover:before {
   color: black;
-  background-color:#FF8C00 !important;
+  background-color:#FFB300 !important;
   box-shadow: 0 -2px rgb(0 0 0 / 50%) inset, 0 2px rgb(255 255 255 / 20%) inset, -2px 0 rgb(255 255 255 / 20%) inset, 2px 0 rgb(0 0 0 / 50%) inset;
 }
 
@@ -107,7 +107,7 @@ export const Button = styled.button`
 
 &:active:after {
   color: black;
-  background-color:#FF8C00 !important;
+  background-color:#FFB300 !important;
   box-shadow: 0 0px 0 0 rgb(0 0 0 / 15%);
 }
 `;

@@ -75,25 +75,75 @@ export const StyledLink = styled(Link)`
 `;
 
 export const Button = styled.button`
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
+  font-family: Pixellari;
   font-size: 1rem;
   background-color: black;
-  color: white;
+  color: #fff;
+  text-shadow: 0 2px 0 rgb(0 0 0 / 25%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border: 0;
+  z-index: 1;
+  user-select: none;
   cursor: pointer;
+  letter-spacing: 1px;
+  white-space: unset;
+ padding: 10px;
+  text-decoration: none;
+  transition: all 0.7s cubic-bezier(0,.8,.26,.99);
   width: 91px;
-  text-align: center;
-  font-family: Pixellari;
-  height: 35px;
 
-  &:hover {
-    background-color: #FF8C00;
-    color: black;
-  }
-  &:active {
-  background-color: #FF8C00;
-  transform: translateY(4px);
+
+&:before {
+  position: absolute;
+  pointer-events: none;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  content: '';
+  transition: .7s cubic-bezier(0,.8,.26,.99);
+  z-index: -1;
+  background-color: black!important;
+  box-shadow:0 -2px rgb(255 255 255 / 50%) inset, 0 2px rgb(255 255 255 / 80%) inset, -2px 0 rgb(255 255 255 / 80%) inset, 2px 0 rgb(255 255 255 / 50%) inset;
+}
+
+&:after {
+  position: absolute;
+  pointer-events: none;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  content: '';
+  box-shadow: 0 1px 0 0 rgb(0 0 0 / 15%);
+  transition: .7s cubic-bezier(0,.8,.26,.99);
+
+}
+
+&:hover:before {
   color: black;
+  background-color:#FFB300 !important;
+  box-shadow: 0 -2px rgb(0 0 0 / 50%) inset, 0 2px rgb(255 255 255 / 20%) inset, -2px 0 rgb(255 255 255 / 20%) inset, 2px 0 rgb(0 0 0 / 50%) inset;
+}
+
+&:hover:after {  
+  color: black;
+  box-shadow: 0 1px 0 0 rgb(0 0 0 / 15%);
+}
+
+&:active {  
+  transform: translateY(4px);
+}
+
+&:active:after {
+  color: black;
+  background-color:#FFB300 !important;
+  box-shadow: 0 0px 0 0 rgb(0 0 0 / 15%);
 }
 `;
 
