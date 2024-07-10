@@ -30,7 +30,7 @@ const Lobby = () => {
 
       return () => clearInterval(intervalId);
     }
-  }, [roomId]);
+  }, [roomId, setPlayers]);
 
   return (
     <Theme>
