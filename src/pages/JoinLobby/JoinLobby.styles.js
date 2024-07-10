@@ -156,7 +156,6 @@ export const AvatarContainer = styled.div`
   align-items: center;
   font-size: 1.5rem;
   cursor: pointer;
-  border: white 2px solid;
   overflow: hidden; /* Añadido para que la imagen no se desborde */
 
 
@@ -164,7 +163,7 @@ export const AvatarContainer = styled.div`
     width: 100%;
     height: 100%;
     object-fit: cover; /* Asegura que la imagen se recorte adecuadamente dentro del contenedor */
-    border-radius: 5%; /* Hace que la imagen también sea redonda */
+   /* Hace que la imagen también sea redonda */
   }
 `;
 export const AvatarPopup = styled.div`
