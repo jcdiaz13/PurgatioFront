@@ -111,11 +111,9 @@ export const AvatarContainer = styled.div`
   border: white 2px solid;
   overflow: hidden; /* Añadido para que la imagen no se desborde */
       img {
-        background-color: black;
     width: 100%;
     height: 100%;
     object-fit: cover; /* Asegura que la imagen se recorte adecuadamente dentro del contenedor */
-    border-radius: 5%; /* Hace que la imagen también sea redonda */
   }
 `;
 
