@@ -30,7 +30,7 @@ const Lobby = () => {
 
       return () => clearInterval(intervalId);
     }
-  }, [roomId, setPlayers]);
+  }, [roomId]);
 
   return (
     <Theme>
@@ -57,7 +57,7 @@ const Lobby = () => {
                   <img
                     alt="avatar"
                     src={selectedAvatar.props.src}
-                    style={{ width: "100%", height: "auto" }}
+                    style={{ width: "100%", height: "auto", border: "none" }}
                   />
                 ) : (
                   <div>No Avatar</div>
