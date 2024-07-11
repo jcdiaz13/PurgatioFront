@@ -1,5 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
-import Goddes from '../fonts/MGNGoddess.ttf';
+import Goddes from '../assets/fonts/MGNGoddess.ttf';
+import Title from '../assets/fonts/Crang.ttf';
+import Pixellari from '../assets/fonts/Pixellari.ttf';
 
 
 export const GlobalStyle = createGlobalStyle`
@@ -8,9 +10,14 @@ export const GlobalStyle = createGlobalStyle`
      v2.0 | 20110126
      License: none (public domain)
   */
-     @font-face {
-    font-family: Goddes;
-    src: url(${Goddes});
+  
+@font-face {
+    font-family: Title;
+    src: url(${Title});
+}
+@font-face {
+    font-family: Pixellari;
+    src: url(${Pixellari});
 }
   html, body, div, span, applet, object, iframe,
   h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -41,6 +48,7 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     line-height: 1;
+    font-family: Pixellari;
   }
 
   ol, ul {
@@ -65,9 +73,8 @@ export const GlobalStyle = createGlobalStyle`
   /* Global Styles */
   html, body {
     height: 100%;
-    font-family:Goddes;
     line-height: 1.6;
-    background-color: #fff;
+    //background-color: #fff;
     color: #333;
     background-color: #000 !important;
     background-size: cover;

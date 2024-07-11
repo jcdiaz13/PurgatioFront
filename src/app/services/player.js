@@ -10,3 +10,6 @@ export const createSin = async (playerId, { sin }) => {
 
 //READ
 export const getPlayersByRoomId = async (roomId) => await instance.get(`player/room/${roomId}`);
+
+export const getPlayersWithoutSin = async (roomId) => await instance.get(`player/sinners/${roomId}`);
+

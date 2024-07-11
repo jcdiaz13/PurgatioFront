@@ -2,15 +2,15 @@
 import { useContext, useState } from "react";
 import { PlayerContext } from "../../app/contexts/PlayerContext";
 import { useNavigate } from "react-router-dom";
-import dwarf from "../../app/img/dwarf.jpg";
-import undead from "../../app/img/pikaso_texttoimage_35mm-film-photography-bloody-executioner-avatar-pi.jpeg";
-import wizard from "../../app/img/rendering-wizard-controlling-magic.jpg";
-import fairy from "../../app/img/pikaso_texttoimage_sweet-fairy-impressive-surreal-cinematic-lighting-.jpeg";
-import elf from "../../app/img/elf.jpg";
-import executione2 from "../../app/img/executione2.jpg";
-import witch from "../../app/img/witch.jpg";
-import minotaur from "../../app/img/minotaur.jpg";
-import interrogante from "../../app/img/interrogante.jpg";
+import turtle from "../../app/assets/gifs/tortuga.gif";
+import pinkguy from "../../app/assets/gifs/pinkfinn.gif";
+import tronco from "../../app/assets/gifs/tronco.gif";
+import camaleon from "../../app/assets/gifs/camaleon.gif";
+import glassguy from "../../app/assets/gifs/glassguy.gif";
+import bunny from "../../app/assets/gifs/bunny.gif"
+import pig from "../../app/assets/gifs/pig.gif";
+import maskguy from "../../app/assets/gifs/maskguy.gif";
+import interrogante from "../../app/assets/gifs/question.gif";
 
 import {
   Container,
@@ -28,14 +28,14 @@ import {
 
 // Lista de avatares disponibles
 const avatars = [
-  <img src={dwarf} />,
-  <img src={undead} />,
-  <img src={wizard} />,
-  <img src={fairy} />,
-  <img src={elf} />,
-  <img src={executione2} />,
-  <img src={witch} />,
-  <img src={minotaur} />,
+  <img src={turtle} />,
+  <img src={pig} />,
+  <img src={pinkguy} />,
+  <img src={bunny} />,
+  <img src={glassguy} />,
+  <img src={camaleon} />,
+  <img src={maskguy} />,
+  <img src={tronco} />
 ];
 
 function CreateLobby() {
@@ -70,6 +70,7 @@ function CreateLobby() {
 
   const handleAvatarSelect = (avatar) => {
     setSelectedAvatar(avatar);
+    console.log(avatar);
     setIsAvatarPopupOpen(false);
   };
 
@@ -96,7 +97,7 @@ function CreateLobby() {
           <StyledLink to="/">
             <Button>Volver</Button>
           </StyledLink>
-          <Button onClick={handlePlayerNameAndAvatar}>Crear sala</Button>
+          <Button onClick={handlePlayerNameAndAvatar}>Crear</Button>
         </ButtonContainer>
       </FormContainer>
       {isAvatarPopupOpen && (
