@@ -155,6 +155,8 @@ export const AvatarContainer = styled.div`
   justify-content: center;
   align-items: center;
   font-size: 1.5rem;
+  border: white 2px solid;
+  backdrop-filter: blur(7px);
   cursor: pointer;
   overflow: hidden; /* Añadido para que la imagen no se desborde */
 
@@ -180,7 +182,7 @@ export const AvatarPopup = styled.div`
 `;
 
 export const AvatarOption = styled.div`
-  width: 140px;
+ width: 140px;
   height: 140px;
   margin: 0.5rem;
   border-radius: 5%;
@@ -188,15 +190,11 @@ export const AvatarOption = styled.div`
   justify-content: center;
   align-items: center;
   font-size: 0.9rem;
-  border: black 3px solid;
-  box-shadow: 2px 2px 20px black;
   cursor: pointer;
   overflow: hidden; /* Asegura que la imagen no se desborde del contenedor */
   &:hover {
-    box-shadow: 2px 2px 10px #FF8C00;
-  }
+    box-shadow: 1px 1px 10px white;  }
   &:active {
-  box-shadow: 2px 2px 10px #FF8C00;
   transform: translateY(4px);
 }
 
