@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
-import mago from "../../app/gifs/Wizard.gif"
-import hada from "../../app/gifs/fairy.gif"
-import verdugo from "../../app/gifs/Executioner.gif"
+import mago from "../../app/gifs/eye.gif"
+import hada from "../../app/gifs/eye.gif"
+import verdugo from "../../app/gifs/eye.gif"
 
 export const PlayerContainer = styled.div`
 width: 300px;

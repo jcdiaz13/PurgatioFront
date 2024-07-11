@@ -4,15 +4,16 @@ import { PlayerContext } from "../../app/contexts/PlayerContext";
 import { useNavigate } from "react-router-dom";
 import { createPlayer } from "../../app/services/player";
 import { getPlayersByRoomId } from "../../app/services/player";
-import dwarf from "../../app/gifs/gatito.gif";
-import undead from "../../app/gifs/undead.gif";
-import wizard from "../../app/gifs/Wizard.gif";
-import fairy from "../../app/gifs/fairy.gif";
-import elf from "../../app/gifs/tortuga.gif";
-import executione2 from "../../app/gifs/Executioner.gif";
-import witch from "../../app/gifs/eye.gif";
-import minotaur from "../../app/gifs/Minotaur.gif";
+import turtle from "../../app/gifs/tortuga.gif";
+import pinkguy from "../../app/gifs/pinkfinn.gif";
+import tronco from "../../app/gifs/tronco.gif";
+import camaleon from "../../app/gifs/camaleon.gif";
+import glassguy from "../../app/gifs/glassguy.gif";
+import bunny from "../../app/gifs/bunny.gif"
+import pig from "../../app/gifs/pig.gif";
+import maskguy from "../../app/gifs/maskguy.gif";
 import interrogante from "../../app/gifs/question.gif";
+
 
 import {
   Container,
@@ -30,14 +31,14 @@ import {
 
 // Lista de avatares disponibles
 const avatars = [
-  <img src={dwarf} />,
-  <img src={undead} />,
-  <img src={wizard} />,
-  <img src={fairy} />,
-  <img src={elf} />,
-  <img src={executione2} />,
-  <img src={witch} />,
-  <img src={minotaur} />,
+  <img src={turtle} />,
+  <img src={pig} />,
+  <img src={pinkguy} />,
+  <img src={bunny} />,
+  <img src={glassguy} />,
+  <img src={camaleon} />,
+  <img src={maskguy} />,
+  <img src={tronco} />  
 ];
 
 function JoinLobby() {
