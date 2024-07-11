@@ -1,134 +1,80 @@
-import { useEffect, useRef, useState } from "react";
-import {
-  Column, Container, Content, Element, Header, Table, Overlay, Popup, Button, ModalBackground, ModalContent, CloseButton, UserButton,
-} from "./Verdict.styles";
+import React, { useState } from 'react';
+import styled from 'styled-components';
 
-import GlobalStyles from "../../app/style/createGlobal.styles";
-import { FaGavel } from "react-icons/fa";
-import { Carousel } from 'react-responsive-carousel';
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
+const CardsContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+`;
 
-const pecados = [
-  {
-    title: "Alguien fue sorprendido robando joyas en la oscuridad de la noche.",
-    context: "Alguien fue sorprendido robando joyas en la oscuridad de la noche.",
-  },
-];
+const Card = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  height: 100px;
+  width: 100px;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  transition: transform 400ms, filter 400ms; /* Añadido transition */
+  background-color: ${({ color }) => {
+    switch (color) {
+      case 'red':
+        return '#007e9e';
+      case 'blue':
+        return '#0062ff';
+      case 'green':
+        return '#18cd5e';
+      default:
+        return '';
+    }
+  }};
 
-const castigos = [
-  {
-    title: "realizar 100 horas de trabajo comunitario.",
-    context: "realizar 100 horas de trabajo comunitario.",
+
+
+  &:not(:hover) {
+    filter: blur(10px);
   }
-];
+  &:not(:hover) {
+    filter: blur(10px);
+  }
+&:active(:hover){
+  background-color: ;
+}
+&:hover {
+  background-color: red !important;
+    transform: scale(2.2);
+      gap: 10px;
+}
+`;
 
-const users = [
-  { name: 'User1', image: 'place' },
-  { name: 'User2', image: '' },
-  { name: 'User3', image: '' },
-  { name: 'User4', image: '' },
-  { name: 'User5', image: '' },
-];
+const Tip = styled.p`
+  font-size: 1em;
+  font-weight: 700;
+`;
+
+const SecondText = styled.p`
+  font-size: 0.7em;
+`;
 
 const Verdict = () => {
-  const [popupText, setPopupText] = useState("");
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const [selectedPecado, setSelectedPecado] = useState("");
-  const [selectedCastigo, setSelectedCastigo] = useState("");
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [username, setUsername] = useState("");
-  const popupRef = useRef(null);
-
-  const handleClickOutside = (event) => {
-    if (popupRef.current && !popupRef.current.contains(event.target)) {
-      setIsPopupOpen(false);
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
-  const linkPecadoCastigo = () => {
-    if (selectedPecado && selectedCastigo) {
-      setPopupText(`Pecado: ${selectedPecado}\nCastigo: ${selectedCastigo}`);
-      setIsPopupOpen(true);
-    }
-  };
-
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-
-  const selectUsername = (name) => {
-    setUsername(name);
-    closeModal();
-  };
-
-  const renderColumnContent = (type) => (
-    (type === 'pecado' ? pecados : castigos).map((info, k) => (
-      <Element
-        key={k}
-        onClick={() => {
-          if (type === 'pecado') {
-            setSelectedPecado(info.title);
-          } else {
-            setSelectedCastigo(info.title);
-          }
-          setPopupText(info.context);
-          setIsPopupOpen(true);
-        }}
-        selected={(type === 'pecado' ? selectedPecado : selectedCastigo) === info.title}
-      >
-        {info.title}
-      </Element>
-    ))
-  );
-
   return (
-
-    <Container>
-      <GlobalStyles />
-      {isPopupOpen && <Overlay />}
-      <Table isPopupOpen={isPopupOpen}>
-        <Column>
-          <Header>Pecado</Header>
-          <Content>
-            {renderColumnContent('pecado')}
-          </Content>
-        </Column>
-        <Column>
-          <Header>Castigo</Header>
-          <Content>
-            {renderColumnContent('castigo')}
-          </Content>
-        </Column>
-      </Table>
-      <Button onClick={linkPecadoCastigo}> <FaGavel /></Button>
-      <UserButton onClick={openModal}>User</UserButton>
-      {username && <p>Nombre de Usuario: {username}</p>}
-      {isPopupOpen && <Popup ref={popupRef}>{popupText}</Popup>}
-
-      <ModalBackground show={isModalOpen}>
-        <CloseButton onClick={closeModal}>&times;</CloseButton>
-        <ModalContent onClick={(e) => e.stopPropagation()}>
-          {/* <CloseButton onClick={closeModal}>&times;</CloseButton> */}
-          <Carousel>
-            {users.map((user, index) => (
-              <div key={index} onClick={() => selectUsername(user.name)}>
-                <img src={user.image} alt={user.name} />
-                <p className="legend">{user.name}</p>
-              </div>
-            ))}
-          </Carousel>
-        </ModalContent>
-      </ModalBackground>
-    </Container>
+    <CardsContainer>
+      <Card color="red">
+        <Tip>user1</Tip>
+        <SecondText>me cago encima</SecondText>
+      </Card>
+      <Card color="blue">
+        <Tip>Hover Me</Tip>
+        <SecondText>Lorem Ipsum</SecondText>
+      </Card>
+      <Card color="green">
+        <Tip>Hover Me</Tip>
+        <SecondText>Lorem Ipsum</SecondText>
+      </Card>
+    </CardsContainer>
   );
 };
 
