@@ -13,4 +13,3 @@ export const getPlayersByRoomId = async (roomId) => await instance.get(`player/r
 
 export const getPlayersWithoutSin = async (roomId) => await instance.get(`player/sinners/${roomId}`);
 
-export const getSinsRandom = async (roomId) => await instance.get(`/player/asignaciones/${roomId}`);
