@@ -1,80 +1,55 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-
-const CardsContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  gap: 15px;
-`;
-
-const Card = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  text-align: center;
-  height: 100px;
-  width: 100px;
-  border-radius: 10px;
-  color: white;
-  cursor: pointer;
-  transition: transform 400ms, filter 400ms; /* Añadido transition */
-  background-color: ${({ color }) => {
-    switch (color) {
-      case 'red':
-        return '#007e9e';
-      case 'blue':
-        return '#0062ff';
-      case 'green':
-        return '#18cd5e';
-      default:
-        return '';
-    }
-  }};
-
-
-
-  &:not(:hover) {
-    filter: blur(10px);
-  }
-  &:not(:hover) {
-    filter: blur(10px);
-  }
-&:active(:hover){
-  background-color: ;
-}
-&:hover {
-  background-color: red !important;
-    transform: scale(2.2);
-      gap: 10px;
-}
-`;
-
-const Tip = styled.p`
-  font-size: 1em;
-  font-weight: 700;
-`;
-
-const SecondText = styled.p`
-  font-size: 0.7em;
-`;
+import { useState } from 'react';
+// import styled from 'styled-components';
+import { Book, Cover, Container, ModalWrapper, ModalContent, CloseButton } from './Verdict.styles.js';
 
 const Verdict = () => {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedBook, setSelectedBook] = useState(null);
+
+  const booksContent = [
+    { text: 'Vota', coverText: 'Pecado 1' },
+    { text: 'Vota', coverText: 'Pecado 2' },
+    { text: 'Vota', coverText: 'Pecado 3' },
+    { text: 'Vota', coverText: 'Pecado 4' },
+    { text: 'Vota', coverText: 'Pecado 5' },
+    { text: 'Vota', coverText: 'Pecado 6' },
+    { text: 'Vota', coverText: 'Pecado 7' },
+    { text: 'Vota', coverText: 'Pecado 8' }
+  ];
+
+  const handleBookClick = (book) => {
+    setSelectedBook(book);
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
+  const renderBooks = () => {
+    return booksContent.map((book, index) => (
+      <Book key={index}>
+        <p onClick={() => handleBookClick(book)}>{book.text}</p>
+        <Cover>
+          <p>{book.coverText}</p>
+        </Cover>
+      </Book>
+    ));
+  };
+
   return (
-    <CardsContainer>
-      <Card color="red">
-        <Tip>user1</Tip>
-        <SecondText>me cago encima</SecondText>
-      </Card>
-      <Card color="blue">
-        <Tip>Hover Me</Tip>
-        <SecondText>Lorem Ipsum</SecondText>
-      </Card>
-      <Card color="green">
-        <Tip>Hover Me</Tip>
-        <SecondText>Lorem Ipsum</SecondText>
-      </Card>
-    </CardsContainer>
+    <Container>
+      {renderBooks()}
+      {modalOpen && (
+        <ModalWrapper>
+          <ModalContent>
+            <CloseButton onClick={closeModal}>&times;</CloseButton>
+            <h2>{selectedBook.coverText}</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo dolores voluptatem hic, dignissimos voluptatibus, consectetur dolor fugit ullam possimus voluptate laboriosam. Eveniet quaerat corporis adipisci repudiandae odio, ullam quod eum.</p>
+          </ModalContent>
+        </ModalWrapper>
+      )}
+    </Container>
   );
 };
 
