@@ -35,7 +35,7 @@ const avatars = [
   <img src={glassguy} />,
   <img src={camaleon} />,
   <img src={maskguy} />,
-  <img src={tronco} />  
+  <img src={tronco} />
 ];
 
 function CreateLobby() {
@@ -70,6 +70,7 @@ function CreateLobby() {
 
   const handleAvatarSelect = (avatar) => {
     setSelectedAvatar(avatar);
+    console.log(avatar);
     setIsAvatarPopupOpen(false);
   };
 

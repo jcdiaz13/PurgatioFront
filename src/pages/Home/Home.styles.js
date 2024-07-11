@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-import LogoFront from '../../app/gifs/LOGO.gif'
-
+import LogoFront from '../../app/assets/img/logo 300px.png'
 
 
 export const Logo = styled.div`

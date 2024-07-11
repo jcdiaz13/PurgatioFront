@@ -1,36 +1,19 @@
 import styled, { css } from 'styled-components';
-import mago from "../../app/gifs/eye.gif"
-import hada from "../../app/gifs/eye.gif"
-import verdugo from "../../app/gifs/eye.gif"
+import mago from "../../app/assets/gifs/Wizard.gif";
+import hada from "../../app/assets/gifs/fairy.gif";
+import verdugo from "../../app/assets/gifs/Executioner.gif";
 
 export const PlayerContainer = styled.div`
-width: 300px;
-height: auto;
-display: flex;
-flex-wrap: wrap;
-justify-content: center;
-align-items: center;
-margin: auto;
-gap: 20px;
-`
-export const Player = styled.div` 
-width: 100px;
-height: 100px;
-background-color: white;
-border: solid 1px black;
-  border-radius: 50%;
-  font-size: 15px;
-  display: flex;
-  justify-content: center;
-align-items: center;
-margin: auto;
-p{
-display: flex;
-justify-content: center;
-align-items: center;
-margin-left:15px;
-} 
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px 0px;
+  justify-items: center;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+  margin: 20px auto;
 `;
+
 export const Button = styled.button`
  font-family: Pixellari;
   font-size: 1rem;
@@ -156,13 +139,12 @@ export const Circle = styled.div`
 `;
 
 export const Id = styled.p`
-color:white;
-padding: 10px;
+  color: white;
+  padding: 10px;
 `;
 
 export const Container = styled.div`
   display: flex;
-  justify-content: center;
   background-attachment: fixed;
   align-items: center;
   flex-direction: column;
@@ -187,10 +169,10 @@ ${({ theme }) =>
 ${({ theme }) =>
     theme.name === "hada" &&
     css`
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-image: url("https://i.pinimg.com/originals/1b/45/63/1b456377a9dce67a7dc3630260aa7572.gif");
-`}
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-image: url("https://i.pinimg.com/originals/1b/45/63/1b456377a9dce67a7dc3630260aa7572.gif");
+    `}
 `;
 
 export const Box = styled.div`
@@ -211,7 +193,7 @@ export const Box = styled.div`
   align-items: center;
    `}
 
-   ${({ theme }) =>
+  ${({ theme }) =>
     theme.name === "hada" &&
     css`
     display: flex;
@@ -241,21 +223,8 @@ export const Box = styled.div`
    `}
 `;
 
-export const Popup = styled.div`
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: white;
-  padding: 20px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-  z-index: 1000;
-  
+export const StyledMetaContainer = styled.div`
+  background-color: black;
+  padding: 8px;
+  text-align: center;
 `;
-
-export const RoomId = styled.div`
-  /* font-size: 20px; */
-  /* text-align: center; */
-  background-color: white;
-  `
-

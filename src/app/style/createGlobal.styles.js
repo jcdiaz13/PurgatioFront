@@ -1,7 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
-import Goddes from '../fonts/MGNGoddess.ttf';
-import Title from '../fonts/Crang.ttf';
-import Pixellari from '../fonts/Pixellari.ttf';
+import Goddes from '../assets/fonts/MGNGoddess.ttf';
+import Title from '../assets/fonts/Crang.ttf';
+import Pixellari from '../assets/fonts/Pixellari.ttf';
 
 
 export const GlobalStyle = createGlobalStyle`
