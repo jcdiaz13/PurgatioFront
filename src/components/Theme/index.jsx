@@ -6,7 +6,7 @@ import { hadaTheme } from "./themes/hadaTheme";
 // eslint-disable-next-line react/prop-types
 const Theme = ({ children }) => {
   return (
-    <ThemeProvider theme={verdugoTheme}>
+    <ThemeProvider theme={hadaTheme}>
       {children}
     </ThemeProvider>
   );

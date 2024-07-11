@@ -196,6 +196,7 @@ export const AvatarOption = styled.div`
     box-shadow: 1px 1px 10px white;  }
   &:active {
   transform: translateY(4px);
+  box-shadow: 1px 1px 10px white; 
 }
 
     img {
