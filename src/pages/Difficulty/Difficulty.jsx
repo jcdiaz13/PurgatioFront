@@ -2,9 +2,9 @@ import { Title, Container, Box, BoxContainer } from "./Difficulty.styles";
 import { useContext, useState } from "react";
 import { PlayerContext } from "../../app/contexts/PlayerContext";
 import GlobalStyle from "../../app/style/createGlobal.styles";
-import verdugo from "../../app/img/pikaso_texttoimage_35mm-film-photography-bloody-executioner-avatar-pi.jpeg";
-import mago from "../../app/img/rendering-wizard-controlling-magic.jpg";
-import hada from "../../app/img/pikaso_texttoimage_sweet-fairy-impressive-surreal-cinematic-lighting-.jpeg";
+import verdugo from "../../app/img/executioner2.jpg";
+import mago from "../../app/img/wizard2.jpg";
+import hada from "../../app/img/fairy2.jpg";
 import PopupContent from "./PopupContent";
 
 const Difficulty = () => {

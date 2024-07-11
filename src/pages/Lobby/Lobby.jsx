@@ -9,8 +9,8 @@ import {
   Button,
 } from "./Lobby.styles";
 import Theme from "../../components/Theme";
-import { PlayerContext } from "../../app/contexts/PlayerContext";
-import { getPlayersByRoomId } from "../../app/services/player";
+import { PlayerContext } from '../../app/contexts/PlayerContext';
+import { getPlayersByRoomId } from '../../app/services/player';
 // import verdugo from "../../app/img/pikaso_texttoimage_35mm-film-photography-bloody-executioner-avatar-pi.jpeg";
 // import mago from "../../app/img/rendering-wizard-controlling-magic.jpg";
 // import hada from "../../app/img/pikaso_texttoimage_sweet-fairy-impressive-surreal-cinematic-lighting-.jpeg";
@@ -21,6 +21,17 @@ const Lobby = () => {
   // const [selectedAvatar, setSelectedAvatar] = useState(null);
 
   useEffect(() => {
+    const ShowPlayers = async () => {
+      try {
+        const response = await getPlayersByRoomId(roomId);
+        setPlayers(response.data);
+        console.log(response.data);
+      } catch (error) {
+        console.error('Error showing players:', error);
+      }finally{
+        setTimeout(ShowPlayers, 5000);
+      }
+    };
     if (roomId) {
       const timeoutId = setInterval(() => {
         ShowPlayers();
