@@ -4,15 +4,15 @@ import { PlayerContext } from "../../app/contexts/PlayerContext";
 import { useNavigate } from "react-router-dom";
 import { createPlayer } from "../../app/services/player";
 import { getPlayersByRoomId } from "../../app/services/player";
-import dwarf from "../../app/assets/gifs/gatito.gif";
-import undead from "../../app/assets/gifs/undead.gif";
-import wizard from "../../app/assets/gifs/Wizard.gif";
-import fairy from "../../app/assets/gifs/fairy.gif";
-import elf from "../../app/assets/gifs/elf.gif";
-import executione2 from "../../app/assets/gifs/Executioner.gif";
-import witch from "../../app/assets/gifs/witch.gif";
-import minotaur from "../../app/assets/gifs/Minotaur.gif";
-import interrogante from "../../app/assets/gifs/moveavatar.gif";
+import turtle from "../../app/assets/gifs/tortuga.gif";
+import pinkguy from "../../app/assets/gifs/pinkfinn.gif";
+import tronco from "../../app/assets/gifs/tronco.gif";
+import camaleon from "../../app/assets/gifs/camaleon.gif";
+import glassguy from "../../app/assets/gifs/glassguy.gif";
+import bunny from "../../app/assets/gifs/bunny.gif"
+import pig from "../../app/assets/gifs/pig.gif";
+import maskguy from "../../app/assets/gifs/maskguy.gif";
+import interrogante from "../../app/assets/gifs/question.gif";
 
 import {
   Container,

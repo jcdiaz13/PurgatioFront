@@ -13,25 +13,27 @@ const Lobby = () => {
     useContext(PlayerContext);
 
   useEffect(() => {
-    const ShowPlayers = async () => {
-      try {
-        const response = await getPlayersByRoomId(roomId);
-        setPlayers(response.data);
-        console.log(response.data);
-      } catch (error) {
-        console.error('Error showing players:', error);
-      } finally {
-        setTimeout(ShowPlayers, 5000);
-      }
-    };
     if (roomId) {
-      const intervalId = setInterval(() => {
-        fetchPlayers();
+      const timeoutId = setInterval(() => {
+        ShowPlayers();
       }, 2000);
 
-      return () => clearInterval(intervalId);
+      return () => clearTimeout(timeoutId);
     }
-  }, [roomId, setPlayers]);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [roomId]);
+
+  const ShowPlayers = async () => {
+    try {
+      const response = await getPlayersByRoomId(roomId);
+      setPlayers(response.data);
+      console.log(response.data);
+    } catch (error) {
+      console.error("Error showing players:", error);
+    }
+  };
+
 
   return (
     <Theme>

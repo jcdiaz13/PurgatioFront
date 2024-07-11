@@ -2,15 +2,15 @@
 import { useContext, useState } from "react";
 import { PlayerContext } from "../../app/contexts/PlayerContext";
 import { useNavigate } from "react-router-dom";
-import turtle from "../../app/gifs/tortuga.gif";
-import pinkguy from "../../app/gifs/pinkfinn.gif";
-import tronco from "../../app/gifs/tronco.gif";
-import camaleon from "../../app/gifs/camaleon.gif";
-import glassguy from "../../app/gifs/glassguy.gif";
-import bunny from "../../app/gifs/bunny.gif"
-import pig from "../../app/gifs/pig.gif";
-import maskguy from "../../app/gifs/maskguy.gif";
-import interrogante from "../../app/gifs/question.gif";
+import turtle from "../../app/assets/gifs/tortuga.gif";
+import pinkguy from "../../app/assets/gifs/pinkfinn.gif";
+import tronco from "../../app/assets/gifs/tronco.gif";
+import camaleon from "../../app/assets/gifs/camaleon.gif";
+import glassguy from "../../app/assets/gifs/glassguy.gif";
+import bunny from "../../app/assets/gifs/bunny.gif"
+import pig from "../../app/assets/gifs/pig.gif";
+import maskguy from "../../app/assets/gifs/maskguy.gif";
+import interrogante from "../../app/assets/gifs/question.gif";
 
 import {
   Container,
