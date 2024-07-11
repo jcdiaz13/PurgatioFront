@@ -112,13 +112,13 @@ function JoinLobby() {
           type="text"
           value={playerName}
           onChange={handleNameChange}
-          placeholder="Ingresa tu nombre"
+          placeholder="Nombre"
         />
         <Input
           type="text"
           value={roomId}
           onChange={handleRoomIdChange}
-          placeholder="Introduce el número de sala"
+          placeholder="Número de sala"
         />
         <ButtonContainer>
           <StyledLink to="/">

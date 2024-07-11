@@ -90,7 +90,7 @@ function CreateLobby() {
           type="text"
           value={playerName}
           onChange={handleInputChange}
-          placeholder="Ingresa tu nombre"
+          placeholder="Nombre"
         />
         <ButtonContainer>
           <StyledLink to="/">

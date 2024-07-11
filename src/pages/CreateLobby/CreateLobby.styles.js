@@ -33,6 +33,7 @@ export const Input = styled.input`
   border: 1px solid black;
   border-radius: 4px;
   width: 50%;
+  font-size: 1rem;
   font-family: Pixellari;
 `;
 
@@ -159,7 +160,7 @@ export const AvatarContainer = styled.div`
   align-items: center;
   font-size: 1.5rem;
   cursor: pointer;
-  border: white 2px solid;
+  border: white 1px solid;
   backdrop-filter: blur(7px);
   overflow: hidden; /* Añadido para que la imagen no se desborde */
       img {

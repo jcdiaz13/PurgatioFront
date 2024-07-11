@@ -56,6 +56,7 @@ font-family: Pixellari;
   border: 1px solid black;
   border-radius: 4px;
   width: 180px;
+  font-size: 1rem;
 `;
 
 export const ButtonContainer = styled.div`
@@ -154,8 +155,7 @@ export const AvatarContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1.5rem;
-  border: white 2px solid;
+  border: white 1px solid;
   backdrop-filter: blur(7px);
   cursor: pointer;
   overflow: hidden; /* Añadido para que la imagen no se desborde */
