@@ -13,3 +13,6 @@ export const getPlayersByRoomId = async (roomId) => await instance.get(`player/r
 
 export const getPlayersWithoutSin = async (roomId) => await instance.get(`player/sinners/${roomId}`);
 
+
+// UPDATE
+export const updatePlayerAvatar = async (playerId, avatar) => await instance.post(`player/${playerId}/avatar`, avatar);

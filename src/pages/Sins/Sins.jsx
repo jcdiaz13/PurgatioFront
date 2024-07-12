@@ -1,12 +1,3 @@
-import { useState, useEffect, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Container, FormContainer, Textarea, ButtonContainer, Button, Title, SubTitle } from './Sins.styles';
-import { FaArrowRight, FaArrowLeft } from 'react-icons/fa';
-import sinsData from '../../app/jsons/gameMastersSins.json';
-import Theme from '../../components/Theme';
-import { createSin } from '../../app/services/player';
-import { PlayerContext } from '../../app/contexts/PlayerContext'; // Ajusta la ruta según donde tengas PlayerContext
-
 /* useEffect(() => {
 
     setRandomSin(getRandomSin());
@@ -29,6 +20,16 @@ const getRandomSin = () => {
   const randomSin = randomCategory.sins[Math.floor(Math.random() * randomCategory.sins.length)];
   return randomSin;
 }; */
+
+import { useState, useEffect, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Container, FormContainer, Textarea, ButtonContainer, Button, Title, SubTitle } from './Sins.styles';
+import { FaArrowRight, FaArrowLeft } from 'react-icons/fa';
+import sinsData from '../../app/jsons/gameMastersSins.json';
+import Theme from '../../components/Theme';
+import { createSin } from '../../app/services/player';
+import { PlayerContext } from '../../app/contexts/PlayerContext'; // Ajusta la ruta según donde tengas PlayerContext
+
 
 
 

@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-key */
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from 'react';
 import { PlayerContext } from "../../app/contexts/PlayerContext";
 import { useNavigate } from "react-router-dom";
 import turtle from "../../app/assets/gifs/tortuga.gif";
@@ -59,6 +59,10 @@ function CreateLobby() {
       }
     }
   };
+
+  useEffect(() => {
+    setPlayerName("");
+  }, [setPlayerName]);
 
   const closePopup = () => {
     setIsAvatarPopupOpen(false);
