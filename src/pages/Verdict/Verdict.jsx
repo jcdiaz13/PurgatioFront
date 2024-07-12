@@ -1,71 +1,37 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Importa useNavigate
-import { Book, Cover, Container, ModalWrapper, ModalContent, CloseButton, OptionButton } from './Verdict.styles.js';
+import { useNavigate } from 'react-router-dom';
+import { Book, Cover, Container, ModalWrapper, ModalContent, CloseButton, OptionButton, OptionContainer } from './Verdict.styles.js';
 import turtle from "../../app/assets/gifs/tortuga.gif";
 import pinkguy from "../../app/assets/gifs/pinkfinn.gif";
 import camaleon from "../../app/assets/gifs/camaleon.gif";
 import glassguy from "../../app/assets/gifs/glassguy.gif";
 import bunny from "../../app/assets/gifs/bunny.gif";
 import pig from "../../app/assets/gifs/pig.gif";
-import styled from 'styled-components';
 
-const OptionContainer = styled.div`
-  cursor: pointer;
-  margin: 10px;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
+const booksContent = Array.from({ length: 8 }, (_, i) => ({ coverText: `Pecado ${i + 1}` }));
 
-  &:hover img,
-  &:focus img {
-    transform: scale(1.2);
-    transition: transform 0.3s;
-  }
-
-  &:hover,
-  &:focus {
-    outline: 2px solid deepskyblue;
-  }
-`;
+const options = [
+  { id: 1, image: turtle, text: 'Tortuga' },
+  { id: 2, image: pig, text: 'Cerdo' },
+  { id: 3, image: pinkguy, text: 'Pink Guy' },
+  { id: 4, image: bunny, text: 'Conejo' },
+  { id: 5, image: glassguy, text: 'Glass Guy' },
+  { id: 6, image: camaleon, text: 'Camaleón' },
+];
 
 const Verdict = () => {
-  const navigate = useNavigate(); // Usa useNavigate
+  const navigate = useNavigate();
   const [modalOpen, setModalOpen] = useState(false);
   const [optionsModalOpen, setOptionsModalOpen] = useState(false);
   const [selectedBook, setSelectedBook] = useState(null);
   const [selectedOption, setSelectedOption] = useState(null);
   const [bookCovers, setBookCovers] = useState(Array(8).fill(null));
   const [bookTitles, setBookTitles] = useState(Array(8).fill(""));
-  const [bookDescriptions, setBookDescriptions] = useState(Array(8).fill(""));
-
-  const booksContent = [
-    { coverText: 'Pecado 1' },
-    { coverText: 'Pecado 2' },
-    { coverText: 'Pecado 3' },
-    { coverText: 'Pecado 4' },
-    { coverText: 'Pecado 5' },
-    { coverText: 'Pecado 6' },
-    { coverText: 'Pecado 7' },
-    { coverText: 'Pecado 8' }
-  ];
-
-  const options = [
-    { id: 1, image: turtle, text: 'Tortuga' },
-    { id: 2, image: pig, text: 'Cerdo' },
-    { id: 3, image: pinkguy, text: 'Pink Guy' },
-    { id: 4, image: bunny, text: 'Conejo' },
-    { id: 5, image: glassguy, text: 'Glass Guy' },
-    { id: 6, image: camaleon, text: 'Camaleón' },
-  ];
+  const [bookDescriptions] = useState(Array(8).fill("Lorem ipsum dolor sit amet."));
 
   const handleBookClick = (index) => {
     setSelectedBook(index);
     setModalOpen(true);
-    setBookDescriptions(prev => {
-      const newDescriptions = [...prev];
-      newDescriptions[index] = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
-      return newDescriptions;
-    });
   };
 
   const closeModal = () => {
@@ -78,30 +44,35 @@ const Verdict = () => {
   };
 
   const confirmSelection = () => {
-    if (selectedBook !== null && selectedOption) {
-      const updatedCovers = [...bookCovers];
-      const updatedTitles = [...bookTitles];
-      const isOptionUsed = updatedCovers.includes(selectedOption.image);
+    if (selectedBook === null || !selectedOption) return;
 
-      if (!isOptionUsed || updatedCovers[selectedBook] === selectedOption.image) {
+    const isOptionUsed = bookCovers.includes(selectedOption.image);
+    const isCurrentSelection = bookCovers[selectedBook] === selectedOption.image;
+
+    if (!isOptionUsed || isCurrentSelection) {
+      setBookCovers((prev) => {
+        const updatedCovers = [...prev];
         updatedCovers[selectedBook] = selectedOption.image;
+        return updatedCovers;
+      });
+      setBookTitles((prev) => {
+        const updatedTitles = [...prev];
         updatedTitles[selectedBook] = selectedOption.text;
-        setBookCovers(updatedCovers);
-        setBookTitles(updatedTitles);
-        closeModal();
-      } else {
-        alert("Este avatar ya está seleccionado para otro libro.");
-        setOptionsModalOpen(true);
-      }
+        return updatedTitles;
+      });
+      closeModal();
+    } else {
+      alert("Este avatar ya está seleccionado para otro libro.");
+      setOptionsModalOpen(true);
     }
   };
 
   const goToNextPage = () => {
-    navigate('/'); // Cambia '/ruta-siguiente' a tu ruta deseada
+    navigate('/');
   };
 
-  const renderBooks = () => {
-    return booksContent.map((book, index) => (
+  const renderBooks = () => (
+    booksContent.map((book, index) => (
       <Book key={index} onClick={() => handleBookClick(index)}>
         <Cover>
           {bookCovers[index] ? (
@@ -114,25 +85,23 @@ const Verdict = () => {
           )}
         </Cover>
       </Book>
-    ));
-  };
+    ))
+  );
 
-  const renderOptions = () => {
-    return options.map((option) => (
+  const renderOptions = () => (
+    options.map(({ id, image, text }) => (
       <OptionContainer
-        key={option.id}
-        onClick={() => handleOptionSelect(option)}
+        key={id}
+        onClick={() => handleOptionSelect({ id, image, text })}
         tabIndex={0}
+        role="button"
+        onKeyPress={(e) => e.key === 'Enter' && handleOptionSelect({ id, image, text })}
       >
-        <img
-          src={option.image}
-          alt={option.text}
-          style={{ width: '50px', height: '50px' }}
-        />
-        <p>{option.text}</p>
+        <img src={image} alt={text} style={{ width: '50px', height: '50px' }} />
+        <p>{text}</p>
       </OptionContainer>
-    ));
-  };
+    ))
+  );
 
   return (
     <Container>

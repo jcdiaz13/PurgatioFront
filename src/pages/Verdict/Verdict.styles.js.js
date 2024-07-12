@@ -45,8 +45,8 @@ export const Book = styled.div`
   cursor: pointer;
 
  &:hover ${Cover} {
-    transition: transform 0.5s, scale 0.5s; /* Cambia la transición */
-    transform: scale(1.1); /* Escala el Cover al 110% */
+    transition: transform 0.5s;
+    transform: scale(1.1); 
   }
 `;
 
@@ -54,7 +54,7 @@ export const Container = styled.div`
   position: fixed;
   top: 50%;
   left: 50%;
-  width: 330px;
+  width: 100%;
   transform: translate(-50%, -50%);
   display: flex;
   flex-wrap: wrap;
@@ -62,12 +62,9 @@ export const Container = styled.div`
   align-items: center;
   border-radius: 8px;
   z-index: 3;
-  background: url('https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/01073865290819.5d61d475f0072.jpg');
-  background-attachment: fixed;
-  background-repeat: no-repeat;
+  background: url('https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/01073865290819.5d61d475f0072.jpg') no-repeat center center fixed;
   background-size: cover;
   height: 100vh;
-  width: 100%;
 `;
 
 export const ModalWrapper = styled.div`
@@ -87,7 +84,6 @@ export const ModalContent = styled.div`
   background-color: #fff;
   padding: 20px;
   border-radius: 8px;
-  position: relative; 
   display: flex;
   flex-direction: column;
   align-items: center; 
@@ -97,7 +93,7 @@ export const ModalContent = styled.div`
 export const CloseButton = styled.span`
   position: absolute;
   top: 5px; 
-  right: 0px; 
+  right: 0; 
   font-size: 24px;
   cursor: pointer;
   width: 30px;
@@ -122,6 +118,7 @@ export const OptionButton = styled.button`
     background-color: deepskyblue;
   }
 `;
+
 export const OptionContainer = styled.div`
   cursor: pointer;
   margin: 10px;
@@ -131,12 +128,12 @@ export const OptionContainer = styled.div`
 
   &:hover img,
   &:focus img {
-    transform: scale(1.2); /* Escala al hacer hover o focus */
+    transform: scale(1.2);
     transition: transform 0.3s;
   }
 
   &:hover,
   &:focus {
-    outline: 2px solid deepskyblue; /* Contorno para indicar el enfoque */
+    outline: 2px solid deepskyblue;
   }
 `;
