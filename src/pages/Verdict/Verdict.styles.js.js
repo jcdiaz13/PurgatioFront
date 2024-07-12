@@ -53,6 +53,7 @@ export const Cover = styled.div`
 
   ${Book}:hover & {
     transform: rotateY(-80deg);
+    
   }
 `;
 
@@ -73,7 +74,6 @@ export const ModalContent = styled.div`
   background-color: #fff;
   padding: 20px;
   border-radius: 8px;
-  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); */
   position: relative; /* Asegura que el posicionamiento absoluto funcione correctamente */
   display: flex;
   flex-direction: column;
@@ -87,9 +87,8 @@ export const ModalContent = styled.div`
     right: -20px;
     width: 40px;
     height: 40px;
-    /* background-color: #fff; */
     transform: rotate(45deg);
-    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); */
+    
   }
 `;
 
