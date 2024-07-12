@@ -16,7 +16,7 @@ import {
 } from "./PopupContent.styles";
 
 const PopupContent = ({ closePopup, image, name, description, difficulty }) => {
-  const { playerName, setRoomId, setPlayerId } = useContext(PlayerContext); // Obtener el nombre del jugador desde el contexto
+  const { playerName, setRoomId, setPlayerId, selectedAvatar} = useContext(PlayerContext); // Obtener el nombre del jugador desde el contexto
   const navigate = useNavigate();
   const handleCreateRoom = async () => {
     try {
@@ -24,7 +24,8 @@ const PopupContent = ({ closePopup, image, name, description, difficulty }) => {
       setRoomId(room.data.id);
 
       const player = await createPlayer({
-        playerName: playerName,
+        playerName : playerName,
+        // avatarOption : selectedAvatar.props.src,
         room: {
           id: room.data.id,
         },
@@ -63,5 +64,3 @@ PopupContent.propTypes = {
 };
 
 export default PopupContent;
-
-
