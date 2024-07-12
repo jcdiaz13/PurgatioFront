@@ -1,9 +1,13 @@
-[
+import verdugo from "../../app/assets/gifs/executionerpixel.gif";
+import mago from "../../app/assets/gifs/Wizard.gif";
+import hada from "../../app/assets/gifs/fairy.gif";
+
+const gameMasters = [
   {
-    "name": "executioner",
-    "id": "1",
-    "description": "Descripción de executioner",
-    "img": "img",
+    id: 1,
+    img: verdugo,
+    name: "executioner",
+    description: "Esta es la dificultad más alocada, con pecados e historias más locas y castigos más severos!",
     "punishments": [
       "Comer una rodaja de limón sin hacer gestos.",
       "Enviar un mensaje vergonzoso a alguien en tu lista de contactos (previamente aprobado por los jugadores).",
@@ -19,9 +23,9 @@
   },
   {
     "name": "mage",
-    "id": "2",
-    "description": "Descripción de mage",
-    "img": "img",
+    "id": 2,
+    "description": "Esta es la dificultad estándar, podrás añadir tus pecados e historias y la gente te juzgará y castigará dependiendo de la magnitud de ellos!",
+    "img": mago,
     "punishments": [
       "Hacer 20 sentadillas.",
       "Comer una cucharadita de mostaza.",
@@ -37,9 +41,9 @@
   },
   {
     "name": "fairy",
-    "id": "3",
-    "description": "Descripción de fairy",
-    "img": "img",
+    "id": 3,
+    "description": "Esta es la dificultad más 'light', podrás añadir tus pecados e historias y seleccionarás un castigo para el pecado en las opciones que te mostramos!",
+    "img": hada,
     "punishments": [
       "Hacer 10 saltos en el lugar.",
       "Cantar una canción infantil durante 30 segundos.",
@@ -54,3 +58,5 @@
     ]
   }
 ]
+
+export default gameMasters;

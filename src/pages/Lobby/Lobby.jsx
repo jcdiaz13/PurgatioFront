@@ -56,8 +56,11 @@ const Lobby = () => {
                 key={index}
                 hoverable
                 style={{
-                  maxWidth: 50,
-                  maxHeight: 50,
+                  background: "transparent",
+                  cursor: "auto",
+                  maxWidth: 80,
+                  maxHeight: 80,
+                  marginTop: 30,
                   marginBottom: 25,
                   padding: 0,
                   border: "none",
@@ -77,6 +80,7 @@ const Lobby = () => {
                       style={{
                         alignItems: "center",
                         fontSize: 12,
+                        borderRadius: 5,
                         color: "white",
                         backgroundColor: "black",
                         padding: "4px",
@@ -90,7 +94,7 @@ const Lobby = () => {
                       {player.playerName}
                     </span>
                   }
-                  style={{ padding: 0, height: "auto", lineHeight: "unset" }}
+                  style={{ padding: 0, height: "2", lineHeight: "unset" }}
                 />
               </Card>
             );
