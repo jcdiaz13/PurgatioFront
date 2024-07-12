@@ -1,36 +1,20 @@
 import styled, { css } from 'styled-components';
-import mago from "../../app/gifs/eye.gif"
-import hada from "../../app/gifs/eye.gif"
-import verdugo from "../../app/gifs/eye.gif"
+import mago from "../../app/assets/gifs/Wizard.gif";
+import hada from "../../app/assets/gifs/fairy.gif";
+import verdugo from "../../app/assets/gifs/executionerlobby.gif";
+import lava from "../../app/assets/gifs/lava.gif";
 
 export const PlayerContainer = styled.div`
-width: 300px;
-height: auto;
-display: flex;
-flex-wrap: wrap;
-justify-content: center;
-align-items: center;
-margin: auto;
-gap: 20px;
-`
-export const Player = styled.div` 
-width: 100px;
-height: 100px;
-background-color: white;
-border: solid 1px black;
-  border-radius: 50%;
-  font-size: 15px;
-  display: flex;
-  justify-content: center;
-align-items: center;
-margin: auto;
-p{
-display: flex;
-justify-content: center;
-align-items: center;
-margin-left:15px;
-} 
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px 0px;
+  justify-items: center;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+  margin: 20px auto;
 `;
+
 export const Button = styled.button`
  font-family: Pixellari;
   font-size: 1rem;
@@ -47,10 +31,10 @@ export const Button = styled.button`
   cursor: pointer;
   letter-spacing: 1px;
   white-space: unset;
- padding: 10px;
+ padding: 8px;
   text-decoration: none;
   transition: all 0.7s cubic-bezier(0,.8,.26,.99);
-  width: 91px;
+  width: 80px;
 
 
 &:before {
@@ -156,13 +140,12 @@ export const Circle = styled.div`
 `;
 
 export const Id = styled.p`
-color:white;
-padding: 10px;
+  color: white;
+  padding: 10px;
 `;
 
 export const Container = styled.div`
   display: flex;
-  justify-content: center;
   background-attachment: fixed;
   align-items: center;
   flex-direction: column;
@@ -175,7 +158,7 @@ export const Container = styled.div`
     css`
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url("https://i.pinimg.com/564x/8d/c8/ea/8dc8ea23e5e65320278f40aef945ecb0.jpg");
+  background-image: url(${lava});
 `}
 ${({ theme }) =>
     theme.name === "mago" &&
@@ -183,14 +166,15 @@ ${({ theme }) =>
   background-repeat: no-repeat;
   background-size: cover;
   background-image: url("https://images.alphacoders.com/124/thumb-1920-1248273.png");
+  
 `}
 ${({ theme }) =>
     theme.name === "hada" &&
     css`
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-image: url("https://i.pinimg.com/originals/1b/45/63/1b456377a9dce67a7dc3630260aa7572.gif");
-`}
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-image: url("https://i.pinimg.com/originals/1b/45/63/1b456377a9dce67a7dc3630260aa7572.gif");
+    `}
 `;
 
 export const Box = styled.div`
@@ -199,19 +183,19 @@ export const Box = styled.div`
     theme.name === "verdugo" &&
     css`
      display: flex;
-  width: 225px;
-  height: 225px;
-  border: solid 4px black;
-  background-color: red;
-  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  border: solid 2px black;
+  border-radius: 5%;
   background-image: url(${verdugo});
   background-repeat: no-repeat;
   background-size: cover;
   justify-content: center;
   align-items: center;
+  backdrop-filter: blur(5px);
    `}
 
-   ${({ theme }) =>
+  ${({ theme }) =>
     theme.name === "hada" &&
     css`
     display: flex;
@@ -241,21 +225,8 @@ export const Box = styled.div`
    `}
 `;
 
-export const Popup = styled.div`
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: white;
-  padding: 20px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-  z-index: 1000;
-  
+export const StyledMetaContainer = styled.div`
+  background-color: black;
+  padding: 8px;
+  text-align: center;
 `;
-
-export const RoomId = styled.div`
-  /* font-size: 20px; */
-  /* text-align: center; */
-  background-color: white;
-  `
-

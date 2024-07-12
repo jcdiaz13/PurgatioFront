@@ -8,47 +8,29 @@ import {
   Button,
 } from "./Punishments.styles";
 import { FaArrowLeft } from "react-icons/fa";
-import sinsData from "../../app/jsons/gameMastersSins.json";
-import punishmentsData from "../../app/jsons/gameMasters.json";
 import Theme from '../../components/Theme';
 
 const Punishments = () => {
-  const [randomPunishment, setRandomPunishment] = useState("");
-  const [randomSin, setRandomSin] = useState("");
-  const [isTextareaModified, setIsTextareaModified] = useState(false);
+  const [randomSin, setRandomSin] = useState(""); // Estado para almacenar el pecado aleatorio
+  const [isTextareaModified, setIsTextareaModified] = useState(false); // Estado para controlar si el textarea ha sido modificado
   const navigate = useNavigate();
-  const suggest = `Sugerencia: ${randomPunishment}`;
 
-  useEffect(() => {
-    // Función para seleccionar una frase aleatoria
-    const getRandomSin = () => {
-      const randomCategory =
-        sinsData[Math.floor(Math.random() * sinsData.length)];
-      const randomSin =
-        randomCategory.sins[
-        Math.floor(Math.random() * randomCategory.sins.length)
-        ];
-      return randomSin;
-    };
-    setRandomSin(getRandomSin());
-  }, []);
+  // useEffect(() => {
+  //   // Función para obtener el pecado aleatorio desde la API
+  //   const fetchRandomSin = async () => {
+  //     try {
+  //       const response = await getSinsRandom(); // Llama a la función getSinsRandom para obtener el pecado
+  //       setRandomSin(response.data); // Establece el pecado obtenido en el estado local
+  //     } catch (error) {
+  //       console.error('Error al obtener el pecado:', error);
+  //       // Maneja el error según tu lógica de aplicación
+  //     }
+  //   };
 
-  useEffect(() => {
-    // Función para seleccionar un castigo aleatorio
-    const getRandomPunishment = () => {
-      const randomCategory =
-        punishmentsData[Math.floor(Math.random() * punishmentsData.length)];
-      const randomPunishment =
-        randomCategory.punishments[
-        Math.floor(Math.random() * randomCategory.punishments.length)
-        ];
-      return randomPunishment;
-    };
-    setRandomPunishment(getRandomPunishment());
-  }, []);
+  //   fetchRandomSin(); // Llama a la función para obtener el pecado aleatorio al montar el componente
+  // }, []);
 
   const handlePunishmentChange = (e) => {
-    setRandomPunishment(e.target.value);
     setIsTextareaModified(true); // Marca como modificado al cambiar el texto
   };
 
@@ -69,9 +51,8 @@ const Punishments = () => {
       <Container>
         <FormContainer>
           <h1>Castigos</h1>
-          {/* <p>{randomSin}</p> */}
-
-          <Textarea onChange={handlePunishmentChange} placeholder={suggest} />
+          <p>{randomSin}</p> {/* Mostrar el pecado obtenido desde la API */}
+          <Textarea onChange={handlePunishmentChange} />
           <ButtonContainer>
             <Button onClick={handleGoToSins}>
               {" "}

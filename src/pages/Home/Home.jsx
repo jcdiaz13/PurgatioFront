@@ -14,7 +14,7 @@ function Home() {
 
   return (
     <Container>
-      <Logo></Logo>
+      <Logo />
       <ButtonContainer>
         <Button onClick={handleCreateLobby}>Crear sala</Button>
         <Button onClick={handleJoinLobby}>Unirse a sala</Button>

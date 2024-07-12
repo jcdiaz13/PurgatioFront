@@ -12,11 +12,11 @@ export const Container = styled.div`
 `;
 
 export const BoxContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 2;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+z-index: 2;
 `;
 export const Title = styled.h1`
 justify-content: center;
@@ -48,24 +48,23 @@ display: flex;
 `;
 
 export const Popup = styled.div`
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: white;
-  padding: 20px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-  z-index: 1000;
-  
+position: fixed;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+background: white;
+padding: 20px;
+box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+z-index: 1000;
 `;
 export const Overlay = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.7);  
-  z-index: 999;
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: rgba(0, 0, 0, 0.7);  
+z-index: 999;
 `;
 
 
