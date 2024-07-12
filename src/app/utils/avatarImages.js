@@ -10,36 +10,36 @@ import Minotaur from '../assets/gifs/Minotaur.gif';
 const avatarImages = [
   {
     id: 1,
-    image: gatito,
+    name: gatito,
   },
   {
     id: 2,
-    image: undead,
+    name: undead,
   },
-    {
+  {
     id: 3,
-    image: Wizard,
+    name: Wizard,
   },
-    {
+  {
     id: 4,
-    image: fairy,
+    name: fairy,
   },
   {
     id: 5,
-    image: elf,
+    name: elf,
   },
-    {
+  {
     id: 6,
-    image: Executioner,
+    name: Executioner,
   },
-    {
+  {
     id: 7,
-    image: witch,
+    name: witch,
   },
   {
     id: 8,
-    image: Minotaur,
-  },
+    name: Minotaur,
+  }
 ];
 
 export default avatarImages;
