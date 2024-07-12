@@ -2,7 +2,7 @@ import { Title, Container, Box, BoxContainer } from "./Difficulty.styles";
 import { useContext, useState } from "react";
 import { PlayerContext } from "../../app/contexts/PlayerContext";
 import GlobalStyle from "../../app/style/createGlobal.styles";
-import verdugo from "../../app/assets/gifs/Executioner.gif";
+import verdugo from "../../app/assets/gifs/executionerpixel.gif";
 import mago from "../../app/assets/gifs/Wizard.gif";
 import hada from "../../app/assets/gifs/fairy.gif";
 import PopupContent from "./PopupContent";
