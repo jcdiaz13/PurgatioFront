@@ -4,14 +4,7 @@ import { PlayerContext } from "../../app/contexts/PlayerContext";
 import { useNavigate } from "react-router-dom";
 import { createPlayer } from "../../app/services/player";
 import { getPlayersByRoomId } from "../../app/services/player";
-import turtle from "../../app/assets/gifs/tortuga.gif";
-import pinkguy from "../../app/assets/gifs/pinkfinn.gif";
-import tronco from "../../app/assets/gifs/tronco.gif";
-import camaleon from "../../app/assets/gifs/camaleon.gif";
-import glassguy from "../../app/assets/gifs/glassguy.gif";
-import bunny from "../../app/assets/gifs/bunny.gif"
-import pig from "../../app/assets/gifs/pig.gif";
-import maskguy from "../../app/assets/gifs/maskguy.gif";
+import avatarImages from "../../app/utils/avatarImages";
 import interrogante from "../../app/assets/gifs/question.gif";
 
 import {
@@ -27,18 +20,6 @@ import {
   AvatarOption,
   Overlay,
 } from "./JoinLobby.styles";
-
-// Lista de avatares disponibles
-const avatars = [
-  <img src={turtle} />,
-  <img src={pig} />,
-  <img src={pinkguy} />,
-  <img src={bunny} />,
-  <img src={glassguy} />,
-  <img src={camaleon} />,
-  <img src={maskguy} />,
-  <img src={tronco} />
-];
 
 function JoinLobby() {
   const { playerName, setPlayerName, roomId, setRoomId, setPlayerId } =
@@ -78,8 +59,10 @@ function JoinLobby() {
     if (players.data.length < 6) {
       if (trimmedName && roomId) {
         try {
+          console.log("111111111111111111111", selectedAvatar.img);
           const player = await createPlayer({
             playerName: trimmedName,
+            avatarId: selectedAvatar.id,
             room: { id: roomId },
           });
           setPlayerId(player.data.id);
@@ -105,7 +88,11 @@ function JoinLobby() {
         <Title>Unirse a una sala</Title>
         <h2>Selecciona un avatar</h2>
         <AvatarContainer onClick={handleAvatarClick}>
-          {selectedAvatar ? selectedAvatar : <img src={interrogante} />}
+          {selectedAvatar ? (
+            <img src={selectedAvatar.img} />
+          ) : (
+            <img src={interrogante} />
+          )}
         </AvatarContainer>
         <Input
           type="text"
@@ -128,12 +115,9 @@ function JoinLobby() {
       </FormContainer>
       {isAvatarPopupOpen && (
         <AvatarPopup>
-          {avatars.map((avatar) => (
-            <AvatarOption
-              key={avatar}
-              onClick={() => handleAvatarSelect(avatar)}
-            >
-              {avatar}
+          {avatarImages.map((avatar, i) => (
+            <AvatarOption key={i} onClick={() => handleAvatarSelect(avatar)}>
+              <img src={avatar.img} />
             </AvatarOption>
           ))}
         </AvatarPopup>
