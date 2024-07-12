@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import pergamino from '../../app/assets/img/pergaminolado.png';
 
 export const Container = styled.div`
   display: flex;
@@ -25,15 +26,24 @@ export const Overlay = styled.div`
   backdrop-filter: blur(7px);
   z-index: 3;
 `;
+export const Pergamino = styled.div`
+background-image: url(${pergamino});
+width: 200px;
+height: 40px;
+background-size: cover;
+background-repeat: no-repeat;
+margin-top: 10px;
+`;
 
 export const Input = styled.input`
-  padding: 0.5rem;
-  margin-bottom: 1rem;
-  margin-top:1rem;
-  border: 1px solid black;
-  border-radius: 4px;
-  width: 50%;
-  font-family: Pixellari;
+ margin-left: 20px;
+font-family: Pixellari;
+background: transparent; border: none;
+margin-top: 12px;
+ background-color: null;
+  font-size: 1rem; 
+  width: 160px;
+  outline: none;
 `;
 
 export const Title = styled.h1`
@@ -55,13 +65,6 @@ export const FormContainer = styled.div`
     margin-top: 1.5rem;
     margin-bottom: 1.5rem;
     font-size: 1.4rem;
-  }
-  input {
-    margin: 1rem 0;
-    padding: 0.5rem;
-    width: 180px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
   }
 `;
 
@@ -153,13 +156,12 @@ export const Button = styled.button`
 export const AvatarContainer = styled.div`
   width: 200px;
   height: 200px;
-  border-radius: 5%;
-  display: flex;
+  isplay: flex;
   justify-content: center;
   align-items: center;
   font-size: 1.5rem;
   cursor: pointer;
-  border: white 2px solid;
+  border: white 1px solid;
   backdrop-filter: blur(7px);
   overflow: hidden; /* Añadido para que la imagen no se desborde */
       img {
@@ -179,7 +181,6 @@ export const AvatarPopup = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   align-items: center; 
-  border-radius: 8px;
   z-index: 3;
 `;
 
@@ -187,7 +188,6 @@ export const AvatarOption = styled.div`
   width: 140px;
   height: 140px;
   margin: 0.5rem;
-  border-radius: 5%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -198,8 +198,16 @@ export const AvatarOption = styled.div`
   &:hover {
     box-shadow: 1px 1px 10px white;
   }
-  &:active {
+  &:active {  
   transform: translateY(4px);
+  color: black;
+  border: 2px white;
+}
+
+&:active:after {
+  color: black;
+  border: 2px white;
+  box-shadow: 0 2px white;
 }
     img {
     width: 100%;

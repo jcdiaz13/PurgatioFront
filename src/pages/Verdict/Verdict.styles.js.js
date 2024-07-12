@@ -5,7 +5,6 @@ export const Cover = styled.div`
   background-color: lightpink; 
   width: 100%;
   height: 100%;
-  border-radius: 10px;
   cursor: pointer;
   box-shadow: 1px 1px 12px #000;
   display: flex;
@@ -15,7 +14,6 @@ export const Cover = styled.div`
   img {
     width: 100%;
     height: 100%;
-    border-radius: 10px; 
     position: absolute; 
     top: 0;
     left: 0;
@@ -60,11 +58,11 @@ export const Container = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  border-radius: 8px;
-  z-index: 3;
+    z-index: 3;
   background: url('https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/01073865290819.5d61d475f0072.jpg') no-repeat center center fixed;
   background-size: cover;
   height: 100vh;
+  margin: 0;
 `;
 
 export const ModalWrapper = styled.div`
@@ -83,7 +81,6 @@ export const ModalWrapper = styled.div`
 export const ModalContent = styled.div`
   background-color: #fff;
   padding: 20px;
-  border-radius: 8px;
   display: flex;
   flex-direction: column;
   align-items: center; 

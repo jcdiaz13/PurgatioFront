@@ -38,9 +38,8 @@ display: flex;
   margin-bottom: 20px;
   cursor: pointer;
    img{
-    border: solid 4px black;
+    border: solid 2px black;
     background-color: black;
-  border-radius: 5%;
     width: 200px;
     height: 200px;
     object-fit: cover;
