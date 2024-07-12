@@ -76,11 +76,6 @@ export const GlobalStyle = createGlobalStyle`
     line-height: 1.6;
     //background-color: #fff;
     color: #333;
-    background-color: #000 !important;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
   }
 `;
 
