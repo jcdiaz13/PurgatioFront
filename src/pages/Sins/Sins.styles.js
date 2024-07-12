@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
-import pergamino from '../../app/assets/img/pergamino.png'
+import pergamino from '../../app/assets/img/pergamino.png';
+import lava from '../../app/assets/gifs/lava.gif'
 
 
 export const Container = styled.body`
@@ -14,7 +15,7 @@ export const Container = styled.body`
     css`
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/3450511a-482f-43cd-ad8c-d2e242fafe46/desf83r-9d3c0738-688d-4c1e-95ae-6a72138ce896.jpg/v1/fit/w_828,h_1070,q_70,strp/blood_and_doom_hellish_background_by_g_hamm_desf83r-414w-2x.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTY1NCIsInBhdGgiOiJcL2ZcLzM0NTA1MTFhLTQ4MmYtNDNjZC1hZDhjLWQyZTI0MmZhZmU0NlwvZGVzZjgzci05ZDNjMDczOC02ODhkLTRjMWUtOTVhZS02YTcyMTM4Y2U4OTYuanBnIiwid2lkdGgiOiI8PTEyODAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.F2aUXRuMyaSv3kZyO5iaOETG7k7qTwOE9zt1nhXH-eU");
+  background-image: url(${lava});
 `}
 ${({ theme }) =>
     theme.name === "mago" &&
@@ -42,7 +43,7 @@ export const Title = styled.h1`
 export const SubTitle = styled.p`
 font-size: 1.2rem;
 margin: 0;
-margin-bottom: 20px;
+margin-bottom: 10px;
 
 ;
 `
@@ -69,8 +70,10 @@ export const Textarea = styled.textarea`
   margin-bottom: 1rem;
   border-radius: 4px;
   font-size: 1rem;
-  width: 190px; /* Ajustado para que ocupe todo el ancho disponible */
+  height: 180px;
+  width: 170px; /* Ajustado para que ocupe todo el ancho disponible */
   border: none;
+  resize: none;
     outline: none;
     background-image: url(${pergamino});
     background-position: center;
@@ -78,7 +81,7 @@ export const Textarea = styled.textarea`
 
 export const ButtonContainer = styled.div`
 position: absolute;
-top: 500px;
+top: 550px;
   display: flex;
   justify-content: center;
   width: 100%;
