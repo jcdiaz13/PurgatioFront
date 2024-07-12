@@ -10,10 +10,7 @@ export const GlobalStyle = createGlobalStyle`
      v2.0 | 20110126
      License: none (public domain)
   */
-     @font-face {
-    font-family: Goddes;
-    src: url(${Goddes});
-}
+  
 @font-face {
     font-family: Title;
     src: url(${Title});

@@ -11,6 +11,5 @@ export const createSin = async (playerId, { sin }) => {
 //READ
 export const getPlayersByRoomId = async (roomId) => await instance.get(`player/room/${roomId}`);
 
-export const getSinsToEvaluate = async () => await instance.get('/sins');
+export const getPlayersWithoutSin = async (roomId) => await instance.get(`player/sinners/${roomId}`);
 
-export const getAssignedStories = async (roomId) => await instance.get(`/player/asignar-historias?roomId=${roomId}`);

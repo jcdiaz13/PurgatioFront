@@ -7,7 +7,28 @@ import Theme from '../../components/Theme';
 import { createSin } from '../../app/services/player';
 import { PlayerContext } from '../../app/contexts/PlayerContext'; // Ajusta la ruta según donde tengas PlayerContext
 
+/* useEffect(() => {
 
+    setRandomSin(getRandomSin());
+    // getPlayersWithoutSin(roomId).then((res)=>{
+    //   console.log(res.data.length)
+    // })
+    const timeoutId = setInterval(() => {
+      if(0 == getPlayersWithoutSin(roomId).then((res)=>{
+        res.data.length
+      })){
+        navigate('/punishments');
+      }
+      }, 2000);
+      return () => clearTimeout(timeoutId);
+  }, []);
+
+// Función para seleccionar una frase aleatoria
+const getRandomSin = () => {
+  const randomCategory = sinsData[Math.floor(Math.random() * sinsData.length)];
+  const randomSin = randomCategory.sins[Math.floor(Math.random() * randomCategory.sins.length)];
+  return randomSin;
+}; */
 
 
 
@@ -23,12 +44,12 @@ function Sins() {
 
   useEffect(() => {
     // Función para seleccionar una frase aleatoria
+
     const getRandomSin = () => {
       const randomCategory = sinsData[Math.floor(Math.random() * sinsData.length)];
       const randomSin = randomCategory.sins[Math.floor(Math.random() * randomCategory.sins.length)];
       return randomSin;
     };
-
     setRandomSin(getRandomSin());
   }, []);
 

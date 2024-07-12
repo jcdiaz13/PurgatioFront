@@ -8,14 +8,38 @@ import witch from '../assets/gifs/witch.gif';
 import Minotaur from '../assets/gifs/Minotaur.gif';
 
 const avatarImages = [
-  gatito,
-  undead,
-  Wizard,
-  fairy,
-  elf,
-  Executioner,
-  witch,
-  Minotaur
+  {
+    id: 1,
+    image: gatito,
+  },
+  {
+    id: 2,
+    image: undead,
+  },
+    {
+    id: 3,
+    image: Wizard,
+  },
+    {
+    id: 4,
+    image: fairy,
+  },
+  {
+    id: 5,
+    image: elf,
+  },
+    {
+    id: 6,
+    image: Executioner,
+  },
+    {
+    id: 7,
+    image: witch,
+  },
+  {
+    id: 8,
+    image: Minotaur,
+  },
 ];
 
 export default avatarImages;
