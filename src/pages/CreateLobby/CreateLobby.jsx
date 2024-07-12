@@ -24,6 +24,7 @@ import {
   AvatarOption,
   Overlay,
   Input,
+  Pergamino,
 } from "./CreateLobby.styles";
 
 // Lista de avatares disponibles
@@ -87,12 +88,14 @@ function CreateLobby() {
         <AvatarContainer onClick={handleAvatarClick}>
           {selectedAvatar ? selectedAvatar : <img src={interrogante} />}
         </AvatarContainer>
+        <Pergamino>
         <Input
           type="text"
           value={playerName}
           onChange={handleInputChange}
           placeholder="Nombre"
         />
+        </Pergamino>
         <ButtonContainer>
           <StyledLink to="/">
             <Button>Volver</Button>

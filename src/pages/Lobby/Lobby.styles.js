@@ -71,7 +71,7 @@ export const Button = styled.button`
   ${({ theme }) =>
     theme.name === "verdugo" &&
     css`
-   background-color:#8B0000!important;
+   background-color:#FFD700!important;
 `}
 ${({ theme }) =>
     theme.name === "mago" &&
@@ -81,7 +81,7 @@ ${({ theme }) =>
 ${({ theme }) =>
     theme.name === "hada" &&
     css`
-   background-color:#FF69B4!important;
+   background-color:#228B22!important;
 `}
   box-shadow: 0 -2px rgb(0 0 0 / 50%) inset, 0 2px rgb(255 255 255 / 20%) inset, -2px 0 rgb(255 255 255 / 20%) inset, 2px 0 rgb(0 0 0 / 50%) inset;
 }
@@ -178,50 +178,32 @@ ${({ theme }) =>
 `;
 
 export const Box = styled.div`
+display: flex;
  margin-top: 20px;
-  ${({ theme }) =>
-    theme.name === "verdugo" &&
-    css`
-     display: flex;
-  width: 200px;
-  height: 200px;
-  border: solid 2px black;
-  border-radius: 5%;
-  background-image: url(${verdugo});
-  background-repeat: no-repeat;
+ background-repeat: no-repeat;
   background-size: cover;
   justify-content: center;
   align-items: center;
   backdrop-filter: blur(5px);
+  width: 200px;
+  height: 200px;
+  border: solid 2px black;
+  ${({ theme }) =>
+    theme.name === "verdugo" &&
+    css`
+ 
+  background-image: url(${verdugo});
    `}
 
   ${({ theme }) =>
     theme.name === "hada" &&
     css`
-    display: flex;
-  width: 225px;
-  height: 225px;
-  border: solid 4px black;
-  background-color: pink;
-  border-radius: 50%;
   background-image: url(${hada});
-  background-size: cover;
-  justify-content: center;
-  align-items: center;
    `}
    ${({ theme }) =>
     theme.name === "mago" &&
     css`
-      display: flex;
-  width: 225px;
-  height: 225px;
-  border: solid 4px black;
-  background-color: blue;
-  border-radius: 50%;
   background-image: url(${mago});
-  background-size: cover;
-  justify-content: center;
-  align-items: center;
    `}
 `;
 

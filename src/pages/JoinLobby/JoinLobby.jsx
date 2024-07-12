@@ -26,6 +26,7 @@ import {
   AvatarPopup,
   AvatarOption,
   Overlay,
+  Pergamino,
 } from "./JoinLobby.styles";
 
 // Lista de avatares disponibles
@@ -107,18 +108,21 @@ function JoinLobby() {
         <AvatarContainer onClick={handleAvatarClick}>
           {selectedAvatar ? selectedAvatar : <img src={interrogante} />}
         </AvatarContainer>
+        <Pergamino>
         <Input
           type="text"
           value={playerName}
           onChange={handleNameChange}
           placeholder="Nombre"
         />
+        </Pergamino>
+        <Pergamino>
         <Input
           type="text"
           value={roomId}
           onChange={handleRoomIdChange}
           placeholder="Número de sala"
-        />
+        /></Pergamino>
         <ButtonContainer>
           <StyledLink to="/">
             <Button>Volver</Button>

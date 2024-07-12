@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import pergamino from '../../app/assets/img/pergaminolado.png'
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -45,18 +46,28 @@ export const FormContainer = styled.div`
     font-size: 1.4rem;
     margin-top: 1.5rem;
     margin-bottom: 1.5rem;
-  }
-  
+  }  
+`;
+
+export const Pergamino = styled.div`
+background-image: url(${pergamino});
+width: 200px;
+height: 40px;
+background-size: cover;
+background-repeat: no-repeat;
+margin-top: 10px;
 `;
 
 export const Input = styled.input`
-  padding: 0.5rem;
+ margin-top: 12px;
+ margin-left: 20px;
 font-family: Pixellari;
-  margin-top:1rem;
-  border: 1px solid black;
-  border-radius: 4px;
-  width: 180px;
-  font-size: 1rem;
+background: transparent;
+  border: none;  
+ background-color: null;
+  font-size: 1rem; 
+  width: 160px;
+  outline: none;
 `;
 
 export const ButtonContainer = styled.div`
@@ -78,7 +89,6 @@ export const StyledLink = styled(Link)`
 export const Button = styled.button`
   font-family: Pixellari;
   font-size: 1rem;
-  background-color: black;
   color: #fff;
   text-shadow: 0 2px 0 rgb(0 0 0 / 25%);
   display: inline-flex;
@@ -151,7 +161,6 @@ export const Button = styled.button`
 export const AvatarContainer = styled.div`
   width: 200px;
   height: 200px;
-  border-radius: 5%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -159,9 +168,7 @@ export const AvatarContainer = styled.div`
   backdrop-filter: blur(7px);
   cursor: pointer;
   overflow: hidden; /* Añadido para que la imagen no se desborde */
-
-
-      img {
+ img {
     width: 100%;
     height: 100%;
     object-fit: cover; /* Asegura que la imagen se recorte adecuadamente dentro del contenedor */
@@ -185,7 +192,6 @@ export const AvatarOption = styled.div`
  width: 140px;
   height: 140px;
   margin: 0.5rem;
-  border-radius: 5%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -203,6 +209,5 @@ export const AvatarOption = styled.div`
     width: 100%;
     height: 100%;
     object-fit: cover; /* Asegura que la imagen se recorte adecuadamente dentro del contenedor */
-    border-radius: 5%; /* Hace que la imagen también sea redonda */
   }
 `;

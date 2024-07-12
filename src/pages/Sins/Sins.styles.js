@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import pergamino from '../../app/assets/img/pergamino.png'
 
 
 export const Container = styled.body`
@@ -33,13 +34,13 @@ ${({ theme }) =>
 
 
 export const Title = styled.h1`
-  font-size: 3rem;
-  color: white;
+  font-size: 2.5rem;
+ text-decoration: underline;
   margin-bottom: 2rem;
 `;
 
 export const SubTitle = styled.p`
-color: red;
+font-size: 1.2rem;
 margin: 0;
 margin-bottom: 20px;
 
@@ -50,28 +51,34 @@ export const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 80%;
+  width: 350px;
+  height: 500px;
   max-width: 800px;
-  padding: 2rem;
+  padding-top:5px;
  /* Cambia el color de fondo del modal */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-  border-radius: 8px;
-  border: 1px radius  #ccc;
+  background-image: url(${pergamino});
+  background-image: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+  box-shadow: 30px black;
 `;
 
 
 export const Textarea = styled.textarea`
-  padding: 1.5rem; /* Ajustado el padding para que sea más proporcionado */
+  padding: 1rem; /* Ajustado el padding para que sea más proporcionado */
   margin-bottom: 1rem;
-  border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 1rem;
-  width: 100%; /* Ajustado para que ocupe todo el ancho disponible */
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
+  width: 190px; /* Ajustado para que ocupe todo el ancho disponible */
+  border: none;
+    outline: none;
+    background-image: url(${pergamino});
+    background-position: center;
 `;
 
 export const ButtonContainer = styled.div`
+position: absolute;
+top: 500px;
   display: flex;
   justify-content: center;
   width: 100%;
@@ -83,16 +90,17 @@ export const Button = styled.button`
   padding: 0.5rem 1rem;
   margin: 0.5rem;
   border: none;
-  border-radius: 4px;
+  border-radius: 2px;
   font-size: 1rem;
-  background-color: #007bff;
-  color: white;
+  background-color: transparent;
+
+  color: #743c09;
   cursor: pointer;
-  width: 130px;
+  width: 70px;
   text-align: center;
 
   &:hover {
-    background-color: #0056b3;
+    background-color: white;
   }
 `;
 
