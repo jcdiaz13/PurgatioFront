@@ -39,9 +39,6 @@ function Sins() {
   const suggest = `Sugerencia: ${randomSin}`;
   const { playerId } = useContext(PlayerContext);
 
-
-
-
   useEffect(() => {
     // Función para seleccionar una frase aleatoria
 

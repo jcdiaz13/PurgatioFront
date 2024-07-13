@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { PlayerContext } from "../../app/contexts/PlayerContext";
 import { Link, useNavigate } from "react-router-dom";
 import {
   Container,
@@ -9,10 +10,13 @@ import {
 } from "./Punishments.styles";
 import { FaArrowLeft } from "react-icons/fa";
 import Theme from '../../components/Theme';
+import { getSins } from "../../app/services/player";
 
 const Punishments = () => {
+  const { roomId } = useContext(PlayerContext);
   const [randomSin, setRandomSin] = useState(""); // Estado para almacenar el pecado aleatorio
   const [isTextareaModified, setIsTextareaModified] = useState(false); // Estado para controlar si el textarea ha sido modificado
+  const [sins, setSins] = useState([]); //Estado para manejar los pecados
   const navigate = useNavigate();
 
   // useEffect(() => {
@@ -30,6 +34,21 @@ const Punishments = () => {
   //   fetchRandomSin(); // Llama a la función para obtener el pecado aleatorio al montar el componente
   // }, []);
 
+  useEffect(() => {
+    if (roomId) {
+      showSins();
+    }
+  }, [roomId]);
+
+  const showSins = async () => {
+    try {
+      const response = await getSins(roomId);
+      setSins(response.data);
+      console.log(response.data , "Data from getSins");
+    } catch (error) {
+      console.error("Error mostrando los pecados:", error);
+    }
+  };
   const handlePunishmentChange = (e) => {
     setIsTextareaModified(true); // Marca como modificado al cambiar el texto
   };
