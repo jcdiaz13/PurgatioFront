@@ -28,7 +28,7 @@ const Lobby = () => {
     try {
       const response = await getPlayersByRoomId(roomId);
       setPlayers(response.data);
-      // console.log(response.data);
+      console.log(response.data);
     } catch (error) {
       console.error("Error showing players:", error);
     }
@@ -50,7 +50,7 @@ const Lobby = () => {
               //Almacenamos el objeto, cuya ID del array coincide con la ID de la base de datos(Para así luego acceder a la imagen de este objeto)
               (avatarImage) => avatarImage.id == avatarId
             );
-            // console.log("11111111111111111", imgObj);
+            console.log("11111111111111111", imgObj);
             return (
               <Card
                 key={index}
