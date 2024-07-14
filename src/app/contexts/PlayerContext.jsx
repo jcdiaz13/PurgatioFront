@@ -8,11 +8,22 @@ export const PlayerProvider = ({ children }) => {
   const [selectedAvatar, setSelectedAvatar] = useState(null);
   const [roomId, setRoomId] = useState(null);
   const [admin, setAdmin] = useState(false);
-  const [players, setPlayers] = useState([])
+  const [players, setPlayers] = useState([]);
   const [playerId, setPlayerId] = useState(null);
+  const [sins, setSins] = useState(null);
+  const [punishments, setPunishments] = useState([]);
 
   return (
-    <PlayerContext.Provider value={{ playerName, setPlayerName, roomId, setRoomId, admin, setAdmin, players, setPlayers, selectedAvatar, setSelectedAvatar, playerId, setPlayerId }}>
+    <PlayerContext.Provider value={{
+      playerName, setPlayerName,
+      roomId, setRoomId,
+      admin, setAdmin,
+      players, setPlayers,
+      selectedAvatar, setSelectedAvatar,
+      playerId, setPlayerId,
+      sins, setSins,
+      punishments, setPunishments
+    }}>
       {children}
     </PlayerContext.Provider>
   );

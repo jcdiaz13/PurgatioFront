@@ -1,37 +1,29 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import {
-  Container,
-  FormContainer,
-  Textarea,
-  ButtonContainer,
-  Button,
-} from "./Punishments.styles";
+import { Container, FormContainer, Textarea, ButtonContainer, Button } from "./Punishments.styles";
 import { FaArrowLeft } from "react-icons/fa";
 import Theme from '../../components/Theme';
+import { PlayerContext } from '../../app/contexts/PlayerContext';
 
 const Punishments = () => {
-  const [randomSin, setRandomSin] = useState(""); // Estado para almacenar el pecado aleatorio
-  const [isTextareaModified, setIsTextareaModified] = useState(false); // Estado para controlar si el textarea ha sido modificado
+  const [randomSin, setRandomSin] = useState("");
+  const [isTextareaModified, setIsTextareaModified] = useState(false);
   const navigate = useNavigate();
+  const { setPunishments } = useContext(PlayerContext);
 
-  // useEffect(() => {
-  //   // Función para obtener el pecado aleatorio desde la API
-  //   const fetchRandomSin = async () => {
-  //     try {
-  //       const response = await getSinsRandom(); // Llama a la función getSinsRandom para obtener el pecado
-  //       setRandomSin(response.data); // Establece el pecado obtenido en el estado local
-  //     } catch (error) {
-  //       console.error('Error al obtener el pecado:', error);
-  //       // Maneja el error según tu lógica de aplicación
-  //     }
-  //   };
+  useEffect(() => {
+    // Simulate fetching a random sin
+    const fetchRandomSin = async () => {
+      const simulatedSin = "Simulated sin from API";
+      setRandomSin(simulatedSin);
+    };
 
-  //   fetchRandomSin(); // Llama a la función para obtener el pecado aleatorio al montar el componente
-  // }, []);
+    fetchRandomSin();
+  }, []);
 
   const handlePunishmentChange = (e) => {
-    setIsTextareaModified(true); // Marca como modificado al cambiar el texto
+    setIsTextareaModified(true);
+    setPunishments(prev => [...prev, e.target.value]); // Guardar el castigo en el contexto
   };
 
   const handleGoToSins = () => {
@@ -43,7 +35,7 @@ const Punishments = () => {
       alert("Por favor, modifique el texto antes de continuar.");
       return;
     }
-    navigate("/");
+    navigate("/verdict");
   };
 
   return (
@@ -51,16 +43,11 @@ const Punishments = () => {
       <Container>
         <FormContainer>
           <h1>Castigos</h1>
-          <p>{randomSin}</p> {/* Mostrar el pecado obtenido desde la API */}
+          <p>{randomSin}</p>
           <Textarea onChange={handlePunishmentChange} />
           <ButtonContainer>
-            <Button onClick={handleGoToSins}>
-              {" "}
-              <FaArrowLeft />
-            </Button>
-            <Link to="/verdict">
-              <Button>Enviar</Button>
-            </Link>
+            <Button onClick={handleGoToSins}><FaArrowLeft /></Button>
+            <Link to="/verdict"><Button>Enviar</Button></Link>
           </ButtonContainer>
         </FormContainer>
       </Container>
