@@ -58,7 +58,7 @@ const Punishments = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [roomId, playerId]);
 
-  //ESTA FUNCION DEVUELVE EL PRIMER OBJETO QUE CUMPLA CON LA CONDICION DE QUE EL AUTOR ES EL JUGADOR, Y ALMACENAS EL PECADO DEL DESTINATAIO EN EL ESTADO .
+
   const ShowSins = async () => {
     const response = await AssignSins(roomId);
     console.log(response, 33333);
@@ -92,7 +92,7 @@ const Punishments = () => {
       <Container>
         <FormContainer>
           <h1>Pecado</h1>
-          {assignSin} {/* ESTADO QUE CONTIENE EL PECADO DEL DESTINATARIO */}
+          {assignSin}
           <h1>Castigos</h1>
           {/* <p>{randomSin}</p> */}
           <Textarea />

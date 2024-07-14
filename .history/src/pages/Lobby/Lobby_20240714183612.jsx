@@ -36,20 +36,19 @@ const Lobby = () => {
     }
   };
 
-  //De momento no esta funcional, ya que falta hacer un useEffect. De momento solo el admin puede empezar la partida.
-  /*   const handleStartGame = () => {
-      // Obtener el ID del jugador actual desde el playerContext
-      const currentPlayerId = playerId;
-      // Obtener el ID del primer jugador (admin) en la lista de jugadores
-      const admin = players.length > 0 ? players[0].id : null;
-      // Verifica si el jugador actual es el mismo que el primer jugador, osea el admin
-      if (currentPlayerId === admin) {
-        setGameStarted(true);
-        navigate("/sins");
-      } else {
-        alert("Solo el creador de la sala puede iniciar la partida.");
-      }
-    }; */
+  const handleStartGame = () => {
+    // Obtener el ID del jugador actual desde el playerContext
+    const currentPlayerId = playerId;
+    // Obtener el ID del primer jugador (admin) en la lista de jugadores
+    const admin = players.length > 0 ? players[0].id : null;
+    // Verifica si el jugador actual es el mismo que el primer jugador, osea el admin
+    if (currentPlayerId === admin) {
+      setGameStarted(true);
+      navigate("/sins");
+    } else {
+      alert("Solo el creador de la sala puede iniciar la partida.");
+    }
+  };
 
 
   return (
@@ -57,11 +56,10 @@ const Lobby = () => {
       <Container>
         <Box />
         <Id>Room ID: {roomId}</Id>
-        {/* esto es para la funcion de handleStartGame */}
-        {/* <Button onClick={handleStartGame}>START</Button> */}
-        <Link to="/sins">
+        <Button onClick={handleStartGame}>START</Button>
+        {/* <Link to="/sins">
           <Button>START</Button>
-        </Link>
+        </Link> */}
         <PlayerContainer>
           {players?.map((player, index) => {
             const avatarId = player.avatarId; //Esta es la ID del avatar asignada en la base de datos

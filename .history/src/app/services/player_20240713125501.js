@@ -8,12 +8,12 @@ export const createSin = async (playerId, { sin }) => await instance.post(`playe
 //READ
 export const getPlayersByRoomId = async (roomId) => await instance.get(`player/room/${roomId}`);
 
-export const getPlayersWithoutSin = async (roomId) => await instance.get(`player/nosin/${roomId}`);
+export const getPlayersWithoutSin = async (roomId) => await instance.get(`player/sinners/${roomId}`);
 
 export const AssignSins = async (roomId) => {
     console.log(roomId, 11111);
     const data = await instance.get(`player/assign/${roomId}`);
     console.log("22222");
-    return data.data;
+    return data;
 }
 

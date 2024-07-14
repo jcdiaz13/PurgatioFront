@@ -35,7 +35,7 @@ function Sins() {
   }, [roomId, navigate]);
 
   // useEffect(() => {
-  // EL PROBLEMA POR EL CUAL NO FUNCIONA ES QUE ESTAS HACIENDO LA COMPARACION ENTRE EL 0 Y LA PROMESA, TENDRIAS QUE HACER LA COMPARACION ENTRE EL 0 RES.DATA.LENGTH
+  // EL PROBLEMA POR EL CUAL NO FUNCIONA ES QUE ESTAS COMPARA
   //   setRandomSin(getRandomSin());
   //   // getPlayersWithoutSin(roomId).then((res)=>{
   //   //   console.log(res.data.length)

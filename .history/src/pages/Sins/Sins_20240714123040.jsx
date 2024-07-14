@@ -34,41 +34,25 @@ function Sins() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [roomId, navigate]);
 
-  // useEffect(() => {
-  // EL PROBLEMA POR EL CUAL NO FUNCIONA ES QUE ESTAS HACIENDO LA COMPARACION ENTRE EL 0 Y LA PROMESA, TENDRIAS QUE HACER LA COMPARACION ENTRE EL 0 RES.DATA.LENGTH
-  //   setRandomSin(getRandomSin());
-  //   // getPlayersWithoutSin(roomId).then((res)=>{
-  //   //   console.log(res.data.length)
-  //   // })
-  //   const timeoutId = setInterval(() => {
-  //     if (0 == getPlayersWithoutSin(roomId).then((res) => {
-  //       res.data.length
-  //     })) {
-  //       navigate('/punishments');
-  //     }
-  //   }, 2000);
-  //   return () => clearTimeout(timeoutId);
-  // }, []);
 
-  //Esto de momento lo comento, pero no borrar ya para los otros modos que no sea el verdugo se va a tener que usar
   /*   // Función para seleccionar una frase aleatoria
-      const getRandomSin = () => {
-        const randomCategory = sinsData[Math.floor(Math.random() * sinsData.length)];
-        const randomSin = randomCategory.sins[Math.floor(Math.random() * randomCategory.sins.length)];
-        return randomSin;
-      };
-  
-    useEffect(() => {
-      // Función para seleccionar una frase aleatoria
-  
-      const getRandomSin = () => {
-        const randomCategory = sinsData[Math.floor(Math.random() * sinsData.length)];
-        const randomSin = randomCategory.sins[Math.floor(Math.random() * randomCategory.sins.length)];
-        return randomSin;
-      };
-      setRandomSin(getRandomSin());
-    }, []);
-   */
+    const getRandomSin = () => {
+      const randomCategory = sinsData[Math.floor(Math.random() * sinsData.length)];
+      const randomSin = randomCategory.sins[Math.floor(Math.random() * randomCategory.sins.length)];
+      return randomSin;
+    };  */
+
+  /* useEffect(() => {
+    // Función para seleccionar una frase aleatoria
+
+    const getRandomSin = () => {
+      const randomCategory = sinsData[Math.floor(Math.random() * sinsData.length)];
+      const randomSin = randomCategory.sins[Math.floor(Math.random() * randomCategory.sins.length)];
+      return randomSin;
+    };
+    setRandomSin(getRandomSin());
+  }, []); */
+
   const handleInputChange = (e) => {
     // setRandomSin(e.target.value);
     setText(e.target.value);
@@ -85,6 +69,7 @@ function Sins() {
     try {
       console.log(roomId, text)
       await createSin(playerId, { sin: text });
+      navigate('/punishments');
     } catch (error) {
       console.error("Error al crear el pecado:", error);
     }

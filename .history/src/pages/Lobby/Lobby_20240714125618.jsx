@@ -6,13 +6,11 @@ import Theme from "../../components/Theme";
 import { PlayerContext } from "../../app/contexts/PlayerContext";
 import { getPlayersByRoomId } from "../../app/services/player";
 import avatarImages from "../../app/utils/avatarImages";
-import { useNavigate } from "react-router-dom";
 
 const { Meta } = Card;
 
 const Lobby = () => {
-  const { roomId, players, setPlayers, playerId, gameStarted, setGameStarted } = useContext(PlayerContext);
-  const navigate = useNavigate();
+  const { roomId, players, setPlayers, gameStarted, setGameStarted } = useContext(PlayerContext);
 
   useEffect(() => {
     if (roomId) {
@@ -36,20 +34,11 @@ const Lobby = () => {
     }
   };
 
-  //De momento no esta funcional, ya que falta hacer un useEffect. De momento solo el admin puede empezar la partida.
-  /*   const handleStartGame = () => {
-      // Obtener el ID del jugador actual desde el playerContext
-      const currentPlayerId = playerId;
-      // Obtener el ID del primer jugador (admin) en la lista de jugadores
-      const admin = players.length > 0 ? players[0].id : null;
-      // Verifica si el jugador actual es el mismo que el primer jugador, osea el admin
-      if (currentPlayerId === admin) {
-        setGameStarted(true);
-        navigate("/sins");
-      } else {
-        alert("Solo el creador de la sala puede iniciar la partida.");
-      }
-    }; */
+  const handleStartGame = () => {
+    // Aquí se debe verificar si el jugador actual es el creador de la sala antes de iniciar la partida
+    // Puedes agregar lógica adicional para validar la autorización para iniciar la partida
+    setGameStarted(true); // Cambia el estado para indicar que la partida ha comenzado
+  };
 
 
   return (
@@ -57,8 +46,9 @@ const Lobby = () => {
       <Container>
         <Box />
         <Id>Room ID: {roomId}</Id>
-        {/* esto es para la funcion de handleStartGame */}
-        {/* <Button onClick={handleStartGame}>START</Button> */}
+        {/* {!gameStarted && (
+          <Button onClick={handleStartGame}>START</Button>
+        )} */}
         <Link to="/sins">
           <Button>START</Button>
         </Link>

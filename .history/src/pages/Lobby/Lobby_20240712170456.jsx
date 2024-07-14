@@ -6,13 +6,11 @@ import Theme from "../../components/Theme";
 import { PlayerContext } from "../../app/contexts/PlayerContext";
 import { getPlayersByRoomId } from "../../app/services/player";
 import avatarImages from "../../app/utils/avatarImages";
-import { useNavigate } from "react-router-dom";
 
 const { Meta } = Card;
 
 const Lobby = () => {
-  const { roomId, players, setPlayers, playerId, gameStarted, setGameStarted } = useContext(PlayerContext);
-  const navigate = useNavigate();
+  const { roomId, players, setPlayers } = useContext(PlayerContext);
 
   useEffect(() => {
     if (roomId) {
@@ -36,35 +34,18 @@ const Lobby = () => {
     }
   };
 
-  //De momento no esta funcional, ya que falta hacer un useEffect. De momento solo el admin puede empezar la partida.
-  /*   const handleStartGame = () => {
-      // Obtener el ID del jugador actual desde el playerContext
-      const currentPlayerId = playerId;
-      // Obtener el ID del primer jugador (admin) en la lista de jugadores
-      const admin = players.length > 0 ? players[0].id : null;
-      // Verifica si el jugador actual es el mismo que el primer jugador, osea el admin
-      if (currentPlayerId === admin) {
-        setGameStarted(true);
-        navigate("/sins");
-      } else {
-        alert("Solo el creador de la sala puede iniciar la partida.");
-      }
-    }; */
-
-
   return (
     <Theme>
       <Container>
         <Box />
         <Id>Room ID: {roomId}</Id>
-        {/* esto es para la funcion de handleStartGame */}
-        {/* <Button onClick={handleStartGame}>START</Button> */}
         <Link to="/sins">
           <Button>START</Button>
         </Link>
         <PlayerContainer>
           {players?.map((player, index) => {
             const avatarId = player.avatarId; //Esta es la ID del avatar asignada en la base de datos
+
             const imgObj = avatarImages.find(
               //Almacenamos el objeto, cuya ID del array coincide con la ID de la base de datos(Para así luego acceder a la imagen de este objeto)
               (avatarImage) => avatarImage.id == avatarId

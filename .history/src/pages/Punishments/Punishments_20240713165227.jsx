@@ -21,53 +21,47 @@ const Punishments = () => {
   const navigate = useNavigate();
   // const suggest = `Sugerencia: ${randomPunishment}`;
   const { roomId, playerId } = useContext(PlayerContext);
-  const [assignSin, setAssignSin] = useState("");
 
 
-  /*  ESTO LO COMENTO, PERO PARA LOS OTROS MODOS HABRA QUE USARLO
-      useEffect(() => {
-      // Función para seleccionar una frase aleatoria
-      const getRandomSin = () => {
-        const randomCategory =
-          sinsData[Math.floor(Math.random() * sinsData.length)];
-        const randomSin =
-          randomCategory.sins[
-          Math.floor(Math.random() * randomCategory.sins.length)
-          ];
-        return randomSin;
-      };
-      setRandomSin(getRandomSin());
-    }, []);
-  
-    useEffect(() => {
-      // Función para seleccionar un castigo aleatorio
-      const getRandomPunishment = () => {
-        const randomCategory =
-          punishmentsData[Math.floor(Math.random() * punishmentsData.length)];
-        const randomPunishment =
-          randomCategory.punishments[
-          Math.floor(Math.random() * randomCategory.punishments.length)
-          ];
-        return randomPunishment;
-      };
-      setRandomPunishment(getRandomPunishment());
-    }, []); */
+  // useEffect(() => {
+  //   // Función para seleccionar una frase aleatoria
+  //   const getRandomSin = () => {
+  //     const randomCategory =
+  //       sinsData[Math.floor(Math.random() * sinsData.length)];
+  //     const randomSin =
+  //       randomCategory.sins[
+  //       Math.floor(Math.random() * randomCategory.sins.length)
+  //       ];
+  //     return randomSin;
+  //   };
+  //   setRandomSin(getRandomSin());
+  // }, []);
+
+  // useEffect(() => {
+  //   // Función para seleccionar un castigo aleatorio
+  //   const getRandomPunishment = () => {
+  //     const randomCategory =
+  //       punishmentsData[Math.floor(Math.random() * punishmentsData.length)];
+  //     const randomPunishment =
+  //       randomCategory.punishments[
+  //       Math.floor(Math.random() * randomCategory.punishments.length)
+  //       ];
+  //     return randomPunishment;
+  //   };
+  //   setRandomPunishment(getRandomPunishment());
+  // }, []);
 
   useEffect(() => {
     ShowSins();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [roomId, playerId]);
 
-  //ESTA FUNCION DEVUELVE EL PRIMER OBJETO QUE CUMPLA CON LA CONDICION DE QUE EL AUTOR ES EL JUGADOR, Y ALMACENAS EL PECADO DEL DESTINATAIO EN EL ESTADO .
   const ShowSins = async () => {
     const response = await AssignSins(roomId);
     console.log(response, 33333);
     const playerAssignment = response.find(
       assignment => assignment.autor.id === playerId
     );
-    if (playerAssignment) {
-      setAssignSin(playerAssignment.destinatario.sin);
-    }
   };
 
   // const handlePunishmentChange = (e) => {
@@ -92,7 +86,6 @@ const Punishments = () => {
       <Container>
         <FormContainer>
           <h1>Pecado</h1>
-          {assignSin} {/* ESTADO QUE CONTIENE EL PECADO DEL DESTINATARIO */}
           <h1>Castigos</h1>
           {/* <p>{randomSin}</p> */}
           <Textarea />
