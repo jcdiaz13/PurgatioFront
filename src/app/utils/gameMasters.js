@@ -1,6 +1,5 @@
 import verdugo from "../../app/assets/gifs/reaper.gif";
-import mago from "../../app/assets/gifs/ice-cream.gif";
-import hada from "../../app/assets/gifs/fairy.gif";
+import helado from "../../app/assets/gifs/ice-cream.gif";
 
 const gameMasters = [
   {
@@ -22,10 +21,10 @@ const gameMasters = [
     ]
   },
   {
-    "name": "MAGO",
+    "name": "HELADITO",
     "id": 2,
     "description": "Esta es la dificultad estándar, podrás añadir tus pecados e historias y la gente te juzgará y castigará dependiendo de la magnitud de ellos!",
-    "img": mago,
+    "img": helado,
     "punishments": [
       "Hacer 20 sentadillas.",
       "Comer una cucharadita de mostaza.",
