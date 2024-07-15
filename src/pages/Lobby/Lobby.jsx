@@ -1,7 +1,14 @@
 import { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Card } from "antd";
-import { Box, Container, PlayerContainer, Id, Button } from "./Lobby.styles";
+import {
+  Box,
+  Container,
+  PlayerContainer,
+  Id,
+  Button,
+  Copy,
+} from "./Lobby.styles";
 import Theme from "../../components/Theme";
 import { PlayerContext } from "../../app/contexts/PlayerContext";
 import { getPlayersByRoomId } from "../../app/services/player";
@@ -66,8 +73,7 @@ const Lobby = () => {
       <Container>
         <Box />
         <Id>
-          Room ID:{" "}
-          <button onClick={() => copyToClipboard(roomId)}>{roomId}</button>
+          Room ID: <Copy onClick={() => copyToClipboard(roomId)}>{roomId}</Copy>
         </Id>
         {/* LOGICA PARA QUE SOLO EL ADMIN PUEDA VER EL BOTON DE START GAME */}
         {/* {players.length > 0 && players[0].id === playerId && (

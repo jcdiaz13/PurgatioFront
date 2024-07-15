@@ -210,3 +210,10 @@ export const StyledMetaContainer = styled.div`
   padding: 8px;
   text-align: center;
 `;
+
+// Configuracion del boton de copiar sala en portapapeles
+export const Copy = styled.button`
+  background-color: #c9622e;
+  border: 3px solid #554444;
+  border-radius: 5px;
+`;
