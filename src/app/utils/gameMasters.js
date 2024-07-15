@@ -6,7 +6,7 @@ const gameMasters = [
   {
     id: 1,
     img: verdugo,
-    name: "executioner",
+    name: "VERDUGO",
     description: "Esta es la dificultad más alocada, con pecados e historias más locas y castigos más severos!",
     "punishments": [
       "Comer una rodaja de limón sin hacer gestos.",
@@ -22,7 +22,7 @@ const gameMasters = [
     ]
   },
   {
-    "name": "mage",
+    "name": "MAGO",
     "id": 2,
     "description": "Esta es la dificultad estándar, podrás añadir tus pecados e historias y la gente te juzgará y castigará dependiendo de la magnitud de ellos!",
     "img": mago,
@@ -40,7 +40,7 @@ const gameMasters = [
     ]
   },
   {
-    "name": "fairy",
+    "name": "HADA",
     "id": 3,
     "description": "Esta es la dificultad más 'light', podrás añadir tus pecados e historias y seleccionarás un castigo para el pecado en las opciones que te mostramos!",
     "img": hada,

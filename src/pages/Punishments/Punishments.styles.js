@@ -1,5 +1,7 @@
 import styled from 'styled-components';
-import {css} from 'styled-components';
+import { css } from 'styled-components';
+import lava from '../../app/assets/gifs/lava.gif'
+import pergamino from '../../app/assets/img/pergamino.png';
 
 export const Container = styled.div`
   display: flex;
@@ -13,7 +15,7 @@ export const Container = styled.div`
     css`
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/3450511a-482f-43cd-ad8c-d2e242fafe46/desf83r-9d3c0738-688d-4c1e-95ae-6a72138ce896.jpg/v1/fit/w_828,h_1070,q_70,strp/blood_and_doom_hellish_background_by_g_hamm_desf83r-414w-2x.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTY1NCIsInBhdGgiOiJcL2ZcLzM0NTA1MTFhLTQ4MmYtNDNjZC1hZDhjLWQyZTI0MmZhZmU0NlwvZGVzZjgzci05ZDNjMDczOC02ODhkLTRjMWUtOTVhZS02YTcyMTM4Y2U4OTYuanBnIiwid2lkdGgiOiI8PTEyODAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.F2aUXRuMyaSv3kZyO5iaOETG7k7qTwOE9zt1nhXH-eU");
+  background-image: url(${lava});
 `}
 ${({ theme }) =>
     theme.name === "mago" &&
@@ -31,35 +33,53 @@ ${({ theme }) =>
 `}
 `;
 export const Title = styled.h1`
-  font-size: 3rem;
-  color: #333;
+  font-size: 2.5rem;
+ text-decoration: underline;
   margin-bottom: 2rem;
 `;
 
+export const SubTitle = styled.p`
+font-size: 1.2rem;
+margin: 0;
+margin-bottom: 10px;
+
+;
+`
+//PopUp
 export const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 80%;
-  max-width: 800px; /* Añadido para limitar el ancho máximo */
-  padding: 2rem;
- color: white;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-  border-radius: 8px;
+  width: 350px;
+  height: 500px;
+  max-width: 800px;
+  padding-top:5px;
+ /* Cambia el color de fondo del modal */
+  background-image: url(${pergamino});
+  background-image: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+  box-shadow: 30px black;
 `;
 
+
 export const Textarea = styled.textarea`
-  padding: 0.8rem; /* Ajustado el padding para que sea más proporcionado */
+  padding: 1rem; /* Ajustado el padding para que sea más proporcionado */
   margin-bottom: 1rem;
-  border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 1rem;
-  color: white;
-  width: 100%; /* Ajustado para que ocupe todo el ancho disponible */
-  background-color: rgba(0, 0, 0, 0.5);
+  height: 180px;
+  width: 170px; /* Ajustado para que ocupe todo el ancho disponible */
+  border: none;
+  resize: none;
+    outline: none;
+    background-image: url(${pergamino});
+    background-position: center;
 `;
 
 export const ButtonContainer = styled.div`
+position: absolute;
+top: 500px;
   display: flex;
   justify-content: center;
   width: 100%;
@@ -71,16 +91,17 @@ export const Button = styled.button`
   padding: 0.5rem 1rem;
   margin: 0.5rem;
   border: none;
-  border-radius: 4px;
+  border-radius: 2px;
   font-size: 1rem;
-  background-color: #007bff;
-  color: white;
+  background-color: transparent;
+font-family: Pixellari;
+  color: #743c09;
   cursor: pointer;
-  width: 130px;
+  width: 80px;
   text-align: center;
 
   &:hover {
-    background-color: #0056b3;
+    background-color: white;
   }
 `;
 

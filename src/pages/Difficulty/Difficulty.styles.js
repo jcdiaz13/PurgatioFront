@@ -37,8 +37,8 @@ display: flex;
   height: 200px;
   margin-bottom: 20px;
   cursor: pointer;
+  border: solid 4px black;
    img{
-    border: solid 2px black;
     background-color: black;
     width: 200px;
     height: 200px;
