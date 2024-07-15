@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 import mago from "../../app/assets/gifs/Wizard.gif";
 import hada from "../../app/assets/gifs/fairy.gif";
-import verdugo from "../../app/assets/gifs/executionerlobby.gif";
+import verdugo from "../../app/assets/gifs/reaper.gif";
 import lava from "../../app/assets/gifs/lava.gif";
 
 export const PlayerContainer = styled.div`
@@ -181,12 +181,13 @@ export const Box = styled.div`
   margin-top: 20px;
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: center;
   justify-content: center;
   align-items: center;
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(4px);
   width: 200px;
   height: 200px;
-  border: solid 2px black;
+  border: solid 3px black;
   ${({ theme }) =>
     theme.name === "verdugo" &&
     css`
