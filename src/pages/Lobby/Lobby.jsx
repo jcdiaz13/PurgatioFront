@@ -11,7 +11,8 @@ import { useNavigate } from "react-router-dom";
 const { Meta } = Card;
 
 const Lobby = () => {
-  const { roomId, players, setPlayers, playerId, gameStarted, setGameStarted } = useContext(PlayerContext);
+  const { roomId, players, setPlayers, playerId, gameStarted, setGameStarted } =
+    useContext(PlayerContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -36,6 +37,17 @@ const Lobby = () => {
     }
   };
 
+  // Copia el codigo de la sala en el portapapeles para luego poder pasarlo por otros sitios
+  const copyToClipboard = (text) => {
+    navigator.clipboard
+      .writeText(text)
+      .then(() => {
+        alert("Text copied to clipboard");
+      })
+      .catch((err) => {
+        console.error("Failed to copy text: ", err);
+      });
+  };
 
   //DE MOMENTO NO ES FUNCIONAL, YA QUE FALTA HACER UN USEFFECT. TAL COMO ESTA AHORA SOLO EL ADMIN PUEDE JUGAR.
   // const handleStartGame = () => {
@@ -53,12 +65,17 @@ const Lobby = () => {
     <Theme>
       <Container>
         <Box />
-        <Id>Room ID: {roomId}</Id>
+        <Id>
+          Room ID:{" "}
+          <button onClick={() => copyToClipboard(roomId)}>{roomId}</button>
+        </Id>
         {/* LOGICA PARA QUE SOLO EL ADMIN PUEDA VER EL BOTON DE START GAME */}
         {/* {players.length > 0 && players[0].id === playerId && (
           <Button onClick={handleStartGame}>START</Button>
         )} */}
-        <Link to={"/sins"}><Button>Start</Button></Link>
+        <Link to={"/sins"}>
+          <Button>Start</Button>
+        </Link>
         <PlayerContainer>
           {players?.map((player, index) => {
             const avatarId = player.avatarId; //Esta es la ID del avatar asignada en la base de datos
