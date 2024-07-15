@@ -4,7 +4,7 @@ import { Card } from "antd";
 import { Box, Container, PlayerContainer, Id, Button, DeletePlayerButton } from "./Lobby.styles";
 import Theme from "../../components/Theme";
 import { PlayerContext } from "../../app/contexts/PlayerContext";
-import { getPlayersByRoomId, deletePlayer } from "../../app/services/player";
+import { getPlayersByRoomId } from "../../app/services/player";
 import avatarImages from "../../app/utils/avatarImages";
 import { useNavigate } from "react-router-dom";
 
@@ -14,7 +14,7 @@ const Lobby = () => {
   const { roomId, players, setPlayers, playerId, gameStarted, setGameStarted } = useContext(PlayerContext);
   const navigate = useNavigate();
 
-  useEffect(() => {                                 //Muestra los jugadores con ShowPlayers y va renderizando la página cada 2 segundos
+  useEffect(() => {
     if (roomId) {
       const timeoutId = setInterval(() => {
         ShowPlayers();
@@ -26,7 +26,7 @@ const Lobby = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [roomId]);
 
-  const ShowPlayers = async () => {                     //Obtiene los jugadores para luego poder mostrarlos
+  const ShowPlayers = async () => {
     try {
       const response = await getPlayersByRoomId(roomId);
       setPlayers(response.data);
@@ -37,13 +37,13 @@ const Lobby = () => {
   };
 
 
-  const handleRemovePlayer = async (playerId) => {      //Expulsa al jugador de la sala, lo redirige al home y vuelve a renderizar la página llamando a getPlayersByRoomId
+  const handleRemovePlayer = async (playerId) => {      //Expulsa al jugador de la sala y lo redirige a Home)
     try {
       await deletePlayer(playerId);
       const response = await getPlayersByRoomId(roomId);
       setPlayers(response.data);
       console.log("Player removed:", response.data);
-      // navigate("/"); 
+      navigate("/"); 
     } catch (error) {
       console.error("Error removing player:", error);
     }
@@ -74,9 +74,9 @@ const Lobby = () => {
                   marginBottom: 25,
                   padding: 0,
                   border: "none",
-                  position: "relative", 
+                  position: "relative", // Asegúrate de que la tarjeta sea relativa para el posicionamiento absoluto del botón
                 }}
-                styles={{ body: { padding: "0px" } }} // Ajusta el padding del cuerpo de la tarjeta para reducir el espacio de la descripción (NO BORRAR O SE LÍA)
+                styles={{ body: { padding: "0px" } }} // Ajusta el padding del cuerpo de la tarjeta para reducir el espacio de la descripción
                 cover={
                   <img
                     alt="avatar"

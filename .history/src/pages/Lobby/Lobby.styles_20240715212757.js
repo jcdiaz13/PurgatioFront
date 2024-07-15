@@ -243,9 +243,9 @@ export const DeletePlayerButton = styled.button`
   cursor: pointer;
   width: auto;  
   height: auto; 
-  border: none; 
-  padding: 0; 
-  outline: none; 
+  border: none; // Eliminar el borde
+  padding: 0; // Eliminar el padding
+  outline: none; // Eliminar el outline al hacer click
   line-height: 1; 
 `;
 

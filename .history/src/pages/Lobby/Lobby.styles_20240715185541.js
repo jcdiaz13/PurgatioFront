@@ -232,20 +232,27 @@ export const StyledMetaContainer = styled.div`
 `;
 
 export const DeletePlayerButton = styled.button`
-  font-size: 0.8rem;
-  margin: 0;
+  border: black solid 1px;
   font-family: Pixellari;
+  font-size: 1rem;
   background-color: transparent;
   color: red;
+  text-shadow: 0 2px 0 rgb(0 0 0 / 25%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   position: absolute;
-  top: -10px;  // Está en negativo para que el botón no colisione con el gif del avatar
+  top: 0px;  // Ajuste de la posición top para bajar la "X"
   left: 0px;
+  border: none;
+  z-index: 1;
+  user-select: none;
   cursor: pointer;
-  width: auto;  
-  height: auto; 
-  border: none; 
-  padding: 0; 
-  outline: none; 
-  line-height: 1; 
+  letter-spacing: 1px;
+  padding: 4px;  // Ajuste del padding para hacerlo más pequeño
+  width: auto;  // Ajuste de ancho automático
+  height: auto; // Ajuste de altura automático
+  line-height: 1; // Ajuste de la altura de línea
+  transition: all 0.3s ease; // Transición más rápida
+  transform: translateY(5px); // Mover la "X" hacia abajo
 `;
-

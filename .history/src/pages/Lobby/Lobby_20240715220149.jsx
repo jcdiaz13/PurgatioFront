@@ -4,7 +4,7 @@ import { Card } from "antd";
 import { Box, Container, PlayerContainer, Id, Button, DeletePlayerButton } from "./Lobby.styles";
 import Theme from "../../components/Theme";
 import { PlayerContext } from "../../app/contexts/PlayerContext";
-import { getPlayersByRoomId, deletePlayer } from "../../app/services/player";
+import { getPlayersByRoomId } from "../../app/services/player";
 import avatarImages from "../../app/utils/avatarImages";
 import { useNavigate } from "react-router-dom";
 
@@ -43,7 +43,7 @@ const Lobby = () => {
       const response = await getPlayersByRoomId(roomId);
       setPlayers(response.data);
       console.log("Player removed:", response.data);
-      // navigate("/"); 
+      navigate("/"); 
     } catch (error) {
       console.error("Error removing player:", error);
     }
@@ -76,7 +76,7 @@ const Lobby = () => {
                   border: "none",
                   position: "relative", 
                 }}
-                styles={{ body: { padding: "0px" } }} // Ajusta el padding del cuerpo de la tarjeta para reducir el espacio de la descripción (NO BORRAR O SE LÍA)
+                styles={{ body: { padding: "0px" } }} // Ajusta el padding del cuerpo de la tarjeta para reducir el espacio de la descripción
                 cover={
                   <img
                     alt="avatar"

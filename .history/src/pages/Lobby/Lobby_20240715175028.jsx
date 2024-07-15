@@ -1,10 +1,10 @@
-import React, { useContext, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Card } from "antd";
-import { Box, Container, PlayerContainer, Id, Button, DeletePlayerButton } from "./Lobby.styles";
+import { Box, Container, PlayerContainer, Id, Button } from "./Lobby.styles";
 import Theme from "../../components/Theme";
 import { PlayerContext } from "../../app/contexts/PlayerContext";
-import { getPlayersByRoomId, deletePlayer } from "../../app/services/player";
+import { getPlayersByRoomId } from "../../app/services/player";
 import avatarImages from "../../app/utils/avatarImages";
 import { useNavigate } from "react-router-dom";
 
@@ -14,7 +14,7 @@ const Lobby = () => {
   const { roomId, players, setPlayers, playerId, gameStarted, setGameStarted } = useContext(PlayerContext);
   const navigate = useNavigate();
 
-  useEffect(() => {                                 //Muestra los jugadores con ShowPlayers y va renderizando la página cada 2 segundos
+  useEffect(() => {
     if (roomId) {
       const timeoutId = setInterval(() => {
         ShowPlayers();
@@ -26,7 +26,7 @@ const Lobby = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [roomId]);
 
-  const ShowPlayers = async () => {                     //Obtiene los jugadores para luego poder mostrarlos
+  const ShowPlayers = async () => {
     try {
       const response = await getPlayersByRoomId(roomId);
       setPlayers(response.data);
@@ -37,34 +37,40 @@ const Lobby = () => {
   };
 
 
-  const handleRemovePlayer = async (playerId) => {      //Expulsa al jugador de la sala, lo redirige al home y vuelve a renderizar la página llamando a getPlayersByRoomId
-    try {
-      await deletePlayer(playerId);
-      const response = await getPlayersByRoomId(roomId);
-      setPlayers(response.data);
-      console.log("Player removed:", response.data);
-      // navigate("/"); 
-    } catch (error) {
-      console.error("Error removing player:", error);
-    }
-  };
+  //DE MOMENTO NO ES FUNCIONAL, YA QUE FALTA HACER UN USEFFECT. TAL COMO ESTA AHORA SOLO EL ADMIN PUEDE JUGAR.
+  // const handleStartGame = () => {
+  //   // OBTENER EL ID DEL JUGADOR ACTUAL DESDE EL PLAYER CONTEXT.
+  //   const currentPlayerId = playerId;
+  //   // OBTENER EL ID DEL ADMIN EN LA LISTA DE JUGADORES
+  //   const admin = players.length > 0 ? players[0].id : null;
+  //   // VERIFICA SI EL JUGADOR ACTUAL ES EL ADMIN
+  //   if (currentPlayerId === admin) {
+  //     setGameStarted(true);
+  //     navigate("/sins");
+  //   }
+  // }
   return (
     <Theme>
       <Container>
         <Box />
         <Id>Room ID: {roomId}</Id>
+        {/* LOGICA PARA QUE SOLO EL ADMIN PUEDA VER EL BOTON DE START GAME */}
+        {/* {players.length > 0 && players[0].id === playerId && (
+          <Button onClick={handleStartGame}>START</Button>
+        )} */}
         <Link to={"/sins"}><Button>Start</Button></Link>
         <PlayerContainer>
           {players?.map((player, index) => {
-            const avatarId = player.avatarId;
+            const avatarId = player.avatarId; //Esta es la ID del avatar asignada en la base de datos
             const imgObj = avatarImages.find(
+              //Almacenamos el objeto, cuya ID del array coincide con la ID de la base de datos(Para así luego acceder a la imagen de este objeto)
               (avatarImage) => avatarImage.id == avatarId
             );
-
+            console.log("11111111111111111", imgObj);
             return (
               <Card
                 key={index}
-                hoverable={false}
+                hoverable
                 style={{
                   background: "transparent",
                   cursor: "auto",
@@ -74,9 +80,7 @@ const Lobby = () => {
                   marginBottom: 25,
                   padding: 0,
                   border: "none",
-                  position: "relative", 
                 }}
-                styles={{ body: { padding: "0px" } }} // Ajusta el padding del cuerpo de la tarjeta para reducir el espacio de la descripción (NO BORRAR O SE LÍA)
                 cover={
                   <img
                     alt="avatar"
@@ -84,8 +88,9 @@ const Lobby = () => {
                     style={{ width: "100%", height: "auto", border: "none" }}
                   />
                 }
+                styles={{ body: { padding: "0px" } }} // Ajusta el padding del cuerpo de la tarjeta para reducir el espacio de la descripción
+              
               >
-                <DeletePlayerButton onClick={() => handleRemovePlayer(player.id)}>X</DeletePlayerButton>
                 <Meta
                   title={
                     <span
@@ -94,7 +99,7 @@ const Lobby = () => {
                         fontSize: 12,
                         borderRadius: 5,
                         color: "white",
-                        backgroundColor: "black",  //Aquí estaría bien poner background de bloques de ladrillo, para que parezca que están sobre una plataforma
+                        backgroundColor: "black",
                         padding: "4px",
                         display: "block",
                         textAlign: "center",

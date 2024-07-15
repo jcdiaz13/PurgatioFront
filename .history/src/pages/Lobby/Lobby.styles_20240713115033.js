@@ -230,22 +230,3 @@ export const StyledMetaContainer = styled.div`
   padding: 8px;
   text-align: center;
 `;
-
-export const DeletePlayerButton = styled.button`
-  font-size: 0.8rem;
-  margin: 0;
-  font-family: Pixellari;
-  background-color: transparent;
-  color: red;
-  position: absolute;
-  top: -10px;  // Está en negativo para que el botón no colisione con el gif del avatar
-  left: 0px;
-  cursor: pointer;
-  width: auto;  
-  height: auto; 
-  border: none; 
-  padding: 0; 
-  outline: none; 
-  line-height: 1; 
-`;
-

@@ -238,14 +238,14 @@ export const DeletePlayerButton = styled.button`
   background-color: transparent;
   color: red;
   position: absolute;
-  top: -10px;  // Está en negativo para que el botón no colisione con el gif del avatar
+  top: -10px;  // Está en negativo para que no colisione con el gif del avatar
   left: 0px;
   cursor: pointer;
   width: auto;  
   height: auto; 
-  border: none; 
-  padding: 0; 
-  outline: none; 
+  border: none; // Eliminar el borde
+  padding: 0; // Eliminar el padding
+  outline: none; // Eliminar el outline al hacer click
   line-height: 1; 
 `;
 

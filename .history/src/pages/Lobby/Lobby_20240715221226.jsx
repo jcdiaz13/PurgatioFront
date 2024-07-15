@@ -43,7 +43,7 @@ const Lobby = () => {
       const response = await getPlayersByRoomId(roomId);
       setPlayers(response.data);
       console.log("Player removed:", response.data);
-      // navigate("/"); 
+      navigate("/"); 
     } catch (error) {
       console.error("Error removing player:", error);
     }
