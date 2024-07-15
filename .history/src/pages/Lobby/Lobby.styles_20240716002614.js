@@ -4,17 +4,25 @@ import hada from "../../app/assets/gifs/fairy.gif";
 import verdugo from "../../app/assets/gifs/executionerlobby.gif";
 import lava from "../../app/assets/gifs/lava.gif";
 
+import styled from 'styled-components';
+
 export const PlayerContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Cambiado para ajustar automáticamente según el espacio */
-  gap: 25px; /* Reducido el gap entre los jugadores */
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Ajusta automáticamente las columnas según el espacio disponible */
+  gap: 25px; /* Reducido el gap entre los jugadores para dispositivos más pequeños */
   justify-items: center;
   align-items: center;
   width: 100%;
-  max-width: 400px; /* Reducido el max-width para que los jugadores no estén tan separados */
+  max-width: 600px; /* Aumentado el max-width para permitir más espacio en pantallas más grandes */
   margin: 20px auto; /* Ajustado el margen */
-  
+
+  @media (max-width: 768px) {
+    max-width: 400px; /* Reducido el max-width para pantallas más pequeñas */
+    gap: 10px; /* Ajustado el gap para pantallas más pequeñas */
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); /* Ajusta las columnas para ocupar menos espacio en dispositivos más pequeños */
+  }
 `;
+
 
 
 export const Button = styled.button`
@@ -180,85 +188,51 @@ ${({ theme }) =>
 `;
 
 export const Box = styled.div`
-  margin-top: 20px;
-  width: 225px;
-  height: 225px;
-  border: solid 4px black;
-  border-radius: 50%;
+ margin-top: 20px;
+  ${({ theme }) =>
+    theme.name === "verdugo" &&
+    css`
+     display: flex;
+  width: 200px;
+  height: 200px;
+  border: solid 2px black;
+  border-radius: 5%;
+  background-image: url(${verdugo});
+  background-repeat: no-repeat;
   background-size: cover;
   justify-content: center;
   align-items: center;
-  display: flex;
-
-  ${({ theme }) =>
-    theme.name === "verdugo" &&
-    css`
-      width: 200px;
-      height: 200px;
-      border: solid 2px black;
-      border-radius: 5%;
-      background-image: url(${verdugo});
-      backdrop-filter: blur(5px);
-    `}
+  backdrop-filter: blur(5px);
+   `}
 
   ${({ theme }) =>
     theme.name === "hada" &&
     css`
-      background-color: pink;
-      border: solid 4px black;
-      width: 225px;
-      height: 225px;
-      border-radius: 50%;
-      background-image: url(${hada});
-    `}
-
-  ${({ theme }) =>
+    display: flex;
+  width: 225px;
+  height: 225px;
+  border: solid 4px black;
+  background-color: pink;
+  border-radius: 50%;
+  background-image: url(${hada});
+  background-size: cover;
+  justify-content: center;
+  align-items: center;
+   `}
+   ${({ theme }) =>
     theme.name === "mago" &&
     css`
-      background-color: blue;
-      border: solid 4px black;
-      width: 225px;
-      height: 225px;
-      border-radius: 50%;
-      background-image: url(${mago});
-    `}
-
-  @media (max-width: 768px) {
-    width: 150px;
-    height: 150px;
-
-    ${({ theme }) =>
-    theme.name === "verdugo" &&
-    css`
-        width: 140px;
-        height: 140px;
-        border: solid 1px black;
-        border-radius: 5%;
-        background-image: url(${verdugo});
-      `}
-
-    ${({ theme }) =>
-    theme.name === "hada" &&
-    css`
-        width: 150px;
-        height: 150px;
-        border: solid 2px black;
-        border-radius: 50%;
-        background-color: pink;
-        background-image: url(${hada});
-      `}
-
-    ${({ theme }) =>
-    theme.name === "mago" &&
-    css`
-        width: 150px;
-        height: 150px;
-        border: solid 2px black;
-        border-radius: 50%;
-        background-color: blue;
-        background-image: url(${mago});
-      `}
-  }
+      display: flex;
+  width: 225px;
+  height: 225px;
+  border: solid 4px black;
+  background-color: blue;
+  border-radius: 50%;
+  background-image: url(${mago});
+  background-size: cover;
+  justify-content: center;
+  align-items: center;
+   `}
 `;
 
 export const DeletePlayerButton = styled.button`
@@ -268,7 +242,7 @@ export const DeletePlayerButton = styled.button`
   background-color: black;
   color: red;
   position: absolute;
-  top: -5px;  // Está en negativo para que el botón no colisione con el avatar
+  top: -5px;  // Está en negativo para que el botón no colisione con el gif del avatar
   left: -5px;
   cursor: pointer;
   width: auto;  

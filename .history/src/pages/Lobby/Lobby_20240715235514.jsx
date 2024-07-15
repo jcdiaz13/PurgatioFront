@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 const { Meta } = Card;
 
 const Lobby = () => {
-  const { roomId, players, setPlayers, roomOwner, playerId, gameStarted, setGameStarted } = useContext(PlayerContext);
+  const { roomId, players, setPlayers, roomOwner, setRoomOwner,playerId, gameStarted, setGameStarted } = useContext(PlayerContext);
   const navigate = useNavigate();
 
   useEffect(() => {                                 //Muestra los jugadores con ShowPlayers y va renderizando la página cada 2 segundos
@@ -85,7 +85,7 @@ const Lobby = () => {
                   />
                 }
               >
-                {roomOwner && (<DeletePlayerButton onClick={() => handleRemovePlayer(player.id)}>X</DeletePlayerButton>)}
+                {roomOwner && (<DeletePlayerButton onClick={() => handleRemovePlayer(player.id)}>X</DeletePlayerButton>)}  */ /*
                 <Meta
                   title={
                     <span

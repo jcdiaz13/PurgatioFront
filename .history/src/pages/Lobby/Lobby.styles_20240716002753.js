@@ -268,7 +268,7 @@ export const DeletePlayerButton = styled.button`
   background-color: black;
   color: red;
   position: absolute;
-  top: -5px;  // Está en negativo para que el botón no colisione con el avatar
+  top: -5px;  // Está en negativo para que el botón no colisione con el gif del avatar
   left: -5px;
   cursor: pointer;
   width: auto;  

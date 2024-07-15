@@ -73,7 +73,7 @@ const Lobby = () => {
                   marginTop: 30,
                   marginBottom: 25,
                   padding: 0,
-                  border: "none",
+                  border: "1px black solid",
                   position: "relative", 
                 }}
                 styles={{ body: { padding: "0px" } }} // Ajusta el padding del cuerpo de la tarjeta para reducir el espacio de la descripción (NO BORRAR O SE LÍA)

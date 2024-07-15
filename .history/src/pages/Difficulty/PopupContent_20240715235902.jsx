@@ -32,7 +32,7 @@ const PopupContent = ({ closePopup, image, name, description, difficulty }) => {
         },
       });
 
-      setRoomOwner(true);  // Establecer como propietario de la sala al jugador que crea la sala
+      setRoomOwner(true);                       // Establecer como propietario de la sala al jugador que crea la sala
       setPlayerId(player.data.id);
       navigate("/lobby");
 

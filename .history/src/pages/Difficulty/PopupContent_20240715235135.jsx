@@ -17,7 +17,7 @@ import {
 
 const PopupContent = ({ closePopup, image, name, description, difficulty }) => {
   const { playerName, setRoomId, setPlayerId, selectedAvatar, roomOwner, setRoomOwner } =
-    useContext(PlayerContext);                  
+    useContext(PlayerContext); // Obtener el nombre del jugador desde el contexto
   const navigate = useNavigate();
   const handleCreateRoom = async () => {
     try {
@@ -32,10 +32,11 @@ const PopupContent = ({ closePopup, image, name, description, difficulty }) => {
         },
       });
 
-      setRoomOwner(true);  // Establecer como propietario de la sala al jugador que crea la sala
+      
+
+
       setPlayerId(player.data.id);
       navigate("/lobby");
-
     } catch (error) {
       console.error("Error creating room or player:", error);
     }
