@@ -7,7 +7,7 @@ export const PlayerProvider = ({ children }) => {
   const [playerName, setPlayerName] = useState('');
   const [selectedAvatar, setSelectedAvatar] = useState(null);
   const [roomId, setRoomId] = useState(null);
-  // const [admin, setAdmin] = useState(false);
+  const [admin, setAdmin] = useState(false);
   const [players, setPlayers] = useState([])
   const [playerId, setPlayerId] = useState(null);
   const [gameStarted, setGameStarted] = useState(false);

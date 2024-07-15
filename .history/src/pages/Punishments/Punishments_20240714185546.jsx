@@ -8,8 +8,8 @@ import {
   Button,
 } from "./Punishments.styles";
 import { FaArrowLeft } from "react-icons/fa";
-// import sinsData from "../../app/jsons/gameMastersSins.json";
-// import punishmentsData from "../../app/jsons/gameMasters.json";
+import sinsData from "../../app/jsons/gameMastersSins.json";
+import punishmentsData from "../../app/jsons/gameMasters.json";
 import Theme from '../../components/Theme';
 import { AssignSins } from '../../app/services/player';
 import { PlayerContext } from '../../app/contexts/PlayerContext';
