@@ -81,7 +81,7 @@ export const Textarea = styled.textarea`
 
 export const ButtonContainer = styled.div`
 position: absolute;
-top: 550px;
+top: 500px;
   display: flex;
   justify-content: center;
   width: 100%;
@@ -99,7 +99,7 @@ export const Button = styled.button`
 
   color: #743c09;
   cursor: pointer;
-  width: 70px;
+  width: 80px;
   text-align: center;
 
   &:hover {

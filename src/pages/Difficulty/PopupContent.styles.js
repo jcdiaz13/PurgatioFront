@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 export const Popup = styled.div`
   position: fixed;
   top: 50%;
@@ -100,7 +100,7 @@ export const Button = styled.button`
 }
 `;
 
-export const ButtonClose=styled.button`
+export const ButtonClose = styled.button`
 position: absolute;
   border: none;
   font-size: 0.8rem;
@@ -125,7 +125,6 @@ export const Box = styled.div`
 display: flex;
  width: 250px;
   height: 250px;
-  border-radius: 50%; 
   margin: auto;
   cursor: pointer;
    img{
@@ -139,16 +138,15 @@ display: flex;
 `;
 
 export const Name = styled.h2` 
+padding-top: 10px;
 font-family: Pixellari;
 font-size: 25px;
 margin: auto;
-width: 150px;
 box-sizing: border-box;
 text-align: center;
-margin-bottom: 10px;
-text-shadow: 2px 2px grey;
+text-shadow: 1px 2px grey;
 `;
-export const Description=styled.p`
+export const Description = styled.p`
 text-align: center;
 margin-bottom: 10px;
 `
