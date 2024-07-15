@@ -49,6 +49,7 @@ const Lobby = () => {
       navigate("/sins");
     }
   }
+
   return (
     <Theme>
       <Container>
