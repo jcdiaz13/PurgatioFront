@@ -1,5 +1,5 @@
-import verdugo from "../../app/assets/gifs/executionerpixel.gif";
-import mago from "../../app/assets/gifs/Wizard.gif";
+import verdugo from "../../app/assets/gifs/reaper.gif";
+import mago from "../../app/assets/gifs/ice-cream.gif";
 import hada from "../../app/assets/gifs/fairy.gif";
 
 const gameMasters = [
@@ -37,24 +37,6 @@ const gameMasters = [
       "Cantar una canción de amor enfrente de todos.",
       "Pintar un bigote en tu cara con un marcador lavable.",
       "Hablar como un robot por los próximos 3 minutos."
-    ]
-  },
-  {
-    "name": "HADA",
-    "id": 3,
-    "description": "Esta es la dificultad más 'light', podrás añadir tus pecados e historias y seleccionarás un castigo para el pecado en las opciones que te mostramos!",
-    "img": hada,
-    "punishments": [
-      "Hacer 10 saltos en el lugar.",
-      "Cantar una canción infantil durante 30 segundos.",
-      "Decir algo positivo sobre cada jugador.",
-      "Imitar a un animal por 1 minuto.",
-      "Caminar de rodillas por la habitación.",
-      "Contar un chiste (aunque no sea gracioso).",
-      "Hacer una pose graciosa y mantenerla por 10 segundos.",
-      "Dar un abrazo a cada persona en la habitación.",
-      "Decir el abecedario al revés.",
-      "Hacer una expresión facial tonta durante 30 segundos."
     ]
   }
 ]

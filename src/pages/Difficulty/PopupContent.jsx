@@ -9,10 +9,10 @@ import {
   Overlay,
   StyledLink,
   Button,
-  ButtonClose,
   Box,
   Name,
   Description,
+  ButtonContainer,
 } from "./PopupContent.styles";
 
 const PopupContent = ({ closePopup, image, name, description, difficulty }) => {
@@ -42,15 +42,18 @@ const PopupContent = ({ closePopup, image, name, description, difficulty }) => {
     <>
       <Overlay onClick={closePopup} />
       <Popup>
-        <ButtonClose onClick={closePopup}> X</ButtonClose>
+
         <Box>
           <img src={image} alt="" width="225px" />
         </Box>
         <Name>{name}</Name>
         <Description>{description}</Description>
-        <StyledLink to={`/lobby`}>
-          <Button onClick={handleCreateRoom}>Start</Button>
-        </StyledLink>
+        <ButtonContainer>
+          <Button onClick={closePopup}> Back</Button>
+          <StyledLink to={`/lobby`}>
+            <Button onClick={handleCreateRoom}>Start</Button>
+          </StyledLink>
+        </ButtonContainer>
       </Popup>
     </>
   );
