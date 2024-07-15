@@ -6,13 +6,11 @@ import Theme from "../../components/Theme";
 import { PlayerContext } from "../../app/contexts/PlayerContext";
 import { getPlayersByRoomId } from "../../app/services/player";
 import avatarImages from "../../app/utils/avatarImages";
-import { useNavigate } from "react-router-dom";
 
 const { Meta } = Card;
 
 const Lobby = () => {
-  const { roomId, players, setPlayers, playerId, gameStarted, setGameStarted } = useContext(PlayerContext);
-  const navigate = useNavigate();
+  const { roomId, players, setPlayers, gameStarted, setGameStarted } = useContext(PlayerContext);
 
   useEffect(() => {
     if (roomId) {
@@ -36,29 +34,24 @@ const Lobby = () => {
     }
   };
 
+  const handleStartGame = () => {
+    // Aquí se debe verificar si el jugador actual es el creador de la sala antes de iniciar la partida
+    // Puedes agregar lógica adicional para validar la autorización para iniciar la partida
+    setGameStarted(true); // Cambia el estado para indicar que la partida ha comenzado
+  };
 
-  //DE MOMENTO NO ES FUNCIONAL, YA QUE FALTA HACER UN USEFFECT. TAL COMO ESTA AHORA SOLO EL ADMIN PUEDE JUGAR.
-  // const handleStartGame = () => {
-  //   // OBTENER EL ID DEL JUGADOR ACTUAL DESDE EL PLAYER CONTEXT.
-  //   const currentPlayerId = playerId;
-  //   // OBTENER EL ID DEL ADMIN EN LA LISTA DE JUGADORES
-  //   const admin = players.length > 0 ? players[0].id : null;
-  //   // VERIFICA SI EL JUGADOR ACTUAL ES EL ADMIN
-  //   if (currentPlayerId === admin) {
-  //     setGameStarted(true);
-  //     navigate("/sins");
-  //   }
-  // }
+
   return (
     <Theme>
       <Container>
         <Box />
         <Id>Room ID: {roomId}</Id>
-        {/* LOGICA PARA QUE SOLO EL ADMIN PUEDA VER EL BOTON DE START GAME */}
-        {/* {players.length > 0 && players[0].id === playerId && (
+        {/* {!gameStarted && (
           <Button onClick={handleStartGame}>START</Button>
         )} */}
-        <Link to={"/sins"}><Button>Start</Button></Link>
+        <Link to="/sins">
+          <Button>START</Button>
+        </Link>
         <PlayerContainer>
           {players?.map((player, index) => {
             const avatarId = player.avatarId; //Esta es la ID del avatar asignada en la base de datos
@@ -72,11 +65,8 @@ const Lobby = () => {
                 key={index}
                 hoverable
                 style={{
-                  background: "transparent",
-                  cursor: "auto",
-                  maxWidth: 80,
-                  maxHeight: 80,
-                  marginTop: 30,
+                  maxWidth: 50,
+                  maxHeight: 50,
                   marginBottom: 25,
                   padding: 0,
                   border: "none",
@@ -96,7 +86,6 @@ const Lobby = () => {
                       style={{
                         alignItems: "center",
                         fontSize: 12,
-                        borderRadius: 5,
                         color: "white",
                         backgroundColor: "black",
                         padding: "4px",
@@ -110,7 +99,7 @@ const Lobby = () => {
                       {player.playerName}
                     </span>
                   }
-                  style={{ padding: 0, height: "2", lineHeight: "unset" }}
+                  style={{ padding: 0, height: "auto", lineHeight: "unset" }}
                 />
               </Card>
             );

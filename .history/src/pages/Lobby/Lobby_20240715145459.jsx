@@ -38,27 +38,26 @@ const Lobby = () => {
 
 
   //DE MOMENTO NO ES FUNCIONAL, YA QUE FALTA HACER UN USEFFECT. TAL COMO ESTA AHORA SOLO EL ADMIN PUEDE JUGAR.
-  // const handleStartGame = () => {
-  //   // OBTENER EL ID DEL JUGADOR ACTUAL DESDE EL PLAYER CONTEXT.
-  //   const currentPlayerId = playerId;
-  //   // OBTENER EL ID DEL ADMIN EN LA LISTA DE JUGADORES
-  //   const admin = players.length > 0 ? players[0].id : null;
-  //   // VERIFICA SI EL JUGADOR ACTUAL ES EL ADMIN
-  //   if (currentPlayerId === admin) {
-  //     setGameStarted(true);
-  //     navigate("/sins");
-  //   }
-  // }
+  const handleStartGame = () => {
+    // OBTENER EL ID DEL JUGADOR ACTUAL DESDE EL PLAYER CONTEXT.
+    const currentPlayerId = playerId;
+    // OBTENER EL ID DEL ADMIN EN LA LISTA DE JUGADORES
+    const admin = players.length > 0 ? players[0].id : null;
+    // VERIFICA SI EL JUGADOR ACTUAL ES EL ADMIN
+    if (currentPlayerId === admin) {
+      setGameStarted(true);
+      navigate("/sins");
+    }
+  }
   return (
     <Theme>
       <Container>
         <Box />
         <Id>Room ID: {roomId}</Id>
         {/* LOGICA PARA QUE SOLO EL ADMIN PUEDA VER EL BOTON DE START GAME */}
-        {/* {players.length > 0 && players[0].id === playerId && (
+        {players.length > 0 && players[0].id === playerId && (
           <Button onClick={handleStartGame}>START</Button>
-        )} */}
-        <Link to={"/sins"}><Button>Start</Button></Link>
+        )}
         <PlayerContainer>
           {players?.map((player, index) => {
             const avatarId = player.avatarId; //Esta es la ID del avatar asignada en la base de datos
