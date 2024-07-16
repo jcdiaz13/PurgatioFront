@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import mago from "../../app/assets/gifs/Wizard.gif";
+import helado from "../../app/assets/gifs/ice-cream.gif";
 import hada from "../../app/assets/gifs/fairy.gif";
 import verdugo from "../../app/assets/gifs/reaper.gif";
 import lava from "../../app/assets/gifs/lava.gif";
@@ -76,7 +76,7 @@ export const Button = styled.button`
     ${({ theme }) =>
       theme.name === "mago" &&
       css`
-        background-color: #00bfff !important;
+        background-color: #228b22  !important;
       `}
 ${({ theme }) =>
       theme.name === "hada" &&
@@ -165,7 +165,7 @@ export const Container = styled.div`
     css`
       background-repeat: no-repeat;
       background-size: cover;
-      background-image: url("https://images.alphacoders.com/124/thumb-1920-1248273.png");
+      background-image: url("https://i.pinimg.com/originals/1b/45/63/1b456377a9dce67a7dc3630260aa7572.gif");
     `}
 ${({ theme }) =>
     theme.name === "hada" &&
@@ -187,7 +187,7 @@ export const Box = styled.div`
   backdrop-filter: blur(4px);
   width: 200px;
   height: 200px;
-  border: solid 3px black;
+  border: solid 2px black;
   ${({ theme }) =>
     theme.name === "verdugo" &&
     css`
@@ -202,7 +202,7 @@ export const Box = styled.div`
    ${({ theme }) =>
     theme.name === "mago" &&
     css`
-      background-image: url(${mago});
+      background-image: url(${helado});
     `}
 `;
 
@@ -214,7 +214,10 @@ export const StyledMetaContainer = styled.div`
 
 // Configuracion del boton de copiar sala en portapapeles
 export const Copy = styled.button`
-  background-color: #c9622e;
-  border: 3px solid #554444;
-  border-radius: 5px;
+  background-color: black;
+  border: 3px solid whit3;
+  color: white;
+  &:active {
+    transform: translateY(3px);
+  }
 `;
