@@ -1,20 +1,27 @@
-import React, { useContext, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { Card } from "antd";
-import { Box, Container, PlayerContainer, Id, Button, DeletePlayerButton } from "./Lobby.styles";
+import {
+  Box,
+  Container,
+  PlayerContainer,
+  Id,
+  Button,
+  DeletePlayerButton,
+} from "./Lobby.styles";
 import Theme from "../../components/Theme";
 import { PlayerContext } from "../../app/contexts/PlayerContext";
 import { getPlayersByRoomId, deletePlayer } from "../../app/services/player";
 import avatarImages from "../../app/utils/avatarImages";
-import { useNavigate } from "react-router-dom";
 
 const { Meta } = Card;
 
 const Lobby = () => {
-  const { roomId, players, setPlayers, roomOwner, playerId, gameStarted, setGameStarted } = useContext(PlayerContext);
+  const { roomId, players, setPlayers, roomOwner, playerId } =
+    useContext(PlayerContext);
   const navigate = useNavigate();
 
-  useEffect(() => {                                 //Muestra los jugadores con ShowPlayers y va renderizando la página cada 2 segundos
+  useEffect(() => {
     if (roomId) {
       const timeoutId = setInterval(() => {
         ShowPlayers();
@@ -22,38 +29,47 @@ const Lobby = () => {
 
       return () => clearTimeout(timeoutId);
     }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [roomId]);
 
-  const ShowPlayers = async () => {                     //Obtiene los jugadores para luego poder mostrarlos
+  const ShowPlayers = async () => {
     try {
       const response = await getPlayersByRoomId(roomId);
       setPlayers(response.data);
-      console.log(response.data);
+
+      const playerExists = response.data.find(
+        (player) => player.id === playerId
+      );
+      if (!playerExists) {
+        navigate("/");
+      }
     } catch (error) {
       console.error("Error showing players:", error);
     }
   };
 
-
-  const handleRemovePlayer = async (playerId) => {      //Expulsa al jugador de la sala, lo redirige al home y vuelve a renderizar la página llamando a getPlayersByRoomId
+  const handleRemovePlayer = async (id) => {
     try {
-      await deletePlayer(playerId);
+      await deletePlayer(id);
       const response = await getPlayersByRoomId(roomId);
       setPlayers(response.data);
-      console.log("Player removed:", response.data);
-      // navigate("/"); 
+      console.log("Players after removal:", response.data);
+
+      if (id === playerId) {
+        navigate("/");
+      }
     } catch (error) {
       console.error("Error removing player:", error);
     }
   };
+
   return (
     <Theme>
       <Container>
         <Box />
         <Id>Room ID: {roomId}</Id>
-        <Link to={"/sins"}><Button>Start</Button></Link>
+        <Link to={"/sins"}>
+          <Button>Start</Button>
+        </Link>
         <PlayerContainer>
           {players?.map((player, index) => {
             const avatarId = player.avatarId;
@@ -74,7 +90,7 @@ const Lobby = () => {
                   marginBottom: 25,
                   padding: 0,
                   border: "none",
-                  position: "relative", 
+                  position: "relative",
                 }}
                 styles={{ body: { padding: "0px" } }} // Ajusta el padding del cuerpo de la tarjeta para reducir el espacio de la descripción (NO BORRAR O SE LÍA)
                 cover={
@@ -85,7 +101,13 @@ const Lobby = () => {
                   />
                 }
               >
-                {roomOwner && (<DeletePlayerButton onClick={() => handleRemovePlayer(player.id)}>X</DeletePlayerButton>)}
+                {roomOwner && (
+                  <DeletePlayerButton
+                    onClick={() => handleRemovePlayer(player.id)}
+                  >
+                    X
+                  </DeletePlayerButton>
+                )}
                 <Meta
                   title={
                     <span
@@ -94,7 +116,7 @@ const Lobby = () => {
                         fontSize: 12,
                         borderRadius: 5,
                         color: "white",
-                        backgroundColor: "black",  //Aquí estaría bien poner background de bloques de ladrillo, para que parezca que están sobre una plataforma
+                        backgroundColor: "black",
                         padding: "4px",
                         display: "block",
                         textAlign: "center",
