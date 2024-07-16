@@ -220,4 +220,16 @@ export const Copy = styled.button`
   &:active {
     transform: translateY(3px);
   }
+  &:hover {
+  ${({ theme }) =>
+      theme.name === "verdugo" &&
+      css`
+        background-color: #ffd700 !important;
+      `}
+    ${({ theme }) =>
+      theme.name === "mago" &&
+      css`
+        background-color: #228b22  !important;
+      `}
+      }
 `;

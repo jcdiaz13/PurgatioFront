@@ -85,7 +85,7 @@ const Lobby = () => {
       <Container>
         <Box />
         <Id>
-          Room ID: <Copy onClick={() => copyToClipboard(roomId)}>{roomId}24</Copy>
+          Room ID: <Copy onClick={() => copyToClipboard(roomId)}>{roomId}</Copy>
         </Id>
         {/* LOGICA PARA QUE SOLO EL ADMIN PUEDA VER EL BOTON DE START GAME */}
         {/* {players.length > 0 && players[0].id === playerId && (
