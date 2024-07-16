@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Card } from "antd";
 import {
@@ -21,7 +21,6 @@ const Lobby = () => {
   const { roomId, players, setPlayers, roomOwner, playerId } =
     useContext(PlayerContext);
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (roomId) {
@@ -31,21 +30,20 @@ const Lobby = () => {
 
       return () => clearInterval(timeoutId);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [roomId]);
 
   const ShowPlayers = async () => {
     try {
       const response = await getPlayersByRoomId(roomId);
       setPlayers(response.data);
-      setLoading(false); // Set loading to false after players are fetched
-
       // Check if the current player exists in the updated list of players
       const playerExists = response.data.find(
         (player) => player.id === playerId
       );
-
-      // If player does not exist and loading is false, navigate to "/"
-      if (!playerExists && !loading) {
+      console.log("11111111111111111", playerExists);
+      // If player does not exist, navigate to "/"
+      if (!playerExists) {
         navigate("/");
       }
     } catch (error) {
@@ -55,16 +53,12 @@ const Lobby = () => {
 
   const handleRemovePlayer = async (id) => {
     try {
+      // Delete the player
       await deletePlayer(id);
-      const response = await getPlayersByRoomId(roomId);
-      setPlayers(response.data);
-      console.log("Players after removal:", response.data);
 
-      // Check if the removed player is the current user
-      const removedPlayer = response.data.find((player) => player.id === id);
-      if (removedPlayer && removedPlayer.id === playerId) {
-        navigate("/");
-      }
+      // Update players list after deletion
+      const updatedPlayers = await getPlayersByRoomId(roomId);
+      setPlayers(updatedPlayers.data);
     } catch (error) {
       console.error("Error removing player:", error);
     }
