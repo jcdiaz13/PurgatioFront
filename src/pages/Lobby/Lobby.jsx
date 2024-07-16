@@ -1,5 +1,5 @@
-import { useContext, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { Card } from "antd";
 import {
   Box,
@@ -7,20 +7,21 @@ import {
   PlayerContainer,
   Id,
   Button,
+  DeletePlayerButton,
   Copy,
 } from "./Lobby.styles";
 import Theme from "../../components/Theme";
 import { PlayerContext } from "../../app/contexts/PlayerContext";
-import { getPlayersByRoomId, deletePlayer } from '../../app/services/player';
+import { getPlayersByRoomId, deletePlayer } from "../../app/services/player";
 import avatarImages from "../../app/utils/avatarImages";
-import { useNavigate } from "react-router-dom";
 
 const { Meta } = Card;
 
 const Lobby = () => {
-  const { roomId, players, setPlayers, playerId, gameStarted, setGameStarted, admin, setAdmin } =
+  const { roomId, players, setPlayers, roomOwner, playerId } =
     useContext(PlayerContext);
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (roomId) {
@@ -28,23 +29,47 @@ const Lobby = () => {
         ShowPlayers();
       }, 2000);
 
-      return () => clearTimeout(timeoutId);
+      return () => clearInterval(timeoutId);
     }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [roomId]);
 
   const ShowPlayers = async () => {
     try {
       const response = await getPlayersByRoomId(roomId);
       setPlayers(response.data);
-      console.log(response.data);
+      setLoading(false); // Set loading to false after players are fetched
+
+      // Check if the current player exists in the updated list of players
+      const playerExists = response.data.find(
+        (player) => player.id === playerId
+      );
+
+      // If player does not exist and loading is false, navigate to "/"
+      if (!playerExists && !loading) {
+        navigate("/");
+      }
     } catch (error) {
       console.error("Error showing players:", error);
     }
   };
 
-  // Copia el codigo de la sala en el portapapeles para luego poder pasarlo por otros sitios
+  const handleRemovePlayer = async (id) => {
+    try {
+      await deletePlayer(id);
+      const response = await getPlayersByRoomId(roomId);
+      setPlayers(response.data);
+      console.log("Players after removal:", response.data);
+
+      // Check if the removed player is the current user
+      const removedPlayer = response.data.find((player) => player.id === id);
+      if (removedPlayer && removedPlayer.id === playerId) {
+        navigate("/");
+      }
+    } catch (error) {
+      console.error("Error removing player:", error);
+    }
+  };
+
   const copyToClipboard = (text) => {
     navigator.clipboard
       .writeText(text)
@@ -56,56 +81,27 @@ const Lobby = () => {
       });
   };
 
-  // DE MOMENTO NO ES FUNCIONAL, YA QUE FALTA HACER UN USEFFECT. TAL COMO ESTA AHORA SOLO EL ADMIN PUEDE JUGAR.
-  const handleStartGame = () => {
-    // OBTENER EL ID DEL JUGADOR ACTUAL DESDE EL PLAYER CONTEXT.
-    const currentPlayerId = playerId;
-    // OBTENER EL ID DEL ADMIN EN LA LISTA DE JUGADORES
-    const adminId = players.length > 0 ? players[0].id : null;
-    setAdmin(adminId);
-    // VERIFICA SI EL JUGADOR ACTUAL ES EL ADMIN
-    if (currentPlayerId === admin) {
-      setGameStarted(true);
-      navigate("/sins");
-    }
-  }
-
-  //FUNCION ELIMINAR PARA ELIMINAR A LOS JUGADORES
-  const handleDeletePlayer = async () => {
-    if (playerId === admin) {
-      alert("EL admin no puede ser eliminado");
-    }
-    else {
-      await deletePlayer(playerId);
-    }
-  }
-
   return (
     <Theme>
       <Container>
         <Box />
         <Id>
-          Room ID: <Copy onClick={() => copyToClipboard(roomId)}>{roomId}24</Copy>
+          Room ID: <Copy onClick={() => copyToClipboard(roomId)}>{roomId}</Copy>
         </Id>
-        {/* LOGICA PARA QUE SOLO EL ADMIN PUEDA VER EL BOTON DE START GAME */}
-        {/* {players.length > 0 && players[0].id === playerId && (
-          <Button onClick={handleStartGame}>START</Button>
-        )} */}
         <Link to={"/sins"}>
           <Button>Start</Button>
         </Link>
         <PlayerContainer>
           {players?.map((player, index) => {
-            const avatarId = player.avatarId; //Esta es la ID del avatar asignada en la base de datos
+            const avatarId = player.avatarId;
             const imgObj = avatarImages.find(
-              //Almacenamos el objeto, cuya ID del array coincide con la ID de la base de datos(Para así luego acceder a la imagen de este objeto)
               (avatarImage) => avatarImage.id == avatarId
             );
-            console.log("11111111111111111", imgObj);
+
             return (
               <Card
                 key={index}
-                hoverable
+                hoverable={false}
                 style={{
                   background: "transparent",
                   cursor: "auto",
@@ -115,7 +111,9 @@ const Lobby = () => {
                   marginBottom: 25,
                   padding: 0,
                   border: "none",
+                  position: "relative",
                 }}
+                styles={{ body: { padding: "0px" } }}
                 cover={
                   <img
                     alt="avatar"
@@ -123,8 +121,14 @@ const Lobby = () => {
                     style={{ width: "100%", height: "auto", border: "none" }}
                   />
                 }
-                styles={{ body: { padding: "0px" } }} // Ajusta el padding del cuerpo de la tarjeta para reducir el espacio de la descripción
               >
+                {roomOwner && (
+                  <DeletePlayerButton
+                    onClick={() => handleRemovePlayer(player.id)}
+                  >
+                    X
+                  </DeletePlayerButton>
+                )}
                 <Meta
                   title={
                     <span
@@ -144,7 +148,6 @@ const Lobby = () => {
                     >
                       {player.playerName}
                     </span>
-
                   }
                   style={{ padding: 0, height: "2", lineHeight: "unset" }}
                 />

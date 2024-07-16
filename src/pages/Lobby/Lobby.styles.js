@@ -6,13 +6,13 @@ import lava from "../../app/assets/gifs/lava.gif";
 
 export const PlayerContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 25px 0px;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Cambiado para ajustar automáticamente según el espacio */
+  gap: 25px; /* Reducido el gap entre los jugadores */
   justify-items: center;
   align-items: center;
   width: 100%;
-  max-width: 600px;
-  margin: 20px auto;
+  max-width: 400px; /* Reducido el max-width para que los jugadores no estén tan separados */
+  margin: 20px auto; /* Ajustado el margen */
 `;
 
 export const Button = styled.button`
@@ -76,14 +76,14 @@ export const Button = styled.button`
     ${({ theme }) =>
       theme.name === "mago" &&
       css`
-        background-color: #228b22  !important;
+        background-color: #228b22 !important;
       `}
-${({ theme }) =>
+    ${({ theme }) =>
       theme.name === "hada" &&
       css`
         background-color: #228b22 !important;
       `}
-  box-shadow: 0 -2px rgb(0 0 0 / 50%) inset, 0 2px rgb(255 255 255 / 20%) inset, -2px 0 rgb(255 255 255 / 20%) inset, 2px 0 rgb(0 0 0 / 50%) inset;
+    box-shadow: 0 -2px rgb(0 0 0 / 50%) inset, 0 2px rgb(255 255 255 / 20%) inset, -2px 0 rgb(255 255 255 / 20%) inset, 2px 0 rgb(0 0 0 / 50%) inset;
   }
 
   &:hover:after {
@@ -100,6 +100,7 @@ ${({ theme }) =>
     box-shadow: 0 0px 0 0 rgb(0 0 0 / 15%);
   }
 `;
+
 export const LobbyContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -118,6 +119,7 @@ export const CirclesContainer = styled.div`
     margin-bottom: 10px;
   }
 `;
+
 export const Overlay = styled.div`
   position: fixed;
   top: 0;
@@ -127,6 +129,7 @@ export const Overlay = styled.div`
   background: rgba(0, 0, 0, 0.7);
   z-index: 999;
 `;
+
 export const Circle = styled.div`
   width: 225px;
   height: 225px;
@@ -167,7 +170,7 @@ export const Container = styled.div`
       background-size: cover;
       background-image: url("https://i.pinimg.com/originals/1b/45/63/1b456377a9dce67a7dc3630260aa7572.gif");
     `}
-${({ theme }) =>
+  ${({ theme }) =>
     theme.name === "hada" &&
     css`
       background-repeat: no-repeat;
@@ -197,20 +200,73 @@ export const Box = styled.div`
   ${({ theme }) =>
     theme.name === "hada" &&
     css`
+      background-color: pink;
+      border: solid 4px black;
+      width: 225px;
+      height: 225px;
+      border-radius: 50%;
       background-image: url(${hada});
     `}
-   ${({ theme }) =>
+
+  ${({ theme }) =>
     theme.name === "mago" &&
     css`
+      background-color: blue;
+      border: solid 4px black;
+      width: 225px;
+      height: 225px;
+      border-radius: 50%;
       background-image: url(${helado});
     `}
+
+  @media (max-width: 768px) {
+    width: 150px;
+    height: 150px;
+
+    ${({ theme }) =>
+    theme.name === "verdugo" &&
+    css`
+        width: 140px;
+        height: 140px;
+        border: solid 1px black;
+        border-radius: 5%;
+        background-image: url(${verdugo});
+      `}
+
+    ${({ theme }) =>
+    theme.name === "hada" &&
+    css`
+        width: 150px;
+        height: 150px;
+        border: solid 2px black;
+        border-radius: 50%;
+        background-color: pink;
+        background-image: url(${hada});
+      `}
+
+    ${({ theme }) =>
+    theme.name === "mago" &&
+    css`
+        width: 150px;
+        height: 150px;
+        border: solid 2px black;
+        border-radius: 50%;
+        background-color: blue;
+        background-image: url(${helado});
+      `}
+  }
 `;
 
-export const StyledMetaContainer = styled.div`
+export const DeletePlayerButton = styled.button`
+  font-weight: bold;
+  font-size: 0.8rem;
+  font-family: Pixellari;
   background-color: black;
-  padding: 8px;
-  text-align: center;
-`;
+  color: red;
+  position: absolute;
+  top: -5px;
+  `;
+
 
 // Configuracion del boton de copiar sala en portapapeles
 export const Copy = styled.button`
@@ -220,4 +276,16 @@ export const Copy = styled.button`
   &:active {
     transform: translateY(3px);
   }
+  &:hover {
+  ${({ theme }) =>
+      theme.name === "verdugo" &&
+      css`
+        background-color: #ffd700 !important;
+      `}
+    ${({ theme }) =>
+      theme.name === "mago" &&
+      css`
+        background-color: #228b22  !important;
+      `}
+      }
 `;
