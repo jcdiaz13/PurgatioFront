@@ -39,9 +39,12 @@ const Lobby = () => {
       setPlayers(response.data);
       setLoading(false); // Set loading to false after players are fetched
 
+      // Check if the current player exists in the updated list of players
       const playerExists = response.data.find(
         (player) => player.id === playerId
       );
+
+      // If player does not exist and loading is false, navigate to "/"
       if (!playerExists && !loading) {
         navigate("/");
       }
@@ -57,7 +60,9 @@ const Lobby = () => {
       setPlayers(response.data);
       console.log("Players after removal:", response.data);
 
-      if (id === playerId) {
+      // Check if the removed player is the current user
+      const removedPlayer = response.data.find((player) => player.id === id);
+      if (removedPlayer && removedPlayer.id === playerId) {
         navigate("/");
       }
     } catch (error) {
