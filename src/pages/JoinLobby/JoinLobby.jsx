@@ -19,6 +19,7 @@ import {
   AvatarPopup,
   AvatarOption,
   Overlay,
+  Pergamino,
 } from "./JoinLobby.styles";
 
 function JoinLobby() {
@@ -94,18 +95,21 @@ function JoinLobby() {
             <img src={interrogante} />
           )}
         </AvatarContainer>
+        <Pergamino>
         <Input
           type="text"
           value={playerName}
           onChange={handleNameChange}
-          placeholder="Ingresa tu nombre"
+          placeholder="Nombre"
         />
+        </Pergamino>
+        <Pergamino>
         <Input
           type="text"
           value={roomId}
           onChange={handleRoomIdChange}
-          placeholder="Introduce el número de sala"
-        />
+          placeholder="Número de sala"
+        /></Pergamino>
         <ButtonContainer>
           <StyledLink to="/">
             <Button>Volver</Button>

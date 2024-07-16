@@ -20,8 +20,7 @@ const Router = () => (
       <Route path="/punishments" element={<Punishments />} />
       <Route path="/qr" element={<QRCodeGenerator />}></Route>
       <Route path="/verdict" element={<Verdict />}></Route>
-      <Route path="*" element={<div>404</div>} />
-
+      <Route path="*" element={<p>error 404</p>}/>
     </Routes>
   </BrowserRouter>
 );

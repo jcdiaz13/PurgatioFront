@@ -14,15 +14,15 @@ const avatarImages = [
   },
   {
     id: 2,
-    img: pinkguy,
+    img: pig,
   },
   {
     id: 3,
-    img: tronco,
+    img: pinkguy,
   },
   {
     id: 4,
-    img: camaleon,
+    img: bunny,
   },
   {
     id: 5,
@@ -30,15 +30,15 @@ const avatarImages = [
   },
   {
     id: 6,
-    img: bunny,
+    img: camaleon,
   },
   {
     id: 7,
-    img: pig,
+    img: maskguy,
   },
   {
     id: 8,
-    img: maskguy,
+    img: tronco,
   }
 ];
 

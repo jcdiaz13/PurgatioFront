@@ -6,6 +6,8 @@ import {
   Textarea,
   ButtonContainer,
   Button,
+  Title,
+  SubTitle,
 } from "./Punishments.styles";
 import { FaArrowLeft } from "react-icons/fa";
 // import sinsData from "../../app/jsons/gameMastersSins.json";
@@ -93,9 +95,9 @@ const Punishments = () => {
     <Theme>
       <Container>
         <FormContainer>
-          <h1>Pecado</h1>
+          <Title>Pecado</Title>
           {assignSin} {/* ESTADO QUE CONTIENE EL PECADO DEL DESTINATARIO */}
-          <h1>Castigos</h1>
+          <SubTitle>Castigos</SubTitle>
           {/* <p>{randomSin}</p> */}
           <Textarea />
           {/* onChange={handlePunishmentChange} placeholder={suggest} en text area */}
