@@ -16,6 +16,7 @@ export const Container = styled.div`
   height: 100vh;
   margin: 0;
 `;
+
 export const Cover = styled.div`
   position: relative; 
   background-color: lightpink; 
@@ -64,8 +65,6 @@ export const Book = styled.div`
   }
 `;
 
-
-
 export const ModalWrapper = styled.div`
   position: fixed;
   top: 0;
@@ -80,6 +79,7 @@ export const ModalWrapper = styled.div`
 `;
 
 export const ModalContent = styled.div`
+  position: relative; /* Añadido para posicionar el CloseButton relativo a ModalContent */
   background-color: #fff;
   padding: 20px;
   display: flex;
