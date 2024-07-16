@@ -11,14 +11,14 @@ import {
 } from "./Lobby.styles";
 import Theme from "../../components/Theme";
 import { PlayerContext } from "../../app/contexts/PlayerContext";
-import { getPlayersByRoomId } from "../../app/services/player";
+import { getPlayersByRoomId, deletePlayer } from '../../app/services/player';
 import avatarImages from "../../app/utils/avatarImages";
 import { useNavigate } from "react-router-dom";
 
 const { Meta } = Card;
 
 const Lobby = () => {
-  const { roomId, players, setPlayers, playerId, gameStarted, setGameStarted } =
+  const { roomId, players, setPlayers, playerId, gameStarted, setGameStarted, admin, setAdmin } =
     useContext(PlayerContext);
   const navigate = useNavigate();
 
@@ -56,18 +56,30 @@ const Lobby = () => {
       });
   };
 
-  //DE MOMENTO NO ES FUNCIONAL, YA QUE FALTA HACER UN USEFFECT. TAL COMO ESTA AHORA SOLO EL ADMIN PUEDE JUGAR.
-  // const handleStartGame = () => {
-  //   // OBTENER EL ID DEL JUGADOR ACTUAL DESDE EL PLAYER CONTEXT.
-  //   const currentPlayerId = playerId;
-  //   // OBTENER EL ID DEL ADMIN EN LA LISTA DE JUGADORES
-  //   const admin = players.length > 0 ? players[0].id : null;
-  //   // VERIFICA SI EL JUGADOR ACTUAL ES EL ADMIN
-  //   if (currentPlayerId === admin) {
-  //     setGameStarted(true);
-  //     navigate("/sins");
-  //   }
-  // }
+  // DE MOMENTO NO ES FUNCIONAL, YA QUE FALTA HACER UN USEFFECT. TAL COMO ESTA AHORA SOLO EL ADMIN PUEDE JUGAR.
+  const handleStartGame = () => {
+    // OBTENER EL ID DEL JUGADOR ACTUAL DESDE EL PLAYER CONTEXT.
+    const currentPlayerId = playerId;
+    // OBTENER EL ID DEL ADMIN EN LA LISTA DE JUGADORES
+    const adminId = players.length > 0 ? players[0].id : null;
+    setAdmin(adminId);
+    // VERIFICA SI EL JUGADOR ACTUAL ES EL ADMIN
+    if (currentPlayerId === admin) {
+      setGameStarted(true);
+      navigate("/sins");
+    }
+  }
+
+  //FUNCION ELIMINAR PARA ELIMINAR A LOS JUGADORES
+  const handleDeletePlayer = async () => {
+    if (playerId === admin) {
+      alert("EL admin no puede ser eliminado");
+    }
+    else {
+      await deletePlayer(playerId);
+    }
+  }
+
   return (
     <Theme>
       <Container>
@@ -132,6 +144,7 @@ const Lobby = () => {
                     >
                       {player.playerName}
                     </span>
+
                   }
                   style={{ padding: 0, height: "2", lineHeight: "unset" }}
                 />
