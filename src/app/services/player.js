@@ -24,5 +24,7 @@ export const getSins = async (roomId) => {
     return response.data;  // Devuelve los datos obtenidos de la API
 };
 
+//DELETE
 
+export const deletePlayer = async (playerId) => await instance.delete(`player/${playerId}`);
 
