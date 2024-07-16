@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 export const Popup = styled.div`
   position: fixed;
   top: 50%;
@@ -17,25 +17,30 @@ export const Overlay = styled.div`
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(7px);
+  backdrop-filter: blur(5px);
   z-index: 999;
 `;
 export const StyledLink = styled(Link)`
-  flex: 1;
+  flex: 0;
   text-decoration: none;
   display: flex;
   justify-content: center;
 `;
-
+export const ButtonContainer = styled.div`
+    display: flex;
+    flex: 0;
+  width: 100%;
+  margin-top: 1rem;
+  gap: 15px; /* Añade un espacio entre los botones */
+ align-items: center;
+  justify-content: center;
+`;
 export const Button = styled.button`
   font-family: Pixellari;
   font-size: 1rem;
   background-color: black;
   color: #fff;
-  text-shadow: 0 2px 0 rgb(0 0 0 / 25%);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  text-shadow: 0 2px 0 rgb(0 0 0 / 25%); 
   position: relative;
   border: 0;
   z-index: 1;
@@ -43,10 +48,10 @@ export const Button = styled.button`
   cursor: pointer;
   letter-spacing: 1px;
   white-space: unset;
- padding: 10px;
   text-decoration: none;
   transition: all 0.7s cubic-bezier(0,.8,.26,.99);
   width: 91px;
+  height: 30px;
 
 
 &:before {
@@ -100,56 +105,30 @@ export const Button = styled.button`
 }
 `;
 
-export const ButtonClose=styled.button`
-position: absolute;
-  border: none;
-  font-size: 0.8rem;
-  background-color: #CC0000;
-  color: white;
-  cursor: pointer;
-  text-align: center;
-
-  &:hover {
-    background-color: #FF3333;
-    color: black;
-  }
-
-  &:active {
-  background-color: #FF9999;
-  box-shadow: 0 2px white;
-  transform: translateY(4px);
-}
-`;
-
 export const Box = styled.div`
 display: flex;
- width: 250px;
+width: 250px;
   height: 250px;
-  border-radius: 50%; 
   margin: auto;
   cursor: pointer;
-   img{
-    border: solid 6px black;
-    box-shadow: 1px 1px 30px black;
-  border-radius: 5%;
+img{
     width: 250px;
     height: 250px;
     object-fit: cover;
     z-index: -1;
-   }
+}
 `;
 
 export const Name = styled.h2` 
+padding-top: 10px;
 font-family: Pixellari;
 font-size: 25px;
 margin: auto;
-width: 150px;
 box-sizing: border-box;
 text-align: center;
-margin-bottom: 10px;
-text-shadow: 2px 2px grey;
+text-shadow: 1px 2px grey;
 `;
-export const Description=styled.p`
+export const Description = styled.p`
 text-align: center;
 margin-bottom: 10px;
 `

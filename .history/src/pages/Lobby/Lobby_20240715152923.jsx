@@ -1,25 +1,17 @@
 import { useContext, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Card } from "antd";
-import {
-  Box,
-  Container,
-  PlayerContainer,
-  Id,
-  Button,
-  DeletePlayerButton,
-  Copy,
-} from "./Lobby.styles";
+import { Box, Container, PlayerContainer, Id, Button } from "./Lobby.styles";
 import Theme from "../../components/Theme";
 import { PlayerContext } from "../../app/contexts/PlayerContext";
-import { getPlayersByRoomId, deletePlayer } from "../../app/services/player";
+import { getPlayersByRoomId } from "../../app/services/player";
 import avatarImages from "../../app/utils/avatarImages";
+import { useNavigate } from "react-router-dom";
 
 const { Meta } = Card;
 
 const Lobby = () => {
-  const { roomId, players, setPlayers, roomOwner, setRoomOwner, playerId } =
-    useContext(PlayerContext);
+  const { roomId, players, setPlayers, playerId, gameStarted, setGameStarted } = useContext(PlayerContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -30,6 +22,7 @@ const Lobby = () => {
 
       return () => clearTimeout(timeoutId);
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [roomId]);
 
@@ -37,85 +30,47 @@ const Lobby = () => {
     try {
       const response = await getPlayersByRoomId(roomId);
       setPlayers(response.data);
-
-      const playerExists = response.data.find(
-        (player) => player.id === playerId
-      );
-      if (!playerExists) {
-        navigate("/");
-      }
+      console.log(response.data);
     } catch (error) {
       console.error("Error showing players:", error);
     }
   };
 
-  const handleRemovePlayer = async (id) => {
-    try {
-      await deletePlayer(id);
-      const response = await getPlayersByRoomId(roomId);
-      setPlayers(response.data);
-      console.log("Players after removal:", response.data);
 
-      if (id === playerId) {
-        navigate("/");
-      }
-    } catch (error) {
-      console.error("Error removing player:", error);
+  /* //DE MOMENTO NO ES FUNCIONAL, YA QUE FALTA HACER UN USEFFECT. TAL COMO ESTA AHORA SOLO EL ADMIN PUEDE JUGAR.
+  const handleStartGame = () => {
+    // OBTENER EL ID DEL JUGADOR ACTUAL DESDE EL PLAYER CONTEXT.
+    const currentPlayerId = playerId;
+    // OBTENER EL ID DEL ADMIN EN LA LISTA DE JUGADORES
+    const admin = players.length > 0 ? players[0].id : null;
+    // VERIFICA SI EL JUGADOR ACTUAL ES EL ADMIN
+    if (currentPlayerId === admin) {
+      setGameStarted(true);
+      navigate("/sins");
     }
-  };
-  // Copia el codigo de la sala en el portapapeles para luego poder pasarlo por otros sitios
-  const copyToClipboard = (text) => {
-    navigator.clipboard
-      .writeText(text)
-      .then(() => {
-        alert("Text copied to clipboard");
-      })
-      .catch((err) => {
-        console.error("Failed to copy text: ", err);
-      });
-  };
-
-  // DE MOMENTO NO ES FUNCIONAL, YA QUE FALTA HACER UN USEFFECT. TAL COMO ESTA AHORA SOLO EL ADMIN PUEDE JUGAR.
-  // const handleStartGame = () => {
-  //   // OBTENER EL ID DEL JUGADOR ACTUAL DESDE EL PLAYER CONTEXT.
-  //   const currentPlayerId = playerId;
-  //   // OBTENER EL ID DEL ADMIN EN LA LISTA DE JUGADORES
-  //   const adminId = players.length > 0 ? players[0].id : null;
-  //   setRoomOwner(adminId);
-  //   // VERIFICA SI EL JUGADOR ACTUAL ES EL ADMIN
-  //   if (currentPlayerId === roomOwner) {
-  //     setRoomOwner(true);
-  //     navigate("/sins");
-  //   }
-  // }
-
+  } */
   return (
     <Theme>
       <Container>
         <Box />
         <Id>Room ID: {roomId}</Id>
-        <Id>
-          Room ID:{" "}
-          <Copy onClick={() => copyToClipboard(roomId)}>{roomId}24</Copy>
-        </Id>
         {/* LOGICA PARA QUE SOLO EL ADMIN PUEDA VER EL BOTON DE START GAME */}
-        {/* {players.length > 0 && players[0].id === playerId && (
+        {/*  {players.length > 0 && players[0].id === playerId && (
           <Button onClick={handleStartGame}>START</Button>
         )} */}
-        <Link to={"/sins"}>
-          <Button>Start</Button>
-        </Link>
+        <Link to={"/sins"}><Button>START</Button></Link>
         <PlayerContainer>
           {players?.map((player, index) => {
-            const avatarId = player.avatarId;
+            const avatarId = player.avatarId; //Esta es la ID del avatar asignada en la base de datos
             const imgObj = avatarImages.find(
+              //Almacenamos el objeto, cuya ID del array coincide con la ID de la base de datos(Para así luego acceder a la imagen de este objeto)
               (avatarImage) => avatarImage.id == avatarId
             );
-
+            console.log("11111111111111111", imgObj);
             return (
               <Card
                 key={index}
-                hoverable={false}
+                hoverable
                 style={{
                   background: "transparent",
                   cursor: "auto",
@@ -125,9 +80,7 @@ const Lobby = () => {
                   marginBottom: 25,
                   padding: 0,
                   border: "none",
-                  position: "relative",
                 }}
-                styles={{ body: { padding: "0px" } }} // Ajusta el padding del cuerpo de la tarjeta para reducir el espacio de la descripción (NO BORRAR O SE LÍA)
                 cover={
                   <img
                     alt="avatar"
@@ -135,14 +88,8 @@ const Lobby = () => {
                     style={{ width: "100%", height: "auto", border: "none" }}
                   />
                 }
+                styles={{ body: { padding: "0px" } }} // Ajusta el padding del cuerpo de la tarjeta para reducir el espacio de la descripción
               >
-                {roomOwner && (
-                  <DeletePlayerButton
-                    onClick={() => handleRemovePlayer(player.id)}
-                  >
-                    X
-                  </DeletePlayerButton>
-                )}
                 <Meta
                   title={
                     <span

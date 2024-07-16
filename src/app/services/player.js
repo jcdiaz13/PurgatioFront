@@ -25,8 +25,6 @@ export const getSins = async (roomId) => {
 };
 
 //DELETE
+
 export const deletePlayer = async (playerId) => await instance.delete(`player/${playerId}`);
-
-
-
 

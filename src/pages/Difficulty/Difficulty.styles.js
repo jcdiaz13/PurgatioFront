@@ -37,10 +37,9 @@ display: flex;
   height: 200px;
   margin-bottom: 20px;
   cursor: pointer;
+  border: solid 3px black;
+  backdrop-filter: blur(4px);
    img{
-    border: solid 4px black;
-    background-color: black;
-  border-radius: 5%;
     width: 200px;
     height: 200px;
     object-fit: cover;
