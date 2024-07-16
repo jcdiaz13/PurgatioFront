@@ -1,9 +1,12 @@
-[
+import verdugo from "../../app/assets/gifs/reaper.gif";
+import helado from "../../app/assets/gifs/ice-cream.gif";
+
+const gameMasters = [
   {
-    "name": "executioner",
-    "id": "1",
-    "description": "Descripción de executioner",
-    "img": "img",
+    id: 1,
+    img: verdugo,
+    name: "VERDUGO",
+    description: "Esta es la dificultad más alocada, con pecados e historias más locas y castigos más severos!",
     "punishments": [
       "Comer una rodaja de limón sin hacer gestos.",
       "Enviar un mensaje vergonzoso a alguien en tu lista de contactos (previamente aprobado por los jugadores).",
@@ -18,10 +21,10 @@
     ]
   },
   {
-    "name": "mage",
-    "id": "2",
-    "description": "Descripción de mage",
-    "img": "img",
+    "name": "HELADITO",
+    "id": 2,
+    "description": "Esta es la dificultad estándar, podrás añadir tus pecados e historias y la gente te juzgará y castigará dependiendo de la magnitud de ellos!",
+    "img": helado,
     "punishments": [
       "Hacer 20 sentadillas.",
       "Comer una cucharadita de mostaza.",
@@ -34,23 +37,7 @@
       "Pintar un bigote en tu cara con un marcador lavable.",
       "Hablar como un robot por los próximos 3 minutos."
     ]
-  },
-  {
-    "name": "fairy",
-    "id": "3",
-    "description": "Descripción de fairy",
-    "img": "img",
-    "punishments": [
-      "Hacer 10 saltos en el lugar.",
-      "Cantar una canción infantil durante 30 segundos.",
-      "Decir algo positivo sobre cada jugador.",
-      "Imitar a un animal por 1 minuto.",
-      "Caminar de rodillas por la habitación.",
-      "Contar un chiste (aunque no sea gracioso).",
-      "Hacer una pose graciosa y mantenerla por 10 segundos.",
-      "Dar un abrazo a cada persona en la habitación.",
-      "Decir el abecedario al revés.",
-      "Hacer una expresión facial tonta durante 30 segundos."
-    ]
   }
 ]
+
+export default gameMasters;

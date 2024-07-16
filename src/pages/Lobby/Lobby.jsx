@@ -1,16 +1,26 @@
 import { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Card } from "antd";
-import { Box, Container, PlayerContainer, Id, Button } from "./Lobby.styles";
+import {
+  Box,
+  Container,
+  PlayerContainer,
+  Id,
+  Button,
+  Copy,
+} from "./Lobby.styles";
 import Theme from "../../components/Theme";
 import { PlayerContext } from "../../app/contexts/PlayerContext";
-import { getPlayersByRoomId } from "../../app/services/player";
+import { getPlayersByRoomId, deletePlayer } from '../../app/services/player';
 import avatarImages from "../../app/utils/avatarImages";
+import { useNavigate } from "react-router-dom";
 
 const { Meta } = Card;
 
 const Lobby = () => {
-  const { roomId, players, setPlayers } = useContext(PlayerContext);
+  const { roomId, players, setPlayers, playerId, gameStarted, setGameStarted, admin, setAdmin } =
+    useContext(PlayerContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (roomId) {
@@ -34,18 +44,59 @@ const Lobby = () => {
     }
   };
 
+  // Copia el codigo de la sala en el portapapeles para luego poder pasarlo por otros sitios
+  const copyToClipboard = (text) => {
+    navigator.clipboard
+      .writeText(text)
+      .then(() => {
+        alert("Text copied to clipboard");
+      })
+      .catch((err) => {
+        console.error("Failed to copy text: ", err);
+      });
+  };
+
+  // DE MOMENTO NO ES FUNCIONAL, YA QUE FALTA HACER UN USEFFECT. TAL COMO ESTA AHORA SOLO EL ADMIN PUEDE JUGAR.
+  const handleStartGame = () => {
+    // OBTENER EL ID DEL JUGADOR ACTUAL DESDE EL PLAYER CONTEXT.
+    const currentPlayerId = playerId;
+    // OBTENER EL ID DEL ADMIN EN LA LISTA DE JUGADORES
+    const adminId = players.length > 0 ? players[0].id : null;
+    setAdmin(adminId);
+    // VERIFICA SI EL JUGADOR ACTUAL ES EL ADMIN
+    if (currentPlayerId === admin) {
+      setGameStarted(true);
+      navigate("/sins");
+    }
+  }
+
+  //FUNCION ELIMINAR PARA ELIMINAR A LOS JUGADORES
+  const handleDeletePlayer = async () => {
+    if (playerId === admin) {
+      alert("EL admin no puede ser eliminado");
+    }
+    else {
+      await deletePlayer(playerId);
+    }
+  }
+
   return (
     <Theme>
       <Container>
         <Box />
-        <Id>Room ID: {roomId}</Id>
-        <Link to="/sins">
-          <Button>START</Button>
+        <Id>
+          Room ID: <Copy onClick={() => copyToClipboard(roomId)}>{roomId}24</Copy>
+        </Id>
+        {/* LOGICA PARA QUE SOLO EL ADMIN PUEDA VER EL BOTON DE START GAME */}
+        {/* {players.length > 0 && players[0].id === playerId && (
+          <Button onClick={handleStartGame}>START</Button>
+        )} */}
+        <Link to={"/sins"}>
+          <Button>Start</Button>
         </Link>
         <PlayerContainer>
           {players?.map((player, index) => {
             const avatarId = player.avatarId; //Esta es la ID del avatar asignada en la base de datos
-
             const imgObj = avatarImages.find(
               //Almacenamos el objeto, cuya ID del array coincide con la ID de la base de datos(Para así luego acceder a la imagen de este objeto)
               (avatarImage) => avatarImage.id == avatarId
@@ -56,8 +107,11 @@ const Lobby = () => {
                 key={index}
                 hoverable
                 style={{
-                  maxWidth: 50,
-                  maxHeight: 50,
+                  background: "transparent",
+                  cursor: "auto",
+                  maxWidth: 80,
+                  maxHeight: 80,
+                  marginTop: 30,
                   marginBottom: 25,
                   padding: 0,
                   border: "none",
@@ -77,6 +131,7 @@ const Lobby = () => {
                       style={{
                         alignItems: "center",
                         fontSize: 12,
+                        borderRadius: 5,
                         color: "white",
                         backgroundColor: "black",
                         padding: "4px",
@@ -89,8 +144,9 @@ const Lobby = () => {
                     >
                       {player.playerName}
                     </span>
+
                   }
-                  style={{ padding: 0, height: "auto", lineHeight: "unset" }}
+                  style={{ padding: 0, height: "2", lineHeight: "unset" }}
                 />
               </Card>
             );

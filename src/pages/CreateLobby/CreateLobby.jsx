@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-key */
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from 'react';
 import { PlayerContext } from "../../app/contexts/PlayerContext";
 import { useNavigate } from "react-router-dom";
 import interrogante from "../../app/assets/gifs/question.gif";
@@ -41,6 +41,10 @@ function CreateLobby() {
       }
     }
   };
+
+  useEffect(() => {
+    setPlayerName("");
+  }, [setPlayerName]);
 
   const closePopup = () => {
     setIsAvatarPopupOpen(false);

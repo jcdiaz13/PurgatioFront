@@ -1,6 +1,6 @@
 [
   {
-    "name": "executioner",
+    "name": "Executioner",
     "id": "1",
     "description": "Descripción de executioner",
     "img": "img",
@@ -18,7 +18,7 @@
     ]
   },
   {
-    "name": "mage",
+    "name": "Mage",
     "id": "2",
     "description": "Descripción de mage",
     "img": "img",
@@ -36,7 +36,7 @@
     ]
   },
   {
-    "name": "fairy",
+    "name": "Fairy",
     "id": "3",
     "description": "Descripción de fairy",
     "img": "img",
