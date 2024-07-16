@@ -216,7 +216,7 @@ export const Box = styled.div`
       width: 225px;
       height: 225px;
       border-radius: 50%;
-      background-image: url(${mago});
+      background-image: url(${helado});
     `}
 
   @media (max-width: 768px) {
@@ -266,3 +266,26 @@ export const DeletePlayerButton = styled.button`
   position: absolute;
   top: -5px;
   `;
+
+
+// Configuracion del boton de copiar sala en portapapeles
+export const Copy = styled.button`
+  background-color: black;
+  border: 3px solid whit3;
+  color: white;
+  &:active {
+    transform: translateY(3px);
+  }
+  &:hover {
+  ${({ theme }) =>
+      theme.name === "verdugo" &&
+      css`
+        background-color: #ffd700 !important;
+      `}
+    ${({ theme }) =>
+      theme.name === "mago" &&
+      css`
+        background-color: #228b22  !important;
+      `}
+      }
+`;

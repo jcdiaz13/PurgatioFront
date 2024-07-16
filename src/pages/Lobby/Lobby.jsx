@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Card } from "antd";
 import {
@@ -18,9 +18,10 @@ import avatarImages from "../../app/utils/avatarImages";
 const { Meta } = Card;
 
 const Lobby = () => {
-  const { roomId, players, setPlayers, roomOwner, setRoomOwner, playerId } =
+  const { roomId, players, setPlayers, roomOwner, playerId } =
     useContext(PlayerContext);
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (roomId) {
@@ -28,20 +29,20 @@ const Lobby = () => {
         ShowPlayers();
       }, 2000);
 
-      return () => clearTimeout(timeoutId);
+      return () => clearInterval(timeoutId);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [roomId]);
 
   const ShowPlayers = async () => {
     try {
       const response = await getPlayersByRoomId(roomId);
       setPlayers(response.data);
+      setLoading(false); // Set loading to false after players are fetched
 
       const playerExists = response.data.find(
         (player) => player.id === playerId
       );
-      if (!playerExists) {
+      if (!playerExists && !loading) {
         navigate("/");
       }
     } catch (error) {
@@ -63,7 +64,7 @@ const Lobby = () => {
       console.error("Error removing player:", error);
     }
   };
-  // Copia el codigo de la sala en el portapapeles para luego poder pasarlo por otros sitios
+
   const copyToClipboard = (text) => {
     navigator.clipboard
       .writeText(text)
@@ -75,33 +76,13 @@ const Lobby = () => {
       });
   };
 
-  // DE MOMENTO NO ES FUNCIONAL, YA QUE FALTA HACER UN USEFFECT. TAL COMO ESTA AHORA SOLO EL ADMIN PUEDE JUGAR.
-  // const handleStartGame = () => {
-  //   // OBTENER EL ID DEL JUGADOR ACTUAL DESDE EL PLAYER CONTEXT.
-  //   const currentPlayerId = playerId;
-  //   // OBTENER EL ID DEL ADMIN EN LA LISTA DE JUGADORES
-  //   const adminId = players.length > 0 ? players[0].id : null;
-  //   setRoomOwner(adminId);
-  //   // VERIFICA SI EL JUGADOR ACTUAL ES EL ADMIN
-  //   if (currentPlayerId === roomOwner) {
-  //     setRoomOwner(true);
-  //     navigate("/sins");
-  //   }
-  // }
-
   return (
     <Theme>
       <Container>
         <Box />
-        <Id>Room ID: {roomId}</Id>
         <Id>
-          Room ID:{" "}
-          <Copy onClick={() => copyToClipboard(roomId)}>{roomId}24</Copy>
+          Room ID: <Copy onClick={() => copyToClipboard(roomId)}>{roomId}</Copy>
         </Id>
-        {/* LOGICA PARA QUE SOLO EL ADMIN PUEDA VER EL BOTON DE START GAME */}
-        {/* {players.length > 0 && players[0].id === playerId && (
-          <Button onClick={handleStartGame}>START</Button>
-        )} */}
         <Link to={"/sins"}>
           <Button>Start</Button>
         </Link>
@@ -127,7 +108,7 @@ const Lobby = () => {
                   border: "none",
                   position: "relative",
                 }}
-                styles={{ body: { padding: "0px" } }} // Ajusta el padding del cuerpo de la tarjeta para reducir el espacio de la descripción (NO BORRAR O SE LÍA)
+                styles={{ body: { padding: "0px" } }}
                 cover={
                   <img
                     alt="avatar"
