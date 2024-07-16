@@ -35,7 +35,7 @@ const GameOver = () => {
 
   return (
     <Container>
-      {/* {showGameOverText && <BackgroundText>GAME OVER</BackgroundText>} Conditionally render text */}
+      {showGameOverText && <BackgroundText>GAME OVER</BackgroundText>} {/*Conditionally render text*/}
       <Book>
         <Cover>
           {selectedOption ? (
