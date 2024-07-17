@@ -23,8 +23,15 @@ import {
 } from "./JoinLobby.styles";
 
 function JoinLobby() {
-  const { playerName, setPlayerName, roomId, setRoomId, setPlayerId } =
-    useContext(PlayerContext);
+  const {
+    playerName,
+    setPlayerName,
+    roomId,
+    setRoomId,
+    setPlayerId,
+    roomOwner,
+    setRoomOwner,
+  } = useContext(PlayerContext);
   const [isAvatarPopupOpen, setIsAvatarPopupOpen] = useState(false);
   const [selectedAvatar, setSelectedAvatar] = useState(null);
   const navigate = useNavigate();
@@ -68,6 +75,7 @@ function JoinLobby() {
           });
           setPlayerId(player.data.id);
           setRoomId(roomId);
+          setRoomOwner(false);
           navigate("/lobby");
         } catch (error) {
           alert("Error al crear el jugador. Por favor, inténtelo de nuevo.");
@@ -96,20 +104,21 @@ function JoinLobby() {
           )}
         </AvatarContainer>
         <Pergamino>
-        <Input
-          type="text"
-          value={playerName}
-          onChange={handleNameChange}
-          placeholder="Nombre"
-        />
+          <Input
+            type="text"
+            value={playerName}
+            onChange={handleNameChange}
+            placeholder="Nombre"
+          />
         </Pergamino>
         <Pergamino>
-        <Input
-          type="text"
-          value={roomId}
-          onChange={handleRoomIdChange}
-          placeholder="Número de sala"
-        /></Pergamino>
+          <Input
+            type="text"
+            value={roomId}
+            onChange={handleRoomIdChange}
+            placeholder="Número de sala"
+          />
+        </Pergamino>
         <ButtonContainer>
           <StyledLink to="/">
             <Button>Volver</Button>

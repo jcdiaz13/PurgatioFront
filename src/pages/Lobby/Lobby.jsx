@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Card } from "antd";
 import {
@@ -20,32 +20,36 @@ const { Meta } = Card;
 const Lobby = () => {
   const { roomId, players, setPlayers, roomOwner, playerId } =
     useContext(PlayerContext);
+  const playerIdRef = useRef(playerId);
+  // console.log("tttttttttt", playerId);
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (roomId) {
-      const timeoutId = setInterval(() => {
-        ShowPlayers();
+      const intervalId = setInterval(() => {
+        showPlayers();
       }, 2000);
 
-      return () => clearInterval(timeoutId);
+      return () => clearInterval(intervalId);
     }
   }, [roomId]);
 
-  const ShowPlayers = async () => {
+  useEffect(() => {
+    playerIdRef.current = playerId; // Actualizar la referencia con el valor actual de playerId
+  }, [playerId]);
+
+  const showPlayers = async () => {
     try {
       const response = await getPlayersByRoomId(roomId);
       setPlayers(response.data);
-      setLoading(false); // Set loading to false after players are fetched
 
-      // Check if the current player exists in the updated list of players
-      const playerExists = response.data.find(
-        (player) => player.id === playerId
-      );
-
-      // If player does not exist and loading is false, navigate to "/"
-      if (!playerExists && !loading) {
+      // Check if the current player exists and is active in the updated list of players
+      const playerIsPlaying = response.data.find((player) => {
+        return player.id === playerIdRef.current;
+      });
+      // If player does not exist or is not active, navigate to "/"
+      if (!playerIsPlaying) {
+        // console.log("bbbbbbbbbbbbbbbb", playerId, playerExists);
         navigate("/");
       }
     } catch (error) {
@@ -59,13 +63,6 @@ const Lobby = () => {
       const response = await getPlayersByRoomId(roomId);
       setPlayers(response.data);
       console.log("Players after removal:", response.data);
-
-      // Check if the removed player is the current user
-      const removedPlayer = response.data.find((player) => player.id === id);
-      console.log("lo envia?", removedPlayer);
-      if (removedPlayer === playerId) {
-        navigate("/");
-      }
     } catch (error) {
       console.error("Error removing player:", error);
     }
@@ -97,7 +94,7 @@ const Lobby = () => {
           {players?.map((player, index) => {
             const avatarId = player.avatarId;
             const imgObj = avatarImages.find(
-              (avatarImage) => avatarImage.id == avatarId
+              (avatarImage) => avatarImage.id === avatarId
             );
 
             return (
