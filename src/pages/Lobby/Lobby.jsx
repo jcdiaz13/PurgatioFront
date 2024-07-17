@@ -1,4 +1,5 @@
-import { useContext, useEffect } from "react";
+
+import { useContext, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Card } from "antd";
 import {
@@ -9,6 +10,7 @@ import {
   Button,
   DeletePlayerButton,
   Copy,
+  Name,
 } from "./Lobby.styles";
 import Theme from "../../components/Theme";
 import { PlayerContext } from "../../app/contexts/PlayerContext";
@@ -20,30 +22,38 @@ const { Meta } = Card;
 const Lobby = () => {
   const { roomId, players, setPlayers, roomOwner, playerId } =
     useContext(PlayerContext);
+  const playerIdRef = useRef(playerId);
+  // console.log("tttttttttt", playerId);
   const navigate = useNavigate();
 
   useEffect(() => {
     if (roomId) {
-      const timeoutId = setInterval(() => {
-        ShowPlayers();
+      const intervalId = setInterval(() => {
+        showPlayers();
       }, 2000);
 
-      return () => clearInterval(timeoutId);
+      return () => clearInterval(intervalId);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [roomId]);
 
-  const ShowPlayers = async () => {
+  useEffect(() => {
+    playerIdRef.current = playerId; // Almacenamos playerId en una referencia para que sea posible acceder a ella dentro de la función showPlayers que llamamos en un setInterval.
+  }, [playerId]);
+
+  const showPlayers = async () => {
     try {
       const response = await getPlayersByRoomId(roomId);
       setPlayers(response.data);
-      // Check if the current player exists in the updated list of players
-      const playerExists = response.data.find(
-        (player) => player.id === playerId
-      );
-      console.log("11111111111111111", playerExists);
-      // If player does not exist, navigate to "/"
-      if (!playerExists) {
+
+
+      // Comprobamos si alguna id de los usuarios de la room coincide con la id del usuario logueado
+      const playerIsPlaying = response.data.find((player) => {
+        return player.id === playerIdRef.current;
+      });
+      // If player does not exist or is not active, navigate to "/"
+      if (!playerIsPlaying) {
+        // console.log("bbbbbbbbbbbbbbbb", playerId, playerExists);
         navigate("/");
       }
     } catch (error) {
@@ -53,17 +63,22 @@ const Lobby = () => {
 
   const handleRemovePlayer = async (id) => {
     try {
-      // Delete the player
-      await deletePlayer(id);
+      // Verificamos si el jugador que se intenta eliminar es el roomOwner
+      if (id === playerId) {
+        alert("No puedes eliminar al propietario de la sala.");
+        return;
+      }
 
-      // Update players list after deletion
-      const updatedPlayers = await getPlayersByRoomId(roomId);
-      setPlayers(updatedPlayers.data);
+      await deletePlayer(id);
+      const response = await getPlayersByRoomId(roomId);
+      setPlayers(response.data);
+      console.log("Jugadores activos:", response.data);
     } catch (error) {
-      console.error("Error removing player:", error);
+      console.error("Error eliminando al jugador:", error);
     }
   };
 
+  //setInterval(ShowPlayers, 3000)
   const copyToClipboard = (text) => {
     navigator.clipboard
       .writeText(text)
@@ -82,14 +97,12 @@ const Lobby = () => {
         <Id>
           Room ID: <Copy onClick={() => copyToClipboard(roomId)}>{roomId}</Copy>
         </Id>
-        <Link to={"/sins"}>
-          <Button>Start</Button>
-        </Link>
+        <Link to={"/sins"}>{roomOwner && <Button>Start</Button>}</Link>
         <PlayerContainer>
           {players?.map((player, index) => {
             const avatarId = player.avatarId;
             const imgObj = avatarImages.find(
-              (avatarImage) => avatarImage.id == avatarId
+              (avatarImage) => avatarImage.id === avatarId
             );
 
             return (
@@ -120,28 +133,14 @@ const Lobby = () => {
                   <DeletePlayerButton
                     onClick={() => handleRemovePlayer(player.id)}
                   >
-                    X
+                    <p>X</p>
                   </DeletePlayerButton>
                 )}
                 <Meta
                   title={
-                    <span
-                      style={{
-                        alignItems: "center",
-                        fontSize: 12,
-                        borderRadius: 5,
-                        color: "white",
-                        backgroundColor: "black",
-                        padding: "4px",
-                        display: "block",
-                        textAlign: "center",
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
-                        whiteSpace: "nowrap",
-                      }}
-                    >
+                    <Name>
                       {player.playerName}
-                    </span>
+                    </Name>
                   }
                   style={{ padding: 0, height: "2", lineHeight: "unset" }}
                 />
