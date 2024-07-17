@@ -49,7 +49,7 @@ const Lobby = () => {
       const playerIsPlaying = response.data.find((player) => {
         return player.id === playerIdRef.current;
       });
-      // If player does not exist or is not active, navigate to "/"
+      //Si un jugador no existe lo redireccionamos a home
       if (!playerIsPlaying) {
         // console.log("bbbbbbbbbbbbbbbb", playerId, playerExists);
         navigate("/");
