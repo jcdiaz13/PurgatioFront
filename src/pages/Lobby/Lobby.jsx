@@ -9,6 +9,7 @@ import {
   Button,
   DeletePlayerButton,
   Copy,
+  Name,
 } from "./Lobby.styles";
 import Theme from "../../components/Theme";
 import { PlayerContext } from "../../app/contexts/PlayerContext";
@@ -125,28 +126,14 @@ const Lobby = () => {
                   <DeletePlayerButton
                     onClick={() => handleRemovePlayer(player.id)}
                   >
-                    X
+                    <p>X</p>
                   </DeletePlayerButton>
                 )}
                 <Meta
                   title={
-                    <span
-                      style={{
-                        alignItems: "center",
-                        fontSize: 12,
-                        borderRadius: 5,
-                        color: "white",
-                        backgroundColor: "black",
-                        padding: "4px",
-                        display: "block",
-                        textAlign: "center",
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
-                        whiteSpace: "nowrap",
-                      }}
-                    >
+                    <Name>
                       {player.playerName}
-                    </span>
+                    </Name>
                   }
                   style={{ padding: 0, height: "2", lineHeight: "unset" }}
                 />

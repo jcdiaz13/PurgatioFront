@@ -3,6 +3,7 @@ import helado from "../../app/assets/gifs/ice-cream.gif";
 import hada from "../../app/assets/gifs/fairy.gif";
 import verdugo from "../../app/assets/gifs/reaper.gif";
 import lava from "../../app/assets/gifs/lava.gif";
+import nube from "../../app/assets/gifs/nuve.gif"
 
 export const PlayerContainer = styled.div`
   display: grid;
@@ -18,7 +19,7 @@ export const PlayerContainer = styled.div`
 export const Button = styled.button`
   font-family: Pixellari;
   font-size: 1rem;
-  background-color: black;
+  background-color:black;
   color: #fff;
   text-shadow: 0 2px 0 rgb(0 0 0 / 25%);
   display: inline-flex;
@@ -223,12 +224,15 @@ export const Box = styled.div`
 
 export const DeletePlayerButton = styled.button`
   font-weight: bold;
-  font-size: 0.8rem;
-  font-family: Pixellari;
-  background-color: black;
   color: red;
   position: absolute;
-  top: -5px;
+  background-color: transparent;
+  backdrop-filter: blur(3px);
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  top: -6px;  
+  text-shadow:1px 1px 5px black;
   `;
 
 
@@ -242,6 +246,7 @@ export const Copy = styled.button`
   }
   &:hover {
   ${({ theme }) =>
+
     theme.name === "verdugo" &&
     css`
         background-color: #ffd700 !important;
@@ -253,3 +258,22 @@ export const Copy = styled.button`
       `}
       }
 `;
+export const Name = styled.span`
+position: absolute;
+width: 82px;
+letter-spacing: 1px;
+white-space: unset;
+font-Family: Pixellari;
+align-Items: center;
+color: black;
+top: 71px;
+background-image:url(${nube});
+background-position: center;
+background-repeat: no-repeat;
+background-size: cover;
+display: block;
+text-Align: center;
+overflow: hidden;
+white-Space: nowrap;
+`;
+

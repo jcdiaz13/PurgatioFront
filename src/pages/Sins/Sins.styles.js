@@ -81,7 +81,7 @@ export const Textarea = styled.textarea`
 
 export const ButtonContainer = styled.div`
 position: absolute;
-top: 500px;
+top: 550px;
   display: flex;
   justify-content: center;
   width: 100%;
