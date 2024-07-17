@@ -232,6 +232,7 @@ export const DeletePlayerButton = styled.button`
   justify-content: center;
   align-items: center;
   top: -6px;  
+  right: -6px;
   text-shadow:1px 1px 5px black;
   `;
 
