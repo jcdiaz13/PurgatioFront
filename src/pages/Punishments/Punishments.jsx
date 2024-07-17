@@ -65,9 +65,13 @@ const Punishments = () => {
   //ESTA FUNCION DEVUELVE EL PRIMER OBJETO QUE CUMPLA CON LA CONDICION DE QUE EL AUTOR ES EL JUGADOR, Y ALMACENAS EL PECADO DEL DESTINATAIO EN EL ESTADO .
   const ShowSins = async () => {
     const response = await AssignSins(roomId);
-    console.log(response, 33333);
+    console.log(response, 33333, playerId);
     const playerAssignment = response.find(
-      assignment => assignment.autor.id === playerId
+
+      assignment => {
+        console.log(assignment.autor.id + " asfiafsaf " + playerId)
+        return assignment.autor.id === playerId
+      }
     );
     if (playerAssignment) {
       setAssignSin(playerAssignment.destinatario.sin);
@@ -96,6 +100,9 @@ const Punishments = () => {
       <Container>
         <FormContainer>
           <Title>Pecado</Title>
+          {
+            console.log('22222222222222222222222', assignSin)
+          }
           {assignSin} {/* ESTADO QUE CONTIENE EL PECADO DEL DESTINATARIO */}
           <SubTitle>Castigos</SubTitle>
           {/* <p>{randomSin}</p> */}

@@ -14,6 +14,7 @@ import { PlayerContext } from "../../app/contexts/PlayerContext";
 import { getPlayersByRoomId, deletePlayer } from '../../app/services/player';
 import avatarImages from "../../app/utils/avatarImages";
 import { useNavigate } from "react-router-dom";
+import { gameStart } from '../../app/services/room';
 
 const { Meta } = Card;
 
@@ -57,7 +58,7 @@ const Lobby = () => {
   };
 
   // DE MOMENTO NO ES FUNCIONAL, YA QUE FALTA HACER UN USEFFECT. TAL COMO ESTA AHORA SOLO EL ADMIN PUEDE JUGAR.
-  const handleStartGame = () => {
+  const handleStartGame = async () => {
     // OBTENER EL ID DEL JUGADOR ACTUAL DESDE EL PLAYER CONTEXT.
     const currentPlayerId = playerId;
     // OBTENER EL ID DEL ADMIN EN LA LISTA DE JUGADORES
@@ -65,20 +66,11 @@ const Lobby = () => {
     setAdmin(adminId);
     // VERIFICA SI EL JUGADOR ACTUAL ES EL ADMIN
     if (currentPlayerId === admin) {
-      setGameStarted(true);
+      await gameStart(roomId)
       navigate("/sins");
     }
   }
 
-  //FUNCION ELIMINAR PARA ELIMINAR A LOS JUGADORES
-  const handleDeletePlayer = async () => {
-    if (playerId === admin) {
-      alert("EL admin no puede ser eliminado");
-    }
-    else {
-      await deletePlayer(playerId);
-    }
-  }
 
   return (
     <Theme>

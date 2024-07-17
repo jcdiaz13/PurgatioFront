@@ -14,3 +14,7 @@ export const getRoomById = async (roomId) => {
   const response = await instance.get(`/room/${roomId}`);
   return response.data;
 };
+
+// UPDATE
+
+export const gameStart = async (roomId) => await instance.put(`/room/${roomId}`);

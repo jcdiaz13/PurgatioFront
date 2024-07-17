@@ -13,7 +13,7 @@ function Sins() {
   const navigate = useNavigate();
   const [randomSin, setRandomSin] = useState("");
   const suggest = `Sugerencia: ${randomSin}`;
-  const { playerId, roomId } = useContext(PlayerContext);
+  const { playerId, roomId, players } = useContext(PlayerContext);
 
   const checkPlayersWithoutSin = async () => {
     const response = await getPlayersWithoutSin(roomId);
@@ -23,9 +23,9 @@ function Sins() {
 
   useEffect(() => {
     const intervalId = setInterval(async () => {
-      console.log("holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
       const allPlayersDone = await checkPlayersWithoutSin();
       if (allPlayersDone) {
+        console.log("holaaaaaaaaaaaaaaaaaaaaaaaaaa", players)
         navigate('/punishments');
       }
     }, 2000);
