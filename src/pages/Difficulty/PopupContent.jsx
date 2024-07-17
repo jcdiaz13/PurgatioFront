@@ -33,6 +33,7 @@ const PopupContent = ({ closePopup, image, name, description, difficulty }) => {
       });
 
       setRoomOwner(true); // Establecer como propietario de la sala al jugador que crea la sala
+      console.log("fffffffffffffffffff", player.data.id);
       setPlayerId(player.data.id);
       navigate("/lobby");
     } catch (error) {
@@ -44,7 +45,6 @@ const PopupContent = ({ closePopup, image, name, description, difficulty }) => {
     <>
       <Overlay onClick={closePopup} />
       <Popup>
-
         <Box>
           <img src={image} alt="" width="225px" />
         </Box>

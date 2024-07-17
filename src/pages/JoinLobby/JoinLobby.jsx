@@ -66,6 +66,7 @@ function JoinLobby() {
             avatarId: selectedAvatar.id,
             room: { id: roomId },
           });
+          alert(111111);
           setPlayerId(player.data.id);
           setRoomId(roomId);
           navigate("/lobby");
@@ -96,20 +97,21 @@ function JoinLobby() {
           )}
         </AvatarContainer>
         <Pergamino>
-        <Input
-          type="text"
-          value={playerName}
-          onChange={handleNameChange}
-          placeholder="Nombre"
-        />
+          <Input
+            type="text"
+            value={playerName}
+            onChange={handleNameChange}
+            placeholder="Nombre"
+          />
         </Pergamino>
         <Pergamino>
-        <Input
-          type="text"
-          value={roomId}
-          onChange={handleRoomIdChange}
-          placeholder="Número de sala"
-        /></Pergamino>
+          <Input
+            type="text"
+            value={roomId}
+            onChange={handleRoomIdChange}
+            placeholder="Número de sala"
+          />
+        </Pergamino>
         <ButtonContainer>
           <StyledLink to="/">
             <Button>Volver</Button>
