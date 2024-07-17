@@ -1,3 +1,4 @@
+
 import { useContext, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Card } from "antd";
@@ -9,6 +10,7 @@ import {
   Button,
   DeletePlayerButton,
   Copy,
+  Name,
 } from "./Lobby.styles";
 import Theme from "../../components/Theme";
 import { PlayerContext } from "../../app/contexts/PlayerContext";
@@ -44,6 +46,7 @@ const Lobby = () => {
       const response = await getPlayersByRoomId(roomId);
       setPlayers(response.data);
 
+
       // Comprobamos si alguna id de los usuarios de la room coincide con la id del usuario logueado
       const playerIsPlaying = response.data.find((player) => {
         return player.id === playerIdRef.current;
@@ -75,6 +78,7 @@ const Lobby = () => {
     }
   };
 
+  //setInterval(ShowPlayers, 3000)
   const copyToClipboard = (text) => {
     navigator.clipboard
       .writeText(text)
@@ -129,28 +133,14 @@ const Lobby = () => {
                   <DeletePlayerButton
                     onClick={() => handleRemovePlayer(player.id)}
                   >
-                    X
+                    <p>X</p>
                   </DeletePlayerButton>
                 )}
                 <Meta
                   title={
-                    <span
-                      style={{
-                        alignItems: "center",
-                        fontSize: 12,
-                        borderRadius: 5,
-                        color: "white",
-                        backgroundColor: "black",
-                        padding: "4px",
-                        display: "block",
-                        textAlign: "center",
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
-                        whiteSpace: "nowrap",
-                      }}
-                    >
+                    <Name>
                       {player.playerName}
-                    </span>
+                    </Name>
                   }
                   style={{ padding: 0, height: "2", lineHeight: "unset" }}
                 />

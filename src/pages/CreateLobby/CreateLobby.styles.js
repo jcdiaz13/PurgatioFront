@@ -161,9 +161,9 @@ export const AvatarContainer = styled.div`
   align-items: center;
   font-size: 1.5rem;
   cursor: pointer;
-  border: white 1px solid;
   backdrop-filter: blur(7px);
   overflow: hidden; /* Añadido para que la imagen no se desborde */
+  border: solid 2px white;
       img {
     width: 100%;
     height: 100%;
