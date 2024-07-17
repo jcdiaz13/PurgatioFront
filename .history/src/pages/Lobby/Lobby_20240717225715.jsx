@@ -99,7 +99,7 @@ const handleStartGame = async () => {
         console.log("55555555555555   Navegando a /sins con los jugadores activos");
         navigate("/sins", { state: { players: activePlayers } });
       } else {
-        console.log("6666666666666666  No hay jugadores activos para iniciar el juego");
+        console.log("No hay jugadores activos para iniciar el juego");
       }
     } catch (error) {
       console.error("Error starting game:", error);

@@ -13,7 +13,7 @@ import {
 } from "./Lobby.styles";
 import Theme from "../../components/Theme";
 import { PlayerContext } from "../../app/contexts/PlayerContext";
-import { getPlayersByRoomId, deletePlayer, getPlayerIsActive } from "../../app/services/player";
+import { getPlayersByRoomId, deletePlayer } from "../../app/services/player";
 import avatarImages from "../../app/utils/avatarImages";
 
 const { Meta } = Card;
@@ -77,37 +77,27 @@ const Lobby = () => {
   };
 
 const handleStartGame = async () => {
-    try {
-      console.log("Inicio de handleStartGame");
-      
-      const response = await getPlayersByRoomId(roomId);
-      const allPlayers = response.data;
-      console.log("1111111111111  Jugadores obtenidos:", allPlayers);
+  try {
+    // Obtener la lista actualizada de jugadores
+    const response = await getPlayersByRoomId(roomId);
+    const allPlayers = response.data;
 
-      console.log("22222222222222  Creando promesas para verificar si los jugadores están activos");
-      const playerPromises = allPlayers.map(async (player) => {
-        const isActive = await getPlayerIsActive(player.id);
-        console.log(`333333333333 , isActive para jugador ${player.id}:`, isActive);
-        return isActive ? player : null;
-      });
+    // Crear una promesa para cada jugador activo
+    const playerPromises = allPlayers.map(async (player) => {
+      const isActive = await getPlayerIsActive(player.id);
+      console.log("",isActive)
+      return isActive ? player : null;
+    });
 
-      console.log("44444444444444  Esperando a que se resuelvan todas las promesas");
-      const activePlayers = (await Promise.all(playerPromises)).filter(player => player !== null);
-      console.log("Jugadores activos:", activePlayers);
+    // Esperar a que todas las promesas se resuelvan
+    const activePlayers = (await Promise.all(playerPromises)).filter(player => player !== null);
 
-      if (activePlayers.length > 0) {
-        console.log("55555555555555   Navegando a /sins con los jugadores activos");
-        navigate("/sins", { state: { players: activePlayers } });
-      } else {
-        console.log("6666666666666666  No hay jugadores activos para iniciar el juego");
-      }
-    } catch (error) {
-      console.error("Error starting game:", error);
-    }
-  };
-
-
-
+    // Navegar a la página de Sins con los jugadores activos
+    navigate("/sins", { state: { players: activePlayers } });
+  } catch (error) {
+    console.error("Error starting game:", error);
+  }
+};
   
   const copyToClipboard = (text) => {
     navigator.clipboard

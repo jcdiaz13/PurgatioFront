@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Card } from "antd";
 import {
@@ -13,7 +13,7 @@ import {
 } from "./Lobby.styles";
 import Theme from "../../components/Theme";
 import { PlayerContext } from "../../app/contexts/PlayerContext";
-import { getPlayersByRoomId, deletePlayer, getPlayerIsActive } from "../../app/services/player";
+import { getPlayersByRoomId, getPlayerIsActive } from "../../app/services/player";
 import avatarImages from "../../app/utils/avatarImages";
 
 const { Meta } = Card;
@@ -22,8 +22,8 @@ const Lobby = () => {
   const { roomId, players, setPlayers, roomOwner, playerId } =
     useContext(PlayerContext);
   const playerIdRef = useRef(playerId);
-  // console.log("tttttttttt", playerId);
   const navigate = useNavigate();
+  const [allPlayersActive, setAllPlayersActive] = useState(false);
 
   useEffect(() => {
     if (roomId) {
@@ -37,7 +37,7 @@ const Lobby = () => {
   }, [roomId]);
 
   useEffect(() => {
-    playerIdRef.current = playerId; // Almacenamos playerId en una referencia para que sea posible acceder a ella dentro de la función showPlayers que llamamos en un setInterval.
+    playerIdRef.current = playerId;
   }, [playerId]);
 
   const showPlayers = async () => {
@@ -45,70 +45,34 @@ const Lobby = () => {
       const response = await getPlayersByRoomId(roomId);
       setPlayers(response.data);
 
-      // Comprobamos si alguna id de los usuarios de la room coincide con la id del usuario logueado
-      const playerIsPlaying = response.data.find((player) => {
-        return player.id === playerIdRef.current;
-      });
-      //Si un jugador no existe lo redireccionamos a home
-      if (!playerIsPlaying) {
-        // console.log("bbbbbbbbbbbbbbbb", playerId, playerExists);
-        navigate("/");
-      }
+      const allActive = response.data.every((player) => player.isActive);
+      setAllPlayersActive(allActive);
     } catch (error) {
       console.error("Error showing players:", error);
     }
   };
 
-  const handleRemovePlayer = async (id) => {
+  const handleStartGame = async () => {
     try {
-      // Verificamos si el jugador que se intenta eliminar es el roomOwner
-      if (id === playerId) {
-        alert("No puedes eliminar al propietario de la sala.");
-        return;
-      }
+      const activePlayersResponse = await Promise.all(
+        players.map(async (player) => {
+          const isActive = await getPlayerIsActive(player.id);
+          return { ...player, isActive };
+        })
+      );
 
-      await deletePlayer(id);
-      const response = await getPlayersByRoomId(roomId);
-      setPlayers(response.data);
-      console.log("Jugadores activos:", response.data);
-    } catch (error) {
-      console.error("Error eliminando al jugador:", error);
-    }
-  };
+      const allActive = activePlayersResponse.every((player) => player.isActive);
 
-const handleStartGame = async () => {
-    try {
-      console.log("Inicio de handleStartGame");
-      
-      const response = await getPlayersByRoomId(roomId);
-      const allPlayers = response.data;
-      console.log("1111111111111  Jugadores obtenidos:", allPlayers);
-
-      console.log("22222222222222  Creando promesas para verificar si los jugadores están activos");
-      const playerPromises = allPlayers.map(async (player) => {
-        const isActive = await getPlayerIsActive(player.id);
-        console.log(`333333333333 , isActive para jugador ${player.id}:`, isActive);
-        return isActive ? player : null;
-      });
-
-      console.log("44444444444444  Esperando a que se resuelvan todas las promesas");
-      const activePlayers = (await Promise.all(playerPromises)).filter(player => player !== null);
-      console.log("Jugadores activos:", activePlayers);
-
-      if (activePlayers.length > 0) {
-        console.log("55555555555555   Navegando a /sins con los jugadores activos");
-        navigate("/sins", { state: { players: activePlayers } });
+      if (allActive) {
+        navigate("/sins", { state: { players: players } });
       } else {
-        console.log("6666666666666666  No hay jugadores activos para iniciar el juego");
+        alert("No todos los jugadores están activos. Espere a que todos los jugadores se unan.");
       }
     } catch (error) {
-      console.error("Error starting game:", error);
+      console.error("Error getting active players:", error);
     }
   };
 
-
-
-  
   const copyToClipboard = (text) => {
     navigator.clipboard
       .writeText(text)
@@ -127,7 +91,9 @@ const handleStartGame = async () => {
         <Id>
           Room ID: <Copy onClick={() => copyToClipboard(roomId)}>{roomId}</Copy>
         </Id>
-        {roomOwner && <Button onClick={handleStartGame}>Start</Button>}
+        <Link to={"/sins"}>
+          {roomOwner && <Button onClick={handleStartGame}>Start</Button>}
+        </Link>
         <PlayerContainer>
           {players?.map((player, index) => {
             const avatarId = player.avatarId;

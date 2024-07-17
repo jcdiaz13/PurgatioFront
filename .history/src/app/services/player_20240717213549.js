@@ -10,35 +10,30 @@ export const getPlayersByRoomId = async (roomId) => await instance.get(`player/r
 
 export const getPlayersWithoutSin = async (roomId) => await instance.get(`player/nosin/${roomId}`);
 
+export const getPlayerIsActive = async (playerId) => {
+    try {
+        const response = await instance.get(`/player/${playerId}/isActive`);
+        return response.data;
+    } catch (error) {
+        console.error("Error fetching player isActive:", error);
+        throw error;
+    }
+
+
+
 export const AssignSins = async (roomId) => {
     console.log(roomId, 11111);
     const data = await instance.get(`player/assign/${roomId}`);
     console.log("22222");
     return data.data;
-
-
 }
 
-export const getPlayerIsActive = async (playerId) => {
-    try {
-        const response = await instance.get(`/player/${playerId}/isActive`);
-        const isActive = response.data; // Suponiendo que response.data es el valor de isActive
-        console.log(`11111, isActive para jugador ${playerId}:`, isActive);
-        return isActive;
-    } catch (error) {
-        console.error("Error fetching player isActive:", error);
-        throw error;
-    }
-};
-
-
 export const getSins = async (roomId) => {
-    // console.log(roomId, 101010101);
+    console.log(roomId, 101010101);
     const response = await instance.get(`player/assign/${roomId}`);
-    // console.log(response.data, 3333333);
+    console.log(response.data, 3333333);
     return response.data;  // Devuelve los datos obtenidos de la API
 };
 
 // DELETE
 export const deletePlayer = async (playerId) => await instance.delete(`player/${playerId}`);
-

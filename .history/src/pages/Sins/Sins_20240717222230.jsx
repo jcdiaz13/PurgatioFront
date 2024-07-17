@@ -84,10 +84,10 @@ function Sins() {
     }
 
     try {
-      // console.log(roomId, text)
+      console.log(roomId, text)
       await createSin(playerId, { sin: text });
     } catch (error) {
-      // console.error("Error al crear el pecado:", error);
+      console.error("Error al crear el pecado:", error);
     }
   };
 

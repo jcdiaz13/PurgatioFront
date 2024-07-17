@@ -33,7 +33,7 @@ export const getPlayerIsActive = async (playerId) => {
 
 
 export const getSins = async (roomId) => {
-    // console.log(roomId, 101010101);
+    console.log(roomId, 101010101);
     const response = await instance.get(`player/assign/${roomId}`);
     // console.log(response.data, 3333333);
     return response.data;  // Devuelve los datos obtenidos de la API

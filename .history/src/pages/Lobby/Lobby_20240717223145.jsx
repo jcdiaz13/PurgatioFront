@@ -40,6 +40,12 @@ const Lobby = () => {
     playerIdRef.current = playerId; // Almacenamos playerId en una referencia para que sea posible acceder a ella dentro de la función showPlayers que llamamos en un setInterval.
   }, [playerId]);
 
+  function Greeting(props) {
+  const navigate = useNavigate();
+  useEffect(() => {
+    setTimeout(() => navigate(props.nextPage), 3000);
+  }, []);
+
   const showPlayers = async () => {
     try {
       const response = await getPlayersByRoomId(roomId);
@@ -78,34 +84,36 @@ const Lobby = () => {
 
 const handleStartGame = async () => {
     try {
-      console.log("Inicio de handleStartGame");
-      
-      const response = await getPlayersByRoomId(roomId);
-      const allPlayers = response.data;
-      console.log("1111111111111  Jugadores obtenidos:", allPlayers);
+        // Obtener la lista actualizada de jugadores
+        const response = await getPlayersByRoomId(roomId);
+        const allPlayers = response.data;
+        console.log("Jugadores obtenidos:", allPlayers);
 
-      console.log("22222222222222  Creando promesas para verificar si los jugadores están activos");
-      const playerPromises = allPlayers.map(async (player) => {
-        const isActive = await getPlayerIsActive(player.id);
-        console.log(`333333333333 , isActive para jugador ${player.id}:`, isActive);
-        return isActive ? player : null;
-      });
+        // Crear una promesa para verificar si los jugadores están activos
+        console.log("Creando promesas para verificar si los jugadores están activos");
+        const playerPromises = allPlayers.map(async (player) => {
+            const isActive = await getPlayerIsActive(player.id);
+            console.log(`isActive para jugador ${player.id}:`, isActive);
+            return isActive ? player : null;
+        });
 
-      console.log("44444444444444  Esperando a que se resuelvan todas las promesas");
-      const activePlayers = (await Promise.all(playerPromises)).filter(player => player !== null);
-      console.log("Jugadores activos:", activePlayers);
+        // Esperar a que todas las promesas se resuelvan
+        console.log("Esperando a que se resuelvan todas las promesas");
+        const activePlayers = (await Promise.all(playerPromises)).filter(player => player !== null);
+        console.log("Jugadores activos:", activePlayers);
 
-      if (activePlayers.length > 0) {
-        console.log("55555555555555   Navegando a /sins con los jugadores activos");
-        navigate("/sins", { state: { players: activePlayers } });
-      } else {
-        console.log("6666666666666666  No hay jugadores activos para iniciar el juego");
-      }
+        // Verificar si hay jugadores activos para navegar
+        if (activePlayers.length > 0) {
+            console.log("Navegando a /sins con los jugadores activos");
+            navigate("/sins", { state: { players: activePlayers } });
+        } else {
+            console.log("No hay jugadores activos para iniciar el juego");
+            // Aquí podrías mostrar un mensaje al usuario indicando que no hay suficientes jugadores activos
+        }
     } catch (error) {
-      console.error("Error starting game:", error);
+        console.error("Error starting game:", error);
     }
-  };
-
+};
 
 
   

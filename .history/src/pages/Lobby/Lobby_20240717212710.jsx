@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Card } from "antd";
 import {
@@ -13,7 +13,7 @@ import {
 } from "./Lobby.styles";
 import Theme from "../../components/Theme";
 import { PlayerContext } from "../../app/contexts/PlayerContext";
-import { getPlayersByRoomId, deletePlayer, getPlayerIsActive } from "../../app/services/player";
+import { getPlayersByRoomId, deletePlayer } from "../../app/services/player";
 import avatarImages from "../../app/utils/avatarImages";
 
 const { Meta } = Card;
@@ -22,8 +22,8 @@ const Lobby = () => {
   const { roomId, players, setPlayers, roomOwner, playerId } =
     useContext(PlayerContext);
   const playerIdRef = useRef(playerId);
-  // console.log("tttttttttt", playerId);
   const navigate = useNavigate();
+  const [startEnabled, setStartEnabled] = useState(false); // Estado para controlar si se puede habilitar el botón Start
 
   useEffect(() => {
     if (roomId) {
@@ -40,19 +40,26 @@ const Lobby = () => {
     playerIdRef.current = playerId; // Almacenamos playerId en una referencia para que sea posible acceder a ella dentro de la función showPlayers que llamamos en un setInterval.
   }, [playerId]);
 
+  useEffect(() => {
+    // Verificamos si el jugador actual es el roomOwner para habilitar el botón Start
+    if (roomOwner && roomOwner.id === playerId) {
+      setStartEnabled(true);
+    } else {
+      setStartEnabled(false);
+    }
+  }, [roomOwner, playerId]);
+
   const showPlayers = async () => {
     try {
       const response = await getPlayersByRoomId(roomId);
-      setPlayers(response.data);
+      const activePlayers = response.data.filter((player) => player.isActive);
+      setPlayers(activePlayers);
 
-      // Comprobamos si alguna id de los usuarios de la room coincide con la id del usuario logueado
-      const playerIsPlaying = response.data.find((player) => {
-        return player.id === playerIdRef.current;
-      });
-      //Si un jugador no existe lo redireccionamos a home
-      if (!playerIsPlaying) {
-        // console.log("bbbbbbbbbbbbbbbb", playerId, playerExists);
-        navigate("/");
+      // Actualizamos el estado de startEnabled basado en si el jugador actual es el roomOwner y al menos un jugador está activo
+      if (roomOwner && roomOwner.id === playerId && activePlayers.length > 0) {
+        setStartEnabled(true);
+      } else {
+        setStartEnabled(false);
       }
     } catch (error) {
       console.error("Error showing players:", error);
@@ -69,46 +76,20 @@ const Lobby = () => {
 
       await deletePlayer(id);
       const response = await getPlayersByRoomId(roomId);
-      setPlayers(response.data);
-      console.log("Jugadores activos:", response.data);
+      const activePlayers = response.data.filter((player) => player.isActive);
+      setPlayers(activePlayers);
+      console.log("Jugadores activos:", activePlayers);
     } catch (error) {
       console.error("Error eliminando al jugador:", error);
     }
   };
 
-const handleStartGame = async () => {
-    try {
-      console.log("Inicio de handleStartGame");
-      
-      const response = await getPlayersByRoomId(roomId);
-      const allPlayers = response.data;
-      console.log("1111111111111  Jugadores obtenidos:", allPlayers);
-
-      console.log("22222222222222  Creando promesas para verificar si los jugadores están activos");
-      const playerPromises = allPlayers.map(async (player) => {
-        const isActive = await getPlayerIsActive(player.id);
-        console.log(`333333333333 , isActive para jugador ${player.id}:`, isActive);
-        return isActive ? player : null;
-      });
-
-      console.log("44444444444444  Esperando a que se resuelvan todas las promesas");
-      const activePlayers = (await Promise.all(playerPromises)).filter(player => player !== null);
-      console.log("Jugadores activos:", activePlayers);
-
-      if (activePlayers.length > 0) {
-        console.log("55555555555555   Navegando a /sins con los jugadores activos");
-        navigate("/sins", { state: { players: activePlayers } });
-      } else {
-        console.log("6666666666666666  No hay jugadores activos para iniciar el juego");
-      }
-    } catch (error) {
-      console.error("Error starting game:", error);
-    }
+  const handleStartGame = () => {
+    // Filtramos solo los jugadores activos para pasar a la siguiente página
+    const activePlayers = players.filter((player) => player.isActive);
+    navigate("/sins", { state: { players: activePlayers } });
   };
 
-
-
-  
   const copyToClipboard = (text) => {
     navigator.clipboard
       .writeText(text)
@@ -127,7 +108,9 @@ const handleStartGame = async () => {
         <Id>
           Room ID: <Copy onClick={() => copyToClipboard(roomId)}>{roomId}</Copy>
         </Id>
-        {roomOwner && <Button onClick={handleStartGame}>Start</Button>}
+        {startEnabled && (
+          <Button onClick={handleStartGame}>Start</Button>
+        )}
         <PlayerContainer>
           {players?.map((player, index) => {
             const avatarId = player.avatarId;

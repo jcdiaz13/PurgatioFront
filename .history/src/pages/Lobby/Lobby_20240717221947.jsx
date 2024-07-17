@@ -77,36 +77,35 @@ const Lobby = () => {
   };
 
 const handleStartGame = async () => {
-    try {
-      console.log("Inicio de handleStartGame");
-      
-      const response = await getPlayersByRoomId(roomId);
-      const allPlayers = response.data;
-      console.log("1111111111111  Jugadores obtenidos:", allPlayers);
+  try {
+    console.log("Inicio de handleStartGame");
 
-      console.log("22222222222222  Creando promesas para verificar si los jugadores están activos");
-      const playerPromises = allPlayers.map(async (player) => {
-        const isActive = await getPlayerIsActive(player.id);
-        console.log(`333333333333 , isActive para jugador ${player.id}:`, isActive);
-        return isActive ? player : null;
-      });
+    // Obtener la lista actualizada de jugadores
+    console.log("Obteniendo jugadores por roomId:", roomId);
+    const response = await getPlayersByRoomId(roomId);
+    const allPlayers = response.data;
+    console.log("Jugadores obtenidos:", allPlayers);
 
-      console.log("44444444444444  Esperando a que se resuelvan todas las promesas");
-      const activePlayers = (await Promise.all(playerPromises)).filter(player => player !== null);
-      console.log("Jugadores activos:", activePlayers);
+    // Crear una promesa para cada jugador activo
+    console.log("Creando promesas para verificar si los jugadores están activos");
+    const playerPromises = allPlayers.map(async (player) => {
+      const isActive = await getPlayerIsActive(player.id);
+      console.log(`Estado de actividad del jugador ${player.id}:`, isActive);
+      return isActive ? player : null;
+    });
 
-      if (activePlayers.length > 0) {
-        console.log("55555555555555   Navegando a /sins con los jugadores activos");
-        navigate("/sins", { state: { players: activePlayers } });
-      } else {
-        console.log("6666666666666666  No hay jugadores activos para iniciar el juego");
-      }
-    } catch (error) {
-      console.error("Error starting game:", error);
-    }
-  };
+    // Esperar a que todas las promesas se resuelvan
+    console.log("Esperando a que se resuelvan todas las promesas");
+    const activePlayers = (await Promise.all(playerPromises)).filter(player => player !== null);
+    console.log("Jugadores activos:", activePlayers);
 
-
+    // Navegar a la página de Sins con los jugadores activos
+    console.log("Navegando a /sins con los jugadores activos");
+    navigate("/sins", { state: { players: activePlayers } });
+  } catch (error) {
+    console.error("Error starting game:", error);
+  }
+};
 
   
   const copyToClipboard = (text) => {

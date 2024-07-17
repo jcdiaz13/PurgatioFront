@@ -91,15 +91,15 @@ const handleStartGame = async () => {
         return isActive ? player : null;
       });
 
-      console.log("44444444444444  Esperando a que se resuelvan todas las promesas");
+      console.log("Esperando a que se resuelvan todas las promesas");
       const activePlayers = (await Promise.all(playerPromises)).filter(player => player !== null);
       console.log("Jugadores activos:", activePlayers);
 
       if (activePlayers.length > 0) {
-        console.log("55555555555555   Navegando a /sins con los jugadores activos");
+        console.log("Navegando a /sins con los jugadores activos");
         navigate("/sins", { state: { players: activePlayers } });
       } else {
-        console.log("6666666666666666  No hay jugadores activos para iniciar el juego");
+        console.log("No hay jugadores activos para iniciar el juego");
       }
     } catch (error) {
       console.error("Error starting game:", error);

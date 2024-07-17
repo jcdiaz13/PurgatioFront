@@ -1,5 +1,5 @@
-import { useContext, useEffect, useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useContext, useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Card } from "antd";
 import {
   Box,
@@ -22,8 +22,8 @@ const Lobby = () => {
   const { roomId, players, setPlayers, roomOwner, playerId } =
     useContext(PlayerContext);
   const playerIdRef = useRef(playerId);
-  // console.log("tttttttttt", playerId);
   const navigate = useNavigate();
+  const [gameStarted, setGameStarted] = useState(false); // Estado para indicar si el juego ha comenzado
 
   useEffect(() => {
     if (roomId) {
@@ -40,6 +40,12 @@ const Lobby = () => {
     playerIdRef.current = playerId; // Almacenamos playerId en una referencia para que sea posible acceder a ella dentro de la función showPlayers que llamamos en un setInterval.
   }, [playerId]);
 
+  useEffect(() => {
+    if (gameStarted) {
+      navigate("/sins", { state: { players: players.filter((player) => player.isActive) } });
+    }
+  }, [gameStarted, players, navigate]);
+
   const showPlayers = async () => {
     try {
       const response = await getPlayersByRoomId(roomId);
@@ -51,11 +57,10 @@ const Lobby = () => {
       });
       //Si un jugador no existe lo redireccionamos a home
       if (!playerIsPlaying) {
-        // console.log("bbbbbbbbbbbbbbbb", playerId, playerExists);
         navigate("/");
       }
     } catch (error) {
-      console.error("Error showing players:", error);
+      console.error("Error mostrando los jugadores:", error);
     }
   };
 
@@ -76,47 +81,41 @@ const Lobby = () => {
     }
   };
 
-const handleStartGame = async () => {
+  const getActivePlayers = async () => {
+    const response = await getPlayersByRoomId(roomId);
+    const activePlayers = [];
+
+    for (const player of response.data) {
+      const isActive = await getPlayerIsActive(player.id);
+      if (isActive) {
+        activePlayers.push(player);
+      }
+    }
+
+    return activePlayers;
+  };
+
+  const handleStartGame = async () => {
     try {
-      console.log("Inicio de handleStartGame");
-      
-      const response = await getPlayersByRoomId(roomId);
-      const allPlayers = response.data;
-      console.log("1111111111111  Jugadores obtenidos:", allPlayers);
-
-      console.log("22222222222222  Creando promesas para verificar si los jugadores están activos");
-      const playerPromises = allPlayers.map(async (player) => {
-        const isActive = await getPlayerIsActive(player.id);
-        console.log(`333333333333 , isActive para jugador ${player.id}:`, isActive);
-        return isActive ? player : null;
-      });
-
-      console.log("44444444444444  Esperando a que se resuelvan todas las promesas");
-      const activePlayers = (await Promise.all(playerPromises)).filter(player => player !== null);
-      console.log("Jugadores activos:", activePlayers);
-
-      if (activePlayers.length > 0) {
-        console.log("55555555555555   Navegando a /sins con los jugadores activos");
-        navigate("/sins", { state: { players: activePlayers } });
+      const activePlayers = await getActivePlayers();
+      if (activePlayers.length === players.length) {
+        setGameStarted(true); // Indicar que el juego ha comenzado
       } else {
-        console.log("6666666666666666  No hay jugadores activos para iniciar el juego");
+        alert("No todos los jugadores están activos. Espera a que todos los jugadores estén activos antes de iniciar el juego.");
       }
     } catch (error) {
-      console.error("Error starting game:", error);
+      console.error("Error al iniciar el juego:", error);
     }
   };
 
-
-
-  
   const copyToClipboard = (text) => {
     navigator.clipboard
       .writeText(text)
       .then(() => {
-        alert("Text copied to clipboard");
+        alert("Texto copiado al portapapeles");
       })
       .catch((err) => {
-        console.error("Failed to copy text: ", err);
+        console.error("Error al copiar el texto: ", err);
       });
   };
 
