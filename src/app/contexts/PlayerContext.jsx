@@ -1,6 +1,7 @@
 import { createContext, useState } from "react";
 
 export const PlayerContext = createContext();
+
 // eslint-disable-next-line react/prop-types
 export const PlayerProvider = ({ children }) => {
   const [playerName, setPlayerName] = useState("");
@@ -9,7 +10,6 @@ export const PlayerProvider = ({ children }) => {
   const [players, setPlayers] = useState([]);
   const [playerId, setPlayerId] = useState(null);
   const [roomOwner, setRoomOwner] = useState(false);
-  // const [gameStarted, setGameStarted] = useState(false);
 
   return (
     <PlayerContext.Provider
@@ -26,8 +26,6 @@ export const PlayerProvider = ({ children }) => {
         setPlayerId,
         roomOwner,
         setRoomOwner,
-        // gameStarted,
-        // setGameStarted,
       }}
     >
       {children}

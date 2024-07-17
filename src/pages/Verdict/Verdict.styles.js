@@ -79,7 +79,7 @@ export const ModalWrapper = styled.div`
 `;
 
 export const ModalContent = styled.div`
-  position: relative; /* Añadido para posicionar el CloseButton relativo a ModalContent */
+  position: relative; 
   background-color: #fff;
   padding: 20px;
   display: flex;

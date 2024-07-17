@@ -6,6 +6,12 @@ import Theme from '../../components/Theme';
 import { createSin, getPlayersWithoutSin } from '../../app/services/player';
 import { PlayerContext } from '../../app/contexts/PlayerContext';
 
+const sinsData = [
+  { category: "Category1", sins: ["Sin1", "Sin2"] },
+  { category: "Category2", sins: ["Sin3", "Sin4"] },
+  // Add more categories and sins as needed
+];
+
 function Sins() {
   const [text, setText] = useState("");
   const [randomSin, setRandomSin] = useState("");
@@ -20,7 +26,7 @@ function Sins() {
       return randomSin;
     };
     setRandomSin(getRandomSin());
-  }, []);
+  }, []); // No dependencies needed here
 
   const checkPlayersWithoutSin = async () => {
     const response = await getPlayersWithoutSin(roomId);
@@ -36,14 +42,14 @@ function Sins() {
     }, 2000);
 
     return () => clearInterval(intervalId);
-  }, [roomId, navigate]);
+  }, [roomId, navigate, checkPlayersWithoutSin]); // Added checkPlayersWithoutSin to dependencies
 
   const handleInputChange = (e) => {
     setText(e.target.value);
   };
 
   const handleNext = async () => {
-    if (text === "") {
+    if (!text.trim()) {
       alert("Introduzca un texto!!");
       return;
     }
