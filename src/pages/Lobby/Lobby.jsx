@@ -35,7 +35,7 @@ const Lobby = () => {
   }, [roomId]);
 
   useEffect(() => {
-    playerIdRef.current = playerId; // Actualizar la referencia con el valor actual de playerId
+    playerIdRef.current = playerId; // Almacenamos playerId en una referencia para que sea posible acceder a ella dentro de la función showPlayers que llamamos en un setInterval.
   }, [playerId]);
 
   const showPlayers = async () => {
@@ -43,7 +43,7 @@ const Lobby = () => {
       const response = await getPlayersByRoomId(roomId);
       setPlayers(response.data);
 
-      // Check if the current player exists and is active in the updated list of players
+      // Comprobamos si alguna id de los usuarios de la room coincide con la id del usuario logueado
       const playerIsPlaying = response.data.find((player) => {
         return player.id === playerIdRef.current;
       });
@@ -59,12 +59,18 @@ const Lobby = () => {
 
   const handleRemovePlayer = async (id) => {
     try {
+      // Verificamos si el jugador que se intenta eliminar es el roomOwner
+      if (id === playerId) {
+        alert("No puedes eliminar al propietario de la sala.");
+        return;
+      }
+
       await deletePlayer(id);
       const response = await getPlayersByRoomId(roomId);
       setPlayers(response.data);
-      console.log("Players after removal:", response.data);
+      console.log("Jugadores activos:", response.data);
     } catch (error) {
-      console.error("Error removing player:", error);
+      console.error("Error eliminando al jugador:", error);
     }
   };
 
