@@ -69,18 +69,18 @@ export const Button = styled.button`
   &:hover:before {
     color: black;
     ${({ theme }) =>
-      theme.name === "verdugo" &&
-      css`
+    theme.name === "verdugo" &&
+    css`
         background-color: #ffd700 !important;
       `}
     ${({ theme }) =>
-      theme.name === "mago" &&
-      css`
+    theme.name === "mago" &&
+    css`
         background-color: #228b22 !important;
       `}
     ${({ theme }) =>
-      theme.name === "hada" &&
-      css`
+    theme.name === "hada" &&
+    css`
         background-color: #228b22 !important;
       `}
     box-shadow: 0 -2px rgb(0 0 0 / 50%) inset, 0 2px rgb(255 255 255 / 20%) inset, -2px 0 rgb(255 255 255 / 20%) inset, 2px 0 rgb(0 0 0 / 50%) inset;
@@ -211,11 +211,6 @@ export const Box = styled.div`
   ${({ theme }) =>
     theme.name === "mago" &&
     css`
-      background-color: blue;
-      border: solid 4px black;
-      width: 225px;
-      height: 225px;
-      border-radius: 50%;
       background-image: url(${helado});
     `}
 
@@ -223,37 +218,6 @@ export const Box = styled.div`
     width: 150px;
     height: 150px;
 
-    ${({ theme }) =>
-    theme.name === "verdugo" &&
-    css`
-        width: 140px;
-        height: 140px;
-        border: solid 1px black;
-        border-radius: 5%;
-        background-image: url(${verdugo});
-      `}
-
-    ${({ theme }) =>
-    theme.name === "hada" &&
-    css`
-        width: 150px;
-        height: 150px;
-        border: solid 2px black;
-        border-radius: 50%;
-        background-color: pink;
-        background-image: url(${hada});
-      `}
-
-    ${({ theme }) =>
-    theme.name === "mago" &&
-    css`
-        width: 150px;
-        height: 150px;
-        border: solid 2px black;
-        border-radius: 50%;
-        background-color: blue;
-        background-image: url(${helado});
-      `}
   }
 `;
 
@@ -278,13 +242,13 @@ export const Copy = styled.button`
   }
   &:hover {
   ${({ theme }) =>
-      theme.name === "verdugo" &&
-      css`
+    theme.name === "verdugo" &&
+    css`
         background-color: #ffd700 !important;
       `}
     ${({ theme }) =>
-      theme.name === "mago" &&
-      css`
+    theme.name === "mago" &&
+    css`
         background-color: #228b22  !important;
       `}
       }

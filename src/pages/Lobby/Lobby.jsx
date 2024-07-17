@@ -62,7 +62,8 @@ const Lobby = () => {
 
       // Check if the removed player is the current user
       const removedPlayer = response.data.find((player) => player.id === id);
-      if (removedPlayer && removedPlayer.id === playerId) {
+      console.log("lo envia?", removedPlayer);
+      if (removedPlayer === playerId) {
         navigate("/");
       }
     } catch (error) {
@@ -70,6 +71,7 @@ const Lobby = () => {
     }
   };
 
+  //setInterval(ShowPlayers, 3000)
   const copyToClipboard = (text) => {
     navigator.clipboard
       .writeText(text)
