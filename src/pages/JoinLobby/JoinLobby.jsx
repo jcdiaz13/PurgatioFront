@@ -29,7 +29,6 @@ function JoinLobby() {
     roomId,
     setRoomId,
     setPlayerId,
-    roomOwner,
     setRoomOwner,
   } = useContext(PlayerContext);
   const [isAvatarPopupOpen, setIsAvatarPopupOpen] = useState(false);
