@@ -21,6 +21,7 @@ function Sins() {
     return playersWithoutSin.length === 0;
   };
 
+
   useEffect(() => {
     const intervalId = setInterval(async () => {
       const allPlayersDone = await checkPlayersWithoutSin();
