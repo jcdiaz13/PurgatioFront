@@ -1,3 +1,4 @@
+
 import { useContext, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Card } from "antd";
@@ -33,6 +34,7 @@ const Lobby = () => {
 
       return () => clearInterval(intervalId);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [roomId]);
 
   useEffect(() => {
@@ -43,6 +45,7 @@ const Lobby = () => {
     try {
       const response = await getPlayersByRoomId(roomId);
       setPlayers(response.data);
+
 
       // Comprobamos si alguna id de los usuarios de la room coincide con la id del usuario logueado
       const playerIsPlaying = response.data.find((player) => {
