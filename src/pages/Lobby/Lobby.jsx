@@ -21,9 +21,8 @@ const Lobby = () => {
   const { roomId, players, setPlayers, roomOwner, playerId } =
     useContext(PlayerContext);
   const playerIdRef = useRef(playerId);
-  console.log("tttttttttt", playerId);
+  // console.log("tttttttttt", playerId);
   const navigate = useNavigate();
-  const mierderObj = { playerId };
 
   useEffect(() => {
     if (roomId) {

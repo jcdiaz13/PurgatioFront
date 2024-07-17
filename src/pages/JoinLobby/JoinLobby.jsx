@@ -23,8 +23,15 @@ import {
 } from "./JoinLobby.styles";
 
 function JoinLobby() {
-  const { playerName, setPlayerName, roomId, setRoomId, setPlayerId } =
-    useContext(PlayerContext);
+  const {
+    playerName,
+    setPlayerName,
+    roomId,
+    setRoomId,
+    setPlayerId,
+    roomOwner,
+    setRoomOwner,
+  } = useContext(PlayerContext);
   const [isAvatarPopupOpen, setIsAvatarPopupOpen] = useState(false);
   const [selectedAvatar, setSelectedAvatar] = useState(null);
   const navigate = useNavigate();
@@ -66,9 +73,9 @@ function JoinLobby() {
             avatarId: selectedAvatar.id,
             room: { id: roomId },
           });
-          alert(111111);
           setPlayerId(player.data.id);
           setRoomId(roomId);
+          setRoomOwner(false);
           navigate("/lobby");
         } catch (error) {
           alert("Error al crear el jugador. Por favor, inténtelo de nuevo.");
