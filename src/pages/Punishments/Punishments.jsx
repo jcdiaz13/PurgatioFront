@@ -10,21 +10,15 @@ import {
   SubTitle,
 } from "./Punishments.styles";
 import { FaArrowLeft } from "react-icons/fa";
-// import sinsData from "../../app/jsons/gameMastersSins.json";
-// import punishmentsData from "../../app/jsons/gameMasters.json";
 import Theme from '../../components/Theme';
-import { AssignSins } from '../../app/services/player';
+import { getPlayersWithAssign } from '../../app/services/player';
 import { PlayerContext } from '../../app/contexts/PlayerContext';
 
 const Punishments = () => {
-  // const [randomPunishment, setRandomPunishment] = useState("");
-  // const [randomSin, setRandomSin] = useState("");
   const [isTextareaModified, setIsTextareaModified] = useState(false);
   const navigate = useNavigate();
-  // const suggest = `Sugerencia: ${randomPunishment}`;
-  const { roomId, playerId } = useContext(PlayerContext);
+  const { roomId, playerId, setPlayers } = useContext(PlayerContext);
   const [assignSin, setAssignSin] = useState("");
-
 
   /*  ESTO LO COMENTO, PERO PARA LOS OTROS MODOS HABRA QUE USARLO
       useEffect(() => {
@@ -57,31 +51,31 @@ const Punishments = () => {
 
   useEffect(() => {
     if (roomId && playerId) {
-      ShowSins();
+      showJudgeSin();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [roomId, playerId]);
 
-  //ESTA FUNCION DEVUELVE EL PRIMER OBJETO QUE CUMPLA CON LA CONDICION DE QUE EL AUTOR ES EL JUGADOR, Y ALMACENAS EL PECADO DEL DESTINATAIO EN EL ESTADO .
-  const ShowSins = async () => {
-    const response = await AssignSins(roomId);
-    console.log(response, 33333, playerId);
-    const playerAssignment = response.find(
+  const showJudgeSin = async () => {
+    const response = await getPlayersWithAssign(roomId);
+    setPlayers(response.data);
+    console.log("Players:", response.data);
 
-      assignment => {
-        console.log(assignment.autor.id + " asfiafsaf " + playerId)
-        return assignment.autor.id === playerId
+    // Encuentra al jugador actual
+    const player = response.data.find(player => player.id === playerId);
+    console.log("Jugador actual:", player);
+
+    if (player) {
+      // Encuentra al jugador que el jugador actual debe juzgar
+      const judgePlayer = response.data.find(judge => judge.id === player.judgeSin);
+      console.log("Jugador que tengo que juzgar:", judgePlayer);
+
+      if (judgePlayer) {
+        setAssignSin(judgePlayer.sin);
       }
-    );
-    if (playerAssignment) {
-      setAssignSin(playerAssignment.destinatario.sin);
     }
   };
 
-  // const handlePunishmentChange = (e) => {
-  //   setRandomPunishment(e.target.value);
-  //   setIsTextareaModified(true); // Marca como modificado al cambiar el texto
-  // };
 
   const handleGoToSins = () => {
     navigate("/sins");
@@ -100,10 +94,8 @@ const Punishments = () => {
       <Container>
         <FormContainer>
           <Title>Pecado</Title>
-          {
-            console.log('22222222222222222222222', assignSin)
-          }
-          {assignSin} {/* ESTADO QUE CONTIENE EL PECADO DEL DESTINATARIO */}
+          {console.log('Pecado asignado:', assignSin)}
+          {assignSin}
           <SubTitle>Castigos</SubTitle>
           {/* <p>{randomSin}</p> */}
           <Textarea />
@@ -121,6 +113,7 @@ const Punishments = () => {
       </Container>
     </Theme>
   );
-}
+};
 
 export default Punishments;
+

@@ -4,7 +4,7 @@ import { Container, FormContainer, Textarea, ButtonContainer, Button, Title, Sub
 import { FaArrowRight, FaArrowLeft } from 'react-icons/fa';
 // import sinsData from '../../app/jsons/gameMastersSins.json';
 import Theme from '../../components/Theme';
-import { createSin, getPlayersWithoutSin } from '../../app/services/player';
+import { createSin, getPlayersWithoutSin, getPlayersWithAssign, AssignSins } from '../../app/services/player';
 import { PlayerContext } from '../../app/contexts/PlayerContext'; // Ajusta la ruta según donde tengas PlayerContext
 
 
@@ -13,7 +13,7 @@ function Sins() {
   const navigate = useNavigate();
   const [randomSin, setRandomSin] = useState("");
   const suggest = `Sugerencia: ${randomSin}`;
-  const { playerId, roomId, players } = useContext(PlayerContext);
+  const { playerId, roomId, players, setPlayers, roomOwner } = useContext(PlayerContext);
 
   const checkPlayersWithoutSin = async () => {
     const response = await getPlayersWithoutSin(roomId);
@@ -26,8 +26,15 @@ function Sins() {
     const intervalId = setInterval(async () => {
       const allPlayersDone = await checkPlayersWithoutSin();
       if (allPlayersDone) {
-        console.log("holaaaaaaaaaaaaaaaaaaaaaaaaaa", players)
-        navigate('/punishments');
+        if (roomOwner)
+          AssignSins(roomId)
+        else {
+          getPlayersWithAssign(roomId).then((res) => {
+            setPlayers(res.data)
+          })
+        }
+        if (players.judgeSin != 0)
+          navigate('/punishments');
       }
     }, 2000);
 
