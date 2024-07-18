@@ -4,7 +4,7 @@ import { Container, FormContainer, Textarea, ButtonContainer, Button, Title, Sub
 import { FaArrowRight, FaArrowLeft } from 'react-icons/fa';
 // import sinsData from '../../app/jsons/gameMastersSins.json';
 import Theme from '../../components/Theme';
-import { createSin, getPlayersWithoutSin } from '../../app/services/player';
+import { createSin, getPlayersWithoutSin, getPlayersWithAssign, AssignSins } from '../../app/services/player';
 import { PlayerContext } from '../../app/contexts/PlayerContext'; // Ajusta la ruta según donde tengas PlayerContext
 
 
@@ -13,7 +13,7 @@ function Sins() {
   const navigate = useNavigate();
   const [randomSin, setRandomSin] = useState("");
   const suggest = `Sugerencia: ${randomSin}`;
-  const { playerId, roomId } = useContext(PlayerContext);
+  const { playerId, roomId, players, setPlayers, roomOwner } = useContext(PlayerContext);
 
   const checkPlayersWithoutSin = async () => {
     const response = await getPlayersWithoutSin(roomId);
@@ -21,18 +21,32 @@ function Sins() {
     return playersWithoutSin.length === 0;
   };
 
+
   useEffect(() => {
     const intervalId = setInterval(async () => {
-      console.log("holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
       const allPlayersDone = await checkPlayersWithoutSin();
       if (allPlayersDone) {
-        navigate('/punishments');
+        if (roomOwner) {
+          AssignSins(roomId);
+        }
+
+        // TODO
+        getPlayersWithAssign(roomId).then((res) => {
+          console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaa", res.data);
+          const playerWithJudgeSin0 = res.data.find(player => player.judgeSin === 0);
+
+          if (!playerWithJudgeSin0) {
+            navigate('/punishments');
+          } else {
+            setPlayers(res.data);
+          }
+        });
       }
     }, 2000);
 
     return () => clearInterval(intervalId);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [roomId, navigate]);
+  }, [roomId]);
 
   //CODIGO ANTIGUO HECHO POR FER.
   // EL PROBLEMA POR EL CUAL NO FUNCIONA ES QUE ESTAS HACIENDO LA COMPARACION ENTRE EL 0 Y LA PROMESA, TENDRIAS QUE HACER LA COMPARACION ENTRE EL 0 RES.DATA.LENGTH
@@ -58,10 +72,10 @@ function Sins() {
         const randomSin = randomCategory.sins[Math.floor(Math.random() * randomCategory.sins.length)];
         return randomSin;
       };
-  
+   
     useEffect(() => {
       // Función para seleccionar una frase aleatoria
-  
+   
       const getRandomSin = () => {
         const randomCategory = sinsData[Math.floor(Math.random() * sinsData.length)];
         const randomSin = randomCategory.sins[Math.floor(Math.random() * randomCategory.sins.length)];
