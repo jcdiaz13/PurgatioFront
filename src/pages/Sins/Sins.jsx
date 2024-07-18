@@ -26,21 +26,27 @@ function Sins() {
     const intervalId = setInterval(async () => {
       const allPlayersDone = await checkPlayersWithoutSin();
       if (allPlayersDone) {
-        if (roomOwner)
-          AssignSins(roomId)
-        else {
-          getPlayersWithAssign(roomId).then((res) => {
-            setPlayers(res.data)
-          })
+        if (roomOwner) {
+          AssignSins(roomId);
         }
-        if (players.judgeSin != 0)
-          navigate('/punishments');
+
+        // TODO
+        getPlayersWithAssign(roomId).then((res) => {
+          console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaa", res.data);
+          const playerWithJudgeSin0 = res.data.find(player => player.judgeSin === 0);
+
+          if (!playerWithJudgeSin0) {
+            navigate('/punishments');
+          } else {
+            setPlayers(res.data);
+          }
+        });
       }
     }, 2000);
 
     return () => clearInterval(intervalId);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [roomId, navigate]);
+  }, [roomId]);
 
   //CODIGO ANTIGUO HECHO POR FER.
   // EL PROBLEMA POR EL CUAL NO FUNCIONA ES QUE ESTAS HACIENDO LA COMPARACION ENTRE EL 0 Y LA PROMESA, TENDRIAS QUE HACER LA COMPARACION ENTRE EL 0 RES.DATA.LENGTH
@@ -66,10 +72,10 @@ function Sins() {
         const randomSin = randomCategory.sins[Math.floor(Math.random() * randomCategory.sins.length)];
         return randomSin;
       };
-  
+   
     useEffect(() => {
       // Función para seleccionar una frase aleatoria
-  
+   
       const getRandomSin = () => {
         const randomCategory = sinsData[Math.floor(Math.random() * sinsData.length)];
         const randomSin = randomCategory.sins[Math.floor(Math.random() * randomCategory.sins.length)];
