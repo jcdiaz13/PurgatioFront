@@ -29,4 +29,3 @@ export const getPlayersWithAssign = async (roomId) => {
 //DELETE
 
 export const deletePlayer = async (playerId) => await instance.delete(`player/${playerId}`);
-
