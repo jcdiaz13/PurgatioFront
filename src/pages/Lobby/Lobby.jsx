@@ -95,7 +95,10 @@ const Lobby = () => {
         <Id>
           Room ID: <Copy onClick={() => copyToClipboard(roomId)}>{roomId}</Copy>
         </Id>
-        <Link to={"/sins"}>{roomOwner && <Button>Start</Button>}</Link>
+        <Link to={"/sins"}>
+          {" "}
+          <Button>Start</Button>
+        </Link>
         <PlayerContainer>
           {players?.map((player, index) => {
             const avatarId = player.avatarId;
