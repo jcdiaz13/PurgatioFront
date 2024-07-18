@@ -8,6 +8,8 @@ import Sins from "../pages/Sins/Sins";
 import Punishments from "../pages/Punishments/Punishments";
 import QRCodeGenerator from "../pages/QrCodeGenerator/QrCodeGenerator";
 import Verdict from "../pages/Verdict/Verdict";
+import GameOver from "../pages/GameOver/GameOver";
+
 const Router = () => (
   <BrowserRouter>
     <Routes>
@@ -20,7 +22,9 @@ const Router = () => (
       <Route path="/punishments" element={<Punishments />} />
       <Route path="/qr" element={<QRCodeGenerator />}></Route>
       <Route path="/verdict" element={<Verdict />}></Route>
-      <Route path="*" element={<p>error 404</p>}/>
+      <Route path="/gameover" element={<GameOver />}></Route>
+
+      <Route path="*" element={<p>error 404</p>} />
     </Routes>
   </BrowserRouter>
 );

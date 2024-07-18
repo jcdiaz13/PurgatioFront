@@ -1,5 +1,22 @@
 import styled from 'styled-components';
 
+export const Container = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+  background: url('https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/01073865290819.5d61d475f0072.jpg') no-repeat center center fixed;
+  background-size: cover;
+  height: 100vh;
+  margin: 0;
+`;
+
 export const Cover = styled.div`
   position: relative; 
   background-color: lightpink; 
@@ -42,27 +59,10 @@ export const Book = styled.div`
   margin: 10px;
   cursor: pointer;
 
- &:hover ${Cover} {
+  &:hover ${Cover} {
     transition: transform 0.5s;
     transform: scale(1.1); 
   }
-`;
-
-export const Container = styled.div`
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  width: 100%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-    z-index: 3;
-  background: url('https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/01073865290819.5d61d475f0072.jpg') no-repeat center center fixed;
-  background-size: cover;
-  height: 100vh;
-  margin: 0;
 `;
 
 export const ModalWrapper = styled.div`
@@ -79,6 +79,7 @@ export const ModalWrapper = styled.div`
 `;
 
 export const ModalContent = styled.div`
+  position: relative; 
   background-color: #fff;
   padding: 20px;
   display: flex;
@@ -87,28 +88,24 @@ export const ModalContent = styled.div`
   justify-content: center;
 `;
 
-export const CloseButton = styled.span`
+export const CloseButton = styled.button`
   position: absolute;
-  top: 5px; 
-  right: 0; 
-  font-size: 24px;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 20px;
   cursor: pointer;
-  width: 30px;
-  height: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 `;
 
 export const OptionButton = styled.button`
   background-color: lightblue;
   border: none;
+  color: white;
   padding: 10px;
   margin: 5px;
-  cursor: pointer;
   border-radius: 5px;
+  cursor: pointer;
   transition: background-color 0.3s;
 
   &:hover {
@@ -133,4 +130,10 @@ export const OptionContainer = styled.div`
   &:focus {
     outline: 2px solid deepskyblue;
   }
+`;
+
+export const Message = styled.div`
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 20px;
 `;
