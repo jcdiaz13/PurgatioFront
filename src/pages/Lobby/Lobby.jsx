@@ -1,4 +1,3 @@
-
 import { useContext, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Card } from "antd";
@@ -46,12 +45,11 @@ const Lobby = () => {
       const response = await getPlayersByRoomId(roomId);
       setPlayers(response.data);
 
-
       // Comprobamos si alguna id de los usuarios de la room coincide con la id del usuario logueado
       const playerIsPlaying = response.data.find((player) => {
         return player.id === playerIdRef.current;
       });
-      // If player does not exist or is not active, navigate to "/"
+      //Si un jugador no existe lo redireccionamos a home
       if (!playerIsPlaying) {
         // console.log("bbbbbbbbbbbbbbbb", playerId, playerExists);
         navigate("/");
@@ -137,11 +135,7 @@ const Lobby = () => {
                   </DeletePlayerButton>
                 )}
                 <Meta
-                  title={
-                    <Name>
-                      {player.playerName}
-                    </Name>
-                  }
+                  title={<Name>{player.playerName}</Name>}
                   style={{ padding: 0, height: "2", lineHeight: "unset" }}
                 />
               </Card>
