@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getPlayersByRoomId } from '../../app/services/player';
+import { getSins, getPlayersByRoomId } from '../../app/services/player';
 import { PlayerContext } from '../../app/contexts/PlayerContext';
 import {
   Book,
@@ -20,18 +20,28 @@ const Verdict = () => {
   const [victimModalOpen, setVictimModalOpen] = useState(false);
   const [selectedPlayer, setSelectedPlayer] = useState(null);
   const [selectedVictim, setSelectedVictim] = useState(null);
+  const [playerSins, setPlayerSins] = useState({});
 
   useEffect(() => {
-    const fetchPlayers = async () => {
+    const fetchPlayersAndSins = async () => {
       try {
-        const response = await getPlayersByRoomId(roomId);
-        setPlayers(response.data);
+        // Obtener los jugadores de la sala
+        const playersResponse = await getPlayersByRoomId(roomId);
+        setPlayers(playersResponse.data);
+
+        // Obtener los pecados de los jugadores
+        const sinsResponse = await getSins(roomId);
+        const sinsByPlayerId = playersResponse.data.reduce((acc, player, index) => {
+          acc[player.id] = sinsResponse[index];
+          return acc;
+        }, {});
+        setPlayerSins(sinsByPlayerId);
       } catch (error) {
-        console.error("Error fetching players:", error);
+        console.error("Error al obtener jugadores y pecados:", error);
       }
     };
 
-    fetchPlayers();
+    fetchPlayersAndSins();
   }, [roomId, setPlayers]);
 
   const handlePlayerClick = (player) => {
@@ -66,7 +76,7 @@ const Verdict = () => {
         <Cover>
           <img src={player.avatarImage || 'default_image_path.png'} alt={player.playerName} /> {/* Imagen por defecto si no hay */}
           <p>{player.playerName}</p>
-          <p>{player.sin}</p> {/* Mostrar el pecado del jugador */}
+          <p>{playerSins[player.id] || ''}</p> {/* Mostrar el pecado del jugador */}
         </Cover>
       </Book>
     ))
@@ -80,7 +90,7 @@ const Verdict = () => {
           <ModalContent>
             <CloseButton onClick={closeModal}>&times;</CloseButton>
             <h2>{selectedPlayer ? selectedPlayer.playerName : ''}</h2>
-            <p>{selectedPlayer ? selectedPlayer.sin : ''}</p> {/* Mostrar el pecado del jugador */}
+            <p>{selectedPlayer ? playerSins[selectedPlayer.id] : ''}</p> {/* Mostrar el pecado del jugador */}
             <h3>Seleccionar Víctima</h3>
             <OptionButton onClick={openVictimSelection}>Elegir Víctima</OptionButton>
           </ModalContent>

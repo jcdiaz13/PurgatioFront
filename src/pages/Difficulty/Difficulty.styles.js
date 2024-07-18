@@ -37,7 +37,7 @@ display: flex;
   height: 200px;
   margin-bottom: 20px;
   cursor: pointer;
-  border: solid 3px black;
+  border: solid 2px white;
   backdrop-filter: blur(4px);
    img{
     width: 200px;
