@@ -33,7 +33,7 @@ export const Title = styled.h1`
 export const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
-  width: 75%;
+  width: 100%;
   margin-top: 1rem;
   gap: 10px; /* Añade un espacio entre los botones */
 `;
@@ -52,7 +52,7 @@ export const Button = styled.button`
   z-index: 1;
   user-select: none;
   cursor: pointer;
-  letter-spacing: 1px;
+  letter-spacing: 0.8px;
   white-space: unset;
  padding: 10px;
   text-decoration: none;

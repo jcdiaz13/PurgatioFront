@@ -13,26 +13,32 @@ function Sins() {
   const navigate = useNavigate();
   const [randomSin, setRandomSin] = useState("");
   const suggest = `Sugerencia: ${randomSin}`;
-  const { playerId, roomId, players, setPlayers, roomOwner } = useContext(PlayerContext);
+  const { playerId, roomId, setPlayers, roomOwner } = useContext(PlayerContext);
 
   const checkPlayersWithoutSin = async () => {
     const response = await getPlayersWithoutSin(roomId);
     const playersWithoutSin = response.data;
     return playersWithoutSin.length === 0;
   };
-
+  let requestOneTime = false;
 
   useEffect(() => {
     const intervalId = setInterval(async () => {
       const allPlayersDone = await checkPlayersWithoutSin();
       if (allPlayersDone) {
-        if (roomOwner) {
-          AssignSins(roomId);
+        if (!requestOneTime) {
+          if (roomOwner) {
+            requestOneTime = true;
+            console.log('jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj')
+            AssignSins(roomId);
+          }
         }
+
 
         // TODO
         getPlayersWithAssign(roomId).then((res) => {
           console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaa", res.data);
+          setPlayers(res.data)
           const playerWithJudgeSin0 = res.data.find(player => player.judgeSin === 0);
 
           if (!playerWithJudgeSin0) {
@@ -98,10 +104,10 @@ function Sins() {
     }
 
     try {
-      // console.log(roomId, text)
+      console.log(roomId, text)
       await createSin(playerId, { sin: text });
     } catch (error) {
-      // console.error("Error al crear el pecado:", error);
+      console.error("Error al crear el pecado:", error);
     }
   };
 
