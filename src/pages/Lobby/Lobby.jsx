@@ -35,7 +35,7 @@ const Lobby = () => {
   useEffect(() => {
     if (roomId) {
       const intervalId = setInterval(async () => {
-        if ((await checkGameStatus) === true()) {
+        if (await checkGameStatus()) {
           console.log(111, players, "GAME STATUS ", gameStarted);
           navigate("/sins");
         } else {
@@ -90,12 +90,9 @@ const Lobby = () => {
   };
 
   const handleStartGame = async () => {
-    if (players.length >= 3) {
-      await setGameStatus(roomId, true);
-      setGameStarted(true);
-    } else {
-      alert("Debe haber al menos 3 jugadores para comenzar el juego.");
-    }
+
+    await setGameStatus(roomId, true);
+    setGameStarted(true);
   };
 
   const copyToClipboard = (text) => {
