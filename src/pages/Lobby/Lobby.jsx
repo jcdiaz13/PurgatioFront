@@ -107,7 +107,6 @@ const Lobby = () => {
 
   const checkGameStatus = async () => {
     const status = await getGameStatus(roomId);
-    console.log(status);
     return status;
   };
 
