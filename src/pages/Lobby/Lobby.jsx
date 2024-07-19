@@ -15,7 +15,7 @@ import Theme from "../../components/Theme";
 import { PlayerContext } from "../../app/contexts/PlayerContext";
 import { getPlayersByRoomId, deletePlayer } from "../../app/services/player";
 import avatarImages from "../../app/utils/avatarImages";
-import { getRoomById } from "../../app/services/room";
+import { updateGameStatus } from "../../app/services/room";
 
 const { Meta } = Card;
 
@@ -30,23 +30,19 @@ const Lobby = () => {
     setGameStarted,
   } = useContext(PlayerContext);
   const playerIdRef = useRef(playerId);
-  // console.log("tttttttttt", playerId);
   const navigate = useNavigate();
 
   useEffect(() => {
     if (roomId) {
       const intervalId = setInterval(() => {
-        showPlayers();
+        if (gameStarted === true) {
+          console.log(111, players);
+          navigate("/sins");
+        } else {
+          console.log(222, players);
+          showPlayers();
+        }
       }, 2000);
-
-      // if (roomId) {                          Dirigir a todos los jugadores a Sins
-      // const intervalId = setInterval(() => {
-      //   if (gameStarted === true) {
-      //     navigate("/sins");
-      //   } else {
-      //     showPlayers();
-      //   }
-      // }, 2000);
 
       return () => clearInterval(intervalId);
     }
@@ -68,7 +64,7 @@ const Lobby = () => {
       });
       //Si un jugador no existe lo redireccionamos a home
       if (!playerIsPlaying) {
-        // console.log("bbbbbbbbbbbbbbbb", playerId, playerExists);
+        console.log("bbbbbbbbbbbbbbbb", playerId, playerExists);
         navigate("/");
       }
     } catch (error) {
@@ -94,12 +90,9 @@ const Lobby = () => {
   };
 
   const handleStartGame = async () => {
-    const roomStatus = await getRoomById(roomId);
-    console.log("1111, el status de la sala es:", roomStatus.data.status);
-    if (roomStatus.gameStarted === true) {
-      alert("La sala ya ha comenzado.");
-      return;
-    }
+    await updateGameStatus(roomId, true);
+    setGameStarted(true);
+    console.log("GAME STATUS", gameStarted);
   };
 
   const copyToClipboard = (text) => {
