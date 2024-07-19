@@ -35,7 +35,7 @@ const Lobby = () => {
   useEffect(() => {
     if (roomId) {
       const intervalId = setInterval(async () => {
-        if (await checkGameStatus()) {
+        if ((await checkGameStatus) === true()) {
           console.log(111, players, "GAME STATUS ", gameStarted);
           navigate("/sins");
         } else {
