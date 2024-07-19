@@ -2,27 +2,23 @@ import { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Container, FormContainer, Textarea, ButtonContainer, Button, Title, SubTitle } from './Sins.styles';
 import { FaArrowRight, FaArrowLeft } from 'react-icons/fa';
+// import sinsData from '../../app/jsons/gameMastersSins.json';
 import Theme from '../../components/Theme';
 import { createSin, getPlayersWithoutSin, getPlayersWithAssign, AssignSins } from '../../app/services/player';
 import { PlayerContext } from '../../app/contexts/PlayerContext'; // Ajusta la ruta según donde tengas PlayerContext
 
-const sinsData = [
-  { category: "Category1", sins: ["Sin1", "Sin2"] },
-  { category: "Category2", sins: ["Sin3", "Sin4"] },
-  // Add more categories and sins as needed
-];
 
 function Sins() {
-  const [text, setText] = useState("");
-  const [randomSin, setRandomSin] = useState("");
+  const [text, setText] = useState("")
   const navigate = useNavigate();
-  const { playerId, roomId, setSins } = useContext(PlayerContext);
+  const [randomSin, setRandomSin] = useState("");
   const suggest = `Sugerencia: ${randomSin}`;
   const { playerId, roomId, setPlayers, roomOwner } = useContext(PlayerContext);
 
   const checkPlayersWithoutSin = async () => {
     const response = await getPlayersWithoutSin(roomId);
-    return response.data.length === 0;
+    const playersWithoutSin = response.data;
+    return playersWithoutSin.length === 0;
   };
   let requestOneTime = false;
 
@@ -95,19 +91,21 @@ function Sins() {
     }, []);
    */
   const handleInputChange = (e) => {
+    // setRandomSin(e.target.value);
     setText(e.target.value);
   };
 
+
+  // Punishers
   const handleNext = async () => {
-    if (!text.trim()) {
+    if (text === "") {
       alert("Introduzca un texto!!");
       return;
     }
 
     try {
+      console.log(roomId, text)
       await createSin(playerId, { sin: text });
-      setSins({ sin: text });
-      navigate('/punishments');
     } catch (error) {
       console.error("Error al crear el pecado:", error);
     }
@@ -123,12 +121,8 @@ function Sins() {
         <FormContainer>
           <Title>Pecados</Title>
           <SubTitle>Escribe uno de tus pecados:</SubTitle>
-          <Textarea
-            type="text"
-            value={text}
-            onChange={handleInputChange}
-            placeholder={suggest}
-          />
+          {/* <textarea id="descriptionEvent" rows={10} cols={50} /> */}
+          <Textarea type="text" value={text} onChange={handleInputChange} placeholder={suggest} />
           <ButtonContainer>
             <Button onClick={handleGoLobby}><FaArrowLeft /></Button>
             <Button onClick={handleNext}><FaArrowRight /></Button>

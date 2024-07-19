@@ -18,7 +18,7 @@ import avatarImages from "../../app/utils/avatarImages";
 
 const Verdict = () => {
   const navigate = useNavigate();
-  const { roomId, players, setPlayers } = useContext(PlayerContext);
+  const { roomId, players, setPlayers, playerId } = useContext(PlayerContext);
   const [modalOpen, setModalOpen] = useState(false);
   const [victimModalOpen, setVictimModalOpen] = useState(false);
   const [selectedPlayer, setSelectedPlayer] = useState(null);
@@ -73,22 +73,24 @@ const Verdict = () => {
 
   const renderPlayers = () =>
     players.map((player) => {
-      const victimAvatar = victimAvatars[player.id];
+      if (player.id != playerId) {
+        const victimAvatar = victimAvatars[player.id];
 
-      return (
-        <Book key={player.id} onClick={() => handlePlayerClick(player)}>
-          <Cover>
-            {victimAvatar ? (
-              <>
-                <img src={victimAvatar.img} alt={player.playerName} />
-                <p>{victimAvatar.name}</p>
-              </>
-            ) : (
-              <p>{player.sin}</p> // Mostrar el pecado del jugador si no hay avatar seleccionado
-            )}
-          </Cover>
-        </Book>
-      );
+        return (
+          <Book key={player.id} onClick={() => handlePlayerClick(player)}>
+            <Cover>
+              {victimAvatar ? (
+                <>
+                  <img src={victimAvatar.img} alt={player.playerName} />
+                  <p>{victimAvatar.name}</p>
+                </>
+              ) : (
+                <p>{player.sin}</p> // Mostrar el pecado del jugador si no hay avatar seleccionado
+              )}
+            </Cover>
+          </Book>
+        );
+      }
     });
 
   return (
@@ -111,23 +113,26 @@ const Verdict = () => {
           <MiniTitle>Selecciona una víctima</MiniTitle>
           <AvatarPopup>
             {players.map((victim) => {
-              const avatarId = victim.avatarId;
-              const imgObj = avatarImages.find(
-                (avatarImage) => avatarImage.id === avatarId
-              );
-              return (
-                <AvatarOption
-                  key={victim.id}
-                  onClick={() => handleVictimSelect(victim)}
-                >
-                  <img
-                    src={imgObj ? imgObj.img : "default_image_path.png"}
-                    alt={victim.playerName}
-                  />
-                  <p>{victim.playerName}</p>
-                </AvatarOption>
-              );
+              if (victim.id != playerId) {
+                const avatarId = victim.avatarId;
+                const imgObj = avatarImages.find(
+                  (avatarImage) => avatarImage.id === avatarId
+                );
+                return (
+                  <AvatarOption
+                    key={victim.id}
+                    onClick={() => handleVictimSelect(victim)}
+                  >
+                    <img
+                      src={imgObj ? imgObj.img : "default_image_path.png"}
+                      alt={victim.playerName}
+                    />
+                    <p>{victim.playerName}</p>
+                  </AvatarOption>
+                );
+              }
             })}
+
           </AvatarPopup>
         </>
       )}

@@ -1,24 +1,30 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext } from 'react';
 import { Link, useNavigate } from "react-router-dom";
-import { Container, FormContainer, Textarea, ButtonContainer, Button, Title, SubTitle } from "./Punishments.styles";
+import {
+  Container,
+  FormContainer,
+  Textarea,
+  ButtonContainer,
+  Button,
+  Title,
+  SubTitle,
+} from "./Punishments.styles";
 import { FaArrowLeft } from "react-icons/fa";
 import Theme from '../../components/Theme';
 import { PlayerContext } from '../../app/contexts/PlayerContext';
-import { AssignSins } from '../../app/services/player';
 
 const Punishments = () => {
   const [isTextareaModified, setIsTextareaModified] = useState(false);
   const navigate = useNavigate();
   const { roomId, playerId, players } = useContext(PlayerContext);
   const [assignSin, setAssignSin] = useState("");
-  const navigate = useNavigate();
-  const { roomId, playerId, setPunishments } = useContext(PlayerContext);
 
   useEffect(() => {
 
     if (roomId && playerId) {
       showJudgeSin();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [roomId, playerId]);
 
   const showJudgeSin = async () => {
@@ -47,7 +53,7 @@ const Punishments = () => {
       alert("Por favor, modifique el texto antes de continuar.");
       return;
     }
-    navigate("/verdict");
+    navigate("/");
   };
 
   return (
@@ -60,10 +66,17 @@ const Punishments = () => {
           }
           {assignSin} {/* ESTADO QUE CONTIENE EL PECADO DEL DESTINATARIO */}
           <SubTitle>Castigos</SubTitle>
-          <Textarea onChange={handlePunishmentChange} placeholder={`Sugerencia: ${randomSin}`} />
+          {/* <p>{randomSin}</p> */}
+          <Textarea />
+          {/* onChange={handlePunishmentChange} placeholder={suggest} en text area */}
           <ButtonContainer>
-            <Button onClick={handleGoToSins}><FaArrowLeft /></Button>
-            <Button onClick={handleNext}>Enviar</Button>
+            <Button onClick={handleGoToSins}>
+              {" "}
+              <FaArrowLeft />
+            </Button>
+            <Link to="/verdict">
+              <Button>Enviar</Button>
+            </Link>
           </ButtonContainer>
         </FormContainer>
       </Container>
@@ -72,4 +85,3 @@ const Punishments = () => {
 };
 
 export default Punishments;
-
