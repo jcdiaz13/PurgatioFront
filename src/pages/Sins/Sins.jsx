@@ -13,22 +13,27 @@ function Sins() {
   const navigate = useNavigate();
   const [randomSin, setRandomSin] = useState("");
   const suggest = `Sugerencia: ${randomSin}`;
-  const { playerId, roomId, players, setPlayers, roomOwner } = useContext(PlayerContext);
+  const { playerId, roomId, setPlayers, roomOwner } = useContext(PlayerContext);
 
   const checkPlayersWithoutSin = async () => {
     const response = await getPlayersWithoutSin(roomId);
     const playersWithoutSin = response.data;
     return playersWithoutSin.length === 0;
   };
-
+  let requestOneTime = false;
 
   useEffect(() => {
     const intervalId = setInterval(async () => {
       const allPlayersDone = await checkPlayersWithoutSin();
       if (allPlayersDone) {
-        if (roomOwner) {
-          AssignSins(roomId);
+        if (!requestOneTime) {
+          if (roomOwner) {
+            requestOneTime = true;
+            console.log('jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj')
+            AssignSins(roomId);
+          }
         }
+
 
         // TODO
         getPlayersWithAssign(roomId).then((res) => {
