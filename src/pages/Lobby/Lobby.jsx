@@ -90,8 +90,12 @@ const Lobby = () => {
   };
 
   const handleStartGame = async () => {
-    await setGameStatus(roomId, true);
-    setGameStarted(true);
+    if (players.length >= 3) {
+      await setGameStatus(roomId, true);
+      setGameStarted(true);
+    } else {
+      alert("Debe haber al menos 3 jugadores para comenzar el juego.");
+    }
   };
 
   const copyToClipboard = (text) => {
