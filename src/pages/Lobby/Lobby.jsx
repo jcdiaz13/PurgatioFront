@@ -36,7 +36,7 @@ const Lobby = () => {
     if (roomId) {
       const intervalId = setInterval(() => {
         if (gameStarted === true) {
-          console.log(111, players);
+          console.log(111, players, "GAME STATUS ", gameStarted);
           navigate("/sins");
         } else {
           console.log(222, players);
@@ -92,7 +92,6 @@ const Lobby = () => {
   const handleStartGame = async () => {
     await updateGameStatus(roomId, true);
     setGameStarted(true);
-    console.log("GAME STATUS", gameStarted);
   };
 
   const copyToClipboard = (text) => {
