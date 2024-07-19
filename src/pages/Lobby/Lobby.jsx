@@ -13,18 +13,22 @@ import {
 } from "./Lobby.styles";
 import Theme from "../../components/Theme";
 import { PlayerContext } from "../../app/contexts/PlayerContext";
-import {
-  getPlayersByRoomId,
-  deletePlayer,
-  getPlayerIsActive,
-} from "../../app/services/player";
+import { getPlayersByRoomId, deletePlayer } from "../../app/services/player";
 import avatarImages from "../../app/utils/avatarImages";
+import { getRoomById } from "../../app/services/room";
 
 const { Meta } = Card;
 
 const Lobby = () => {
-  const { roomId, players, setPlayers, roomOwner, playerId } =
-    useContext(PlayerContext);
+  const {
+    roomId,
+    players,
+    setPlayers,
+    roomOwner,
+    playerId,
+    gameStarted,
+    setGameStarted,
+  } = useContext(PlayerContext);
   const playerIdRef = useRef(playerId);
   // console.log("tttttttttt", playerId);
   const navigate = useNavigate();
@@ -34,6 +38,15 @@ const Lobby = () => {
       const intervalId = setInterval(() => {
         showPlayers();
       }, 2000);
+
+      // if (roomId) {                          Dirigir a todos los jugadores a Sins
+      // const intervalId = setInterval(() => {
+      //   if (gameStarted === true) {
+      //     navigate("/sins");
+      //   } else {
+      //     showPlayers();
+      //   }
+      // }, 2000);
 
       return () => clearInterval(intervalId);
     }
@@ -81,36 +94,11 @@ const Lobby = () => {
   };
 
   const handleStartGame = async () => {
-    try {
-      console.log("Inicio de handleStartGame");
-
-      const response = await getPlayersByRoomId(roomId);
-      const allPlayers = response.data;
-      console.log("Jugadores obtenidos:", allPlayers);
-
-      console.log(
-        "Creando promesas para verificar si los jugadores están activos"
-      );
-      const playerPromises = allPlayers.map(async (player) => {
-        const isActive = await getPlayerIsActive(player.id);
-        console.log(`isActive para jugador ${player.id}:`, isActive);
-        return isActive ? player : null;
-      });
-
-      console.log("Esperando a que se resuelvan todas las promesas");
-      const activePlayers = (await Promise.all(playerPromises)).filter(
-        (player) => player !== null
-      );
-      console.log("Jugadores activos:", activePlayers);
-
-      if (activePlayers.length > 0) {
-        console.log("Navegando a /sins con los jugadores activos");
-        navigate("/sins", { state: { players: activePlayers } });
-      } else {
-        console.log("No hay jugadores activos para iniciar el juego");
-      }
-    } catch (error) {
-      console.error("Error starting game:", error);
+    const roomStatus = await getRoomById(roomId);
+    console.log("1111, el status de la sala es:", roomStatus.data.status);
+    if (roomStatus.gameStarted === true) {
+      alert("La sala ya ha comenzado.");
+      return;
     }
   };
 
