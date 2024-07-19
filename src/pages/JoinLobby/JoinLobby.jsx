@@ -63,7 +63,7 @@ function JoinLobby() {
   const handleJoinLobby = async () => {
     const trimmedName = playerName.trim();
     const players = await getPlayersByRoomId(roomId);
-    if (players.data.length < 6) {
+    if (players.data.length < 8) {
       if (trimmedName && roomId) {
         try {
           console.log("111111111111111111111", selectedAvatar.img);
@@ -85,7 +85,7 @@ function JoinLobby() {
         );
       }
     } else {
-      alert("Limit exceeded. Max 6 players");
+      alert("Limit exceeded. Max 8 players");
     }
   };
 
