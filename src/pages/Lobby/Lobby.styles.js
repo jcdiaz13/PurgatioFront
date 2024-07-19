@@ -261,13 +261,14 @@ export const Copy = styled.button`
 `;
 export const Name = styled.span`
 position: absolute;
-width: 82px;
+width: 88px;
 letter-spacing: 1px;
 white-space: unset;
 font-Family: Pixellari;
 align-Items: center;
 color: black;
 top: 71px;
+font-size: 17px;
 background-image:url(${nube});
 background-position: center;
 background-repeat: no-repeat;

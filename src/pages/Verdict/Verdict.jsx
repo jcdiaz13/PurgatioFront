@@ -22,7 +22,7 @@ const Verdict = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [victimModalOpen, setVictimModalOpen] = useState(false);
   const [selectedPlayer, setSelectedPlayer] = useState(null);
-  const [selectedVictim, setSelectedVictim] = useState(null);
+  const [victimAvatars, setVictimAvatars] = useState({}); // Estado para almacenar avatares seleccionados
 
   useEffect(() => {
     const fetchPlayers = async () => {
@@ -45,7 +45,6 @@ const Verdict = () => {
   const closeModal = () => {
     setModalOpen(false);
     setVictimModalOpen(false);
-    setSelectedVictim(null);
   };
 
   const openVictimSelection = () => {
@@ -53,31 +52,42 @@ const Verdict = () => {
   };
 
   const handleVictimSelect = (victim) => {
-    setSelectedVictim(victim);
-    if (!selectedPlayer || !victim) return;
+    if (!selectedPlayer) return;
 
+    const victimAvatar = avatarImages.find((img) => img.id === victim.avatarId);
+
+    setVictimAvatars((prev) => ({
+      ...prev,
+      [selectedPlayer.id]: {
+        img: victimAvatar ? victimAvatar.img : null,
+        name: victim.playerName
+      },
+    }));
+
+    setVictimModalOpen(false);
+    setModalOpen(false); // Cerrar también el modal principal
     console.log(
-      `${selectedPlayer.playerName} ha seleccionado a ${victim.playerName} como víctima.${players.avatarImage}`
+      `${selectedPlayer.playerName} ha seleccionado a ${victim.playerName} como víctima.`
     );
-    closeModal();
   };
 
   const renderPlayers = () =>
     players.map((player) => {
-      return (
+      const victimAvatar = victimAvatars[player.id];
 
+      return (
         <Book key={player.id} onClick={() => handlePlayerClick(player)}>
           <Cover>
-            {/*<img
-            //src={player.avatarImage || "default_image_path.png"}
-            //alt={player.playerName}
-            />{" "}
-            {/* Imagen por defecto si no hay */}
-            {/*<p>{player.playerName}</p>}*/}
-            <p>{player.sin}</p> {/* Mostrar el pecado del jugador */}
+            {victimAvatar ? (
+              <>
+                <img src={victimAvatar.img} alt={player.playerName} />
+                <p>{victimAvatar.name}</p>
+              </>
+            ) : (
+              <p>{player.sin}</p> // Mostrar el pecado del jugador si no hay avatar seleccionado
+            )}
           </Cover>
         </Book>
-
       );
     });
 
@@ -88,9 +98,7 @@ const Verdict = () => {
         <ModalWrapper>
           <ModalContent>
             <CloseButton onClick={closeModal}>&times;</CloseButton>
-            {/*<h2>{selectedPlayer ? selectedPlayer.playerName : ""}</h2>*/}
-            <p>{selectedPlayer ? selectedPlayer.sin : ""}</p>{" "}
-            {/* Mostrar el pecado del jugador */}
+            <p>{selectedPlayer ? selectedPlayer.sin : ""}</p> {/* Mostrar el pecado del jugador */}
             <h3>Selecciona quien crees que cometió este acto!</h3>
             <OptionButton onClick={openVictimSelection}>
               Elegir Jugador
@@ -102,7 +110,6 @@ const Verdict = () => {
         <>
           <MiniTitle>Selecciona una víctima</MiniTitle>
           <AvatarPopup>
-
             {players.map((victim) => {
               const avatarId = victim.avatarId;
               const imgObj = avatarImages.find(
@@ -114,23 +121,19 @@ const Verdict = () => {
                   onClick={() => handleVictimSelect(victim)}
                 >
                   <img
-                    src={imgObj.img || "default_image_path.png"}
+                    src={imgObj ? imgObj.img : "default_image_path.png"}
                     alt={victim.playerName}
                   />
-                  {/* Imagen por defecto si no hay */}
                   <p>{victim.playerName}</p>
                 </AvatarOption>
               );
             })}
           </AvatarPopup>
         </>
-
       )}
-      {/* <OptionButton onClick={() => navigate("/")}>
-        Ir a la Siguiente Página
-      </OptionButton>*/}
     </Container>
   );
 };
 
 export default Verdict;
+
