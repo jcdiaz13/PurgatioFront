@@ -111,7 +111,7 @@ import { PlayerContext } from '../../app/contexts/PlayerContext';
 const Punishments = () => {
   const [isTextareaModified, setIsTextareaModified] = useState(false);
   const navigate = useNavigate();
-  const { roomId, playerId, setPlayers } = useContext(PlayerContext);
+  const { roomId, playerId, players, setPlayers } = useContext(PlayerContext);
   const [assignSin, setAssignSin] = useState("");
 
   useEffect(() => {
@@ -122,15 +122,14 @@ const Punishments = () => {
   }, [roomId, playerId]);
 
   const showJudgeSin = async () => {
-    const response = await getPlayersWithAssign(roomId);
-    setPlayers(response.data);
-    console.log("Players:", response.data);
 
-    const player = response.data.find(player => player.id === playerId);
+    console.log("Players:", players);
+
+    const player = players.find(player => player.id === playerId);
     console.log("Jugador actual:", player);
 
     if (player) {
-      const judgePlayer = response.data.find(judge => judge.id === player.judgeSin);
+      const judgePlayer = players.find(judge => judge.id === player.judgeSin);
       console.log("Jugador que tengo que juzgar:", judgePlayer);
 
       if (judgePlayer)

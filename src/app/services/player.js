@@ -17,15 +17,8 @@ export const AssignSins = async (roomId) => {
     return data.data;
 }
 
-export const getPlayersWithAssign = async (roomId) => {
-    try {
-        const response = await instance.get(`/player/assign/${roomId}`);
-        return response;
-    } catch (error) {
-        console.error("Error fetching player assignments", error);
-        throw error;
-    }
-};
+export const getPlayersWithAssign = async (roomId) => await instance.get(`/player/assign/${roomId}`);
+
 //DELETE
 
 export const deletePlayer = async (playerId) => await instance.delete(`player/${playerId}`);
