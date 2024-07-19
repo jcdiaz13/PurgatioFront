@@ -10,7 +10,9 @@ import {
   ModalContent,
   CloseButton,
   OptionButton,
-  OptionContainer,
+  AvatarPopup,
+  AvatarOption,
+  MiniTitle
 } from "./Verdict.styles";
 import avatarImages from "../../app/utils/avatarImages";
 
@@ -52,13 +54,10 @@ const Verdict = () => {
 
   const handleVictimSelect = (victim) => {
     setSelectedVictim(victim);
-  };
-
-  const confirmVictimSelection = () => {
-    if (!selectedPlayer || !selectedVictim) return;
+    if (!selectedPlayer || !victim) return;
 
     console.log(
-      `${selectedPlayer.playerName} ha seleccionado a ${selectedVictim.playerName} como víctima.`
+      `${selectedPlayer.playerName} ha seleccionado a ${victim.playerName} como víctima.${players.avatarImage}`
     );
     closeModal();
   };
@@ -66,17 +65,19 @@ const Verdict = () => {
   const renderPlayers = () =>
     players.map((player) => {
       return (
+
         <Book key={player.id} onClick={() => handlePlayerClick(player)}>
           <Cover>
-            <img
-              src={player.avatarImage || "default_image_path.png"}
-              alt={player.playerName}
+            {/*<img
+            //src={player.avatarImage || "default_image_path.png"}
+            //alt={player.playerName}
             />{" "}
             {/* Imagen por defecto si no hay */}
-            <p>{player.playerName}</p>
+            {/*<p>{player.playerName}</p>}*/}
             <p>{player.sin}</p> {/* Mostrar el pecado del jugador */}
           </Cover>
         </Book>
+
       );
     });
 
@@ -87,51 +88,47 @@ const Verdict = () => {
         <ModalWrapper>
           <ModalContent>
             <CloseButton onClick={closeModal}>&times;</CloseButton>
-            <h2>{selectedPlayer ? selectedPlayer.playerName : ""}</h2>
+            {/*<h2>{selectedPlayer ? selectedPlayer.playerName : ""}</h2>*/}
             <p>{selectedPlayer ? selectedPlayer.sin : ""}</p>{" "}
             {/* Mostrar el pecado del jugador */}
-            <h3>Seleccionar Víctima</h3>
+            <h3>Selecciona quien crees que cometió este acto!</h3>
             <OptionButton onClick={openVictimSelection}>
-              Elegir Víctima
+              Elegir Jugador
             </OptionButton>
           </ModalContent>
         </ModalWrapper>
       )}
       {victimModalOpen && (
-        <ModalWrapper>
-          <ModalContent>
-            <CloseButton onClick={closeModal}>&times;</CloseButton>
-            <h3>Selecciona una víctima</h3>
-            <div>
-              {players.map((victim) => {
-                const avatarId = victim.avatarId;
-                const imgObj = avatarImages.find(
-                  (avatarImage) => avatarImage.id === avatarId
-                );
-                return (
-                  <OptionContainer
-                    key={victim.id}
-                    onClick={() => handleVictimSelect(victim)}
-                  >
-                    <img
-                      src={imgObj.img || "default_image_path.png"}
-                      alt={victim.playerName}
-                    />
-                    {/* Imagen por defecto si no hay */}
-                    <p>{victim.playerName}</p>
-                  </OptionContainer>
-                );
-              })}
-            </div>
-            <OptionButton onClick={confirmVictimSelection}>
-              Confirmar Selección
-            </OptionButton>
-          </ModalContent>
-        </ModalWrapper>
+        <>
+          <MiniTitle>Selecciona una víctima</MiniTitle>
+          <AvatarPopup>
+
+            {players.map((victim) => {
+              const avatarId = victim.avatarId;
+              const imgObj = avatarImages.find(
+                (avatarImage) => avatarImage.id === avatarId
+              );
+              return (
+                <AvatarOption
+                  key={victim.id}
+                  onClick={() => handleVictimSelect(victim)}
+                >
+                  <img
+                    src={imgObj.img || "default_image_path.png"}
+                    alt={victim.playerName}
+                  />
+                  {/* Imagen por defecto si no hay */}
+                  <p>{victim.playerName}</p>
+                </AvatarOption>
+              );
+            })}
+          </AvatarPopup>
+        </>
+
       )}
-      <OptionButton onClick={() => navigate("/")}>
+      {/* <OptionButton onClick={() => navigate("/")}>
         Ir a la Siguiente Página
-      </OptionButton>
+      </OptionButton>*/}
     </Container>
   );
 };
