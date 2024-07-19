@@ -7,39 +7,36 @@ import { PlayerContext } from '../../app/contexts/PlayerContext';
 import { AssignSins } from '../../app/services/player';
 
 const Punishments = () => {
-  const [randomSin, setRandomSin] = useState("");
   const [isTextareaModified, setIsTextareaModified] = useState(false);
+  const navigate = useNavigate();
+  const { roomId, playerId, players } = useContext(PlayerContext);
   const [assignSin, setAssignSin] = useState("");
   const navigate = useNavigate();
   const { roomId, playerId, setPunishments } = useContext(PlayerContext);
 
   useEffect(() => {
-    // Simulate fetching a random sin
-    const fetchRandomSin = async () => {
-      const simulatedSin = "Simulated sin from API"; // Replace with real API call
-      setRandomSin(simulatedSin);
-    };
-    fetchRandomSin();
-  }, []);
 
-  useEffect(() => {
     if (roomId && playerId) {
-      ShowSins();
+      showJudgeSin();
     }
   }, [roomId, playerId]);
 
-  const ShowSins = async () => {
-    const response = await AssignSins(roomId);
-    const playerAssignment = response.find(assignment => assignment.autor.id === playerId);
-    if (playerAssignment) {
-      setAssignSin(playerAssignment.destinatario.sin);
+  const showJudgeSin = async () => {
+
+    console.log("Players EN PUNISHMENT:", players);
+
+    const player = players.find(player => player.id === playerId);
+    console.log("Jugador actual:", player);
+
+    if (player) {
+      const judgePlayer = players.find(judge => judge.id === player.judgeSin);
+      console.log("Jugador que tengo que juzgar:", judgePlayer);
+
+      if (judgePlayer)
+        setAssignSin(judgePlayer.sin);
     }
   };
 
-  const handlePunishmentChange = (e) => {
-    setIsTextareaModified(true);
-    setPunishments(prev => [...prev, e.target.value]);
-  };
 
   const handleGoToSins = () => {
     navigate("/sins");
@@ -58,7 +55,10 @@ const Punishments = () => {
       <Container>
         <FormContainer>
           <Title>Pecado</Title>
-          <p>{assignSin}</p> {/* Display the sin of the recipient */}
+          {
+            console.log('Pecado asignado:', assignSin)
+          }
+          {assignSin} {/* ESTADO QUE CONTIENE EL PECADO DEL DESTINATARIO */}
           <SubTitle>Castigos</SubTitle>
           <Textarea onChange={handlePunishmentChange} placeholder={`Sugerencia: ${randomSin}`} />
           <ButtonContainer>
@@ -72,3 +72,4 @@ const Punishments = () => {
 };
 
 export default Punishments;
+

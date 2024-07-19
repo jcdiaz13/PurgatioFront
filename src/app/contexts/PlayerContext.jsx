@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState } from "react";
 
 export const PlayerContext = createContext();
 
@@ -10,10 +10,9 @@ export const PlayerProvider = ({ children }) => {
   const [players, setPlayers] = useState([]);
   const [playerId, setPlayerId] = useState(null);
   const [roomOwner, setRoomOwner] = useState(false);
+  const [gameStarted, setGameStarted] = useState(false);
 
-  useEffect(() => {
-    console.log("oooooooooooooooo", playerId);
-  }, [playerId]); // Empty dependency array to ensure effect is only executed once
+
   return (
     <PlayerContext.Provider
       value={{
@@ -29,6 +28,8 @@ export const PlayerProvider = ({ children }) => {
         setPlayerId,
         roomOwner,
         setRoomOwner,
+        gameStarted,
+        setGameStarted,
       }}
     >
       {children}

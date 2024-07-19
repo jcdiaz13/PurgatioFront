@@ -45,17 +45,17 @@ export const Cover = styled.div`
 `;
 
 export const Book = styled.div`
-  position: relative;
+  //position: relative;
   width: 130px;
   height: 150px;
   background-image: url(${question});
    background-position: center;
   background-size: cover; 
   box-shadow: 1px 1px 12px #000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #000;
+  //display: flex;
+  //align-items: center;
+  //justify-content: center;
+  //color: #000;
   margin: 10px;
   cursor: pointer;
   &:hover ${Cover} {
