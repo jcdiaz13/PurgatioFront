@@ -1,5 +1,5 @@
 import { useContext, useEffect, useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Card } from "antd";
 import {
   Box,
@@ -15,7 +15,7 @@ import Theme from "../../components/Theme";
 import { PlayerContext } from "../../app/contexts/PlayerContext";
 import { getPlayersByRoomId, deletePlayer } from "../../app/services/player";
 import avatarImages from "../../app/utils/avatarImages";
-import { updateGameStatus } from "../../app/services/room";
+import { setGameStatus, getGameStatus } from "../../app/services/room";
 
 const { Meta } = Card;
 
@@ -34,8 +34,8 @@ const Lobby = () => {
 
   useEffect(() => {
     if (roomId) {
-      const intervalId = setInterval(() => {
-        if (gameStarted === true) {
+      const intervalId = setInterval(async () => {
+        if (await checkGameStatus()) {
           console.log(111, players, "GAME STATUS ", gameStarted);
           navigate("/sins");
         } else {
@@ -59,12 +59,12 @@ const Lobby = () => {
       setPlayers(response.data);
 
       // Comprobamos si alguna id de los usuarios de la room coincide con la id del usuario logueado
-      const playerIsPlaying = response.data.find((player) => {
-        return player.id === playerIdRef.current;
-      });
+      const playerIsPlaying = response.data.find(
+        (player) => player.id === playerIdRef.current
+      );
       //Si un jugador no existe lo redireccionamos a home
       if (!playerIsPlaying) {
-        console.log("bbbbbbbbbbbbbbbb", playerId, playerExists);
+        console.log("bbbbbbbbbbbbbbbb", playerId, playerIsPlaying);
         navigate("/");
       }
     } catch (error) {
@@ -90,7 +90,7 @@ const Lobby = () => {
   };
 
   const handleStartGame = async () => {
-    await updateGameStatus(roomId, true);
+    await setGameStatus(roomId, true);
     setGameStarted(true);
   };
 
@@ -103,6 +103,12 @@ const Lobby = () => {
       .catch((err) => {
         console.error("Failed to copy text: ", err);
       });
+  };
+
+  const checkGameStatus = async () => {
+    const status = await getGameStatus(roomId);
+    console.log(status);
+    return status;
   };
 
   return (
