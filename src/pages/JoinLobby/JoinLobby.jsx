@@ -2,8 +2,8 @@
 import { useContext, useEffect, useState } from "react";
 import { PlayerContext } from "../../app/contexts/PlayerContext";
 import { useNavigate } from "react-router-dom";
-import { createPlayer } from "../../app/services/player";
-import { getPlayersByRoomId } from "../../app/services/player";
+import { createPlayer, getPlayersByRoomId } from "../../app/services/player";
+import { getGameStatus } from "../../app/services/room";
 import avatarImages from "../../app/utils/avatarImages";
 import interrogante from "../../app/assets/gifs/question.gif";
 
@@ -60,33 +60,42 @@ function JoinLobby() {
     setRoomId(e.target.value);
   };
 
+  const checkGameStatus = async () => {
+    const status = await getGameStatus(roomId);
+    return status;
+  };
+
   const handleJoinLobby = async () => {
     const trimmedName = playerName.trim();
-    const players = await getPlayersByRoomId(roomId);
-    if (players.data.length < 6) {
-      if (trimmedName && roomId) {
-        try {
-          console.log("111111111111111111111", selectedAvatar.img);
-          const player = await createPlayer({
-            playerName: trimmedName,
-            avatarId: selectedAvatar.id,
-            room: { id: roomId },
-          });
-          setPlayerId(player.data.id);
-          setRoomId(roomId);
-          setRoomOwner(false);
-          navigate("/lobby");
-        } catch (error) {
-          alert("Error al crear el jugador. Por favor, inténtelo de nuevo.");
-        }
-      } else {
-        alert(
-          "Por favor ingrese un nombre y un ID de sala antes de continuar."
-        );
-      }
-    } else {
-      alert("Limit exceeded. Max 6 players");
+
+    if (!trimmedName || !roomId) {
+      alert("Por favor ingrese un nombre y un ID de sala antes de continuar.");
+      return;
     }
+
+    const players = await getPlayersByRoomId(roomId);
+    if (players.data.length >= 8) {
+      alert("Límite excedido. Máximo 8 jugadores.");
+      return;
+    }
+
+    const gameStatus = await checkGameStatus();
+    if (gameStatus === true) {
+      alert("La sala no está accesible porque el juego ya ha comenzado.");
+      return;
+    }
+
+    console.log("111111111111111111111", selectedAvatar.img);
+    const player = await createPlayer({
+      playerName: trimmedName,
+      avatarId: selectedAvatar.id,
+      room: { id: roomId },
+    });
+
+    setPlayerId(player.data.id);
+    setRoomId(roomId);
+    setRoomOwner(false);
+    navigate("/lobby");
   };
 
   return (
