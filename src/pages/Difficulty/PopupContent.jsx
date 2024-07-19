@@ -18,6 +18,8 @@ import {
 const PopupContent = ({ closePopup, image, name, description, difficulty }) => {
   const { playerName, setRoomId, setPlayerId, selectedAvatar, setRoomOwner } =
     useContext(PlayerContext);
+  // const [playerActive, setPlayerActive] = useState();
+
   const navigate = useNavigate();
 
   const handleCreateRoom = async () => {
@@ -30,6 +32,7 @@ const PopupContent = ({ closePopup, image, name, description, difficulty }) => {
         room: {
           id: room.data.id,
         },
+        isActive: true,
       });
 
       setRoomOwner(true);

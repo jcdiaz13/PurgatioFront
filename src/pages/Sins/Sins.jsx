@@ -34,7 +34,6 @@ function Sins() {
         getPlayersWithAssign(roomId).then((res) => {
           console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaa", res.data);
           setPlayers(res.data)
-          console.log("Prueba players", players)
           const playerWithJudgeSin0 = res.data.find(player => player.judgeSin === 0);
 
           if (!playerWithJudgeSin0) {
@@ -43,7 +42,6 @@ function Sins() {
             setPlayers(res.data);
           }
         });
-
       }
     }, 2000);
 

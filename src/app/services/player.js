@@ -15,6 +15,8 @@ export const AssignSins = async (roomId) => {
     const data = await instance.put(`player/assign/${roomId}`);
     // console.log("22222");
     return data.data;
+
+
 }
 
 export const getPlayersWithAssign = async (roomId) => await instance.get(`/player/assign/${roomId}`);
@@ -22,3 +24,4 @@ export const getPlayersWithAssign = async (roomId) => await instance.get(`/playe
 //DELETE
 
 export const deletePlayer = async (playerId) => await instance.delete(`player/${playerId}`);
+

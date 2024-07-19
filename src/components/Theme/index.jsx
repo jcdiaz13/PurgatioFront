@@ -7,11 +7,16 @@ import { verdugoTheme } from "./themes/verdugoTheme";
 import { magoTheme } from "./themes/magoTheme";
 import { hadaTheme } from "./themes/hadaTheme";
 
-// eslint-disable-next-line react/prop-types
+const defaultTheme = {
+  // Propiedades del tema inicial, como el fondo que deseas mantener
+  // Puedes ajustar las propiedades según sea necesario para coincidir con tu diseño inicial
+  background: `url('https://media.giphy.com/media/3Q8cFOxTpUs6Tn5b5l/giphy.gif')`,
+  // Otras propiedades de estilo inicial
+};
+
 const Theme = ({ children }) => {
   const { roomId } = useContext(PlayerContext);
-  const [gameMode, setGameMode] = useState(null);
-  const [activeTheme, setActiveTheme] = useState(verdugoTheme); // Tema predeterminado
+  const [activeTheme, setActiveTheme] = useState(defaultTheme); // Iniciar con el tema predeterminado
 
   useEffect(() => {
     if (roomId) {
@@ -22,24 +27,28 @@ const Theme = ({ children }) => {
   const showGameMode = async (roomId) => {
     try {
       const roomData = await getRoomById(roomId);
-      console.log("Room data:", roomData);
+      console.log("Datos de la sala:", roomData);
 
       const gamemode = roomData.gamemode;
-      setGameMode(gamemode);
 
       const selectedTheme = gameMasters.find(
         (master) => master.id === gamemode
       );
       if (selectedTheme) {
-        setActiveTheme(
-          selectedTheme.id === 1
+        setActiveTheme(() => ({
+          ...defaultTheme, // Mantener las propiedades del tema inicial
+          // Sobrescribir solo las propiedades necesarias del tema activo
+          // Aquí puedes cambiar las propiedades específicas según el `gamemode`
+          // Por ejemplo, si el `gamemode` es 1, usar verdugoTheme, etc.
+          // Pero mantener el fondo del `defaultTheme`
+          ...(selectedTheme.id === 1
             ? verdugoTheme
             : selectedTheme.id === 2
             ? magoTheme
             : selectedTheme.id === 3
             ? hadaTheme
-            : verdugoTheme
-        );
+            : verdugoTheme),
+        }));
       } else {
         console.warn(`No se encontró un tema para el gameMode ${gamemode}`);
       }
