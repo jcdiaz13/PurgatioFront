@@ -8,13 +8,13 @@ import {
   Container,
   ModalWrapper,
   ModalContent,
-  CloseButton,
   OptionButton,
   AvatarPopup,
   AvatarOption,
-  MiniTitle
+  MiniTitle,
 } from "./Verdict.styles";
 import avatarImages from "../../app/utils/avatarImages";
+import { Button } from "./Verdict.styles";
 
 const Verdict = () => {
   const navigate = useNavigate();
@@ -60,7 +60,7 @@ const Verdict = () => {
       ...prev,
       [selectedPlayer.id]: {
         img: victimAvatar ? victimAvatar.img : null,
-        name: victim.playerName
+        name: victim.playerName,
       },
     }));
 
@@ -69,6 +69,13 @@ const Verdict = () => {
     console.log(
       `${selectedPlayer.playerName} ha seleccionado a ${victim.playerName} como víctima.`
     );
+  };
+
+  const handleVotaciones = () => {
+    console.log(victimAvatars, " Holaaaaaaaaa ", players);
+    if (players.length === victimAvatars.length) {
+      console.log("Hola");
+    }
   };
 
   const renderPlayers = () =>
@@ -99,9 +106,10 @@ const Verdict = () => {
       {modalOpen && (
         <ModalWrapper>
           <ModalContent>
-            <CloseButton onClick={closeModal}>&times;</CloseButton>
-            <p>{selectedPlayer ? selectedPlayer.sin : ""}</p> {/* Mostrar el pecado del jugador */}
+            <p>{selectedPlayer ? selectedPlayer.sin : ""}</p>{" "}
+            {/* Mostrar el pecado del jugador */}
             <h3>Selecciona quien crees que cometió este acto!</h3>
+            <OptionButton onClick={closeModal}>Close</OptionButton>
             <OptionButton onClick={openVictimSelection}>
               Elegir Jugador
             </OptionButton>
@@ -132,13 +140,12 @@ const Verdict = () => {
                 );
               }
             })}
-
           </AvatarPopup>
         </>
       )}
+      <Button onClick={handleVotaciones}>Enviar</Button>
     </Container>
   );
 };
 
 export default Verdict;
-
