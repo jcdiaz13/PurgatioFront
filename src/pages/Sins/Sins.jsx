@@ -123,14 +123,10 @@ function Sins() {
     }
   };
 
-  const handleGoLobby = () => {
-    navigate("/lobby");
-  };
-
-  const handleEditSin = () => {         //Hacer método get para ver si el pecado está introducido   ejemplo 
-                                        //Hacer método put para actualizar dicho pecado por el nuevo
-                                        //
-    // TODO
+  const handleEditSin = () => {
+    //Hacer método delete para para setear el pecado a null y que así no deje avanzar a los usuario a la siguiente página.
+    //Hacer método put para actualizar dicho pecado por el nuevo.
+    //Hacer método get para obtener el pecado actualizado.
   };
 
   return (
@@ -146,11 +142,11 @@ function Sins() {
             onChange={handleInputChange}
             placeholder={suggest}
           />
-          <Button onClick={handleEditSin}>Editar pecado</Button>
           <ButtonContainer>
-            <Button onClick={handleGoLobby}>
+            <Button onClick={handleNext}>
               <FaArrowLeft />
             </Button>
+            <Button onClick={handleEditSin}>Editar pecado</Button>
             <Button onClick={handleNext}>
               <FaArrowRight />
             </Button>

@@ -10,25 +10,17 @@ export const Container = styled.body`
   justify-content: center;
   height: 100vh;
   background-attachment: fixed;
+    background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
   ${({ theme }) =>
     theme.name === "verdugo" &&
     css`
-  background-repeat: no-repeat;
-  background-size: cover;
   background-image: url(${lava});
 `}
 ${({ theme }) =>
     theme.name === "mago" &&
     css`
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-image: url("https://i.pinimg.com/originals/c8/4f/22/c84f223d53773a3ce0f5dc2818d7db25.gif");
-`}
-${({ theme }) =>
-    theme.name === "hada" &&
-    css`
-  background-repeat: no-repeat;
-  background-size: cover;
   background-image: url("https://i.pinimg.com/originals/1b/45/63/1b456377a9dce67a7dc3630260aa7572.gif");
 `}
 `;
@@ -80,12 +72,11 @@ export const Textarea = styled.textarea`
 `;
 
 export const ButtonContainer = styled.div`
-position: absolute;
-top: 550px;
+position: relative;
   display: flex;
   justify-content: center;
   width: 100%;
-  margin-top: 1rem;
+  margin-top: -2rem;
   gap: 10px; /* Añade un espacio entre los botones */
 `;
 
