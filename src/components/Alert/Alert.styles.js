@@ -20,20 +20,20 @@ export const Popup = styled.div`
   padding: 10px; /* Espacio interno alrededor del contenido del popup */
   font-weight: 300; /* Peso de fuente ligero para el texto del popup */
   background-color: ${({ type }) =>
-        type === 'success' ? '#edfbd8' :
-            type === 'alert' ? '#fefce8' :
-                type === 'error' ? '#fef2f2' :
-                    '#eff6ff'}; /* Color de fondo según el tipo */
+    type === 'success' ? '#edfbd8' :
+      type === 'alert' ? '#fefce8' :
+        type === 'error' ? '#fef2f2' :
+          '#eff6ff'}; /* Color de fondo según el tipo */
   border: 1px solid ${({ type }) =>
-        type === 'success' ? '#84d65a' :
-            type === 'alert' ? '#facc15' :
-                type === 'error' ? '#f87171' :
-                    '#1d4ed8'}; /* Color del borde según el tipo */
+    type === 'success' ? '#84d65a' :
+      type === 'alert' ? '#facc15' :
+        type === 'error' ? '#f87171' :
+          '#1d4ed8'}; /* Color del borde según el tipo */
   color: ${({ type }) =>
-        type === 'success' ? '#2b641e' :
-            type === 'alert' ? '#ca8a04' :
-                type === 'error' ? '#991b1b' :
-                    '#1d4ed8'}; /* Color del texto según el tipo */
+    type === 'success' ? '#2b641e' :
+      type === 'alert' ? '#ca8a04' :
+        type === 'error' ? '#991b1b' :
+          '#1d4ed8'}; /* Color del texto según el tipo */
   margin-bottom: 10px; /* Espacio entre popups si hay más de uno */
 `;
 
@@ -64,7 +64,7 @@ export const CloseIcon = styled.div`
     height: 1.25rem; /* Altura del ícono SVG */
   }
 
-  .close-path {
+  .close-button {
     fill: grey; /* Color del ícono de cierre */
   }
 `;
