@@ -5,6 +5,9 @@ export const createPlayer = async (obj) => await instance.post('player/', obj);
 
 export const createSin = async (playerId, { sin }) => await instance.post(`player/${playerId}/sin`, { sin });
 
+export const createPunish = async (playerId, { punish }) => await instance.post(`player/${playerId}/punish`, { punish });
+
+
 //READ
 export const getPlayersByRoomId = async (roomId) => await instance.get(`player/room/${roomId}`);
 

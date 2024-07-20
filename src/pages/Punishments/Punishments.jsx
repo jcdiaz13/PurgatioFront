@@ -12,12 +12,16 @@ import {
 import { FaArrowLeft } from "react-icons/fa";
 import Theme from '../../components/Theme';
 import { PlayerContext } from '../../app/contexts/PlayerContext';
+import { createPunish } from '../../app/services/player';
 
 const Punishments = () => {
+  const [text, setText] = useState("")
   const [isTextareaModified, setIsTextareaModified] = useState(false);
   const navigate = useNavigate();
   const { roomId, playerId, players } = useContext(PlayerContext);
   const [assignSin, setAssignSin] = useState("");
+  const [judgePlayerId, setJudgePlayerId] = useState("");
+
 
   useEffect(() => {
 
@@ -40,7 +44,14 @@ const Punishments = () => {
 
       if (judgePlayer)
         setAssignSin(judgePlayer.sin);
+      setJudgePlayerId(judgePlayer.id);
     }
+  };
+
+
+  const handleInputChange = (e) => {
+    // setRandomSin(e.target.value);
+    setText(e.target.value);
   };
 
 
@@ -48,12 +59,13 @@ const Punishments = () => {
     navigate("/sins");
   };
 
-  const handleNext = () => {
-    if (!isTextareaModified) {
-      alert("Por favor, modifique el texto antes de continuar.");
+  const handleNext = async () => {
+    if (text === "") {
+      alert("Introduzca un texto!!");
       return;
     }
-    navigate("/");
+    await createPunish(judgePlayerId, { punish: text });
+    navigate("/verdict");
   };
 
   return (
@@ -67,16 +79,16 @@ const Punishments = () => {
           {assignSin} {/* ESTADO QUE CONTIENE EL PECADO DEL DESTINATARIO */}
           <SubTitle>Castigos</SubTitle>
           {/* <p>{randomSin}</p> */}
-          <Textarea />
+          <Textarea value={text} onChange={handleInputChange} />
           {/* onChange={handlePunishmentChange} placeholder={suggest} en text area */}
           <ButtonContainer>
             <Button onClick={handleGoToSins}>
               {" "}
               <FaArrowLeft />
             </Button>
-            <Link to="/verdict">
-              <Button>Enviar</Button>
-            </Link>
+
+            <Button onClick={handleNext}>Enviar</Button>
+
           </ButtonContainer>
         </FormContainer>
       </Container>
