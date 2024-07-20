@@ -27,7 +27,6 @@ const Theme = ({ children }) => {
   const showGameMode = async (roomId) => {
     try {
       const roomData = await getRoomById(roomId);
-      console.log("Datos de la sala:", roomData);
 
       const gamemode = roomData.gamemode;
 
@@ -52,7 +51,6 @@ const Theme = ({ children }) => {
       } else {
         console.warn(`No se encontró un tema para el gameMode ${gamemode}`);
       }
-      console.log("Modo de juego:", gamemode);
     } catch (error) {
       console.error("Error al obtener el modo de juego:", error.message);
     }

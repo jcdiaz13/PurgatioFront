@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-key */
-import { useContext, useState, useEffect } from 'react';
+import { useContext, useState, useEffect } from "react";
 import { PlayerContext } from "../../app/contexts/PlayerContext";
 import { useNavigate } from "react-router-dom";
 import interrogante from "../../app/assets/gifs/question.gif";
@@ -41,7 +41,6 @@ function CreateLobby() {
     if (trimmedName && selectedAvatar !== null) {
       setPlayerName(trimmedName);
       navigate("/difficulty");
-      console.log(trimmedName);
     } else {
       if (!trimmedName) {
         showCustomAlert('alert', 'Por favor ingrese un nombre antes de continuar.');
@@ -66,7 +65,6 @@ function CreateLobby() {
 
   const handleAvatarSelect = (avatar) => {
     setSelectedAvatar(avatar);
-    console.log(avatar);
     setIsAvatarPopupOpen(false);
   };
 

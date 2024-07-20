@@ -1,18 +1,31 @@
-import { useState, useEffect, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Container, FormContainer, Textarea, ButtonContainer, Button, Title, SubTitle } from './Sins.styles';
-import { FaArrowRight, FaArrowLeft } from 'react-icons/fa';
+import { useState, useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import {
+  Container,
+  FormContainer,
+  Textarea,
+  ButtonContainer,
+  Button,
+  Title,
+  SubTitle,
+} from "./Sins.styles";
 // import sinsData from '../../app/jsons/gameMastersSins.json';
-import Theme from '../../components/Theme';
-import { createSin, getPlayersWithoutSin, getPlayersWithAssign, AssignSins } from '../../app/services/player';
-import { PlayerContext } from '../../app/contexts/PlayerContext'; // Ajusta la ruta según donde tengas PlayerContext
-
+import Theme from "../../components/Theme";
+import {
+  createSin,
+  getPlayersWithoutSin,
+  getPlayersWithAssign,
+  AssignSins,
+  deleteSin,
+} from "../../app/services/player";
+import { PlayerContext } from "../../app/contexts/PlayerContext"; // Ajusta la ruta según donde tengas PlayerContext
 
 function Sins() {
-  const [text, setText] = useState("")
+  const [sin, setSin] = useState("");
   const navigate = useNavigate();
   const [randomSin, setRandomSin] = useState("");
   const suggest = `Sugerencia: ${randomSin}`;
+  const [changeButton, setChangeButton] = useState(false);
   const { playerId, roomId, setPlayers, roomOwner } = useContext(PlayerContext);
 
   const checkPlayersWithoutSin = async () => {
@@ -29,20 +42,20 @@ function Sins() {
         if (!requestOneTime) {
           if (roomOwner) {
             requestOneTime = true;
-            console.log('jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj')
             AssignSins(roomId);
           }
         }
 
-
         // TODO
         getPlayersWithAssign(roomId).then((res) => {
           console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaa", res.data);
-          setPlayers(res.data)
-          const playerWithJudgeSin0 = res.data.find(player => player.judgeSin === 0);
+          setPlayers(res.data);
+          const playerWithJudgeSin0 = res.data.find(
+            (player) => player.judgeSin === 0
+          );
 
           if (!playerWithJudgeSin0) {
-            navigate('/punishments');
+            navigate("/punishments");
           } else {
             setPlayers(res.data);
           }
@@ -92,27 +105,28 @@ function Sins() {
    */
   const handleInputChange = (e) => {
     // setRandomSin(e.target.value);
-    setText(e.target.value);
+    setSin(e.target.value);
   };
-
 
   // Punishers
   const handleNext = async () => {
-    if (text === "") {
+    setChangeButton(true);
+    if (sin === "") {
       alert("Introduzca un texto!!");
       return;
     }
 
     try {
-      console.log(roomId, text)
-      await createSin(playerId, { sin: text });
+      console.log(roomId, sin);
+      await createSin(playerId, { sin: sin });
     } catch (error) {
       console.error("Error al crear el pecado:", error);
     }
   };
 
-  const handleGoLobby = () => {
-    navigate('/lobby');
+  const handleEditSin = async () => {
+    setChangeButton(false);
+    await deleteSin(playerId);
   };
 
   return (
@@ -122,10 +136,15 @@ function Sins() {
           <Title>Pecados</Title>
           <SubTitle>Escribe uno de tus pecados:</SubTitle>
           {/* <textarea id="descriptionEvent" rows={10} cols={50} /> */}
-          <Textarea type="text" value={text} onChange={handleInputChange} placeholder={suggest} />
+          <Textarea
+            type="text"
+            value={sin}
+            onChange={handleInputChange}
+            placeholder={suggest}
+          />
           <ButtonContainer>
-            <Button onClick={handleGoLobby}><FaArrowLeft /></Button>
-            <Button onClick={handleNext}><FaArrowRight /></Button>
+            {changeButton && <Button onClick={handleEditSin}>Editar</Button>}
+            {!changeButton && <Button onClick={handleNext}>Enviar</Button>}
           </ButtonContainer>
         </FormContainer>
       </Container>

@@ -97,7 +97,6 @@ function JoinLobby() {
       return;
     }
 
-    console.log("111111111111111111111", selectedAvatar.img);
     const player = await createPlayer({
       playerName: trimmedName,
       avatarId: selectedAvatar.id,
