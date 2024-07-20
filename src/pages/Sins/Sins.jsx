@@ -1,15 +1,27 @@
-import { useState, useEffect, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Container, FormContainer, Textarea, ButtonContainer, Button, Title, SubTitle } from './Sins.styles';
-import { FaArrowRight, FaArrowLeft } from 'react-icons/fa';
+import { useState, useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import {
+  Container,
+  FormContainer,
+  Textarea,
+  ButtonContainer,
+  Button,
+  Title,
+  SubTitle,
+} from "./Sins.styles";
+import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
 // import sinsData from '../../app/jsons/gameMastersSins.json';
-import Theme from '../../components/Theme';
-import { createSin, getPlayersWithoutSin, getPlayersWithAssign, AssignSins } from '../../app/services/player';
-import { PlayerContext } from '../../app/contexts/PlayerContext'; // Ajusta la ruta según donde tengas PlayerContext
-
+import Theme from "../../components/Theme";
+import {
+  createSin,
+  getPlayersWithoutSin,
+  getPlayersWithAssign,
+  AssignSins,
+} from "../../app/services/player";
+import { PlayerContext } from "../../app/contexts/PlayerContext"; // Ajusta la ruta según donde tengas PlayerContext
 
 function Sins() {
-  const [text, setText] = useState("")
+  const [text, setText] = useState("");
   const navigate = useNavigate();
   const [randomSin, setRandomSin] = useState("");
   const suggest = `Sugerencia: ${randomSin}`;
@@ -29,20 +41,21 @@ function Sins() {
         if (!requestOneTime) {
           if (roomOwner) {
             requestOneTime = true;
-            console.log('jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj')
+            console.log("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
             AssignSins(roomId);
           }
         }
 
-
         // TODO
         getPlayersWithAssign(roomId).then((res) => {
           console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaa", res.data);
-          setPlayers(res.data)
-          const playerWithJudgeSin0 = res.data.find(player => player.judgeSin === 0);
+          setPlayers(res.data);
+          const playerWithJudgeSin0 = res.data.find(
+            (player) => player.judgeSin === 0
+          );
 
           if (!playerWithJudgeSin0) {
-            navigate('/punishments');
+            navigate("/punishments");
           } else {
             setPlayers(res.data);
           }
@@ -95,7 +108,6 @@ function Sins() {
     setText(e.target.value);
   };
 
-
   // Punishers
   const handleNext = async () => {
     if (text === "") {
@@ -104,7 +116,7 @@ function Sins() {
     }
 
     try {
-      console.log(roomId, text)
+      console.log(roomId, text);
       await createSin(playerId, { sin: text });
     } catch (error) {
       console.error("Error al crear el pecado:", error);
@@ -112,7 +124,13 @@ function Sins() {
   };
 
   const handleGoLobby = () => {
-    navigate('/lobby');
+    navigate("/lobby");
+  };
+
+  const handleEditSin = () => {         //Hacer método get para ver si el pecado está introducido   ejemplo 
+                                        //Hacer método put para actualizar dicho pecado por el nuevo
+                                        //
+    // TODO
   };
 
   return (
@@ -122,10 +140,20 @@ function Sins() {
           <Title>Pecados</Title>
           <SubTitle>Escribe uno de tus pecados:</SubTitle>
           {/* <textarea id="descriptionEvent" rows={10} cols={50} /> */}
-          <Textarea type="text" value={text} onChange={handleInputChange} placeholder={suggest} />
+          <Textarea
+            type="text"
+            value={text}
+            onChange={handleInputChange}
+            placeholder={suggest}
+          />
+          <Button onClick={handleEditSin}>Editar pecado</Button>
           <ButtonContainer>
-            <Button onClick={handleGoLobby}><FaArrowLeft /></Button>
-            <Button onClick={handleNext}><FaArrowRight /></Button>
+            <Button onClick={handleGoLobby}>
+              <FaArrowLeft />
+            </Button>
+            <Button onClick={handleNext}>
+              <FaArrowRight />
+            </Button>
           </ButtonContainer>
         </FormContainer>
       </Container>

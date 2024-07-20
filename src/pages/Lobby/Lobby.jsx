@@ -35,7 +35,7 @@ const Lobby = () => {
   useEffect(() => {
     if (roomId) {
       const intervalId = setInterval(async () => {
-        if ((await checkGameStatus) === true()) {
+        if (await checkGameStatus()) {
           console.log(111, players, "GAME STATUS ", gameStarted);
           navigate("/sins");
         } else {
@@ -90,7 +90,8 @@ const Lobby = () => {
   };
 
   const handleStartGame = async () => {
-    if (players.length >= 3) {
+    if (players.length >= 0) {
+      //Modificar la cantidad mínima de jugadores
       await setGameStatus(roomId, true);
       setGameStarted(true);
     } else {
