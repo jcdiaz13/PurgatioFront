@@ -1,5 +1,5 @@
-import { useState, useEffect, useContext } from 'react';
-import { Link, useNavigate } from "react-router-dom";
+import { useState, useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Container,
   FormContainer,
@@ -9,18 +9,48 @@ import {
   Title,
   SubTitle,
 } from "./Punishments.styles";
-import { FaArrowLeft } from "react-icons/fa";
-import Theme from '../../components/Theme';
-import { PlayerContext } from '../../app/contexts/PlayerContext';
+import Theme from "../../components/Theme";
+import { PlayerContext } from "../../app/contexts/PlayerContext";
+import {
+  createPunish,
+  getPlayersWithoutPunish,
+  deleteSin,
+} from "../../app/services/player";
 
 const Punishments = () => {
-  const [isTextareaModified, setIsTextareaModified] = useState(false);
+  const [text, setText] = useState("");
   const navigate = useNavigate();
   const { roomId, playerId, players } = useContext(PlayerContext);
   const [assignSin, setAssignSin] = useState("");
+  const [changeButton, setChangeButton] = useState(false);
+  const [judgePlayerId, setJudgePlayerId] = useState("");
+
+  const checkPlayersWithoutPunish = async () => {
+    const response = await getPlayersWithoutPunish(roomId);
+    const playersWithoutPunish = response.data;
+    return playersWithoutPunish.length === 0;
+  };
 
   useEffect(() => {
+    const intervalId = setInterval(async () => {
+      const allPlayersDone = await checkPlayersWithoutPunish();
+      // if (allPlayersDone) {
+      //   if (roomOwner) {
+      //     console.log('jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj')
+      //   }
+      // }
+      // TODO
 
+      if (allPlayersDone) {
+        navigate("/verdict");
+      }
+    }, 2000);
+
+    return () => clearInterval(intervalId);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [roomId]);
+
+  useEffect(() => {
     if (roomId && playerId) {
       showJudgeSin();
     }
@@ -28,32 +58,37 @@ const Punishments = () => {
   }, [roomId, playerId]);
 
   const showJudgeSin = async () => {
-
     console.log("Players EN PUNISHMENT:", players);
 
-    const player = players.find(player => player.id === playerId);
+    const player = players.find((player) => player.id === playerId);
     console.log("Jugador actual:", player);
 
     if (player) {
-      const judgePlayer = players.find(judge => judge.id === player.judgeSin);
+      const judgePlayer = players.find((judge) => judge.id === player.judgeSin);
       console.log("Jugador que tengo que juzgar:", judgePlayer);
 
-      if (judgePlayer)
-        setAssignSin(judgePlayer.sin);
+      if (judgePlayer) setAssignSin(judgePlayer.sin);
+      setJudgePlayerId(judgePlayer.id);
     }
   };
 
-
-  const handleGoToSins = () => {
-    navigate("/sins");
+  const handleInputChange = (e) => {
+    // setRandomSin(e.target.value);
+    setText(e.target.value);
   };
 
-  const handleNext = () => {
-    if (!isTextareaModified) {
-      alert("Por favor, modifique el texto antes de continuar.");
+  const handleEditPunish = async () => {
+    setChangeButton(false);
+    await deletePunish(playerId);
+  };
+
+  const handleNext = async () => {
+    setChangeButton(true);
+    if (text === "") {
+      alert("Introduzca un texto!!");
       return;
     }
-    navigate("/");
+    await createPunish(judgePlayerId, { punish: text });
   };
 
   return (
@@ -61,22 +96,15 @@ const Punishments = () => {
       <Container>
         <FormContainer>
           <Title>Pecado</Title>
-          {
-            console.log('Pecado asignado:', assignSin)
-          }
+          {console.log("Pecado asignado:", assignSin)}
           {assignSin} {/* ESTADO QUE CONTIENE EL PECADO DEL DESTINATARIO */}
           <SubTitle>Castigos</SubTitle>
           {/* <p>{randomSin}</p> */}
-          <Textarea />
+          <Textarea value={text} onChange={handleInputChange} />
           {/* onChange={handlePunishmentChange} placeholder={suggest} en text area */}
           <ButtonContainer>
-            <Button onClick={handleGoToSins}>
-              {" "}
-              <FaArrowLeft />
-            </Button>
-            <Link to="/verdict">
-              <Button>Enviar</Button>
-            </Link>
+            {changeButton && <Button onClick={handleEditPunish}>Editar</Button>}
+            {!changeButton && <Button onClick={handleNext}>Enviar</Button>}
           </ButtonContainer>
         </FormContainer>
       </Container>
