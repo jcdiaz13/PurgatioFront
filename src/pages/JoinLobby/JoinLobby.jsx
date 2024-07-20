@@ -6,6 +6,8 @@ import { createPlayer, getPlayersByRoomId } from "../../app/services/player";
 import { getGameStatus } from "../../app/services/room";
 import avatarImages from "../../app/utils/avatarImages";
 import interrogante from "../../app/assets/gifs/question.gif";
+import Alert from '../../components/Alert';
+
 
 import {
   Container,
@@ -34,6 +36,10 @@ function JoinLobby() {
   const [isAvatarPopupOpen, setIsAvatarPopupOpen] = useState(false);
   const [selectedAvatar, setSelectedAvatar] = useState(null);
   const navigate = useNavigate();
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertType, setAlertType] = useState('');
+  const [alertMessage, setAlertMessage] = useState('');
+
 
   const closePopup = () => {
     setIsAvatarPopupOpen(null);
@@ -45,6 +51,11 @@ function JoinLobby() {
 
   const handleAvatarClick = () => {
     setIsAvatarPopupOpen(true);
+  };
+  const showCustomAlert = (type, message) => {
+    setAlertType(type);
+    setAlertMessage(message);
+    setShowAlert(true);
   };
 
   const handleAvatarSelect = (avatar) => {
@@ -69,19 +80,20 @@ function JoinLobby() {
     const trimmedName = playerName.trim();
 
     if (!trimmedName || !roomId) {
-      alert("Por favor ingrese un nombre y un ID de sala antes de continuar.");
+      showCustomAlert('alert', 'Por favor ingrese un nombre y un ID de sala antes de continuar.');
       return;
     }
 
     const players = await getPlayersByRoomId(roomId);
     if (players.data.length >= 8) {
-      alert("Límite excedido. Máximo 8 jugadores.");
+      showCustomAlert('error', 'Límite excedido. Máximo 8 jugadores.');
+      alert("");
       return;
     }
 
     const gameStatus = await checkGameStatus();
     if (gameStatus === true) {
-      alert("La sala no está accesible porque el juego ya ha comenzado.");
+      showCustomAlert('info', 'La sala no está accesible porque el juego ya ha comenzado.');
       return;
     }
 
@@ -100,6 +112,8 @@ function JoinLobby() {
 
   return (
     <Container>
+      {showAlert && <Alert type={alertType} message={alertMessage} onClose={() => setShowAlert(false)} />}
+
       {isAvatarPopupOpen && <Overlay onClick={closePopup} />}
       <FormContainer $isPopupOpen={isAvatarPopupOpen}>
         <Title>Unirse a una sala</Title>

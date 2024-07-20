@@ -4,6 +4,7 @@ import { PlayerContext } from "../../app/contexts/PlayerContext";
 import { useNavigate } from "react-router-dom";
 import interrogante from "../../app/assets/gifs/question.gif";
 import avatarImages from "../../app/utils/avatarImages";
+import Alert from '../../components/Alert';  // Asegúrate de ajustar la ruta según tu estructura de archivos
 
 import {
   Container,
@@ -24,7 +25,16 @@ function CreateLobby() {
   const { playerName, setPlayerName, selectedAvatar, setSelectedAvatar } =
     useContext(PlayerContext);
   const [isAvatarPopupOpen, setIsAvatarPopupOpen] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertType, setAlertType] = useState('');
+  const [alertMessage, setAlertMessage] = useState('');
   const navigate = useNavigate();
+
+  const showCustomAlert = (type, message) => {
+    setAlertType(type);
+    setAlertMessage(message);
+    setShowAlert(true);
+  };
 
   const handlePlayerNameAndAvatar = () => {
     const trimmedName = playerName.trim();
@@ -34,10 +44,10 @@ function CreateLobby() {
       console.log(trimmedName);
     } else {
       if (!trimmedName) {
-        alert("Por favor ingrese un nombre antes de continuar.");
+        showCustomAlert('alert', 'Por favor ingrese un nombre antes de continuar.');
       }
       if (selectedAvatar === null) {
-        alert("Por favor selecciona un avatar antes de continuar.");
+        showCustomAlert('error', 'Por favor selecciona un avatar antes de continuar.');
       }
     }
   };
@@ -78,12 +88,12 @@ function CreateLobby() {
           )}
         </AvatarContainer>
         <Pergamino>
-        <Input
-          type="text"
-          value={playerName}
-          onChange={handleInputChange}
-          placeholder="Nombre"
-        />
+          <Input
+            type="text"
+            value={playerName}
+            onChange={handleInputChange}
+            placeholder="Nombre"
+          />
         </Pergamino>
         <ButtonContainer>
           <StyledLink to="/">
@@ -101,6 +111,7 @@ function CreateLobby() {
           ))}
         </AvatarPopup>
       )}
+      {showAlert && <Alert type={alertType} message={alertMessage} onClose={() => setShowAlert(false)} />}
     </Container>
   );
 }
