@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Container,
@@ -9,17 +9,21 @@ import {
   Title,
   SubTitle,
 } from "./Punishments.styles";
-import Theme from '../../components/Theme';
-import { PlayerContext } from '../../app/contexts/PlayerContext';
-import { createPunish, getPlayersWithoutPunish } from '../../app/services/player';
+import Theme from "../../components/Theme";
+import { PlayerContext } from "../../app/contexts/PlayerContext";
+import {
+  createPunish,
+  getPlayersWithoutPunish,
+  deleteSin,
+} from "../../app/services/player";
 
 const Punishments = () => {
-  const [text, setText] = useState("")
+  const [text, setText] = useState("");
   const navigate = useNavigate();
   const { roomId, playerId, players } = useContext(PlayerContext);
   const [assignSin, setAssignSin] = useState("");
+  const [changeButton, setChangeButton] = useState(false);
   const [judgePlayerId, setJudgePlayerId] = useState("");
-
 
   const checkPlayersWithoutPunish = async () => {
     const response = await getPlayersWithoutPunish(roomId);
@@ -38,7 +42,7 @@ const Punishments = () => {
       // TODO
 
       if (allPlayersDone) {
-        navigate('/verdict');
+        navigate("/verdict");
       }
     }, 2000);
 
@@ -47,7 +51,6 @@ const Punishments = () => {
   }, [roomId]);
 
   useEffect(() => {
-
     if (roomId && playerId) {
       showJudgeSin();
     }
@@ -55,32 +58,32 @@ const Punishments = () => {
   }, [roomId, playerId]);
 
   const showJudgeSin = async () => {
-
     console.log("Players EN PUNISHMENT:", players);
 
-    const player = players.find(player => player.id === playerId);
+    const player = players.find((player) => player.id === playerId);
     console.log("Jugador actual:", player);
 
     if (player) {
-      const judgePlayer = players.find(judge => judge.id === player.judgeSin);
+      const judgePlayer = players.find((judge) => judge.id === player.judgeSin);
       console.log("Jugador que tengo que juzgar:", judgePlayer);
 
-      if (judgePlayer)
-        setAssignSin(judgePlayer.sin);
+      if (judgePlayer) setAssignSin(judgePlayer.sin);
       setJudgePlayerId(judgePlayer.id);
     }
   };
-
 
   const handleInputChange = (e) => {
     // setRandomSin(e.target.value);
     setText(e.target.value);
   };
 
-
-
+  const handleEditPunish = async () => {
+    setChangeButton(false);
+    await deletePunish(playerId);
+  };
 
   const handleNext = async () => {
+    setChangeButton(true);
     if (text === "") {
       alert("Introduzca un texto!!");
       return;
@@ -93,16 +96,15 @@ const Punishments = () => {
       <Container>
         <FormContainer>
           <Title>Pecado</Title>
-          {
-            console.log('Pecado asignado:', assignSin)
-          }
+          {console.log("Pecado asignado:", assignSin)}
           {assignSin} {/* ESTADO QUE CONTIENE EL PECADO DEL DESTINATARIO */}
           <SubTitle>Castigos</SubTitle>
           {/* <p>{randomSin}</p> */}
           <Textarea value={text} onChange={handleInputChange} />
           {/* onChange={handlePunishmentChange} placeholder={suggest} en text area */}
           <ButtonContainer>
-            <Button onClick={handleNext}>Enviar</Button>
+            {changeButton && <Button onClick={handleEditPunish}>Editar</Button>}
+            {!changeButton && <Button onClick={handleNext}>Enviar</Button>}
           </ButtonContainer>
         </FormContainer>
       </Container>
