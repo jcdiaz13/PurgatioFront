@@ -199,17 +199,6 @@ export const Box = styled.div`
     `}
 
   ${({ theme }) =>
-    theme.name === "hada" &&
-    css`
-      background-color: pink;
-      border: solid 4px black;
-      width: 225px;
-      height: 225px;
-      border-radius: 50%;
-      background-image: url(${hada});
-    `}
-
-  ${({ theme }) =>
     theme.name === "mago" &&
     css`
       background-image: url(${helado});
