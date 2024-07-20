@@ -1,7 +1,15 @@
-import { useState, useEffect, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Container, FormContainer, Textarea, ButtonContainer, Button, Title, SubTitle } from './Sins.styles';
-import { FaArrowRight } from 'react-icons/fa';
+import { useState, useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import {
+  Container,
+  FormContainer,
+  Textarea,
+  ButtonContainer,
+  Button,
+  Title,
+  SubTitle,
+} from "./Sins.styles";
+import { FaArrowRight } from "react-icons/fa";
 // import sinsData from '../../app/jsons/gameMastersSins.json';
 import Theme from "../../components/Theme";
 import {
@@ -17,6 +25,7 @@ function Sins() {
   const navigate = useNavigate();
   const [randomSin, setRandomSin] = useState("");
   const suggest = `Sugerencia: ${randomSin}`;
+  const [changeButton, setChangeButton] = useState(false);
   const { playerId, roomId, setPlayers, roomOwner } = useContext(PlayerContext);
 
   const checkPlayersWithoutSin = async () => {
@@ -102,6 +111,7 @@ function Sins() {
 
   // Punishers
   const handleNext = async () => {
+    setChangeButton(true);
     if (text === "") {
       alert("Introduzca un texto!!");
       return;
@@ -116,6 +126,7 @@ function Sins() {
   };
 
   const handleEditSin = () => {
+    setChangeButton(false);
     //Hacer método delete para para setear el pecado a null y que así no deje avanzar a los usuario a la siguiente página.
     //Hacer método put para actualizar dicho pecado por el nuevo.
     //Hacer método get para obtener el pecado actualizado.
@@ -134,10 +145,9 @@ function Sins() {
             onChange={handleInputChange}
             placeholder={suggest}
           />
-
           <ButtonContainer>
-          <Button onClick={handleEditSin}>Editar pecado</Button>
-          <Button onClick={handleNext}><FaArrowRight /></Button>
+            {changeButton && <Button onClick={handleEditSin}>Editar</Button>}
+            {!changeButton && <Button onClick={handleNext}>Enviar</Button>}
           </ButtonContainer>
         </FormContainer>
       </Container>
