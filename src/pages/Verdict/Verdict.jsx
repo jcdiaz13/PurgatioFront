@@ -24,6 +24,15 @@ const Verdict = () => {
   const [selectedPlayer, setSelectedPlayer] = useState(null);
   const [victimAvatars, setVictimAvatars] = useState({}); // Estado para almacenar avatares seleccionados
 
+  // selectedPlayer.id : victim.id,
+  // selectedPlayer.id : victim.id
+  function(victim){
+if(map.get(select)){
+  map.delete(selectedPlayer)
+}
+    setmap
+  }
+
   useEffect(() => {
     const fetchPlayers = async () => {
       try {
@@ -51,7 +60,11 @@ const Verdict = () => {
     setVictimModalOpen(true);
   };
 
+  //Cuando clicas el avatar que crees que es la victima, al momento handleVictimSelect guardas en un array/map/loquesea el valor de victim.id->
+  // selectedPlayer.id : victim.id,
+  // selectedPlayer.id : victim.id
   const handleVictimSelect = (victim) => {
+    console.log(victim);
     if (!selectedPlayer) return;
 
     const victimAvatar = avatarImages.find((img) => img.id === victim.avatarId);
@@ -66,14 +79,13 @@ const Verdict = () => {
 
     setVictimModalOpen(false);
     setModalOpen(false); // Cerrar también el modal principal
-    console.log(
-      `${selectedPlayer.playerName} ha seleccionado a ${victim.playerName} como víctima.`
-    );
+    // console.log(
+    //   `${selectedPlayer.playerName} ha seleccionado a ${victim.playerName} como víctima.`
+    // );
   };
 
   const handleVotaciones = () => {
-    console.log(victimAvatars, " Holaaaaaaaaa ", players);
-    if (players.length === victimAvatars.length) {
+    if (players.length - 1 === Object.values(victimAvatars).length) {
       console.log("Hola");
     }
   };
@@ -103,6 +115,7 @@ const Verdict = () => {
   return (
     <Container>
       {renderPlayers()}
+      {console.log(selectedPlayer)}
       {modalOpen && (
         <ModalWrapper>
           <ModalContent>
