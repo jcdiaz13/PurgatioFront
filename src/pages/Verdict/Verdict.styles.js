@@ -31,16 +31,14 @@ export const Cover = styled.div`
     width: 100%;
     height: 100%;
     position: absolute; 
-    top: 0;
-    left: 0;
-    z-index: 1; 
+    z-index: 1;    
   }
 
   p {
     position: relative; 
     z-index: 2; 
     color: white; 
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); 
+    text-shadow: 1px 1px 8px black; 
   }
 `;
 
@@ -48,7 +46,7 @@ export const Book = styled.div`
   //position: relative;
   width: 130px;
   height: 150px;
-  background-image: url(${question});
+  background-image: transparent;
    background-position: center;
   background-size: cover; 
   box-shadow: 1px 1px 12px #000;
