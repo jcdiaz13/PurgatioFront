@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   Container,
   FormContainer,
@@ -9,19 +9,42 @@ import {
   Title,
   SubTitle,
 } from "./Punishments.styles";
-import { FaArrowLeft } from "react-icons/fa";
 import Theme from '../../components/Theme';
 import { PlayerContext } from '../../app/contexts/PlayerContext';
-import { createPunish } from '../../app/services/player';
+import { createPunish, getPlayersWithoutPunish } from '../../app/services/player';
 
 const Punishments = () => {
   const [text, setText] = useState("")
-  const [isTextareaModified, setIsTextareaModified] = useState(false);
   const navigate = useNavigate();
   const { roomId, playerId, players } = useContext(PlayerContext);
   const [assignSin, setAssignSin] = useState("");
   const [judgePlayerId, setJudgePlayerId] = useState("");
 
+
+  const checkPlayersWithoutPunish = async () => {
+    const response = await getPlayersWithoutPunish(roomId);
+    const playersWithoutPunish = response.data;
+    return playersWithoutPunish.length === 0;
+  };
+
+  useEffect(() => {
+    const intervalId = setInterval(async () => {
+      const allPlayersDone = await checkPlayersWithoutPunish();
+      // if (allPlayersDone) {
+      //   if (roomOwner) {
+      //     console.log('jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj')
+      //   }
+      // }
+      // TODO
+
+      if (allPlayersDone) {
+        navigate('/verdict');
+      }
+    }, 2000);
+
+    return () => clearInterval(intervalId);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [roomId]);
 
   useEffect(() => {
 
@@ -55,9 +78,7 @@ const Punishments = () => {
   };
 
 
-  const handleGoToSins = () => {
-    navigate("/sins");
-  };
+
 
   const handleNext = async () => {
     if (text === "") {
@@ -65,7 +86,6 @@ const Punishments = () => {
       return;
     }
     await createPunish(judgePlayerId, { punish: text });
-    navigate("/verdict");
   };
 
   return (
@@ -82,13 +102,7 @@ const Punishments = () => {
           <Textarea value={text} onChange={handleInputChange} />
           {/* onChange={handlePunishmentChange} placeholder={suggest} en text area */}
           <ButtonContainer>
-            <Button onClick={handleGoToSins}>
-              {" "}
-              <FaArrowLeft />
-            </Button>
-
             <Button onClick={handleNext}>Enviar</Button>
-
           </ButtonContainer>
         </FormContainer>
       </Container>

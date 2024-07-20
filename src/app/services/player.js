@@ -13,6 +13,8 @@ export const getPlayersByRoomId = async (roomId) => await instance.get(`player/r
 
 export const getPlayersWithoutSin = async (roomId) => await instance.get(`player/nosin/${roomId}`);
 
+export const getPlayersWithoutPunish = async (roomId) => await instance.get(`player/nopunish/${roomId}`);
+
 export const AssignSins = async (roomId) => {
     // console.log(roomId, 11111);
     const data = await instance.put(`player/assign/${roomId}`);

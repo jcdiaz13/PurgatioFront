@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Container, FormContainer, Textarea, ButtonContainer, Button, Title, SubTitle } from './Sins.styles';
-import { FaArrowRight, FaArrowLeft } from 'react-icons/fa';
+import { FaArrowRight } from 'react-icons/fa';
 // import sinsData from '../../app/jsons/gameMastersSins.json';
 import Theme from '../../components/Theme';
 import { createSin, getPlayersWithoutSin, getPlayersWithAssign, AssignSins } from '../../app/services/player';
@@ -111,9 +111,6 @@ function Sins() {
     }
   };
 
-  const handleGoLobby = () => {
-    navigate('/lobby');
-  };
 
   return (
     <Theme>
@@ -124,7 +121,6 @@ function Sins() {
           {/* <textarea id="descriptionEvent" rows={10} cols={50} /> */}
           <Textarea type="text" value={text} onChange={handleInputChange} placeholder={suggest} />
           <ButtonContainer>
-            <Button onClick={handleGoLobby}><FaArrowLeft /></Button>
             <Button onClick={handleNext}><FaArrowRight /></Button>
           </ButtonContainer>
         </FormContainer>
