@@ -141,4 +141,3 @@ const Verdict = () => {
 };
 
 export default Verdict;
-
