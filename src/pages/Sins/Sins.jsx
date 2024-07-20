@@ -1,15 +1,7 @@
-import { useState, useEffect, useContext } from "react";
-import { useNavigate } from "react-router-dom";
-import {
-  Container,
-  FormContainer,
-  Textarea,
-  ButtonContainer,
-  Button,
-  Title,
-  SubTitle,
-} from "./Sins.styles";
-import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
+import { useState, useEffect, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Container, FormContainer, Textarea, ButtonContainer, Button, Title, SubTitle } from './Sins.styles';
+import { FaArrowRight } from 'react-icons/fa';
 // import sinsData from '../../app/jsons/gameMastersSins.json';
 import Theme from "../../components/Theme";
 import {
@@ -123,14 +115,10 @@ function Sins() {
     }
   };
 
-  const handleGoLobby = () => {
-    navigate("/lobby");
-  };
-
-  const handleEditSin = () => {         //Hacer método get para ver si el pecado está introducido   ejemplo 
-                                        //Hacer método put para actualizar dicho pecado por el nuevo
-                                        //
-    // TODO
+  const handleEditSin = () => {
+    //Hacer método delete para para setear el pecado a null y que así no deje avanzar a los usuario a la siguiente página.
+    //Hacer método put para actualizar dicho pecado por el nuevo.
+    //Hacer método get para obtener el pecado actualizado.
   };
 
   return (
@@ -146,14 +134,10 @@ function Sins() {
             onChange={handleInputChange}
             placeholder={suggest}
           />
-          <Button onClick={handleEditSin}>Editar pecado</Button>
+
           <ButtonContainer>
-            <Button onClick={handleGoLobby}>
-              <FaArrowLeft />
-            </Button>
-            <Button onClick={handleNext}>
-              <FaArrowRight />
-            </Button>
+          <Button onClick={handleEditSin}>Editar pecado</Button>
+          <Button onClick={handleNext}><FaArrowRight /></Button>
           </ButtonContainer>
         </FormContainer>
       </Container>
