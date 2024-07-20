@@ -22,29 +22,19 @@ const Verdict = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [victimModalOpen, setVictimModalOpen] = useState(false);
   const [selectedPlayer, setSelectedPlayer] = useState(null);
-  const [selectedVictim, setSelectedVictim] = useState(null);
-  const [playerSins, setPlayerSins] = useState({});
+  const [victimAvatars, setVictimAvatars] = useState({}); // Estado para almacenar avatares seleccionados
 
   useEffect(() => {
-    const fetchPlayersAndSins = async () => {
+    const fetchPlayers = async () => {
       try {
-        // Obtener los jugadores de la sala
-        const playersResponse = await getPlayersByRoomId(roomId);
-        setPlayers(playersResponse.data);
-
-        // Obtener los pecados de los jugadores
-        const sinsResponse = await getSins(roomId);
-        const sinsByPlayerId = playersResponse.data.reduce((acc, player, index) => {
-          acc[player.id] = sinsResponse[index];
-          return acc;
-        }, {});
-        setPlayerSins(sinsByPlayerId);
+        const response = await getPlayersByRoomId(roomId);
+        setPlayers(response.data);
       } catch (error) {
-        console.error("Error al obtener jugadores y pecados:", error);
+        console.error("Error fetching players:", error);
       }
     };
 
-    fetchPlayersAndSins();
+    fetchPlayers();
   }, [roomId, setPlayers]);
 
   const handlePlayerClick = (player) => {
@@ -86,69 +76,68 @@ const Verdict = () => {
       if (player.id != playerId) {
         const victimAvatar = victimAvatars[player.id];
 
-        console.log(`${selectedPlayer.playerName} ha seleccionado a ${selectedVictim.playerName} como víctima.`);
-        closeModal();
-      };
-
-      const renderPlayers = () => (
-        players.map((player) => (
+        return (
           <Book key={player.id} onClick={() => handlePlayerClick(player)}>
             <Cover>
-              <img src={player.avatarImage || 'default_image_path.png'} alt={player.playerName} /> {/* Imagen por defecto si no hay */}
-              <p>{player.playerName}</p>
-              <p>{playerSins[player.id] || ''}</p> {/* Mostrar el pecado del jugador */}
+              {victimAvatar ? (
+                <>
+                  <img src={victimAvatar.img} alt={player.playerName} />
+                  <p>{victimAvatar.name}</p>
+                </>
+              ) : (
+                <p>{player.sin}</p> // Mostrar el pecado del jugador si no hay avatar seleccionado
+              )}
             </Cover>
           </Book>
-        ))
-      );
+        );
+      }
+    });
 
-      return (
-        <Container>
-          {renderPlayers()}
-          {modalOpen && (
-            <ModalWrapper>
-              <ModalContent>
-                <CloseButton onClick={closeModal}>&times;</CloseButton>
-                <h2>{selectedPlayer ? selectedPlayer.playerName : ''}</h2>
-                <p>{selectedPlayer ? playerSins[selectedPlayer.id] : ''}</p> {/* Mostrar el pecado del jugador */}
-                <h3>Seleccionar Víctima</h3>
-                <OptionButton onClick={openVictimSelection}>Elegir Víctima</OptionButton>
-              </ModalContent >
-            </ModalWrapper >
-          )}
-          {
-            victimModalOpen && (
-              <>
-                <MiniTitle>Selecciona una víctima</MiniTitle>
-                <AvatarPopup>
-                  {players.map((victim) => {
-                    if (victim.id != playerId) {
-                      const avatarId = victim.avatarId;
-                      const imgObj = avatarImages.find(
-                        (avatarImage) => avatarImage.id === avatarId
-                      );
-                      return (
-                        <AvatarOption
-                          key={victim.id}
-                          onClick={() => handleVictimSelect(victim)}
-                        >
-                          <img
-                            src={imgObj ? imgObj.img : "default_image_path.png"}
-                            alt={victim.playerName}
-                          />
-                          <p>{victim.playerName}</p>
-                        </AvatarOption>
-                      );
-                    }
-                  })}
+  return (
+    <Container>
+      {renderPlayers()}
+      {modalOpen && (
+        <ModalWrapper>
+          <ModalContent>
+            <CloseButton onClick={closeModal}>&times;</CloseButton>
+            <p>{selectedPlayer ? selectedPlayer.sin : ""}</p> {/* Mostrar el pecado del jugador */}
+            <h3>Selecciona quien crees que cometió este acto!</h3>
+            <OptionButton onClick={openVictimSelection}>
+              Elegir Jugador
+            </OptionButton>
+          </ModalContent>
+        </ModalWrapper>
+      )}
+      {victimModalOpen && (
+        <>
+          <MiniTitle>Selecciona una víctima</MiniTitle>
+          <AvatarPopup>
+            {players.map((victim) => {
+              if (victim.id != playerId) {
+                const avatarId = victim.avatarId;
+                const imgObj = avatarImages.find(
+                  (avatarImage) => avatarImage.id === avatarId
+                );
+                return (
+                  <AvatarOption
+                    key={victim.id}
+                    onClick={() => handleVictimSelect(victim)}
+                  >
+                    <img
+                      src={imgObj ? imgObj.img : "default_image_path.png"}
+                      alt={victim.playerName}
+                    />
+                    <p>{victim.playerName}</p>
+                  </AvatarOption>
+                );
+              }
+            })}
 
-                </AvatarPopup>
-              </>
-            )
-          }
-        </Container >
-      );
-    };
+          </AvatarPopup>
+        </>
+      )}
+    </Container>
+  );
+};
 
-  export default Verdict;
-
+export default Verdict;
