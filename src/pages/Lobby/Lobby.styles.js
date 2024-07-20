@@ -1,13 +1,15 @@
 import styled, { css } from "styled-components";
 import helado from "../../app/assets/gifs/ice-cream.gif";
-import hada from "../../app/assets/gifs/fairy.gif";
 import verdugo from "../../app/assets/gifs/reaper.gif";
 import lava from "../../app/assets/gifs/lava.gif";
-import nube from "../../app/assets/gifs/nuve.gif"
+import nube from "../../app/assets/gifs/nuve.gif";
 
 export const PlayerContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Cambiado para ajustar automáticamente según el espacio */
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(150px, 1fr)
+  ); /* Cambiado para ajustar automáticamente según el espacio */
   gap: 25px; /* Reducido el gap entre los jugadores */
   justify-items: center;
   align-items: center;
@@ -19,7 +21,7 @@ export const PlayerContainer = styled.div`
 export const Button = styled.button`
   font-family: Pixellari;
   font-size: 1rem;
-  background-color:black;
+  background-color: black;
   color: #fff;
   text-shadow: 0 2px 0 rgb(0 0 0 / 25%);
   display: inline-flex;
@@ -70,18 +72,18 @@ export const Button = styled.button`
   &:hover:before {
     color: black;
     ${({ theme }) =>
-    theme.name === "verdugo" &&
-    css`
+      theme.name === "verdugo" &&
+      css`
         background-color: #ffd700 !important;
       `}
     ${({ theme }) =>
-    theme.name === "mago" &&
-    css`
+      theme.name === "mago" &&
+      css`
         background-color: #228b22 !important;
       `}
     ${({ theme }) =>
-    theme.name === "hada" &&
-    css`
+      theme.name === "hada" &&
+      css`
         background-color: #228b22 !important;
       `}
     box-shadow: 0 -2px rgb(0 0 0 / 50%) inset, 0 2px rgb(255 255 255 / 20%) inset, -2px 0 rgb(255 255 255 / 20%) inset, 2px 0 rgb(0 0 0 / 50%) inset;
@@ -207,7 +209,6 @@ export const Box = styled.div`
   @media (max-width: 768px) {
     width: 150px;
     height: 150px;
-
   }
 `;
 
@@ -220,11 +221,10 @@ export const DeletePlayerButton = styled.button`
   text-align: center;
   justify-content: center;
   align-items: center;
-  top: -6px;  
+  top: -6px;
   right: -6px;
-  text-shadow:1px 1px 5px black;
-  `;
-
+  text-shadow: 1px 1px 5px black;
+`;
 
 // Configuracion del boton de copiar sala en portapapeles
 export const Copy = styled.button`
@@ -235,36 +235,34 @@ export const Copy = styled.button`
     transform: translateY(3px);
   }
   &:hover {
-  ${({ theme }) =>
-
-    theme.name === "verdugo" &&
-    css`
+    ${({ theme }) =>
+      theme.name === "verdugo" &&
+      css`
         background-color: #ffd700 !important;
       `}
     ${({ theme }) =>
-    theme.name === "mago" &&
-    css`
-        background-color: #228b22  !important;
+      theme.name === "mago" &&
+      css`
+        background-color: #228b22 !important;
       `}
-      }
+  }
 `;
 export const Name = styled.span`
-position: absolute;
-width: 88px;
-letter-spacing: 1px;
-white-space: unset;
-font-Family: Pixellari;
-align-Items: center;
-color: black;
-top: 71px;
-font-size: 17px;
-background-image:url(${nube});
-background-position: center;
-background-repeat: no-repeat;
-background-size: cover;
-display: block;
-text-Align: center;
-overflow: hidden;
-white-Space: nowrap;
+  position: absolute;
+  width: 88px;
+  letter-spacing: 1px;
+  white-space: unset;
+  font-family: Pixellari;
+  align-items: center;
+  color: black;
+  top: 71px;
+  font-size: 17px;
+  background-image: url(${nube});
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: block;
+  text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
 `;
-
