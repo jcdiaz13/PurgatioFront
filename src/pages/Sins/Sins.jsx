@@ -15,7 +15,7 @@ import {
   createSin,
   getPlayersWithoutSin,
   getPlayersWithAssign,
-  AssignSins,
+  assignSins,
   deleteSin,
 } from "../../app/services/player";
 import { PlayerContext } from "../../app/contexts/PlayerContext"; // Ajusta la ruta según donde tengas PlayerContext
@@ -42,7 +42,7 @@ function Sins() {
         if (!requestOneTime) {
           if (roomOwner) {
             requestOneTime = true;
-            AssignSins(roomId);
+            assignSins(roomId);
           }
         }
 
