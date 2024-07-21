@@ -67,7 +67,7 @@ const Verdict = () => {
     setVictimModalOpen(false);
     setModalOpen(false); // Cerrar también el modal principal
     console.log(
-      `${selectedPlayer.playerName} ha seleccionado a ${victim.playerName} como víctima.`
+      `has seleccionado a${selectedPlayer.playerName} como el que hizo ${victim.playerName} como víctima.${players.map}`
     );
   };
 
