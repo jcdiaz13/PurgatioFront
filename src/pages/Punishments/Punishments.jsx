@@ -95,10 +95,10 @@ const Punishments = () => {
     <Theme>
       <Container>
         <FormContainer>
-          <Title>Pecado</Title>
-          {console.log("Pecado asignado:", assignSin)}
-          {assignSin} {/* ESTADO QUE CONTIENE EL PECADO DEL DESTINATARIO */}
-          <SubTitle>Castigos</SubTitle>
+          <Title>Castigo</Title>
+          {/* ESTADO QUE CONTIENE EL PECADO DEL DESTINATARIO */}
+          <SubTitle>Juzga este pecado:</SubTitle>
+          {assignSin}
           {/* <p>{randomSin}</p> */}
           <Textarea value={text} onChange={handleInputChange} />
           {/* onChange={handlePunishmentChange} placeholder={suggest} en text area */}

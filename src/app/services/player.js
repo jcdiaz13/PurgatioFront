@@ -24,15 +24,17 @@ export const getPlayersWithAssign = async (roomId) =>
 
 //UPDATE
 
-export const AssignSins = async (roomId) => {
+export const assignSins = async (roomId) => {
   const data = await instance.put(`player/assign/${roomId}`);
   return data.data;
 };
 
 //No se usa pero estaria bien que funcionara en vez de updatear con un post (createSin)
-export const updateSin = async (playerId, { sin }) => {
+export const updateSin = async (playerId, { sin }) =>
   await instance.put(`player/${playerId}/sin`, { sin });
-};
+
+export const updateVotesById = async (playerId) =>
+  await instance.put(`player/${playerId}/votes`);
 
 //DELETE
 
