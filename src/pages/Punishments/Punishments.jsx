@@ -14,7 +14,7 @@ import { PlayerContext } from "../../app/contexts/PlayerContext";
 import {
   createPunish,
   getPlayersWithoutPunish,
-  deleteSin,
+  deletePunish,
 } from "../../app/services/player";
 
 const Punishments = () => {
