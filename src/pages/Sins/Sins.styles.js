@@ -1,7 +1,6 @@
-import styled, { css } from 'styled-components';
-import pergamino from '../../app/assets/img/pergamino.png';
-import lava from '../../app/assets/gifs/lava.gif'
-
+import styled, { css } from "styled-components";
+import pergamino from "../../app/assets/img/pergamino.png";
+import lava from "../../app/assets/gifs/lava.gif";
 
 export const Container = styled.body`
   display: flex;
@@ -10,35 +9,32 @@ export const Container = styled.body`
   justify-content: center;
   height: 100vh;
   background-attachment: fixed;
-    background-repeat: no-repeat;
+  background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   ${({ theme }) =>
     theme.name === "verdugo" &&
     css`
-  background-image: url(${lava});
-`}
-${({ theme }) =>
+      background-image: url(${lava});
+    `}
+  ${({ theme }) =>
     theme.name === "mago" &&
     css`
-  background-image: url("https://i.pinimg.com/originals/1b/45/63/1b456377a9dce67a7dc3630260aa7572.gif");
-`}
+      background-image: url("https://i.pinimg.com/originals/1b/45/63/1b456377a9dce67a7dc3630260aa7572.gif");
+    `}
 `;
-
 
 export const Title = styled.h1`
   font-size: 2.5rem;
- text-decoration: underline;
+  text-decoration: underline;
   margin-bottom: 2rem;
 `;
 
 export const SubTitle = styled.p`
-font-size: 1.2rem;
-margin: 0;
-margin-bottom: 10px;
-
-;
-`
+  font-size: 1.2rem;
+  margin: 0;
+  margin-bottom: 10px;
+`;
 //PopUp
 export const FormContainer = styled.div`
   display: flex;
@@ -47,8 +43,8 @@ export const FormContainer = styled.div`
   width: 350px;
   height: 500px;
   max-width: 800px;
-  padding-top:5px;
- /* Cambia el color de fondo del modal */
+  padding-top: 5px;
+  /* Cambia el color de fondo del modal */
   background-image: url(${pergamino});
   background-image: cover;
   background-repeat: no-repeat;
@@ -56,23 +52,23 @@ export const FormContainer = styled.div`
   box-shadow: 30px black;
 `;
 
-
 export const Textarea = styled.textarea`
   padding: 1rem; /* Ajustado el padding para que sea más proporcionado */
   margin-bottom: 1rem;
   border-radius: 4px;
   font-size: 1rem;
   height: 180px;
-  width: 170px; /* Ajustado para que ocupe todo el ancho disponible */
+  text-align: center;
+  width: 220px; /* Ajustado para que ocupe todo el ancho disponible */
   border: none;
   resize: none;
-    outline: none;
-    background-image: url(${pergamino});
-    background-position: center;
+  outline: none;
+  background-image: url(${pergamino});
+  background-position: center;
 `;
 
 export const ButtonContainer = styled.div`
-position: relative;
+  position: relative;
   display: flex;
   justify-content: center;
   width: 100%;
@@ -83,10 +79,11 @@ position: relative;
 export const Button = styled.button`
   padding: 0.5rem 1rem;
   margin: 0.5rem;
-  border: none;
+  border: 1px solid #743c09;
   border-radius: 2px;
   font-size: 1rem;
-  background-color: transparent;
+  font-weight: bolder;
+  background-color: #f4aa51;
 
   color: #743c09;
   cursor: pointer;

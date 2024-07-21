@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { getPlayersByRoomId } from "../../app/services/player";
+import { getPlayersByRoomId, updateVotesById } from "../../app/services/player";
 import { PlayerContext } from "../../app/contexts/PlayerContext";
 import {
   Book,
@@ -23,6 +23,7 @@ const Verdict = () => {
   const [victimModalOpen, setVictimModalOpen] = useState(false);
   const [selectedPlayer, setSelectedPlayer] = useState(null);
   const [victimAvatars, setVictimAvatars] = useState({}); // Estado para almacenar avatares seleccionados
+  const [votesMap, setVotesMap] = useState(new Map());
 
   useEffect(() => {
     const fetchPlayers = async () => {
@@ -51,9 +52,23 @@ const Verdict = () => {
     setVictimModalOpen(true);
   };
 
+  const addItemToVotesMap = (victim) => {
+    setVotesMap((prevMap) => {
+      // Create a new map based on the previous state
+      const newVotesMap = new Map(prevMap);
+      // Set the new item
+      newVotesMap.set(selectedPlayer.id, victim.id);
+      // Return the new map
+      return newVotesMap;
+    });
+  };
+  //Cuando clicas el avatar que crees que es la victima, al momento handleVictimSelect guardas en un array/map/loquesea el valor de victim.id->
+  // selectedPlayer.id : victim.id,
+  // selectedPlayer.id : victim.id
   const handleVictimSelect = (victim) => {
     if (!selectedPlayer) return;
 
+    addItemToVotesMap(victim);
     const victimAvatar = avatarImages.find((img) => img.id === victim.avatarId);
 
     setVictimAvatars((prev) => ({
@@ -66,15 +81,24 @@ const Verdict = () => {
 
     setVictimModalOpen(false);
     setModalOpen(false); // Cerrar también el modal principal
-    console.log(
-      `has seleccionado a${selectedPlayer.playerName} como el que hizo ${victim.playerName} como víctima.${players.map}`
-    );
+    // console.log(
+    //   `${selectedPlayer.playerName} ha seleccionado a ${victim.playerName} como víctima.`
+    // );
+  };
+
+  // Función para recorrer el Map y obtener la posición de cada valor
+  const iterateVotesMap = () => {
+    const entries = Array.from(votesMap.entries());
+    entries.forEach(([keySelectedPlayerId, valueVictimId]) => {
+      if (keySelectedPlayerId === valueVictimId) {
+        updateVotesById(valueVictimId);
+      }
+    });
   };
 
   const handleVotaciones = () => {
-    console.log(victimAvatars, " Holaaaaaaaaa ", players);
-    if (players.length === victimAvatars.length) {
-      console.log("Hola");
+    if (players.length - 1 === Object.values(victimAvatars).length) {
+      iterateVotesMap();
     }
   };
 
