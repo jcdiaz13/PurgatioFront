@@ -23,8 +23,8 @@ import { PlayerContext } from "../../app/contexts/PlayerContext"; // Ajusta la r
 function Sins() {
   const [sin, setSin] = useState("");
   const navigate = useNavigate();
-  const [randomSin, setRandomSin] = useState("");
-  const suggest = `Sugerencia: ${randomSin}`;
+  // const [randomSin, setRandomSin] = useState("");
+  // const suggest = `Sugerencia: ${randomSin}`;
   const [changeButton, setChangeButton] = useState(false);
   const { playerId, roomId, setPlayers, roomOwner } = useContext(PlayerContext);
 
@@ -139,7 +139,7 @@ function Sins() {
             type="text"
             value={sin}
             onChange={handleInputChange}
-            placeholder="Escribe una anecdota que te hay ocurrido chunga o algo que harias"
+            placeholder="Escribe una anecdota que te haya ocurrido chunga o algo que harias"
             //{suggest}
           />
           <ButtonContainer>

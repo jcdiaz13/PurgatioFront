@@ -1,6 +1,11 @@
 import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { getPlayersByRoomId, updateVotesById } from "../../app/services/player";
+import {
+  getPlayersByRoomId,
+  updateVotesById,
+  getPlayersWithoutVoting,
+  updateIVoted,
+} from "../../app/services/player";
 import { PlayerContext } from "../../app/contexts/PlayerContext";
 import {
   Book,
@@ -24,6 +29,7 @@ const Verdict = () => {
   const [selectedPlayer, setSelectedPlayer] = useState(null);
   const [victimAvatars, setVictimAvatars] = useState({}); // Estado para almacenar avatares seleccionados
   const [votesMap, setVotesMap] = useState(new Map());
+  const [sendActive, setSendActive] = useState();
 
   useEffect(() => {
     const fetchPlayers = async () => {
@@ -37,6 +43,24 @@ const Verdict = () => {
 
     fetchPlayers();
   }, [roomId, setPlayers]);
+
+  const checkPlayersWithoutVoting = async () => {
+    const response = await getPlayersWithoutVoting(roomId);
+    const playersWithoutVoting = response.data;
+    return playersWithoutVoting.length === 0;
+  };
+
+  useEffect(() => {
+    const intervalWaitingPlayers = setInterval(async () => {
+      const allPlayersDone = await checkPlayersWithoutVoting();
+
+      if (allPlayersDone) {
+        console.log("Estas en useEffect");
+        navigate("/gameover");
+      }
+    }, 2000);
+    return () => clearInterval(intervalWaitingPlayers);
+  }, [sendActive]);
 
   const handlePlayerClick = (player) => {
     setSelectedPlayer(player);
@@ -86,19 +110,21 @@ const Verdict = () => {
     // );
   };
 
-  // Función para recorrer el Map y obtener la posición de cada valor
+  // Función para recorrer el map de votesMap y enviar a la BD los ID de los jugadores acertados
   const iterateVotesMap = () => {
     const entries = Array.from(votesMap.entries());
-    entries.forEach(([keySelectedPlayerId, valueVictimId]) => {
+    entries.forEach(async ([keySelectedPlayerId, valueVictimId]) => {
       if (keySelectedPlayerId === valueVictimId) {
-        updateVotesById(valueVictimId);
+        await updateVotesById(valueVictimId);
       }
     });
   };
 
-  const handleVotaciones = () => {
+  const handleVotaciones = async () => {
     if (players.length - 1 === Object.values(victimAvatars).length) {
       iterateVotesMap();
+      await updateIVoted(playerId);
+      setSendActive(true);
     }
   };
 
