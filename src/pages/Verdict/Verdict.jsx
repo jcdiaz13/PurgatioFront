@@ -126,9 +126,7 @@ const Verdict = () => {
 
   return (
     <Container>
-      <Button onClick={() => iterateVotesMap()}>Mapea</Button>
       {renderPlayers()}
-      {console.log("11111111111111111111111111111111, map " + votesMap.size)}
       {modalOpen && (
         <ModalWrapper>
           <ModalContent>

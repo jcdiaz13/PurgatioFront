@@ -133,14 +133,14 @@ function Sins() {
     <Theme>
       <Container>
         <FormContainer>
-          <Title>Pecados</Title>
-          <SubTitle>Escribe uno de tus pecados:</SubTitle>
-          {/* <textarea id="descriptionEvent" rows={10} cols={50} /> */}
+          <Title>Pecado</Title>
+          <SubTitle>Escribe tu pecado:</SubTitle>
           <Textarea
             type="text"
             value={sin}
             onChange={handleInputChange}
-            placeholder={suggest}
+            placeholder="Escribe una anecdota que te hay ocurrido chunga o algo que harias"
+            //{suggest}
           />
           <ButtonContainer>
             {changeButton && <Button onClick={handleEditSin}>Editar</Button>}
