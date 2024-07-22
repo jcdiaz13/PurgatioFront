@@ -2,8 +2,19 @@ import styled from "styled-components";
 import { css } from "styled-components";
 import lava from "../../app/assets/gifs/lava.gif";
 import pergamino from "../../app/assets/img/pergamino.png";
+import minipergamino from "../../app/assets/img/pergaminolado.png"
 
 export const Container = styled.div`
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -24,6 +35,16 @@ export const Container = styled.div`
       background-image: url("https://i.pinimg.com/originals/1b/45/63/1b456377a9dce67a7dc3630260aa7572.gif");
     `}
 `;
+export const Overlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  z-index: 1;
+`;
 export const Title = styled.h1`
   font-size: 2.5rem;
   text-decoration: underline;
@@ -37,6 +58,7 @@ export const SubTitle = styled.p`
 `;
 //PopUp
 export const FormContainer = styled.div`
+position: absolute;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -50,6 +72,7 @@ export const FormContainer = styled.div`
   background-repeat: no-repeat;
   background-position: top;
   box-shadow: 30px black;
+  z-index: 2;
 `;
 
 export const Textarea = styled.textarea`
@@ -62,7 +85,7 @@ export const Textarea = styled.textarea`
   border: none;
   resize: none;
   outline: none;
-  background-image: url(${pergamino});
+  background: transparent;
   background-position: center;
 `;
 
@@ -99,4 +122,77 @@ export const ButtonTrash = styled(Button)`
   &:hover {
     background-color: #b81414;
   }
+`;
+// Contenedor del pergamino
+export const ScrollContainer = styled.div`
+//position: absolute;
+display: flex;
+flex-direction: column;
+align-items: center;
+margin: 20px;
+`;
+export const ScrollContainer2 = styled.div`
+//position: absolute;
+display: flex;
+flex-direction: column;
+align-items: center;
+margin: 20px;
+`;
+
+// Botón para abrir y cerrar el pergamino
+export const ToggleButton = styled.button`
+padding: 0.5rem 1rem;  
+  font-size: 1rem;
+  background-color: black;
+  font-family: Pixellari;
+  color: white;
+  cursor: pointer;
+  text-align: center;
+`;
+
+// Pergamino (scroll)
+export const Scroll = styled.div`
+width: 330px;
+height: ${(props) =>
+    props.isOpen ? "480px" : "50px"
+  }; /* Altura inicial y dinámica */
+overflow: hidden;
+background-image: url(${pergamino}); /* Ruta correcta */
+padding: 10px;
+border:none;
+transition: height 0.5s ease-in-out; /* Transición para la altura */
+display: flex;
+align-items: center;
+justify-content: center;
+`;
+export const Scroll2 = styled.div`
+width: 330px;
+height: ${(props) =>
+    props.isOpen ? "480px" : "50px"
+  }; /* Altura inicial y dinámica */
+overflow: hidden;
+background-image: url(${pergamino}); /* Ruta correcta */
+padding: 10px;
+border:none;
+transition: height 0.5s ease-in-out; /* Transición para la altura */
+display: flex;
+align-items: center;
+justify-content: center;
+`;
+
+// Texto dentro del pergamino
+export const ScrollText = styled.p`
+position: relative;
+text-align: center;
+max-width:200px;
+margin: 10;
+opacity: 0;
+animation: fadeIn 0.5s ease-out forwards;
+  p{
+    font-size:1rem;
+    color: black;
+  }
+  .fade-in {
+  opacity: 1;
+}
 `;

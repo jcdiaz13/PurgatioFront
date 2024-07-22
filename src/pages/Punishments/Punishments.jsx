@@ -8,6 +8,10 @@ import {
   Button,
   Title,
   SubTitle,
+  Scroll,
+  ScrollContainer,
+  ToggleButton,
+  ScrollText,
 } from "./Punishments.styles";
 import Theme from "../../components/Theme";
 import { PlayerContext } from "../../app/contexts/PlayerContext";
@@ -24,6 +28,9 @@ const Punishments = () => {
   const [assignSin, setAssignSin] = useState("");
   const [changeButton, setChangeButton] = useState(false);
   const [judgePlayerId, setJudgePlayerId] = useState("");
+  const [OpenForPunish, setOpenForPunish] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [contentToShow, setContentToShow] = useState(null);
 
   const checkPlayersWithoutPunish = async () => {
     const response = await getPlayersWithoutPunish(roomId);
@@ -31,16 +38,13 @@ const Punishments = () => {
     return playersWithoutPunish.length === 0;
   };
 
+  const handleOpenPunish = () => {
+    setOpenForPunish(true);
+  };
+
   useEffect(() => {
     const intervalId = setInterval(async () => {
       const allPlayersDone = await checkPlayersWithoutPunish();
-      // if (allPlayersDone) {
-      //   if (roomOwner) {
-      //     console.log('jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj')
-      //   }
-      // }
-      // TODO
-
       if (allPlayersDone) {
         navigate("/verdict");
       }
@@ -67,13 +71,14 @@ const Punishments = () => {
       const judgePlayer = players.find((judge) => judge.id === player.judgeSin);
       console.log("Jugador que tengo que juzgar:", judgePlayer);
 
-      if (judgePlayer) setAssignSin(judgePlayer.sin);
-      setJudgePlayerId(judgePlayer.id);
+      if (judgePlayer) {
+        setAssignSin(judgePlayer.sin);
+        setJudgePlayerId(judgePlayer.id);
+      }
     }
   };
 
   const handleInputChange = (e) => {
-    // setRandomSin(e.target.value);
     setText(e.target.value);
   };
 
@@ -91,22 +96,55 @@ const Punishments = () => {
     await createPunish(judgePlayerId, { punish: text });
   };
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsOpen(true);
+      setContentToShow("sin");
+    }, 1000); // Delay for 1 second
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  const toggleScroll = (content) => {
+    setContentToShow(content);
+    setIsOpen((prevIsOpen) => !prevIsOpen);
+  };
+
+  const closePopup = () => {
+    setOpenForPunish(null);
+  };
+
   return (
     <Theme>
       <Container>
-        <FormContainer>
-          <Title>Castigo</Title>
-          {/* ESTADO QUE CONTIENE EL PECADO DEL DESTINATARIO */}
-          <SubTitle>Juzga este pecado:</SubTitle>
-          {assignSin}
-          {/* <p>{randomSin}</p> */}
-          <Textarea value={text} onChange={handleInputChange} />
-          {/* onChange={handlePunishmentChange} placeholder={suggest} en text area */}
-          <ButtonContainer>
-            {changeButton && <Button onClick={handleEditPunish}>Editar</Button>}
-            {!changeButton && <Button onClick={handleNext}>Enviar</Button>}
-          </ButtonContainer>
-        </FormContainer>
+        <ScrollContainer>
+          <Scroll isOpen={isOpen}>
+            <ScrollText>
+              {isOpen && contentToShow === "sin" && <p>{assignSin}</p>}
+              {isOpen && contentToShow === "punish" && (
+                <>
+                  <SubTitle>Juzga el Pecado</SubTitle>
+                  <Textarea value={text} onChange={handleInputChange} />
+                  <ButtonContainer>
+                    <Button onClick={closePopup}>Atras</Button>
+                    {changeButton && <Button onClick={handleEditPunish}>Editar</Button>}
+                    {!changeButton && <Button onClick={handleNext}>Enviar</Button>}
+                  </ButtonContainer>
+                </>
+              )}
+            </ScrollText>
+          </Scroll>
+        </ScrollContainer>
+        <ButtonContainer>
+          <ToggleButton onClick={() => toggleScroll("sin")}>
+            {isOpen ? "Cerrar Pecado" : "Ver Pecado"}
+          </ToggleButton>
+          {!isOpen && (
+            <ToggleButton onClick={() => toggleScroll("punish")}>
+              Juzgar Pecado
+            </ToggleButton>
+          )}
+        </ButtonContainer>
       </Container>
     </Theme>
   );
