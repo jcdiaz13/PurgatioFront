@@ -2,11 +2,9 @@ import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Container,
-  FormContainer,
   Textarea,
   ButtonContainer,
   Button,
-  Title,
   SubTitle,
   Scroll,
   ScrollContainer,
@@ -28,7 +26,6 @@ const Punishments = () => {
   const [assignSin, setAssignSin] = useState("");
   const [changeButton, setChangeButton] = useState(false);
   const [judgePlayerId, setJudgePlayerId] = useState("");
-  const [OpenForPunish, setOpenForPunish] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [contentToShow, setContentToShow] = useState(null);
 
@@ -36,10 +33,6 @@ const Punishments = () => {
     const response = await getPlayersWithoutPunish(roomId);
     const playersWithoutPunish = response.data;
     return playersWithoutPunish.length === 0;
-  };
-
-  const handleOpenPunish = () => {
-    setOpenForPunish(true);
   };
 
   useEffect(() => {
@@ -110,10 +103,6 @@ const Punishments = () => {
     setIsOpen((prevIsOpen) => !prevIsOpen);
   };
 
-  const closePopup = () => {
-    setOpenForPunish(null);
-  };
-
   return (
     <Theme>
       <Container>
@@ -126,9 +115,12 @@ const Punishments = () => {
                   <SubTitle>Juzga el Pecado</SubTitle>
                   <Textarea value={text} onChange={handleInputChange} />
                   <ButtonContainer>
-                    <Button onClick={closePopup}>Atras</Button>
-                    {changeButton && <Button onClick={handleEditPunish}>Editar</Button>}
-                    {!changeButton && <Button onClick={handleNext}>Enviar</Button>}
+                    {changeButton && (
+                      <Button onClick={handleEditPunish}>Editar</Button>
+                    )}
+                    {!changeButton && (
+                      <Button onClick={handleNext}>Enviar</Button>
+                    )}
                   </ButtonContainer>
                 </>
               )}
