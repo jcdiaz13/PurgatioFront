@@ -25,6 +25,9 @@ export const getPlayersWithAssign = async (roomId) =>
 export const getPlayersWithoutVoting = async (roomId) =>
   await instance.get(`/player/novoting/${roomId}`);
 
+export const getVotedPlayers = async (roomId) =>
+  await instance.get(`/player/gameover/${roomId}`);
+
 //UPDATE
 
 export const assignSins = async (roomId) => {
