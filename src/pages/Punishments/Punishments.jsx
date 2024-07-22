@@ -28,6 +28,7 @@ const Punishments = () => {
   const [judgePlayerId, setJudgePlayerId] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [contentToShow, setContentToShow] = useState(null);
+  const [showContent, setShowContent] = useState(false); // Estado para controlar la visibilidad del contenido
 
   const checkPlayersWithoutPunish = async () => {
     const response = await getPlayersWithoutPunish(roomId);
@@ -45,7 +46,7 @@ const Punishments = () => {
 
     return () => clearInterval(intervalId);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [roomId]);
+  }, [changeButton]);
 
   useEffect(() => {
     if (roomId && playerId) {
@@ -81,11 +82,11 @@ const Punishments = () => {
   };
 
   const handleNext = async () => {
-    setChangeButton(true);
     if (text === "") {
       alert("Introduzca un texto!!");
       return;
     }
+    setChangeButton(true);
     await createPunish(judgePlayerId, { punish: text });
   };
 
@@ -93,14 +94,25 @@ const Punishments = () => {
     const timer = setTimeout(() => {
       setIsOpen(true);
       setContentToShow("sin");
+      setTimeout(() => setShowContent(true), 300); // Mostrar contenido después de 300ms
     }, 1000); // Delay for 1 second
-
     return () => clearTimeout(timer);
   }, []);
 
   const toggleScroll = (content) => {
-    setContentToShow(content);
-    setIsOpen((prevIsOpen) => !prevIsOpen);
+    if (isOpen) {
+      setIsOpen(false);
+      setShowContent(false); // Ocultar contenido al cerrar el scroll
+      setTimeout(() => {
+        setContentToShow(content);
+        setIsOpen(true);
+        setTimeout(() => setShowContent(true), 300); // Mostrar contenido después de 300ms
+      }, 500); // Delay para permitir que el scroll se cierre antes de cambiar el contenido
+    } else {
+      setContentToShow(content);
+      setIsOpen(true);
+      setTimeout(() => setShowContent(true), 300); // Mostrar contenido después de 300ms
+    }
   };
 
   return (
@@ -108,9 +120,13 @@ const Punishments = () => {
       <Container>
         <ScrollContainer>
           <Scroll isOpen={isOpen}>
-            <ScrollText>
-              {isOpen && contentToShow === "sin" && <p>{assignSin}</p>}
-              {isOpen && contentToShow === "punish" && (
+            <ScrollText className={showContent ? "fade-in" : ""}>
+              {isOpen && contentToShow === "sin" && showContent && (
+                <>
+                  <p>{assignSin}</p>
+                </>
+              )}
+              {isOpen && contentToShow === "punish" && showContent && (
                 <>
                   <SubTitle>Juzga el Pecado</SubTitle>
                   <Textarea value={text} onChange={handleInputChange} />
@@ -128,12 +144,13 @@ const Punishments = () => {
           </Scroll>
         </ScrollContainer>
         <ButtonContainer>
-          <ToggleButton onClick={() => toggleScroll("sin")}>
-            {isOpen ? "Cerrar Pecado" : "Ver Pecado"}
-          </ToggleButton>
-          {!isOpen && (
+          {contentToShow === "sin" ? (
             <ToggleButton onClick={() => toggleScroll("punish")}>
               Juzgar Pecado
+            </ToggleButton>
+          ) : (
+            <ToggleButton onClick={() => toggleScroll("sin")}>
+              Ver Pecado
             </ToggleButton>
           )}
         </ButtonContainer>
