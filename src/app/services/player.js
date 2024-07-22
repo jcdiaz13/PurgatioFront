@@ -22,6 +22,9 @@ export const getPlayersWithoutPunish = async (roomId) =>
 export const getPlayersWithAssign = async (roomId) =>
   await instance.get(`/player/assign/${roomId}`);
 
+export const getPlayersWithoutVoting = async (roomId) =>
+  await instance.get(`/player/novoting/${roomId}`);
+
 //UPDATE
 
 export const assignSins = async (roomId) => {
@@ -35,6 +38,9 @@ export const updateSin = async (playerId, { sin }) =>
 
 export const updateVotesById = async (playerId) =>
   await instance.put(`player/${playerId}/votes`);
+
+export const updateIVoted = async (playerId) =>
+  await instance.put(`player/${playerId}/hasvoted`);
 
 //DELETE
 
