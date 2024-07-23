@@ -30,14 +30,17 @@ function JoinLobby() {
     setRoomId,
     setPlayerId,
     setRoomOwner,
+    blockButtons,
+    setBlockButtons,
   } = useContext(PlayerContext);
   const [isAvatarPopupOpen, setIsAvatarPopupOpen] = useState(false);
   const [selectedAvatar, setSelectedAvatar] = useState(null);
   const navigate = useNavigate();
 
   const closePopup = () => {
-    setIsAvatarPopupOpen(null);
+    setIsAvatarPopupOpen(false);
   };
+
   useEffect(() => {
     setPlayerName("");
     setRoomId("");
@@ -73,28 +76,38 @@ function JoinLobby() {
       return;
     }
 
-    const players = await getPlayersByRoomId(roomId);
-    if (players.data.length >= 8) {
-      alert("Límite excedido. Máximo 8 jugadores.");
-      return;
+    setBlockButtons(true);
+    console.log(blockButtons);
+
+    try {
+      const players = await getPlayersByRoomId(roomId);
+      if (players.data.length >= 8) {
+        alert("Límite excedido. Máximo 8 jugadores.");
+        setBlockButtons(false);
+        return;
+      }
+
+      const gameStatus = await checkGameStatus();
+      if (gameStatus === true) {
+        alert("La sala no está accesible porque el juego ya ha comenzado.");
+        setBlockButtons(false);
+        return;
+      }
+
+      const player = await createPlayer({
+        playerName: trimmedName,
+        avatarId: selectedAvatar.id,
+        room: { id: roomId },
+      });
+
+      setPlayerId(player.data.id);
+      setRoomId(roomId);
+      setRoomOwner(false);
+      navigate("/lobby");
+    } catch (error) {
+      console.error("Error joining lobby:", error);
+      setBlockButtons(false); // Re-enable the button in case of error
     }
-
-    const gameStatus = await checkGameStatus();
-    if (gameStatus === true) {
-      alert("La sala no está accesible porque el juego ya ha comenzado.");
-      return;
-    }
-
-    const player = await createPlayer({
-      playerName: trimmedName,
-      avatarId: selectedAvatar.id,
-      room: { id: roomId },
-    });
-
-    setPlayerId(player.data.id);
-    setRoomId(roomId);
-    setRoomOwner(false);
-    navigate("/lobby");
   };
 
   return (
@@ -105,9 +118,9 @@ function JoinLobby() {
         <h2>Selecciona un avatar</h2>
         <AvatarContainer onClick={handleAvatarClick}>
           {selectedAvatar ? (
-            <img src={selectedAvatar.img} />
+            <img src={selectedAvatar.img} alt="Selected Avatar" />
           ) : (
-            <img src={interrogante} />
+            <img src={interrogante} alt="Interrogante Avatar" />
           )}
         </AvatarContainer>
         <Pergamino>
@@ -130,14 +143,16 @@ function JoinLobby() {
           <StyledLink to="/">
             <Button>Volver</Button>
           </StyledLink>
-          <Button onClick={handleJoinLobby}>Unirse</Button>
+          <Button onClick={handleJoinLobby} disabled={blockButtons}>
+            Unirse
+          </Button>
         </ButtonContainer>
       </FormContainer>
       {isAvatarPopupOpen && (
         <AvatarPopup>
           {avatarImages.map((avatar, i) => (
             <AvatarOption key={i} onClick={() => handleAvatarSelect(avatar)}>
-              <img src={avatar.img} />
+              <img src={avatar.img} alt={`Avatar ${i}`} />
             </AvatarOption>
           ))}
         </AvatarPopup>
