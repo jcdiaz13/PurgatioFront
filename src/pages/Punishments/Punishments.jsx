@@ -22,7 +22,7 @@ import {
 const Punishments = () => {
   const [text, setText] = useState("");
   const navigate = useNavigate();
-  const { roomId, playerId, players } = useContext(PlayerContext);
+  const { roomId, playerId, players, setPlayers } = useContext(PlayerContext);
   const [assignSin, setAssignSin] = useState("");
   const [changeButton, setChangeButton] = useState(false);
   const [judgePlayerId, setJudgePlayerId] = useState("");
@@ -40,7 +40,11 @@ const Punishments = () => {
     const intervalId = setInterval(async () => {
       const allPlayersDone = await checkPlayersWithoutPunish();
       if (allPlayersDone) {
-        navigate("/verdict");
+        console.log("No shuffled: ", players);
+        if (shuffleArrayPlayers()) {
+          console.log("Shuffled: ", players);
+          navigate("/verdict");
+        }
       }
     }, 2000);
 
@@ -71,6 +75,26 @@ const Punishments = () => {
       }
     }
   };
+
+  // Lo utilizamos para guardar el array de players randomizado en el useEffect justo antes de navegar a la pagina Verdict
+  // Utility function to shuffle an array
+  function shuffleArrayPlayers() {
+    // Make a copy of the array to avoid mutating the original array
+    let shuffledArray = players.slice();
+
+    for (let i = shuffledArray.length - 1; i > 0; i--) {
+      // Generate a random index from 0 to i
+      const j = Math.floor(Math.random() * (i + 1));
+
+      // Swap elements at indices i and j
+      [shuffledArray[i], shuffledArray[j]] = [
+        shuffledArray[j],
+        shuffledArray[i],
+      ];
+    }
+    setPlayers(shuffledArray);
+    return true;
+  }
 
   const handleInputChange = (e) => {
     setText(e.target.value);
