@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import {
-  Container, 
+  Container,
   Textarea,
   ButtonContainer,
   Button,
@@ -17,7 +17,11 @@ import {
   deleteSin,
 } from "../../app/services/player";
 import { PlayerContext } from "../../app/contexts/PlayerContext"; // Ajusta la ruta según donde tengas PlayerContext
-import { Scroll, ScrollContainer, ToggleButton, ScrollText } from '../Punishments/Punishments.styles';
+import {
+  Scroll,
+  ScrollContainer,
+  ScrollText,
+} from "../Punishments/Punishments.styles";
 
 function Sins() {
   const [sin, setSin] = useState("");
@@ -101,12 +105,14 @@ function Sins() {
                     type="text"
                     value={sin}
                     onChange={handleInputChange}
-                    placeholder="Escribe una anecdota que te haya ocurrido chunga o algo que harias"
+                    placeholder="Escribe sobre ti: una anécdota, un hábito o algo que harías, de lo cual quieras purgarte"
                   />
                 </>
               )}
               <ButtonContainer>
-                {changeButton && <Button onClick={handleEditSin}>Editar</Button>}
+                {changeButton && (
+                  <Button onClick={handleEditSin}>Editar</Button>
+                )}
                 {!changeButton && <Button onClick={handleNext}>Enviar</Button>}
               </ButtonContainer>
             </ScrollText>

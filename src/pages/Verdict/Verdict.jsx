@@ -159,7 +159,7 @@ const Verdict = () => {
                   <p>{victimAvatar.name}</p>
                 </>
               ) : (
-                <p>Click me!</p>//<p>{player.sin}</p>
+                <p>Quién es quién?</p>
               )}
             </Cover>
           </Book>
@@ -175,7 +175,7 @@ const Verdict = () => {
           <ModalContent>
             <p>{selectedPlayer ? selectedPlayer.sin : ""}</p>{" "}
             {/* Mostrar el pecado del jugador */}
-            <h3>Selecciona quien crees que cometió este acto!</h3>
+            <h3>Vota quién crees que cometió este pecado!</h3>
             <OptionButton onClick={closeModal}>Close</OptionButton>
             <OptionButton onClick={openVictimSelection}>
               Elegir Jugador
