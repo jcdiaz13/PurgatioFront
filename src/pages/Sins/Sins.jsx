@@ -1,12 +1,10 @@
 import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import {
-  Container,
-  FormContainer,
+  Container, 
   Textarea,
   ButtonContainer,
   Button,
-  Title,
   SubTitle,
 } from "./Sins.styles";
 // import sinsData from '../../app/jsons/gameMastersSins.json';
@@ -98,7 +96,6 @@ function Sins() {
             <ScrollText className={showContent ? "fade-in" : ""}>
               {isOpen && contentToShow === "sin" && showContent && (
                 <>
-                  <Title>Pecado</Title>
                   <SubTitle>Escribe tu pecado:</SubTitle>
                   <Textarea
                     type="text"

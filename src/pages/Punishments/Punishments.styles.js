@@ -98,12 +98,12 @@ export const ButtonContainer = styled.div`
 
 export const Button = styled.button`
   padding: 0.5rem 1rem;
-  margin: 0.5rem;
-  border: none;
+  margin-bottom  :15px ;
+  border: 1px solid #743c09;
   border-radius: 2px;
   font-size: 1rem;
+  font-weight: bolder;
   background-color: transparent;
-  font-family: Pixellari;
   color: #743c09;
   cursor: pointer;
   width: 80px;
