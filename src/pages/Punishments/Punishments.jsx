@@ -153,15 +153,15 @@ const Punishments = () => {
               {isOpen && contentToShow === "punish" && showContent && (
                 <>
                   <SubTitle>Juzga el Pecado</SubTitle>
-                  <Textarea value={text} onChange={handleInputChange} />
-                  <ButtonContainer>
+                  <Textarea placeholder="Escribe aquí el castigo que debería realizar" value={text} onChange={handleInputChange} />
+                  
                     {changeButton && (
                       <Button onClick={handleEditPunish}>Editar</Button>
                     )}
                     {!changeButton && (
                       <Button onClick={handleNext}>Enviar</Button>
                     )}
-                  </ButtonContainer>
+                  
                 </>
               )}
             </ScrollText>

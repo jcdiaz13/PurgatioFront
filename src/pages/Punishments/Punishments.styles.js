@@ -94,7 +94,6 @@ export const ButtonContainer = styled.div`
   justify-content: center;
   width: 100%;
   margin-top: -2rem;
-  gap: 10px; /* Añade un espacio entre los botones */
 `;
 
 export const Button = styled.button`
@@ -171,6 +170,7 @@ export const ScrollText = styled.div`
   }
 
   p {
+    margin-top: 1.5rem;
     font-size: 1rem;
     color: black;
     max-width: 200px;

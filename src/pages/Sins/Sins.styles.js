@@ -26,8 +26,8 @@ export const Container = styled.body`
 
 export const Title = styled.h1`
   font-size: 2.5rem;
-  text-decoration: underline;
-  margin-bottom: 2rem;
+ // text-decoration: underline;
+  margin-bottom: 3rem;
 `;
 
 export const SubTitle = styled.p`
@@ -53,17 +53,17 @@ export const FormContainer = styled.div`
 `;
 
 export const Textarea = styled.textarea`
+margin-top: 20px;
   padding: 1rem; /* Ajustado el padding para que sea más proporcionado */
   margin-bottom: 1rem;
   border-radius: 4px;
   font-size: 1rem;
   height: 180px;
-  text-align: center;
-  width: 220px; /* Ajustado para que ocupe todo el ancho disponible */
+  width: 170px; /* Ajustado para que ocupe todo el ancho disponible */
   border: none;
   resize: none;
   outline: none;
-  background-image: url(${pergamino});
+  background: transparent;
   background-position: center;
 `;
 
@@ -72,7 +72,7 @@ export const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
-  margin-top: 3rem;
+  margin-top: 1rem;
   gap: 10px; /* Añade un espacio entre los botones */
 `;
 
@@ -101,4 +101,61 @@ export const ButtonTrash = styled(Button)`
   &:hover {
     background-color: #b81414;
   }
+`;
+export const ScrollContainer = styled.div`
+  //position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+`;
+export const Scroll = styled.div`
+  width: 330px;
+  height: ${(props) =>
+    props.isOpen ? "500px" : "50px"}; /* Altura inicial y dinámica */
+  overflow: hidden;
+  background-image: url(${pergamino}); /* Ruta correcta */
+  padding: 10px;
+  border: none;
+  transition: height 0.5s ease-in-out; /* Transición para la altura */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+// Texto dentro del pergamino
+export const ScrollText = styled.div`
+  position: relative;
+  text-align: center;
+  max-width: 200px;
+  opacity: 0;
+  transition: opacity 0.5s ease-out; /* Transición suave de opacidad */
+
+  &.fade-in {
+    opacity: 1;
+  }
+
+  p {
+    font-size: 1rem;
+    color: black;
+    max-width: 200px;
+    word-wrap: break-word; /* Permite el corte de palabras largas */
+    overflow: hidden;
+    white-space: normal; /* Permite que el texto ocupe múltiples líneas */
+  }
+
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+    }
+  }
+`;
+export const ToggleButton = styled.button`
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  background-color: black;
+  font-family: Pixellari;
+  color: white;
+  cursor: pointer;
+  text-align: center;
 `;
