@@ -119,11 +119,23 @@ const Verdict = () => {
       }
     });
   };
+  // Creo que es una función mejor que la de iterateVotesMap porque es más optima, falta Comprovar si se puede sustituir y Optimizar
+  const goThroughVotesMap = (id) => {
+    console.log("Entro a recorrer");
+    for (let value of votesMap.values()) {
+      if (value === id) {
+        console.log("Yason iguales");
+        return true;
+      }
+    }
+    return false;
+  };
 
   const handleVotaciones = async () => {
     if (players.length - 1 === Object.values(victimAvatars).length) {
       iterateVotesMap();
       await updateIVoted(playerId);
+      goThroughVotesMap();
       setSendActive(true);
     }
   };
@@ -142,7 +154,7 @@ const Verdict = () => {
                   <p>{victimAvatar.name}</p>
                 </>
               ) : (
-                <p>{player.sin}</p> // Mostrar el pecado del jugador si no hay avatar seleccionado
+                <p>Click me!</p>//<p>{player.sin}</p>
               )}
             </Cover>
           </Book>
@@ -176,15 +188,26 @@ const Verdict = () => {
                 const imgObj = avatarImages.find(
                   (avatarImage) => avatarImage.id === avatarId
                 );
+                const alreadyClicked = goThroughVotesMap(victim.id);
                 return (
                   <AvatarOption
                     key={victim.id}
                     onClick={() => handleVictimSelect(victim)}
                   >
-                    <img
-                      src={imgObj ? imgObj.img : "default_image_path.png"}
-                      alt={victim.playerName}
-                    />
+                    {/* Optimizar esto, no puede ser que tenga que duplicarlo y no hacer un condicional ternario en la propiedad style */}
+                    {!alreadyClicked && (
+                      <img
+                        src={imgObj ? imgObj.img : "default_image_path.png"}
+                        alt={victim.playerName}
+                      />
+                    )}
+                    {alreadyClicked && (
+                      <img
+                        src={imgObj ? imgObj.img : "default_image_path.png"}
+                        alt={victim.playerName}
+                        style={{ filter: `grayscale(100%)` }}
+                      />
+                    )}
                     <p>{victim.playerName}</p>
                   </AvatarOption>
                 );
