@@ -159,7 +159,7 @@ const Verdict = () => {
                   <p>{victimAvatar.name}</p>
                 </>
               ) : (
-                <p>{player.sin}</p> // Mostrar el pecado del jugador si no hay avatar seleccionado
+                <p>Click me!</p>//<p>{player.sin}</p>
               )}
             </Cover>
           </Book>
