@@ -100,6 +100,7 @@ const Lobby = () => {
   };
 
   const copyToClipboard = (text) => {
+    console.log("algo");
     navigator.clipboard
       .writeText(text)
       .then(() => {

@@ -72,18 +72,18 @@ export const Button = styled.button`
   &:hover:before {
     color: black;
     ${({ theme }) =>
-      theme.name === "verdugo" &&
-      css`
+    theme.name === "verdugo" &&
+    css`
         background-color: #ffd700 !important;
       `}
     ${({ theme }) =>
-      theme.name === "mago" &&
-      css`
+    theme.name === "mago" &&
+    css`
         background-color: #228b22 !important;
       `}
     ${({ theme }) =>
-      theme.name === "hada" &&
-      css`
+    theme.name === "hada" &&
+    css`
         background-color: #228b22 !important;
       `}
     box-shadow: 0 -2px rgb(0 0 0 / 50%) inset, 0 2px rgb(255 255 255 / 20%) inset, -2px 0 rgb(255 255 255 / 20%) inset, 2px 0 rgb(0 0 0 / 50%) inset;
@@ -224,6 +224,7 @@ export const DeletePlayerButton = styled.button`
   top: -6px;
   right: -6px;
   text-shadow: 1px 1px 5px black;
+  cursor: pointer;
 `;
 
 // Configuracion del boton de copiar sala en portapapeles
@@ -231,18 +232,19 @@ export const Copy = styled.button`
   background-color: black;
   border: 3px solid whit3;
   color: white;
+  cursor: pointer;
   &:active {
     transform: translateY(3px);
   }
   &:hover {
     ${({ theme }) =>
-      theme.name === "verdugo" &&
-      css`
+    theme.name === "verdugo" &&
+    css`
         background-color: #ffd700 !important;
       `}
     ${({ theme }) =>
-      theme.name === "mago" &&
-      css`
+    theme.name === "mago" &&
+    css`
         background-color: #228b22 !important;
       `}
   }
