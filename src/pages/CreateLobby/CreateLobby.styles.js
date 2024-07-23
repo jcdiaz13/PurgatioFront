@@ -156,7 +156,7 @@ export const Button = styled.button`
 export const AvatarContainer = styled.div`
   width: 200px;
   height: 200px;
-  isplay: flex;
+  display: flex;
   justify-content: center;
   align-items: center;
   font-size: 1.5rem;

@@ -9,30 +9,32 @@ import {
   Title,
   SubTitle,
 } from "./Sins.styles";
-import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
 // import sinsData from '../../app/jsons/gameMastersSins.json';
 import Theme from "../../components/Theme";
 import {
   createSin,
   getPlayersWithoutSin,
   getPlayersWithAssign,
-  AssignSins,
+  assignSins,
+  deleteSin,
 } from "../../app/services/player";
 import { PlayerContext } from "../../app/contexts/PlayerContext"; // Ajusta la ruta según donde tengas PlayerContext
+import { Scroll, ScrollContainer, ToggleButton, ScrollText } from '../Punishments/Punishments.styles';
 
 function Sins() {
-  const [text, setText] = useState("");
+  const [sin, setSin] = useState("");
   const navigate = useNavigate();
-  const [randomSin, setRandomSin] = useState("");
-  const suggest = `Sugerencia: ${randomSin}`;
+  const [changeButton, setChangeButton] = useState(false);
   const { playerId, roomId, setPlayers, roomOwner } = useContext(PlayerContext);
-
+  const [requestOneTime, setRequestOneTime] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [contentToShow, setContentToShow] = useState(null);
+  const [showContent, setShowContent] = useState(false); // Estado para controlar la visibilidad del contenido
   const checkPlayersWithoutSin = async () => {
     const response = await getPlayersWithoutSin(roomId);
     const playersWithoutSin = response.data;
     return playersWithoutSin.length === 0;
   };
-  let requestOneTime = false;
 
   useEffect(() => {
     const intervalId = setInterval(async () => {
@@ -40,118 +42,79 @@ function Sins() {
       if (allPlayersDone) {
         if (!requestOneTime) {
           if (roomOwner) {
-            requestOneTime = true;
-            console.log("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
-            AssignSins(roomId);
+            setRequestOneTime(true);
+            await assignSins(roomId);
           }
         }
 
-        // TODO
-        getPlayersWithAssign(roomId).then((res) => {
-          console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaa", res.data);
-          setPlayers(res.data);
-          const playerWithJudgeSin0 = res.data.find(
-            (player) => player.judgeSin === 0
-          );
-
-          if (!playerWithJudgeSin0) {
-            navigate("/punishments");
-          } else {
-            setPlayers(res.data);
-          }
-        });
+        const response = await getPlayersWithAssign(roomId);
+        if (response.data[0].judgeSin != 0) {
+          setPlayers(response.data);
+          navigate("/punishments");
+        }
       }
     }, 2000);
 
     return () => clearInterval(intervalId);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [roomId]);
+  }, [changeButton]);
 
-  //CODIGO ANTIGUO HECHO POR FER.
-  // EL PROBLEMA POR EL CUAL NO FUNCIONA ES QUE ESTAS HACIENDO LA COMPARACION ENTRE EL 0 Y LA PROMESA, TENDRIAS QUE HACER LA COMPARACION ENTRE EL 0 RES.DATA.LENGTH
-  // useEffect(() => {
-  //   setRandomSin(getRandomSin());
-  //   // getPlayersWithoutSin(roomId).then((res)=>{
-  //   //   console.log(res.data.length)
-  //   // })
-  //   const timeoutId = setInterval(() => {
-  //     if (0 == getPlayersWithoutSin(roomId).then((res) => {
-  //       res.data.length
-  //     })) {
-  //       navigate('/punishments');
-  //     }
-  //   }, 2000);
-  //   return () => clearTimeout(timeoutId);
-  // }, []);
-
-  //ESTO LO COMENTO, PERO PARA LOS OTROS MODOS HABRA QUE USARLO
-  /*   // Función para seleccionar una frase aleatoria
-      const getRandomSin = () => {
-        const randomCategory = sinsData[Math.floor(Math.random() * sinsData.length)];
-        const randomSin = randomCategory.sins[Math.floor(Math.random() * randomCategory.sins.length)];
-        return randomSin;
-      };
-   
-    useEffect(() => {
-      // Función para seleccionar una frase aleatoria
-   
-      const getRandomSin = () => {
-        const randomCategory = sinsData[Math.floor(Math.random() * sinsData.length)];
-        const randomSin = randomCategory.sins[Math.floor(Math.random() * randomCategory.sins.length)];
-        return randomSin;
-      };
-      setRandomSin(getRandomSin());
-    }, []);
-   */
   const handleInputChange = (e) => {
-    // setRandomSin(e.target.value);
-    setText(e.target.value);
+    setSin(e.target.value);
   };
-
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsOpen(true);
+      setContentToShow("sin");
+      setTimeout(() => setShowContent(true), 300); // Mostrar contenido después de 300ms
+    }, 1000); // Delay for 1 second
+    return () => clearTimeout(timer);
+  }, []);
   // Punishers
   const handleNext = async () => {
-    if (text === "") {
+    if (sin === "") {
       alert("Introduzca un texto!!");
       return;
     }
-
+    setChangeButton(true);
     try {
-      console.log(roomId, text);
-      await createSin(playerId, { sin: text });
+      console.log(roomId, sin);
+      await createSin(playerId, { sin: sin });
     } catch (error) {
       console.error("Error al crear el pecado:", error);
     }
   };
 
-  const handleEditSin = () => {
-    //Hacer método delete para para setear el pecado a null y que así no deje avanzar a los usuario a la siguiente página.
-    //Hacer método put para actualizar dicho pecado por el nuevo.
-    //Hacer método get para obtener el pecado actualizado.
+  const handleEditSin = async () => {
+    setChangeButton(false);
+    await deleteSin(playerId);
   };
 
   return (
     <Theme>
       <Container>
-        <FormContainer>
-          <Title>Pecados</Title>
-          <SubTitle>Escribe uno de tus pecados:</SubTitle>
-          {/* <textarea id="descriptionEvent" rows={10} cols={50} /> */}
-          <Textarea
-            type="text"
-            value={text}
-            onChange={handleInputChange}
-            placeholder={suggest}
-          />
-          <ButtonContainer>
-            <Button onClick={handleNext}>
-              <FaArrowLeft />
-            </Button>
-            <Button onClick={handleEditSin}>Editar pecado</Button>
-            <Button onClick={handleNext}>
-              <FaArrowRight />
-            </Button>
-          </ButtonContainer>
-        </FormContainer>
+        <ScrollContainer>
+          <Scroll isOpen={isOpen}>
+            <ScrollText className={showContent ? "fade-in" : ""}>
+              {isOpen && contentToShow === "sin" && showContent && (
+                <>
+                  <Title>Pecado</Title>
+                  <SubTitle>Escribe tu pecado:</SubTitle>
+                  <Textarea
+                    type="text"
+                    value={sin}
+                    onChange={handleInputChange}
+                    placeholder="Escribe una anecdota que te haya ocurrido chunga o algo que harias"
+                  />
+                </>
+              )}
+              <ButtonContainer>
+                {changeButton && <Button onClick={handleEditSin}>Editar</Button>}
+                {!changeButton && <Button onClick={handleNext}>Enviar</Button>}
+              </ButtonContainer>
+            </ScrollText>
+          </Scroll>
+        </ScrollContainer>
       </Container>
     </Theme>
   );
