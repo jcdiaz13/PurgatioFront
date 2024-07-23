@@ -130,14 +130,14 @@ const Punishments = () => {
                 <>
                   <SubTitle>Juzga el Pecado</SubTitle>
                   <Textarea placeholder="Escribe aquí el castigo que debería realizar" value={text} onChange={handleInputChange} />
-                  <ButtonContainer>
+                  
                     {changeButton && (
                       <Button onClick={handleEditPunish}>Editar</Button>
                     )}
                     {!changeButton && (
                       <Button onClick={handleNext}>Enviar</Button>
                     )}
-                  </ButtonContainer>
+                  
                 </>
               )}
             </ScrollText>

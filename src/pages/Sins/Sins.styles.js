@@ -26,8 +26,8 @@ export const Container = styled.body`
 
 export const Title = styled.h1`
   font-size: 2.5rem;
-  text-decoration: underline;
-  margin-bottom: 2rem;
+ // text-decoration: underline;
+  margin-bottom: 3rem;
 `;
 
 export const SubTitle = styled.p`
@@ -72,7 +72,7 @@ export const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
-  margin-top: 3rem;
+  margin-top: 1rem;
   gap: 10px; /* Añade un espacio entre los botones */
 `;
 
@@ -112,7 +112,7 @@ export const ScrollContainer = styled.div`
 export const Scroll = styled.div`
   width: 330px;
   height: ${(props) =>
-    props.isOpen ? "480px" : "50px"}; /* Altura inicial y dinámica */
+    props.isOpen ? "500px" : "50px"}; /* Altura inicial y dinámica */
   overflow: hidden;
   background-image: url(${pergamino}); /* Ruta correcta */
   padding: 10px;
@@ -128,7 +128,6 @@ export const ScrollText = styled.div`
   position: relative;
   text-align: center;
   max-width: 200px;
-  margin: 10px;
   opacity: 0;
   transition: opacity 0.5s ease-out; /* Transición suave de opacidad */
 
