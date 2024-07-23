@@ -16,14 +16,21 @@ import {
 } from "./PopupContent.styles";
 
 const PopupContent = ({ closePopup, image, name, description, difficulty }) => {
-  const { playerName, setRoomId, setPlayerId, selectedAvatar, setRoomOwner } =
-    useContext(PlayerContext);
-  // const [playerActive, setPlayerActive] = useState();
+  const {
+    playerName,
+    setRoomId,
+    setPlayerId,
+    selectedAvatar,
+    setRoomOwner,
+    blockButtons,
+    setBlockButtons,
+  } = useContext(PlayerContext);
 
   const navigate = useNavigate();
 
   const handleCreateRoom = async () => {
     try {
+      setBlockButtons(true);
       const room = await createRoom({ gamemode: difficulty });
       setRoomId(room.data.id);
       const player = await createPlayer({
@@ -42,6 +49,7 @@ const PopupContent = ({ closePopup, image, name, description, difficulty }) => {
       navigate("/lobby");
     } catch (error) {
       console.error("Error creating room or player:", error);
+      setBlockButtons(false); // Re-enable the button in case of error
     }
   };
 
@@ -55,9 +63,11 @@ const PopupContent = ({ closePopup, image, name, description, difficulty }) => {
         <Name>{name}</Name>
         <Description>{description}</Description>
         <ButtonContainer>
-          <Button onClick={closePopup}> Back</Button>
+          <Button onClick={closePopup}>Back</Button>
           <StyledLink to="#">
-            <Button onClick={handleCreateRoom}>Start</Button>
+            <Button onClick={handleCreateRoom} disabled={blockButtons}>
+              Start
+            </Button>
           </StyledLink>
         </ButtonContainer>
       </Popup>
