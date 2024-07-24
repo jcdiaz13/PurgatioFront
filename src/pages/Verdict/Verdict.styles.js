@@ -73,18 +73,18 @@ export const Button = styled.button`
   &:hover:before {
     color: black;
     ${({ theme }) =>
-      theme.name === "verdugo" &&
-      css`
+    theme.name === "verdugo" &&
+    css`
         background-color: #ffd700 !important;
       `}
     ${({ theme }) =>
-      theme.name === "mago" &&
-      css`
+    theme.name === "mago" &&
+    css`
         background-color: #228b22 !important;
       `}
     ${({ theme }) =>
-      theme.name === "hada" &&
-      css`
+    theme.name === "hada" &&
+    css`
         background-color: #228b22 !important;
       `}
     box-shadow: 0 -2px rgb(0 0 0 / 50%) inset, 0 2px rgb(255 255 255 / 20%) inset, -2px 0 rgb(255 255 255 / 20%) inset, 2px 0 rgb(0 0 0 / 50%) inset;
@@ -161,16 +161,20 @@ export const ModalWrapper = styled.div`
   justify-content: center;
   align-items: center;
   backdrop-filter: blur(3px);
+  z-index:2;
 `;
 
 export const ModalContent = styled.div`
-  position: fixed;
+width: 70%;
   color: white;
   align-items: center;
   justify-content: center;
   text-align: center;
+  overflow: hidden;
+  word-wrap: break-word; /* Permite el corte de palabras largas */
+    white-space: normal; /* Permite que el texto ocupe múltiples líneas */
   h3 {
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
   p {
     font-size: 1.2rem;
@@ -191,9 +195,8 @@ export const MiniTitle = styled.h3`
   color: white;
 `;
 export const OptionButton = styled.button`
-  margin-top: 10px;
   font-family: Pixellari;
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: #fff;
   text-shadow: 0 2px 0 rgb(0 0 0 / 25%);
   display: inline-flex;
@@ -203,13 +206,14 @@ export const OptionButton = styled.button`
   border: 0;
   z-index: 1;
   user-select: none;
+  margin-top:15px;
   cursor: pointer;
   letter-spacing: 1px;
   white-space: unset;
   padding: 10px;
   text-decoration: none;
   transition: all 0.7s cubic-bezier(0, 0.8, 0.26, 0.99);
-  width: 190px;
+  width: 150px;
 
   &:before {
     position: absolute;
@@ -264,33 +268,28 @@ export const OptionButton = styled.button`
     box-shadow: 0 0px 0 0 rgb(0 0 0 / 15%);
   }
 `;
-export const AvatarPopup = styled.div`
-  position: absolute;
-  width: 100%;
+export const AvatarOption = styled.div`
   display: flex;
-  height: 100vh;
-  flex-wrap: wrap;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  z-index: 4;
-  backdrop-filter: blur(4px);
-`;
-export const AvatarOption = styled.div`
+  padding: 5px;
   width: 150px;
   height: 150px;
   margin: 0.5rem;
-  justify-content: center;
-  align-items: center;
   text-align: center;
   font-size: 0.9rem;
   color: white;
   cursor: pointer;
   overflow: hidden; /* Asegura que la imagen no se desborde del contenedor */
+  box-sizing: border-box; /* Incluye padding en el tamaño total del elemento */
+  
   &:focus {
     transform: translateY(4px);
     box-shadow: 1px 1px 10px white;
     background-color: white;
   }
+  
   &:hover {
     box-shadow: 1px 1px 10px white;
   }
@@ -298,7 +297,9 @@ export const AvatarOption = styled.div`
   img {
     width: 120px;
     height: 120px;
+    object-fit: cover; /* Asegura que la imagen se ajuste bien al contenedor */
   }
+
   p {
     margin-top: 0px;
     font-size: 18px;
@@ -306,6 +307,29 @@ export const AvatarOption = styled.div`
     color: white;
     background: transparent;
   }
+`;
+
+// Estilo para el contenedor padre
+export const AvatarPopup = styled.div`
+ display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Asegura que el contenedor ocupe toda la altura de la pantalla */
+  width: 100vw; /* Asegura que el contenedor ocupe toda la anchura de la pantalla */
+  overflow: auto; /* Permite el desplazamiento si hay desbordamiento */
+  box-sizing: border-box;
+`;
+export const Overlay = styled.div`
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  z-index: 3;
 `;
 export const OptionContainer = styled.div`
   cursor: pointer;
@@ -334,3 +358,16 @@ export const Message = styled.div`
   font-weight: bold;
   margin-top: 20px;
 `;
+export const ButtonContainer = styled.div`
+  position: relative;
+  justify-content: center;
+  width: 100%;
+  gap: 10px;
+  margin-top: 10px;
+`;
+export const PlayerContainer = styled.div`
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+width: 600px;
+`

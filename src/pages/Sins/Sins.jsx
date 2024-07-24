@@ -6,6 +6,9 @@ import {
   ButtonContainer,
   Button,
   SubTitle,
+  Scroll,
+  ScrollContainer,
+  ScrollText,
 } from "./Sins.styles";
 // import sinsData from '../../app/jsons/gameMastersSins.json';
 import Theme from "../../components/Theme";
@@ -17,11 +20,7 @@ import {
   deleteSin,
 } from "../../app/services/player";
 import { PlayerContext } from "../../app/contexts/PlayerContext"; // Ajusta la ruta según donde tengas PlayerContext
-import {
-  Scroll,
-  ScrollContainer,
-  ScrollText,
-} from "../Punishments/Punishments.styles";
+
 
 function Sins() {
   const [sin, setSin] = useState("");

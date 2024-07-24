@@ -17,6 +17,9 @@ import {
   AvatarPopup,
   AvatarOption,
   MiniTitle,
+  ButtonContainer,
+  PlayerContainer,
+  Overlay,
 } from "./Verdict.styles";
 import avatarImages from "../../app/utils/avatarImages";
 import { Button } from "./Verdict.styles";
@@ -163,29 +166,33 @@ const Verdict = () => {
               )}
             </Cover>
           </Book>
+
         );
       }
     });
 
   return (
     <Container>
-      {renderPlayers()}
+      <PlayerContainer>
+        {renderPlayers()}
+      </PlayerContainer>
       {modalOpen && (
         <ModalWrapper>
           <ModalContent>
             <p>{selectedPlayer ? selectedPlayer.sin : ""}</p>{" "}
             {/* Mostrar el pecado del jugador */}
             <h3>Vota quién crees que cometió este pecado!</h3>
-            <OptionButton onClick={closeModal}>Close</OptionButton>
-            <OptionButton onClick={openVictimSelection}>
-              Elegir Jugador
-            </OptionButton>
+            <ButtonContainer>
+              <OptionButton onClick={openVictimSelection}>
+                Elegir Jugador
+              </OptionButton>
+              <OptionButton onClick={closeModal}>Close</OptionButton>
+            </ButtonContainer>
           </ModalContent>
         </ModalWrapper>
       )}
       {victimModalOpen && (
-        <>
-          <MiniTitle>Selecciona una víctima</MiniTitle>
+        <Overlay>
           <AvatarPopup>
             {players.map((victim) => {
               if (victim.id != playerId) {
@@ -219,7 +226,7 @@ const Verdict = () => {
               }
             })}
           </AvatarPopup>
-        </>
+        </Overlay>
       )}
       <Button onClick={handleVotaciones}>Enviar</Button>
     </Container>

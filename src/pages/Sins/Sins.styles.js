@@ -25,7 +25,7 @@ export const Container = styled.body`
 `;
 
 export const SubTitle = styled.p`
-padding-top: 10px;
+padding-top: 25px;
   font-size: 1.2rem;
   margin: 0;
   `;
@@ -104,7 +104,7 @@ export const ScrollContainer = styled.div`
 export const Scroll = styled.div`
   width: 330px;
   height: ${(props) =>
-    props.isOpen ? "500px" : "50px"}; /* Altura inicial y dinámica */
+    props.isOpen ? "480px" : "50px"}; /* Altura inicial y dinámica */
   overflow: hidden;
   background-image: url(${pergamino}); /* Ruta correcta */
   padding: 10px;

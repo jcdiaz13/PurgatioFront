@@ -147,6 +147,7 @@ const Punishments = () => {
             <ScrollText className={showContent ? "fade-in" : ""}>
               {isOpen && contentToShow === "sin" && showContent && (
                 <>
+                  <SubTitle>Juzga este Pecado</SubTitle>
                   <p>{assignSin}</p>
                 </>
               )}
