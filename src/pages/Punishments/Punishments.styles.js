@@ -54,6 +54,7 @@ export const SubTitle = styled.p`
   font-size: 1.2rem;
   margin: 0;
   margin-bottom: 10px;
+  padding-top: 55px;
 `;
 //PopUp
 export const FormContainer = styled.div`
@@ -94,17 +95,16 @@ export const ButtonContainer = styled.div`
   justify-content: center;
   width: 100%;
   margin-top: -2rem;
-  gap: 10px; /* Añade un espacio entre los botones */
 `;
 
 export const Button = styled.button`
   padding: 0.5rem 1rem;
-  margin: 0.5rem;
-  border: none;
+  margin-bottom  :15px ;
+  border: 1px solid #743c09;
   border-radius: 2px;
   font-size: 1rem;
+  font-weight: bolder;
   background-color: transparent;
-  font-family: Pixellari;
   color: #743c09;
   cursor: pointer;
   width: 80px;
@@ -153,7 +153,7 @@ export const Scroll = styled.div`
   border: none;
   transition: height 0.5s ease-in-out; /* Transición para la altura */
   display: flex;
-  align-items: center;
+  //align-items: center;
   justify-content: center;
 `;
 
@@ -171,6 +171,7 @@ export const ScrollText = styled.div`
   }
 
   p {
+    margin-top: 1.5rem;
     font-size: 1rem;
     color: black;
     max-width: 200px;

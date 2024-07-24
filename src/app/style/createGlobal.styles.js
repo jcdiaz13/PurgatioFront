@@ -49,6 +49,7 @@ export const GlobalStyle = createGlobalStyle`
   body {
     line-height: 1;
     font-family: Pixellari;
+    background-color: black;
   }
 
   ol, ul {

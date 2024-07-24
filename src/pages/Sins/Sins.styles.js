@@ -24,17 +24,11 @@ export const Container = styled.body`
     `}
 `;
 
-export const Title = styled.h1`
-  font-size: 2.5rem;
-  text-decoration: underline;
-  margin-bottom: 2rem;
-`;
-
 export const SubTitle = styled.p`
+padding-top: 25px;
   font-size: 1.2rem;
   margin: 0;
-  margin-bottom: 10px;
-`;
+  `;
 //PopUp
 export const FormContainer = styled.div`
   display: flex;
@@ -53,7 +47,6 @@ export const FormContainer = styled.div`
 `;
 
 export const Textarea = styled.textarea`
-margin-top: 20px;
   padding: 1rem; /* Ajustado el padding para que sea más proporcionado */
   margin-bottom: 1rem;
   border-radius: 4px;
@@ -72,19 +65,18 @@ export const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
-  margin-top: 3rem;
+  margin-top: 1rem;
   gap: 10px; /* Añade un espacio entre los botones */
 `;
 
 export const Button = styled.button`
   padding: 0.5rem 1rem;
-  margin: 0.5rem;
+  margin-bottom: 20px ;
   border: 1px solid #743c09;
   border-radius: 2px;
   font-size: 1rem;
   font-weight: bolder;
-  background-color: #f4aa51;
-
+  background-color: transparent;
   color: #743c09;
   cursor: pointer;
   width: 80px;
@@ -128,21 +120,11 @@ export const ScrollText = styled.div`
   position: relative;
   text-align: center;
   max-width: 200px;
-  margin: 10px;
   opacity: 0;
   transition: opacity 0.5s ease-out; /* Transición suave de opacidad */
 
   &.fade-in {
     opacity: 1;
-  }
-
-  p {
-    font-size: 1rem;
-    color: black;
-    max-width: 200px;
-    word-wrap: break-word; /* Permite el corte de palabras largas */
-    overflow: hidden;
-    white-space: normal; /* Permite que el texto ocupe múltiples líneas */
   }
 
   @keyframes fadeIn {

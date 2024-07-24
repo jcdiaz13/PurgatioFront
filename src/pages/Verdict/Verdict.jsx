@@ -17,6 +17,9 @@ import {
   AvatarPopup,
   AvatarOption,
   MiniTitle,
+  ButtonContainer,
+  PlayerContainer,
+  Overlay,
 } from "./Verdict.styles";
 import avatarImages from "../../app/utils/avatarImages";
 import { Button } from "./Verdict.styles";
@@ -86,28 +89,34 @@ const Verdict = () => {
       return newVotesMap;
     });
   };
-  //Cuando clicas el avatar que crees que es la victima, al momento handleVictimSelect guardas en un array/map/loquesea el valor de victim.id->
-  // selectedPlayer.id : victim.id,
-  // selectedPlayer.id : victim.id
+
   const handleVictimSelect = (victim) => {
     if (!selectedPlayer) return;
 
     addItemToVotesMap(victim);
     const victimAvatar = avatarImages.find((img) => img.id === victim.avatarId);
 
-    setVictimAvatars((prev) => ({
-      ...prev,
-      [selectedPlayer.id]: {
-        img: victimAvatar ? victimAvatar.img : null,
-        name: victim.playerName,
-      },
-    }));
+    setVictimAvatars((prev) => {
+      // Filter out any existing victim with the same idVictim
+      const filteredAvatars = Object.fromEntries(
+        Object.entries(prev).filter(
+          ([key, value]) => value.idVictim !== victim.id
+        )
+      );
+
+      // Add the new victim
+      return {
+        ...filteredAvatars,
+        [selectedPlayer.id]: {
+          img: victimAvatar ? victimAvatar.img : null,
+          name: victim.playerName,
+          idVictim: victim.id,
+        },
+      };
+    });
 
     setVictimModalOpen(false);
     setModalOpen(false); // Cerrar también el modal principal
-    // console.log(
-    //   `${selectedPlayer.playerName} ha seleccionado a ${victim.playerName} como víctima.`
-    // );
   };
 
   // Función para recorrer el map de votesMap y enviar a la BD los ID de los jugadores acertados
@@ -119,11 +128,23 @@ const Verdict = () => {
       }
     });
   };
+  // Creo que es una función mejor que la de iterateVotesMap porque es más optima, falta Comprovar si se puede sustituir y Optimizar
+  const goThroughVotesMap = (id) => {
+    console.log("Entro a recorrer");
+    for (let value of votesMap.values()) {
+      if (value === id) {
+        console.log("Yason iguales");
+        return true;
+      }
+    }
+    return false;
+  };
 
   const handleVotaciones = async () => {
     if (players.length - 1 === Object.values(victimAvatars).length) {
       iterateVotesMap();
       await updateIVoted(playerId);
+      goThroughVotesMap();
       setSendActive(true);
     }
   };
@@ -132,7 +153,6 @@ const Verdict = () => {
     players.map((player) => {
       if (player.id != playerId) {
         const victimAvatar = victimAvatars[player.id];
-
         return (
           <Book key={player.id} onClick={() => handlePlayerClick(player)}>
             <Cover>
@@ -142,33 +162,37 @@ const Verdict = () => {
                   <p>{victimAvatar.name}</p>
                 </>
               ) : (
-                <p>{player.sin}</p> // Mostrar el pecado del jugador si no hay avatar seleccionado
+                <p>Quién es quién?</p>
               )}
             </Cover>
           </Book>
+
         );
       }
     });
 
   return (
     <Container>
-      {renderPlayers()}
+      <PlayerContainer>
+        {renderPlayers()}
+      </PlayerContainer>
       {modalOpen && (
         <ModalWrapper>
           <ModalContent>
             <p>{selectedPlayer ? selectedPlayer.sin : ""}</p>{" "}
             {/* Mostrar el pecado del jugador */}
-            <h3>Selecciona quien crees que cometió este acto!</h3>
-            <OptionButton onClick={closeModal}>Close</OptionButton>
-            <OptionButton onClick={openVictimSelection}>
-              Elegir Jugador
-            </OptionButton>
+            <h3>Vota quién crees que cometió este pecado!</h3>
+            <ButtonContainer>
+              <OptionButton onClick={openVictimSelection}>
+                Elegir Jugador
+              </OptionButton>
+              <OptionButton onClick={closeModal}>Close</OptionButton>
+            </ButtonContainer>
           </ModalContent>
         </ModalWrapper>
       )}
       {victimModalOpen && (
-        <>
-          <MiniTitle>Selecciona una víctima</MiniTitle>
+        <Overlay>
           <AvatarPopup>
             {players.map((victim) => {
               if (victim.id != playerId) {
@@ -176,22 +200,33 @@ const Verdict = () => {
                 const imgObj = avatarImages.find(
                   (avatarImage) => avatarImage.id === avatarId
                 );
+                const alreadyClicked = goThroughVotesMap(victim.id);
                 return (
                   <AvatarOption
                     key={victim.id}
                     onClick={() => handleVictimSelect(victim)}
                   >
-                    <img
-                      src={imgObj ? imgObj.img : "default_image_path.png"}
-                      alt={victim.playerName}
-                    />
+                    {/* Optimizar esto, no puede ser que tenga que duplicarlo y no hacer un condicional ternario en la propiedad style, solucionar con styled components si no */}
+                    {!alreadyClicked && (
+                      <img
+                        src={imgObj ? imgObj.img : "default_image_path.png"}
+                        alt={victim.playerName}
+                      />
+                    )}
+                    {alreadyClicked && (
+                      <img
+                        src={imgObj ? imgObj.img : "default_image_path.png"}
+                        alt={victim.playerName}
+                        style={{ filter: `grayscale(100%)` }}
+                      />
+                    )}
                     <p>{victim.playerName}</p>
                   </AvatarOption>
                 );
               }
             })}
           </AvatarPopup>
-        </>
+        </Overlay>
       )}
       <Button onClick={handleVotaciones}>Enviar</Button>
     </Container>

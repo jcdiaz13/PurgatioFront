@@ -5,8 +5,10 @@ import {
   Textarea,
   ButtonContainer,
   Button,
-  Title,
   SubTitle,
+  Scroll,
+  ScrollContainer,
+  ScrollText,
 } from "./Sins.styles";
 // import sinsData from '../../app/jsons/gameMastersSins.json';
 import Theme from "../../components/Theme";
@@ -18,7 +20,7 @@ import {
   deleteSin,
 } from "../../app/services/player";
 import { PlayerContext } from "../../app/contexts/PlayerContext"; // Ajusta la ruta según donde tengas PlayerContext
-import { Scroll, ScrollContainer, ScrollText } from '../Punishments/Punishments.styles';
+
 
 function Sins() {
   const [sin, setSin] = useState("");
@@ -97,18 +99,19 @@ function Sins() {
             <ScrollText className={showContent ? "fade-in" : ""}>
               {isOpen && contentToShow === "sin" && showContent && (
                 <>
-                  <Title>Pecado</Title>
                   <SubTitle>Escribe tu pecado:</SubTitle>
                   <Textarea
                     type="text"
                     value={sin}
                     onChange={handleInputChange}
-                    placeholder="Escribe una anecdota que te haya ocurrido chunga o algo que harias"
+                    placeholder="Escribe sobre ti: una anécdota, un hábito o algo que harías, de lo cual quieras purgarte"
                   />
                 </>
               )}
               <ButtonContainer>
-                {changeButton && <Button onClick={handleEditSin}>Editar</Button>}
+                {changeButton && (
+                  <Button onClick={handleEditSin}>Editar</Button>
+                )}
                 {!changeButton && <Button onClick={handleNext}>Enviar</Button>}
               </ButtonContainer>
             </ScrollText>
