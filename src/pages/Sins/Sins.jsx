@@ -21,7 +21,6 @@ import {
 } from "../../app/services/player";
 import { PlayerContext } from "../../app/contexts/PlayerContext"; // Ajusta la ruta según donde tengas PlayerContext
 
-
 function Sins() {
   const [sin, setSin] = useState("");
   const navigate = useNavigate();
@@ -31,6 +30,17 @@ function Sins() {
   const [isOpen, setIsOpen] = useState(false);
   const [contentToShow, setContentToShow] = useState(null);
   const [showContent, setShowContent] = useState(false); // Estado para controlar la visibilidad del contenido
+
+  //Lista de palabras prohibidas
+  const bannedWords = ["muerte"];
+
+  // verificar si el texto contiene palabras prohibidas
+  const containsBannedWords = (text) => {
+    return bannedWords.some((word) =>
+      text.toLowerCase().includes(word.toLowerCase())
+    );
+  };
+
   const checkPlayersWithoutSin = async () => {
     const response = await getPlayersWithoutSin(roomId);
     const playersWithoutSin = response.data;
@@ -72,20 +82,33 @@ function Sins() {
     return () => clearTimeout(timer);
   }, []);
   // Punishers
+
   const handleNext = async () => {
+    // Verificación de entrada vacía
     if (sin === "") {
       alert("Introduzca un texto!!");
       return;
     }
+
+    // Nueva verificación de palabras prohibidas
+    if (containsBannedWords(sin)) {
+      alert("El pecado contiene palabras prohibidas.");
+      return;
+    }
+
     setChangeButton(true);
     try {
       console.log(roomId, sin);
       await createSin(playerId, { sin: sin });
     } catch (error) {
-      console.error("Error al crear el pecado:", error);
+      // Manejo de errores del backend
+      if (error.response && error.response.status === 400) {
+        alert(error.response.data); // Mostrar mensaje de error del backend
+      } else {
+        alert("Error al crear el pecado");
+      }
     }
   };
-
   const handleEditSin = async () => {
     setChangeButton(false);
     await deleteSin(playerId);
