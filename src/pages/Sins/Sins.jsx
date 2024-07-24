@@ -2,7 +2,6 @@ import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Container,
-  FormContainer,
   Textarea,
   ButtonContainer,
   Button,
@@ -19,7 +18,7 @@ import {
   deleteSin,
 } from "../../app/services/player";
 import { PlayerContext } from "../../app/contexts/PlayerContext"; // Ajusta la ruta según donde tengas PlayerContext
-import { Scroll, ScrollContainer, ToggleButton, ScrollText } from '../Punishments/Punishments.styles';
+import { Scroll, ScrollContainer, ScrollText } from '../Punishments/Punishments.styles';
 
 function Sins() {
   const [sin, setSin] = useState("");
