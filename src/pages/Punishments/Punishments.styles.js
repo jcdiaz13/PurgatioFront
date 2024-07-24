@@ -54,6 +54,7 @@ export const SubTitle = styled.p`
   font-size: 1.2rem;
   margin: 0;
   margin-bottom: 10px;
+  padding-top: 55px;
 `;
 //PopUp
 export const FormContainer = styled.div`
@@ -152,7 +153,7 @@ export const Scroll = styled.div`
   border: none;
   transition: height 0.5s ease-in-out; /* Transición para la altura */
   display: flex;
-  align-items: center;
+  //align-items: center;
   justify-content: center;
 `;
 
