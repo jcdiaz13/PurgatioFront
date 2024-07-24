@@ -30,6 +30,16 @@ const Punishments = () => {
   const [contentToShow, setContentToShow] = useState(null);
   const [showContent, setShowContent] = useState(false); // Estado para controlar la visibilidad del contenido
 
+  //Lista de palabras prohibidas
+  const bannedWords = ["muerte"];
+
+  // verificar si el texto contiene palabras prohibidas
+  const containsBannedWords = (text) => {
+    return bannedWords.some((word) =>
+      text.toLowerCase().includes(word.toLowerCase())
+    );
+  };
+
   const checkPlayersWithoutPunish = async () => {
     const response = await getPlayersWithoutPunish(roomId);
     const playersWithoutPunish = response.data;
@@ -110,8 +120,24 @@ const Punishments = () => {
       alert("Introduzca un texto!!");
       return;
     }
+    // Nueva verificación de palabras prohibidas
+    if (containsBannedWords(text)) {
+      alert("El castigo contiene palabras prohibidas.");
+      return;
+    }
     setChangeButton(true);
-    await createPunish(judgePlayerId, { punish: text });
+    try {
+      await createPunish(judgePlayerId, { punish: text });
+    } catch (error) {
+      // Nuevo manejo de errores del backend
+      if (error.response && error.response.status === 400) {
+        alert(error.response.data); // Mostrar mensaje de error del backend
+      } else {
+        alert(
+          "Ocurrió un error al enviar el castigo. Por favor, intente nuevamente."
+        );
+      }
+    }
   };
 
   useEffect(() => {
