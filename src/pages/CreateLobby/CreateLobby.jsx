@@ -92,11 +92,19 @@ function CreateLobby() {
       </FormContainer>
       {isAvatarPopupOpen && (
         <AvatarPopup>
-          {avatarImages.map((avatar, i) => (
-            <AvatarOption key={i} onClick={() => handleAvatarSelect(avatar)}>
-              <img src={avatar.img} />
-            </AvatarOption>
-          ))}
+          {avatarImages.map((avatar, i) => {
+            const isSelected =
+              selectedAvatar && selectedAvatar.id === avatar.id;
+            return (
+              <AvatarOption
+                key={i}
+                onClick={() => handleAvatarSelect(avatar)}
+                style={{ filter: isSelected ? "grayscale(100%)" : "none" }}
+              >
+                <img src={avatar.img} alt={`Avatar ${i}`} />
+              </AvatarOption>
+            );
+          })}
         </AvatarPopup>
       )}
     </Container>

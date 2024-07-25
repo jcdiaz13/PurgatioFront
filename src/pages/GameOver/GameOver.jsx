@@ -8,7 +8,6 @@ import avatarImages from "../../app/utils/avatarImages";
 const GameOver = () => {
   const navigate = useNavigate();
   const { roomId } = useContext(PlayerContext);
-
   const [losers, setLosers] = useState([]);
   const [matches, setMatches] = useState([]);
   const [showGameOverText, setShowGameOverText] = useState(false);
