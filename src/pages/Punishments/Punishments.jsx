@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import CaractersCounter from "../../components/CaractersCounter";
 import {
   Container,
   Textarea,
@@ -126,7 +127,7 @@ const Punishments = () => {
 
   const handleEditPunish = async () => {
     setChangeButton(false);
-    await deletePunish(playerId);
+    await deletePunish(judgePlayerId);
   };
 
   const handleNext = async () => {
@@ -196,10 +197,12 @@ const Punishments = () => {
                 <>
                   <SubTitle>¡Castiga el Pecado!</SubTitle>
                   <Textarea
-                    placeholder="Da rienda suelta a tu creatividad, dictamina tu sentencia al pecado anterior."
                     value={text}
                     onChange={handleInputChange}
+                    placeholder="Da rienda suelta a tu creatividad, dictamina tu sentencia al pecado anterior."
+                    maxLength={300}
                   />
+                  <CaractersCounter text={text} maxLength={300} />{" "}
                   <ButtonContainer>
                     {changeButton && (
                       <Button onClick={handleEditPunish}>Editar</Button>

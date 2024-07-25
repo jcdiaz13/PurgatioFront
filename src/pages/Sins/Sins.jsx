@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import CaractersCounter from "../../components/CaractersCounter";
 import {
   Container,
   Textarea,
@@ -152,8 +153,10 @@ function Sins() {
                     type="text"
                     value={sin}
                     onChange={handleInputChange}
-                    placeholder="Escribe sobre ti: una anécdota, un hábito o algo que harías, de lo cual quieras purgarte."
+                    placeholder="Escribe sobre ti: una anécdota, un hábito o algo que harías, de lo cual quieras purgarte"
+                    maxLength={300}
                   />
+                  <CaractersCounter text={sin} maxLength={300} />{" "}
                 </>
               )}
               <ButtonContainer>
