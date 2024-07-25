@@ -25,7 +25,8 @@ import avatarImages from "../../app/utils/avatarImages";
 import { Button } from "./Verdict.styles";
 
 //Alert
-import Alert from "../../components/Alert"
+import Alert from "../../components/Alert";
+import { shuffle } from "../../app/utils/utils";
 
 const Verdict = () => {
   const navigate = useNavigate();
@@ -42,14 +43,16 @@ const Verdict = () => {
     const fetchPlayers = async () => {
       try {
         const response = await getPlayersByRoomId(roomId);
-        setPlayers(response.data);
+        const res = response.data;
+        shuffle(res);
+        setPlayers(res);
       } catch (error) {
         console.error("Error fetching players:", error);
       }
     };
 
     fetchPlayers();
-  }, [roomId, setPlayers]);
+  }, [roomId]);
 
   const checkPlayersWithoutVoting = async () => {
     const response = await getPlayersWithoutVoting(roomId);
@@ -64,7 +67,7 @@ const Verdict = () => {
   };
 
   const removeAlert = (id) => {
-    setAlerts(alerts.filter(alert => alert.id !== id));
+    setAlerts(alerts.filter((alert) => alert.id !== id));
   };
 
   useEffect(() => {
@@ -113,7 +116,8 @@ const Verdict = () => {
     setVictimAvatars((prev) => {
       // Filter out any existing victim with the same idVictim
       const filteredAvatars = Object.fromEntries(
-        Object.entries(prev).filter( // ¡NO BORRAR KEY!
+        Object.entries(prev).filter(
+          // ¡NO BORRAR KEY!
           ([key, value]) => value.idVictim !== victim.id
         )
       );
@@ -155,10 +159,14 @@ const Verdict = () => {
   };
 
   const handleVotaciones = async () => {
-    const isComplete = players.length - 1 === Object.values(victimAvatars).length;
+    const isComplete =
+      players.length - 1 === Object.values(victimAvatars).length;
 
     if (!isComplete) {
-      showAlert("error", "Hay campos incompletos. Por favor, completa toda la información.");
+      showAlert(
+        "error",
+        "Hay campos incompletos. Por favor, completa toda la información."
+      );
       return;
     }
     showAlert("success", "Se ha enviado correctamente.");
@@ -169,11 +177,13 @@ const Verdict = () => {
       goThroughVotesMap();
       setSendActive(true);
     } catch (error) {
-      showAlert("error", "Hubo un problema al procesar tu solicitud. Inténtalo de nuevo.");
+      showAlert(
+        "error",
+        "Hubo un problema al procesar tu solicitud. Inténtalo de nuevo."
+      );
       console.error("Error en handleVotaciones:", error);
     }
   };
-
 
   const renderPlayers = () =>
     players.map((player) => {
@@ -201,6 +211,7 @@ const Verdict = () => {
       <SubContainer>
         <PlayerContainer>
           <h3>¡Selecciona de quién crees que es cada pecado!</h3>
+          {console.log("Inazuma: ", players)}
           {renderPlayers()}
         </PlayerContainer>
         {modalOpen && (
@@ -208,7 +219,6 @@ const Verdict = () => {
             <ModalContent>
               <p>{selectedPlayer ? selectedPlayer.sin : ""}</p>{" "}
               {/* Mostrar el pecado del jugador */}
-
               <ButtonContainer>
                 <OptionButton onClick={closeModal}>Close</OptionButton>
                 <OptionButton onClick={openVictimSelection}>
@@ -255,7 +265,7 @@ const Verdict = () => {
             </AvatarPopup>
           </Overlay>
         )}
-        {alerts.map(alert => (
+        {alerts.map((alert) => (
           <Alert
             key={alert.id}
             id={alert.id}
@@ -264,7 +274,6 @@ const Verdict = () => {
             onClose={removeAlert}
           />
         ))}
-
       </SubContainer>
       <Button onClick={handleVotaciones}>Enviar</Button>
     </Container>
