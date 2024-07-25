@@ -20,7 +20,7 @@ export const Container = styled.div`
 
 export const SubContainer = styled.div`
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
