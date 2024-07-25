@@ -82,7 +82,10 @@ function JoinLobby() {
 
   const handleJoinLobby = async () => {
     const trimmedName = playerName.trim();
-
+    if (!selectedAvatar) {
+      showAlert("error", "Por favor seleccione un avatar antes de continuar.");
+      return;
+    }
     if (!trimmedName || !roomId) {
       showAlert("alert", "Por favor ingrese un nombre y un ID de sala antes de continuar.");
       return;
