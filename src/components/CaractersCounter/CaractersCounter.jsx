@@ -1,10 +1,9 @@
-import React from "react";
 import PropTypes from "prop-types";
 import { Container, Contador } from "./CaractersCounter.styles";
 
-function CaractersCounter({ text, maxLength }) {
+function CaractersCounter({ text }) {
   // Calcular los caracteres restantes
-  const remainingCharacters = maxLength - text.length;
+
 
   return (
     <Container>

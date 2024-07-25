@@ -3,9 +3,9 @@ import question from "../../app/assets/gifs/question.gif";
 import { css } from "styled-components";
 
 export const Container = styled.div`
-  width: 100%;
+  width: 100vw;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   z-index: -3;
@@ -19,7 +19,16 @@ export const Container = styled.div`
   overflow: hidden;
 `;
 
+export const SubContainer = styled.div`
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+align-items:center;
+text-align:center;
+width: 85%;
+`
 export const Button = styled.button`
+margin-top:15px;
   font-family: Pixellari;
   font-size: 1rem;
   background-color: black;
@@ -152,20 +161,23 @@ export const Book = styled.div`
 `;
 
 export const ModalWrapper = styled.div`
-  position: absolute;
-  width: 100%;
-  height: 100%;
+   position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  backdrop-filter: blur(3px);
-  z-index:2;
+  backdrop-filter: blur(3px) contrast(80%);
+  -webkit-backdrop-filter: blur(3px) contrast(80%);
+  z-index: 2;
 `;
 
 export const ModalContent = styled.div`
-width: 70%;
+width:80%;
   color: white;
   align-items: center;
   justify-content: center;
@@ -207,14 +219,14 @@ export const OptionButton = styled.button`
   border: 0;
   z-index: 1;
   user-select: none;
-  margin-top:15px;
+  margin-top:5px;
   cursor: pointer;
   letter-spacing: 1px;
   white-space: unset;
   padding: 10px;
   text-decoration: none;
   transition: all 0.7s cubic-bezier(0, 0.8, 0.26, 0.99);
-  width: 150px;
+  width: 132px;
 
   &:before {
     position: absolute;
@@ -326,10 +338,11 @@ export const Overlay = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px)contrast(60%);
+  -webkit-backdrop-filter: blur(2px) contrast(60%);
   z-index: 3;
 `;
 export const OptionContainer = styled.div`
@@ -359,16 +372,26 @@ export const Message = styled.div`
   font-weight: bold;
   margin-top: 20px;
 `;
+
 export const ButtonContainer = styled.div`
+display:flex;
   position: relative;
   justify-content: center;
+  text-align:center;
+  align-items:center;
   width: 100%;
   gap: 10px;
   margin-top: 10px;
 `;
+
 export const PlayerContainer = styled.div`
 display: flex;
 flex-wrap: wrap;
 justify-content: center;
-width: 600px;
+width: 300px;
+h3{
+  font-size: 1.2rem;
+  color: white;
+  margin-bottom:10px;
+}
 `

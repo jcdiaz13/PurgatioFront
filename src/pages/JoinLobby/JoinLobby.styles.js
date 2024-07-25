@@ -59,6 +59,14 @@ margin-top: 10px;
 `;
 
 export const Input = styled.input`
+ -webkit-appearance: none;
+  -moz-appearance: textfield;
+  
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
  margin-top: 12px;
  margin-left: 20px;
 font-family: Pixellari;
@@ -164,7 +172,8 @@ export const AvatarContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  backdrop-filter: blur(7px);
+  backdrop-filter: blur(7px)contrast(80%);
+    -webkit-backdrop-filter: blur(5px) contrast(80%);
   cursor: pointer;
   overflow: hidden; /* Añadido para que la imagen no se desborde */
   border: solid 2px white;
@@ -202,7 +211,8 @@ export const AvatarOption = styled.div`
   &:hover {
     box-shadow: 1px 1px 10px white;  }
   &:active {
-  transform: translateY(4px);
+  transform: translateY(4px)contrast(80%);
+  -webkit-backdrop-filter: blur(2px) contrast(80%);
   box-shadow: 1px 1px 10px white; 
 }
 
