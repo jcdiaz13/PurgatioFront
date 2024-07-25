@@ -121,7 +121,7 @@ function Sins() {
       if (error.response && error.response.status === 400) {
         alert(error.response.data); // Mostrar mensaje de error del backend
       } else {
-        alert("Error al crear el pecado");
+        showAlert("error", "Error al crear el pecado");
       }
     }
   };
