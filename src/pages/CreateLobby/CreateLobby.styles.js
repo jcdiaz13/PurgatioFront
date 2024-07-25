@@ -24,7 +24,7 @@ export const Overlay = styled.div`
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(5px)contrast(80%);
-    -webkit-backdrop-filter: blur(2px) contrast(80%);
+    -webkit-backdrop-filter: blur(5px) contrast(80%);
   z-index: 3;
 `;
 export const Pergamino = styled.div`

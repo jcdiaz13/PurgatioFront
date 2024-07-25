@@ -173,13 +173,6 @@ export const Container = styled.div`
       background-size: cover;
       background-image: url("https://i.pinimg.com/originals/1b/45/63/1b456377a9dce67a7dc3630260aa7572.gif");
     `}
-  ${({ theme }) =>
-    theme.name === "hada" &&
-    css`
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-image: url("https://i.pinimg.com/originals/1b/45/63/1b456377a9dce67a7dc3630260aa7572.gif");
-    `}
 `;
 
 export const Box = styled.div`
