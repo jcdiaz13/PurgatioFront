@@ -133,7 +133,7 @@ function JoinLobby() {
         </Pergamino>
         <Pergamino>
           <Input
-            type="text"
+            type="number"
             value={roomId}
             onChange={handleRoomIdChange}
             placeholder="Número de sala"

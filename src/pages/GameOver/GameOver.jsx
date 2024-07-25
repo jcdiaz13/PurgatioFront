@@ -43,18 +43,12 @@ const GameOver = () => {
     navigate("/");
   };
 
-  const getAvatarImg = (avatarId) => {
-    const avatar = avatarImages.find((img) => img.id === avatarId);
-    return avatar ? avatar.img : "default_avatar_path.png";
-  };
-
   return (
     <Container>
       <Title>Lista de Jugadores Castigados</Title>
       {showGameOverText && <Message>Perdedores:</Message>}
       {losers.length > 0 ? (
         losers.map((player) => {
-          // const imgObj = getAvatarImg(player.avatarId);
           const avatarId = player.avatarId;
           const imgObj = avatarImages.find(
             (avatarImage) => avatarImage.id === avatarId

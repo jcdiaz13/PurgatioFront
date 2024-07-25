@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-position: absolute;
-right: -30px;
+position: relative;
+top: 5px;
+left: 80px;
 `;
+export const Contador = styled.div`
+
+` 
