@@ -1,14 +1,16 @@
-import styled from 'styled-components';
-import { css } from 'styled-components';
+import styled from "styled-components";
+import { css } from "styled-components";
 
 export const Container = styled.div`
   width: 100%;
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   z-index: -3;
-  background: url("https://img.itch.zone/aW1hZ2UvMTIxNjU4LzU2MDM4MS5wbmc=/315x250%23c/yrkGs9.png") no-repeat center center fixed;
+  background: url("https://img.itch.zone/aW1hZ2UvMTIxNjU4LzU2MDM4MS5wbmc=/315x250%23c/yrkGs9.png")
+    no-repeat center center fixed;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -17,14 +19,11 @@ export const Container = styled.div`
   overflow: hidden;
 `;
 
-
 export const Title = styled.h1`
   font-size: 1rem;
   margin-bottom: 20px;
   color: #fff;
-
 `;
-
 
 export const OptionButton = styled.button`
   background-color: lightblue;
@@ -82,7 +81,6 @@ export const MatchItem = styled.div`
   }
 `;
 
-
 export const Button = styled.button`
   font-family: Pixellari;
   font-size: 1rem;
@@ -137,18 +135,18 @@ export const Button = styled.button`
   &:hover:before {
     color: black;
     ${({ theme }) =>
-    theme.name === "verdugo" &&
-    css`
+      theme.name === "verdugo" &&
+      css`
         background-color: #ffd700 !important;
       `}
     ${({ theme }) =>
-    theme.name === "mago" &&
-    css`
+      theme.name === "mago" &&
+      css`
         background-color: #228b22 !important;
       `}
     ${({ theme }) =>
-    theme.name === "hada" &&
-    css`
+      theme.name === "hada" &&
+      css`
         background-color: #228b22 !important;
       `}
     box-shadow: 0 -2px rgb(0 0 0 / 50%) inset, 0 2px rgb(255 255 255 / 20%) inset, -2px 0 rgb(255 255 255 / 20%) inset, 2px 0 rgb(0 0 0 / 50%) inset;

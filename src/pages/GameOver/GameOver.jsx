@@ -6,8 +6,6 @@ import {
   PlayerCard,
   PlayerName,
   Message,
-  MatchList,
-  MatchItem,
   Title,
 } from "./GameOver.styles";
 import { getVotedPlayers } from "../../app/services/player";
