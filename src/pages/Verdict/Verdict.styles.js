@@ -3,7 +3,7 @@ import question from "../../app/assets/gifs/question.gif";
 import { css } from "styled-components";
 
 export const Container = styled.div`
-  width: 100%;
+  width: 100vw;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -326,10 +326,11 @@ export const Overlay = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px)contrast(60%);
+  -webkit-backdrop-filter: blur(2px) contrast(60%);
   z-index: 3;
 `;
 export const OptionContainer = styled.div`

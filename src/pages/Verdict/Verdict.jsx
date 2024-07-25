@@ -16,7 +16,6 @@ import {
   OptionButton,
   AvatarPopup,
   AvatarOption,
-  MiniTitle,
   ButtonContainer,
   PlayerContainer,
   Overlay,
@@ -114,7 +113,7 @@ const Verdict = () => {
       // Filter out any existing victim with the same idVictim
       const filteredAvatars = Object.fromEntries(
         Object.entries(prev).filter(
-          ([key, value]) => value.idVictim !== victim.id
+          ([value]) => value.idVictim !== victim.id
         )
       );
 

@@ -55,8 +55,8 @@ export const SubTitle = styled.p`
   font-size: 1.2rem;
   margin: 0;
   margin-bottom: 10px;
-  margin-left: 5%;
-  margin-right: 5%;
+  margin-left: 0%;
+  margin-right: 0%;
   padding-top: 85px;
 `;
 

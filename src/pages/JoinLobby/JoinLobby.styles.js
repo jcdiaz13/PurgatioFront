@@ -202,7 +202,8 @@ export const AvatarOption = styled.div`
   &:hover {
     box-shadow: 1px 1px 10px white;  }
   &:active {
-  transform: translateY(4px);
+  transform: translateY(4px)contrast(80%);
+  -webkit-backdrop-filter: blur(2px) contrast(80%);
   box-shadow: 1px 1px 10px white; 
 }
 
