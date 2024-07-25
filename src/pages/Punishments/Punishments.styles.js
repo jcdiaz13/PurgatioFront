@@ -51,11 +51,15 @@ export const Title = styled.h1`
 `;
 
 export const SubTitle = styled.p`
+  text-align: center;
   font-size: 1.2rem;
   margin: 0;
   margin-bottom: 10px;
-  padding-top: 55px;
+  margin-left: 17%;
+  margin-right: 17%;
+  padding-top: 60px;
 `;
+
 //PopUp
 export const FormContainer = styled.div`
   position: absolute;
@@ -81,7 +85,8 @@ export const Textarea = styled.textarea`
   border-radius: 4px;
   font-size: 1rem;
   height: 180px;
-  width: 170px; /* Ajustado para que ocupe todo el ancho disponible */
+  width: 215px; /* Ajustado para que ocupe todo el ancho disponible */
+  text-align: center;
   border: none;
   resize: none;
   outline: none;
@@ -99,7 +104,7 @@ export const ButtonContainer = styled.div`
 
 export const Button = styled.button`
   padding: 0.5rem 1rem;
-  margin-bottom  :15px ;
+  margin-bottom: 15px;
   border: 1px solid #743c09;
   border-radius: 2px;
   font-size: 1rem;
@@ -160,9 +165,10 @@ export const Scroll = styled.div`
 // Texto dentro del pergamino
 export const ScrollText = styled.div`
   position: relative;
+  display: flex;
+  flex-direction: column;
   text-align: center;
-  max-width: 200px;
-  margin: 10px;
+  max-width: 400px;
   opacity: 0;
   transition: opacity 0.5s ease-out; /* Transición suave de opacidad */
 
@@ -170,19 +176,19 @@ export const ScrollText = styled.div`
     opacity: 1;
   }
 
-  p {
-    margin-top: 1.5rem;
-    font-size: 1rem;
-    color: black;
-    max-width: 200px;
-    word-wrap: break-word; /* Permite el corte de palabras largas */
-    overflow: hidden;
-    white-space: normal; /* Permite que el texto ocupe múltiples líneas */
-  }
-
   @keyframes fadeIn {
     to {
       opacity: 1;
     }
   }
+`;
+
+export const Sin = styled.p`
+  margin-top: 1.5rem;
+  font-size: 1rem;
+  color: black;
+  max-width: 215px;
+  word-wrap: break-word; /* Permite el corte de palabras largas */
+  overflow: hidden;
+  white-space: normal; /* Permite que el texto ocupe múltiples líneas */
 `;

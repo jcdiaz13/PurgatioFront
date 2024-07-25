@@ -122,12 +122,12 @@ function Sins() {
             <ScrollText className={showContent ? "fade-in" : ""}>
               {isOpen && contentToShow === "sin" && showContent && (
                 <>
-                  <SubTitle>Escribe tu pecado:</SubTitle>
+                  <SubTitle>¡Escribe tu pecado!</SubTitle>
                   <Textarea
                     type="text"
                     value={sin}
                     onChange={handleInputChange}
-                    placeholder="Escribe sobre ti: una anécdota, un hábito o algo que harías, de lo cual quieras purgarte"
+                    placeholder="Escribe sobre ti: una anécdota, un hábito o algo que harías, de lo cual quieras purgarte."
                   />
                 </>
               )}

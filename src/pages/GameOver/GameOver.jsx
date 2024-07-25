@@ -1,6 +1,15 @@
 import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { Container, Button, PlayerCard, PlayerName, Message, MatchList, MatchItem, Title } from './GameOver.styles';
+import {
+  Container,
+  Button,
+  PlayerCard,
+  PlayerName,
+  Message,
+  MatchList,
+  MatchItem,
+  Title,
+} from "./GameOver.styles";
 import { getVotedPlayers } from "../../app/services/player";
 import { PlayerContext } from "../../app/contexts/PlayerContext";
 import avatarImages from "../../app/utils/avatarImages";
@@ -10,24 +19,17 @@ const GameOver = () => {
   const { roomId } = useContext(PlayerContext);
 
   const [losers, setLosers] = useState([]);
-  const [matches, setMatches] = useState([]);
   const [showGameOverText, setShowGameOverText] = useState(false);
 
   useEffect(() => {
     const fetchVotedPlayers = async () => {
       try {
         const response = await getVotedPlayers(roomId);
-        const players = response.data;
+        if (response.data.length > 0) {
+          const sortedLosers = response.data.sort((a, b) => b.voted - a.voted);
 
-        const filteredLosers = players.filter(player => player.voted > 0);
-        filteredLosers.sort((a, b) => b.voted - a.voted);
+          setLosers(sortedLosers);
 
-        setLosers(filteredLosers);
-
-        const matchedPlayers = players.filter(player => player.votes > 0 && player.votes === player.id);
-        setMatches(matchedPlayers);
-
-        if (filteredLosers.length > 0) {
           setShowGameOverText(true);
         }
       } catch (error) {
@@ -52,27 +54,41 @@ const GameOver = () => {
       <Title>Lista de Jugadores Castigados</Title>
       {showGameOverText && <Message>Perdedores:</Message>}
       {losers.length > 0 ? (
-        losers.map((player) => (
-          <PlayerCard key={player.id}>
-            <img src={getAvatarImg(player.avatar_id)} alt={player.player_name} />
-            <PlayerName>{player.player_name}</PlayerName>
-          </PlayerCard>
-        ))
+        losers.map((player) => {
+          // const imgObj = getAvatarImg(player.avatarId);
+          const avatarId = player.avatarId;
+          const imgObj = avatarImages.find(
+            (avatarImage) => avatarImage.id === avatarId
+          );
+          return (
+            <PlayerCard key={player.id}>
+              <img src={imgObj.img} alt="avatar" />
+              <PlayerName>{player.playerName}</PlayerName>
+            </PlayerCard>
+          );
+        })
       ) : (
-        <Message>No players have lost the game.</Message>
+        // <Message>No players have lost the game.</Message>
+        <div>
+          {/* AQUI PONER UNA INTERFAZ QUE INDIQUE QUE NO HAY GENTE QUE CUMPLA LAS CONDICIONES PARA SER CASTIGADA*/}
+        </div>
       )}
       <Button onClick={goToNextPage}>Volver</Button>
-      {matches.length > 0 && (
+      {/* ESTE CODIGO ACTUALMENTE NO TIENE SENTIDO PORQUE VOTES NO DEVUELVE QUIEN TE HA VOTADO */}
+      {/* {matches.length > 0 && (
         <MatchList>
           <h2>Matches:</h2>
           {matches.map((match) => (
             <MatchItem key={match.id}>
-              <img src={getAvatarImg(match.avatar_id)} alt={match.player_name} />
+              <img
+                src={getAvatarImg(match.avatar_id)}
+                alt={match.player_name}
+              />
               <p>{match.player_name}</p>
             </MatchItem>
           ))}
         </MatchList>
-      )}
+      )} */}
     </Container>
   );
 };
