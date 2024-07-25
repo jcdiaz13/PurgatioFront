@@ -24,6 +24,9 @@ import {
 import avatarImages from "../../app/utils/avatarImages";
 import { Button } from "./Verdict.styles";
 
+//Alert
+import Alert from "../../components/Alert"
+
 const Verdict = () => {
   const navigate = useNavigate();
   const { roomId, players, setPlayers, playerId } = useContext(PlayerContext);
@@ -33,6 +36,7 @@ const Verdict = () => {
   const [victimAvatars, setVictimAvatars] = useState({}); // Estado para almacenar avatares seleccionados
   const [votesMap, setVotesMap] = useState(new Map());
   const [sendActive, setSendActive] = useState();
+  const [alerts, setAlerts] = useState([]);
 
   useEffect(() => {
     const fetchPlayers = async () => {
@@ -51,6 +55,16 @@ const Verdict = () => {
     const response = await getPlayersWithoutVoting(roomId);
     const playersWithoutVoting = response.data;
     return playersWithoutVoting.length === 0;
+  };
+
+  const showAlert = (type, message) => {
+    const id = new Date().getTime();
+    setAlerts([...alerts, { id, type, message }]);
+    setTimeout(() => removeAlert(id), 3000); // Remover alerta después de 3 segundos
+  };
+
+  const removeAlert = (id) => {
+    setAlerts(alerts.filter(alert => alert.id !== id));
   };
 
   useEffect(() => {
@@ -141,13 +155,25 @@ const Verdict = () => {
   };
 
   const handleVotaciones = async () => {
-    if (players.length - 1 === Object.values(victimAvatars).length) {
+    const isComplete = players.length - 1 === Object.values(victimAvatars).length;
+
+    if (!isComplete) {
+      showAlert("error", "Hay campos incompletos. Por favor, completa toda la información.");
+      return;
+    }
+    showAlert("success", "Se ha enviado correctamente.");
+
+    try {
       iterateVotesMap();
       await updateIVoted(playerId);
       goThroughVotesMap();
       setSendActive(true);
+    } catch (error) {
+      showAlert("error", "Hubo un problema al procesar tu solicitud. Inténtalo de nuevo.");
+      console.error("Error en handleVotaciones:", error);
     }
   };
+
 
   const renderPlayers = () =>
     players.map((player) => {
@@ -173,6 +199,8 @@ const Verdict = () => {
 
   return (
     <Container>
+
+
       <PlayerContainer>
         {renderPlayers()}
       </PlayerContainer>
@@ -228,6 +256,15 @@ const Verdict = () => {
           </AvatarPopup>
         </Overlay>
       )}
+      {alerts.map(alert => (
+        <Alert
+          key={alert.id}
+          id={alert.id}
+          type={alert.type}
+          message={alert.message}
+          onClose={removeAlert}
+        />
+      ))}
       <Button onClick={handleVotaciones}>Enviar</Button>
     </Container>
   );

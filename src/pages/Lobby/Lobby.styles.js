@@ -224,6 +224,7 @@ export const DeletePlayerButton = styled.button`
   top: -6px;
   right: -6px;
   text-shadow: 1px 1px 5px black;
+  cursor: pointer;
 `;
 
 // Configuracion del boton de copiar sala en portapapeles
