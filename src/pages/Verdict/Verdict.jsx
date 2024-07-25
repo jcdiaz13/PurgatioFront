@@ -202,9 +202,10 @@ const Verdict = () => {
       {modalOpen && (
         <ModalWrapper>
           <ModalContent>
+            <h3>Vota quién crees que cometió este pecado:</h3>
             <p>{selectedPlayer ? selectedPlayer.sin : ""}</p>{" "}
             {/* Mostrar el pecado del jugador */}
-            <h3>Vota quién crees que cometió este pecado!</h3>
+
             <ButtonContainer>
               <OptionButton onClick={closeModal}>Close</OptionButton>
               <OptionButton onClick={openVictimSelection}>

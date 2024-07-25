@@ -174,10 +174,11 @@ width: 70%;
   word-wrap: break-word; /* Permite el corte de palabras largas */
     white-space: normal; /* Permite que el texto ocupe múltiples líneas */
   h3 {
-    font-size: 1rem;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
   }
   p {
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
 `;
 
