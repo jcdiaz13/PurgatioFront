@@ -166,16 +166,13 @@ const Verdict = () => {
               )}
             </Cover>
           </Book>
-
         );
       }
     });
 
   return (
     <Container>
-      <PlayerContainer>
-        {renderPlayers()}
-      </PlayerContainer>
+      <PlayerContainer>{renderPlayers()}</PlayerContainer>
       {modalOpen && (
         <ModalWrapper>
           <ModalContent>
@@ -183,10 +180,10 @@ const Verdict = () => {
             {/* Mostrar el pecado del jugador */}
             <h3>Vota quién crees que cometió este pecado!</h3>
             <ButtonContainer>
+              <OptionButton onClick={closeModal}>Close</OptionButton>
               <OptionButton onClick={openVictimSelection}>
                 Elegir Jugador
               </OptionButton>
-              <OptionButton onClick={closeModal}>Close</OptionButton>
             </ButtonContainer>
           </ModalContent>
         </ModalWrapper>

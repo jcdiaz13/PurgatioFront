@@ -25,10 +25,10 @@ export const Container = styled.body`
 `;
 
 export const SubTitle = styled.p`
-padding-top: 25px;
+  padding-top: 25px;
   font-size: 1.2rem;
   margin: 0;
-  `;
+`;
 //PopUp
 export const FormContainer = styled.div`
   display: flex;
@@ -52,7 +52,8 @@ export const Textarea = styled.textarea`
   border-radius: 4px;
   font-size: 1rem;
   height: 180px;
-  width: 170px; /* Ajustado para que ocupe todo el ancho disponible */
+  width: 215px; /* Ajustado para que ocupe todo el ancho disponible */
+  text-align: center;
   border: none;
   resize: none;
   outline: none;
@@ -71,7 +72,7 @@ export const ButtonContainer = styled.div`
 
 export const Button = styled.button`
   padding: 0.5rem 1rem;
-  margin-bottom: 20px ;
+  margin-bottom: 20px;
   border: 1px solid #743c09;
   border-radius: 2px;
   font-size: 1rem;
@@ -118,8 +119,10 @@ export const Scroll = styled.div`
 // Texto dentro del pergamino
 export const ScrollText = styled.div`
   position: relative;
+  display: flex;
+  flex-direction: column;
   text-align: center;
-  max-width: 200px;
+  max-width: 400px;
   opacity: 0;
   transition: opacity 0.5s ease-out; /* Transición suave de opacidad */
 

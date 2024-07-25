@@ -123,7 +123,7 @@ function Sins() {
             <ScrollText className={showContent ? "fade-in" : ""}>
               {isOpen && contentToShow === "sin" && showContent && (
                 <>
-                  <SubTitle>Escribe tu pecado:</SubTitle>
+                  <SubTitle>¡Escribe tu pecado!</SubTitle>
                   <Textarea
                     type="text"
                     value={sin}
