@@ -1,10 +1,9 @@
-/* eslint-disable react/jsx-key */
 import { useContext, useState, useEffect } from "react";
 import { PlayerContext } from "../../app/contexts/PlayerContext";
 import { useNavigate } from "react-router-dom";
 import interrogante from "../../app/assets/gifs/question.gif";
 import avatarImages from "../../app/utils/avatarImages";
-
+import Alert from "../../components/Alert"; // Importa el componente Alert
 import {
   Container,
   Title,
@@ -24,6 +23,7 @@ function CreateLobby() {
   const { playerName, setPlayerName, selectedAvatar, setSelectedAvatar } =
     useContext(PlayerContext);
   const [isAvatarPopupOpen, setIsAvatarPopupOpen] = useState(false);
+  const [alerts, setAlerts] = useState([]); // Estado para las alertas
   const navigate = useNavigate();
 
   const handlePlayerNameAndAvatar = () => {
@@ -33,10 +33,10 @@ function CreateLobby() {
       navigate("/difficulty");
     } else {
       if (!trimmedName) {
-        alert("Por favor ingrese un nombre antes de continuar.");
+        showAlert("error", "Por favor ingrese un nombre antes de continuar.");
       }
       if (selectedAvatar === null) {
-        alert("Por favor selecciona un avatar antes de continuar.");
+        showAlert("alert", "Por favor selecciona un avatar antes de continuar.");
       }
     }
   };
@@ -44,6 +44,16 @@ function CreateLobby() {
   useEffect(() => {
     setPlayerName("");
   }, [setPlayerName]);
+
+  const showAlert = (type, message) => {
+    const id = new Date().getTime();
+    setAlerts([...alerts, { id, type, message }]);
+    setTimeout(() => removeAlert(id), 3000); // Remover alerta después de 3 segundos
+  };
+
+  const removeAlert = (id) => {
+    setAlerts(alerts.filter(alert => alert.id !== id));
+  };
 
   const closePopup = () => {
     setIsAvatarPopupOpen(false);
@@ -107,6 +117,17 @@ function CreateLobby() {
           })}
         </AvatarPopup>
       )}
+      <div>
+        {alerts.map(alert => (
+          <Alert
+            key={alert.id}
+            id={alert.id}
+            type={alert.type}
+            message={alert.message}
+            onClose={removeAlert}
+          />
+        ))}
+      </div>
     </Container>
   );
 }

@@ -11,6 +11,8 @@ import {
   ScrollContainer,
   ScrollText,
 } from "./Sins.styles";
+//import Alert
+import Alert from "../../components/Alert"
 // import sinsData from '../../app/jsons/gameMastersSins.json';
 import Theme from "../../components/Theme";
 import {
@@ -23,6 +25,7 @@ import {
 import { PlayerContext } from "../../app/contexts/PlayerContext"; // Ajusta la ruta según donde tengas PlayerContext
 
 function Sins() {
+  const [alerts, setAlerts] = useState([]);
   const [sin, setSin] = useState("");
   const navigate = useNavigate();
   const [changeButton, setChangeButton] = useState(false);
@@ -71,6 +74,16 @@ function Sins() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [changeButton]);
 
+  const showAlert = (type, message) => {
+    const id = new Date().getTime();
+    setAlerts([...alerts, { id, type, message }]);
+    setTimeout(() => removeAlert(id), 3000); // Remover alerta después de 3 segundos
+  };
+
+  const removeAlert = (id) => {
+    setAlerts(alerts.filter(alert => alert.id !== id));
+  };
+
   const handleInputChange = (e) => {
     setSin(e.target.value);
   };
@@ -85,15 +98,17 @@ function Sins() {
   // Punishers
 
   const handleNext = async () => {
+    showAlert("success", "El texto se ha enviado correctamente");
+
     // Verificación de entrada vacía
     if (sin === "") {
-      alert("Introduzca un texto!!");
+      showAlert("alert", "Introduzca un texto!!");
       return;
     }
 
     // Nueva verificación de palabras prohibidas
     if (containsBannedWords(sin)) {
-      alert("El pecado contiene palabras prohibidas.");
+      showAlert("error", "El pecado contiene palabras prohibidas.");
       return;
     }
 
@@ -118,6 +133,16 @@ function Sins() {
   return (
     <Theme>
       <Container>
+        {alerts.map(alert => (
+          <Alert
+            key={alert.id}
+            id={alert.id}
+            type={alert.type}
+            message={alert.message}
+            onClose={removeAlert}
+          />
+        ))}
+
         <ScrollContainer>
           <Scroll isOpen={isOpen}>
             <ScrollText className={showContent ? "fade-in" : ""}>

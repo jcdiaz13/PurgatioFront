@@ -20,6 +20,8 @@ import {
   getPlayersWithoutPunish,
   deletePunish,
 } from "../../app/services/player";
+//Alerts
+import Alert from "../../components/Alert"
 
 const Punishments = () => {
   const [text, setText] = useState("");
@@ -31,6 +33,7 @@ const Punishments = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [contentToShow, setContentToShow] = useState(null);
   const [showContent, setShowContent] = useState(false); // Estado para controlar la visibilidad del contenido
+  const [alerts, setAlerts] = useState([]);
 
   //Lista de palabras prohibidas
   const bannedWords = ["muerte"];
@@ -47,6 +50,16 @@ const Punishments = () => {
     const playersWithoutPunish = response.data;
     return playersWithoutPunish.length === 0;
   };
+  const showAlert = (type, message) => {
+    const id = new Date().getTime();
+    setAlerts([...alerts, { id, type, message }]);
+    setTimeout(() => removeAlert(id), 3000); // Remover alerta después de 3 segundos
+  };
+
+  const removeAlert = (id) => {
+    setAlerts(alerts.filter(alert => alert.id !== id));
+  };
+
 
   useEffect(() => {
     const intervalId = setInterval(async () => {
@@ -118,13 +131,14 @@ const Punishments = () => {
   };
 
   const handleNext = async () => {
+    showAlert("success", "El texto se ha enviado correctamente");
     if (text === "") {
-      alert("Introduzca un texto!!");
+      showAlert("alert", "Introduzca un texto");
       return;
     }
     // Nueva verificación de palabras prohibidas
     if (containsBannedWords(text)) {
-      alert("El castigo contiene palabras prohibidas.");
+      showAlert("error", "El pecado contiene palabras prohibidas.");
       return;
     }
     setChangeButton(true);
@@ -214,6 +228,16 @@ const Punishments = () => {
           )}
         </ButtonContainer>
       </Container>
+      {alerts.map(alert => (
+        <Alert
+          key={alert.id}
+          id={alert.id}
+          type={alert.type}
+          message={alert.message}
+          onClose={removeAlert}
+        />
+      ))}
+
     </Theme>
   );
 };
