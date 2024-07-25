@@ -112,7 +112,7 @@ const Punishments = () => {
 
   const handleEditPunish = async () => {
     setChangeButton(false);
-    await deletePunish(playerId);
+    await deletePunish(judgePlayerId);
   };
 
   const handleNext = async () => {
