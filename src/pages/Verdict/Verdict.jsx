@@ -19,6 +19,7 @@ import {
   ButtonContainer,
   PlayerContainer,
   Overlay,
+  SubContainer,
 } from "./Verdict.styles";
 import avatarImages from "../../app/utils/avatarImages";
 import { Button } from "./Verdict.styles";
@@ -112,8 +113,8 @@ const Verdict = () => {
     setVictimAvatars((prev) => {
       // Filter out any existing victim with the same idVictim
       const filteredAvatars = Object.fromEntries(
-        Object.entries(prev).filter(
-          ([value]) => value.idVictim !== victim.id
+        Object.entries(prev).filter( // ¡NO BORRAR KEY!
+          ([key, value]) => value.idVictim !== victim.id
         )
       );
 
@@ -197,69 +198,74 @@ const Verdict = () => {
 
   return (
     <Container>
-      <PlayerContainer>{renderPlayers()}</PlayerContainer>
-      {modalOpen && (
-        <ModalWrapper>
-          <ModalContent>
-            <h3>Vota quién crees que cometió este pecado:</h3>
-            <p>{selectedPlayer ? selectedPlayer.sin : ""}</p>{" "}
-            {/* Mostrar el pecado del jugador */}
+      <SubContainer>
+        <PlayerContainer>
+          <h3>¡Selecciona de quién crees que es cada pecado!</h3>
+          {renderPlayers()}
+        </PlayerContainer>
+        {modalOpen && (
+          <ModalWrapper>
+            <ModalContent>
+              <p>{selectedPlayer ? selectedPlayer.sin : ""}</p>{" "}
+              {/* Mostrar el pecado del jugador */}
 
-            <ButtonContainer>
-              <OptionButton onClick={closeModal}>Close</OptionButton>
-              <OptionButton onClick={openVictimSelection}>
-                Elegir Jugador
-              </OptionButton>
-            </ButtonContainer>
-          </ModalContent>
-        </ModalWrapper>
-      )}
-      {victimModalOpen && (
-        <Overlay>
-          <AvatarPopup>
-            {players.map((victim) => {
-              if (victim.id != playerId) {
-                const avatarId = victim.avatarId;
-                const imgObj = avatarImages.find(
-                  (avatarImage) => avatarImage.id === avatarId
-                );
-                const alreadyClicked = goThroughVotesMap(victim.id);
-                return (
-                  <AvatarOption
-                    key={victim.id}
-                    onClick={() => handleVictimSelect(victim)}
-                  >
-                    {/* Optimizar esto, no puede ser que tenga que duplicarlo y no hacer un condicional ternario en la propiedad style, solucionar con styled components si no */}
-                    {!alreadyClicked && (
-                      <img
-                        src={imgObj ? imgObj.img : "default_image_path.png"}
-                        alt={victim.playerName}
-                      />
-                    )}
-                    {alreadyClicked && (
-                      <img
-                        src={imgObj ? imgObj.img : "default_image_path.png"}
-                        alt={victim.playerName}
-                        style={{ filter: `grayscale(100%)` }}
-                      />
-                    )}
-                    <p>{victim.playerName}</p>
-                  </AvatarOption>
-                );
-              }
-            })}
-          </AvatarPopup>
-        </Overlay>
-      )}
-      {alerts.map(alert => (
-        <Alert
-          key={alert.id}
-          id={alert.id}
-          type={alert.type}
-          message={alert.message}
-          onClose={removeAlert}
-        />
-      ))}
+              <ButtonContainer>
+                <OptionButton onClick={closeModal}>Close</OptionButton>
+                <OptionButton onClick={openVictimSelection}>
+                  Elegir Jugador
+                </OptionButton>
+              </ButtonContainer>
+            </ModalContent>
+          </ModalWrapper>
+        )}
+        {victimModalOpen && (
+          <Overlay>
+            <AvatarPopup>
+              {players.map((victim) => {
+                if (victim.id != playerId) {
+                  const avatarId = victim.avatarId;
+                  const imgObj = avatarImages.find(
+                    (avatarImage) => avatarImage.id === avatarId
+                  );
+                  const alreadyClicked = goThroughVotesMap(victim.id);
+                  return (
+                    <AvatarOption
+                      key={victim.id}
+                      onClick={() => handleVictimSelect(victim)}
+                    >
+                      {/* Optimizar esto, no puede ser que tenga que duplicarlo y no hacer un condicional ternario en la propiedad style, solucionar con styled components si no */}
+                      {!alreadyClicked && (
+                        <img
+                          src={imgObj ? imgObj.img : "default_image_path.png"}
+                          alt={victim.playerName}
+                        />
+                      )}
+                      {alreadyClicked && (
+                        <img
+                          src={imgObj ? imgObj.img : "default_image_path.png"}
+                          alt={victim.playerName}
+                          style={{ filter: `grayscale(100%)` }}
+                        />
+                      )}
+                      <p>{victim.playerName}</p>
+                    </AvatarOption>
+                  );
+                }
+              })}
+            </AvatarPopup>
+          </Overlay>
+        )}
+        {alerts.map(alert => (
+          <Alert
+            key={alert.id}
+            id={alert.id}
+            type={alert.type}
+            message={alert.message}
+            onClose={removeAlert}
+          />
+        ))}
+
+      </SubContainer>
       <Button onClick={handleVotaciones}>Enviar</Button>
     </Container>
   );
