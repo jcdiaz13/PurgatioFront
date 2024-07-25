@@ -10,6 +10,7 @@ import {
   ScrollContainer,
   ToggleButton,
   ScrollText,
+  Sin,
 } from "./Punishments.styles";
 import Theme from "../../components/Theme";
 import { PlayerContext } from "../../app/contexts/PlayerContext";
@@ -187,25 +188,26 @@ const Punishments = () => {
             <ScrollText className={showContent ? "fade-in" : ""}>
               {isOpen && contentToShow === "sin" && showContent && (
                 <>
-                  <SubTitle>Juzga este Pecado</SubTitle>
-                  <p>{assignSin}</p>
+                  <SubTitle>¡Juzga este Pecado!</SubTitle>
+                  <Sin>{assignSin}</Sin>
                 </>
               )}
               {isOpen && contentToShow === "punish" && showContent && (
                 <>
-                  <SubTitle>Juzga el Pecado</SubTitle>
+                  <SubTitle>¡Castiga el Pecado!</SubTitle>
                   <Textarea
-                    placeholder="Escribe el castigo que debería realizar"
+                    placeholder="Da rienda suelta a tu creatividad, dictamina tu sentencia al pecado anterior."
                     value={text}
                     onChange={handleInputChange}
                   />
-
-                  {changeButton && (
-                    <Button onClick={handleEditPunish}>Editar</Button>
-                  )}
-                  {!changeButton && (
-                    <Button onClick={handleNext}>Enviar</Button>
-                  )}
+                  <ButtonContainer>
+                    {changeButton && (
+                      <Button onClick={handleEditPunish}>Editar</Button>
+                    )}
+                    {!changeButton && (
+                      <Button onClick={handleNext}>Enviar</Button>
+                    )}
+                  </ButtonContainer>
                 </>
               )}
             </ScrollText>
