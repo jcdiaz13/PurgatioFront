@@ -59,6 +59,14 @@ margin-top: 10px;
 `;
 
 export const Input = styled.input`
+ -webkit-appearance: none;
+  -moz-appearance: textfield;
+  
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
  margin-top: 12px;
  margin-left: 20px;
 font-family: Pixellari;
