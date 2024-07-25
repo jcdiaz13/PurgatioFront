@@ -103,7 +103,7 @@ const Lobby = () => {
   };
 
   const handleStartGame = async () => {
-    if (players.length < 3) { //Modificar la cantidad mínima de jugadores
+    if (players.length < 0) { //Modificar la cantidad mínima de jugadores
       showAlert("alert", "Debe haber al menos 3 jugadores para comenzar el juego.");
       return;
     }
