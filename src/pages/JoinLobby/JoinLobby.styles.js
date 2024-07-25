@@ -164,7 +164,8 @@ export const AvatarContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  backdrop-filter: blur(7px);
+  backdrop-filter: blur(7px)contrast(80%);
+    -webkit-backdrop-filter: blur(5px) contrast(80%);
   cursor: pointer;
   overflow: hidden; /* Añadido para que la imagen no se desborde */
   border: solid 2px white;
