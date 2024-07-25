@@ -6,6 +6,7 @@ import { createPlayer, getPlayersByRoomId } from "../../app/services/player";
 import { getGameStatus } from "../../app/services/room";
 import avatarImages from "../../app/utils/avatarImages";
 import interrogante from "../../app/assets/gifs/question.gif";
+import Alert from "../../components/Alert"
 
 import {
   Container,
@@ -36,6 +37,7 @@ function JoinLobby() {
   const [isAvatarPopupOpen, setIsAvatarPopupOpen] = useState(false);
   const [selectedAvatar, setSelectedAvatar] = useState(null);
   const navigate = useNavigate();
+  const [alerts, setAlerts] = useState([]);
 
   const closePopup = () => {
     setIsAvatarPopupOpen(false);
@@ -49,6 +51,16 @@ function JoinLobby() {
   const handleAvatarClick = () => {
     setIsAvatarPopupOpen(true);
   };
+  const showAlert = (type, message) => {
+    const id = new Date().getTime();
+    setAlerts([...alerts, { id, type, message }]);
+    setTimeout(() => removeAlert(id), 3000); // Remover alerta después de 3 segundos
+  };
+
+  const removeAlert = (id) => {
+    setAlerts(alerts.filter(alert => alert.id !== id));
+  };
+
 
   const handleAvatarSelect = (avatar) => {
     setSelectedAvatar(avatar);
@@ -70,9 +82,12 @@ function JoinLobby() {
 
   const handleJoinLobby = async () => {
     const trimmedName = playerName.trim();
-
+    if (!selectedAvatar) {
+      showAlert("error", "Por favor seleccione un avatar antes de continuar.");
+      return;
+    }
     if (!trimmedName || !roomId) {
-      alert("Por favor ingrese un nombre y un ID de sala antes de continuar.");
+      showAlert("alert", "Por favor ingrese un nombre y un ID de sala antes de continuar.");
       return;
     }
 
@@ -81,15 +96,15 @@ function JoinLobby() {
 
     try {
       const players = await getPlayersByRoomId(roomId);
-      if (players.data.length >= 8) {
-        alert("Límite excedido. Máximo 8 jugadores.");
+      if (players.data.length >= 6) {
+        showAlert("alert", "Límite excedido. Máximo 6 jugadores.");
         setBlockButtons(false);
         return;
       }
 
       const gameStatus = await checkGameStatus();
       if (gameStatus === true) {
-        alert("La sala no está accesible porque el juego ya ha comenzado.");
+        showAlert("alert", "La sala no está accesible porque el juego ya ha comenzado.");
         setBlockButtons(false);
         return;
       }
@@ -165,6 +180,16 @@ function JoinLobby() {
           })}
         </AvatarPopup>
       )}
+      {alerts.map(alert => (
+        <Alert
+          key={alert.id}
+          id={alert.id}
+          type={alert.type}
+          message={alert.message}
+          onClose={removeAlert}
+        />
+      ))}
+
     </Container>
   );
 }

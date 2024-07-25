@@ -2,10 +2,9 @@ import styled from "styled-components";
 import { css } from "styled-components";
 
 export const Container = styled.div`
-  width: 100%;
+  width: 100vw;
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   z-index: -3;
@@ -17,6 +16,15 @@ export const Container = styled.div`
   height: 100vh;
   margin: 0;
   overflow: hidden;
+`;
+
+export const SubContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 85%;
 `;
 
 export const Title = styled.h1`
@@ -42,11 +50,41 @@ export const OptionButton = styled.button`
 export const PlayerCard = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  margin: 10px;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  padding: 5px;
+  height: 150px;
+  margin: 0.5rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: white;
+  cursor: pointer;
+  overflow: hidden; /* Asegura que la imagen no se desborde del contenedor */
+  box-sizing: border-box; /* Incluye padding en el tamaño total del elemento */
+
+  &:focus {
+    transform: translateY(4px);
+    box-shadow: 1px 1px 10px white;
+    background-color: white;
+  }
+
+  &:hover {
+    box-shadow: 1px 1px 10px white;
+  }
+
+  img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover; /* Asegura que la imagen se ajuste bien al contenedor */
+  }
+
+  p {
+    margin-top: 0px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    background: transparent;
+  }
 `;
 
 export const PlayerName = styled.p`
@@ -57,11 +95,6 @@ export const PlayerName = styled.p`
 export const Message = styled.p`
   font-size: 1.2rem;
   color: red;
-`;
-
-export const MatchList = styled.div`
-  margin-top: 20px;
-  text-align: center;
 `;
 
 export const MatchItem = styled.div`
@@ -79,6 +112,16 @@ export const MatchItem = styled.div`
   p {
     margin: 0;
   }
+`;
+export const PlayerContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  width: 300px;
+  height: 500px;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
 `;
 
 export const Button = styled.button`
@@ -101,6 +144,7 @@ export const Button = styled.button`
   text-decoration: none;
   transition: all 0.7s cubic-bezier(0, 0.8, 0.26, 0.99);
   width: 80px;
+  margin-top: 10px;
 
   &:before {
     position: absolute;

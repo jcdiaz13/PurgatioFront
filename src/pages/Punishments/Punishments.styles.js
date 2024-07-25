@@ -55,36 +55,18 @@ export const SubTitle = styled.p`
   font-size: 1.2rem;
   margin: 0;
   margin-bottom: 10px;
-  margin-left: 17%;
-  margin-right: 17%;
-  padding-top: 60px;
+  margin-left: 0%;
+  margin-right: 0%;
+  padding-top: 85px;
 `;
 
-//PopUp
-export const FormContainer = styled.div`
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 350px;
-  height: 500px;
-  max-width: 800px;
-  padding-top: 5px;
-  /* Cambia el color de fondo del modal */
-  background-image: url(${pergamino});
-  background-image: cover;
-  background-repeat: no-repeat;
-  background-position: top;
-  box-shadow: 30px black;
-  z-index: 2;
-`;
+
 
 export const Textarea = styled.textarea`
-  padding: 1rem; /* Ajustado el padding para que sea más proporcionado */
   margin-bottom: 1rem;
   border-radius: 4px;
   font-size: 1rem;
-  height: 180px;
+  height: 222px;
   width: 215px; /* Ajustado para que ocupe todo el ancho disponible */
   text-align: center;
   border: none;
@@ -92,6 +74,8 @@ export const Textarea = styled.textarea`
   outline: none;
   background: transparent;
   background-position: center;
+  overflow: hidden;
+  overflow-y: auto;
 `;
 
 export const ButtonContainer = styled.div`
@@ -114,6 +98,7 @@ export const Button = styled.button`
   cursor: pointer;
   width: 80px;
   text-align: center;
+  margin-top: 2px;
 
   &:hover {
     background-color: white;
@@ -184,7 +169,7 @@ export const ScrollText = styled.div`
 `;
 
 export const Sin = styled.p`
-  margin-top: 1.5rem;
+margin-top: 10px;
   font-size: 1rem;
   color: black;
   max-width: 215px;

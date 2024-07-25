@@ -17,7 +17,8 @@ export const Overlay = styled.div`
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px)contrast(80%);
+    -webkit-backdrop-filter: blur(2px) contrast(80%);
   z-index: 999;
 `;
 export const StyledLink = styled(Link)`
