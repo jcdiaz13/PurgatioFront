@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Card } from "antd";
 import {
@@ -16,10 +16,23 @@ import { PlayerContext } from "../../app/contexts/PlayerContext";
 import { getPlayersByRoomId, deletePlayer } from "../../app/services/player";
 import avatarImages from "../../app/utils/avatarImages";
 import { setGameStatus, getGameStatus } from "../../app/services/room";
+import Alert from "../../components/Alert/Alert"; // Importar el componente Alert
 
 const { Meta } = Card;
 
 const Lobby = () => {
+  const [alerts, setAlerts] = useState([]); // Añadir estado para las alertas
+
+  const showAlert = (type, message) => {
+    const id = new Date().getTime();
+    setAlerts([...alerts, { id, type, message }]);
+    setTimeout(() => removeAlert(id), 3000); // Remover alerta después de 3 segundos
+  };
+
+  const removeAlert = (id) => {
+    setAlerts(alerts.filter(alert => alert.id !== id));
+  };
+
   const {
     roomId,
     players,
@@ -68,7 +81,7 @@ const Lobby = () => {
         navigate("/");
       }
     } catch (error) {
-      console.error("Error showing players:", error);
+      console.error("Error mostrando jugadores:", error);
     }
   };
 
@@ -76,7 +89,7 @@ const Lobby = () => {
     try {
       // Verificamos si el jugador que se intenta eliminar es el roomOwner
       if (id === playerId) {
-        alert("No puedes eliminar al propietario de la sala.");
+        showAlert("error", "No puedes eliminar al propietario de la sala.");
         return;
       }
 
@@ -90,20 +103,19 @@ const Lobby = () => {
   };
 
   const handleStartGame = async () => {
-    if (players.length >= 0) {
-      //Modificar la cantidad mínima de jugadores
-      await setGameStatus(roomId, true);
-      setGameStarted(true);
-    } else {
-      alert("Debe haber al menos 3 jugadores para comenzar el juego.");
+    if (players.length < 3) { //Modificar la cantidad mínima de jugadores
+      showAlert("alert", "Debe haber al menos 3 jugadores para comenzar el juego.");
+      return;
     }
+    await setGameStatus(roomId, true);
+    setGameStarted(true);
   };
 
   const copyToClipboard = (text) => {
     navigator.clipboard
       .writeText(text)
       .then(() => {
-        alert("Text copied to clipboard");
+        showAlert("info", "El código ha sido copiado");
       })
       .catch((err) => {
         console.error("Failed to copy text: ", err);
@@ -117,6 +129,15 @@ const Lobby = () => {
 
   return (
     <Theme>
+      {alerts.map(alert => (
+        <Alert
+          key={alert.id}
+          id={alert.id}
+          type={alert.type}
+          message={alert.message}
+          onClose={removeAlert}
+        />
+      ))}
       <Container>
         <Box />
         <Id>

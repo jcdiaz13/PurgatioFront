@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import CaractersCounter from "../../components/CaractersCounter";
 import {
   Container,
   Textarea,
@@ -19,6 +20,8 @@ import {
   getPlayersWithoutPunish,
   deletePunish,
 } from "../../app/services/player";
+//Alerts
+import Alert from "../../components/Alert"
 
 const Punishments = () => {
   const [text, setText] = useState("");
@@ -30,6 +33,7 @@ const Punishments = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [contentToShow, setContentToShow] = useState(null);
   const [showContent, setShowContent] = useState(false); // Estado para controlar la visibilidad del contenido
+  const [alerts, setAlerts] = useState([]);
 
   //Lista de palabras prohibidas
   const bannedWords = ["muerte"];
@@ -46,6 +50,16 @@ const Punishments = () => {
     const playersWithoutPunish = response.data;
     return playersWithoutPunish.length === 0;
   };
+  const showAlert = (type, message) => {
+    const id = new Date().getTime();
+    setAlerts([...alerts, { id, type, message }]);
+    setTimeout(() => removeAlert(id), 3000); // Remover alerta después de 3 segundos
+  };
+
+  const removeAlert = (id) => {
+    setAlerts(alerts.filter(alert => alert.id !== id));
+  };
+
 
   useEffect(() => {
     const intervalId = setInterval(async () => {
@@ -113,17 +127,18 @@ const Punishments = () => {
 
   const handleEditPunish = async () => {
     setChangeButton(false);
-    await deletePunish(playerId);
+    await deletePunish(judgePlayerId);
   };
 
   const handleNext = async () => {
+    showAlert("success", "El texto se ha enviado correctamente");
     if (text === "") {
-      alert("Introduzca un texto!!");
+      showAlert("alert", "Introduzca un texto");
       return;
     }
     // Nueva verificación de palabras prohibidas
     if (containsBannedWords(text)) {
-      alert("El castigo contiene palabras prohibidas.");
+      showAlert("error", "El pecado contiene palabras prohibidas.");
       return;
     }
     setChangeButton(true);
@@ -182,10 +197,12 @@ const Punishments = () => {
                 <>
                   <SubTitle>¡Castiga el Pecado!</SubTitle>
                   <Textarea
-                    placeholder="Da rienda suelta a tu creatividad, dictamina tu sentencia al pecado anterior."
                     value={text}
                     onChange={handleInputChange}
+                    placeholder="Da rienda suelta a tu creatividad, dictamina tu sentencia al pecado anterior."
+                    maxLength={300}
                   />
+                  <CaractersCounter text={text} maxLength={300} />{" "}
                   <ButtonContainer>
                     {changeButton && (
                       <Button onClick={handleEditPunish}>Editar</Button>
@@ -211,6 +228,16 @@ const Punishments = () => {
           )}
         </ButtonContainer>
       </Container>
+      {alerts.map(alert => (
+        <Alert
+          key={alert.id}
+          id={alert.id}
+          type={alert.type}
+          message={alert.message}
+          onClose={removeAlert}
+        />
+      ))}
+
     </Theme>
   );
 };
