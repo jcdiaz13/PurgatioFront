@@ -105,6 +105,8 @@ export const PlayerName = styled.p`
 export const Message = styled.p`
   font-size: 1.2rem;
   color: red;
+  background-color: white;
+  border: 1px solid red;
 `;
 
 export const MatchItem = styled.div`
@@ -123,15 +125,29 @@ export const MatchItem = styled.div`
     margin: 0;
   }
 `;
+// export const PlayerContainer = styled.div`
+//   display: grid;
+//   /* flex-wrap: wrap; */
+//   width: 300px;
+//   height: 500px;
+//   flex-direction: column;
+//   justify-content: center;
+//   text-align: center;
+//   align-items: center;
+// `;
+
 export const PlayerContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  width: 300px;
-  height: 500px;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(150px, 1fr)
+  ); /* Cambiado para ajustar automáticamente según el espacio */
+  gap: 25px; /* Reducido el gap entre los jugadores */
+  justify-items: center;
   align-items: center;
+  width: 100%;
+  max-width: 400px; /* Reducido el max-width para que los jugadores no estén tan separados */
+  margin: 20px auto; /* Ajustado el margen */
 `;
 
 export const Button = styled.button`
