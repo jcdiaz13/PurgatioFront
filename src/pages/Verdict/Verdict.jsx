@@ -92,7 +92,10 @@ const Verdict = () => {
     setVictimModalOpen(false);
   };
 
-  const openVictimSelection = () => {
+  const openVictimSelection = async () => {
+    // const newPlayerShuffle = players;
+    // shuffle(newPlayerShuffle);
+    // setPlayers(newPlayerShuffle);
     setVictimModalOpen(true);
   };
 
