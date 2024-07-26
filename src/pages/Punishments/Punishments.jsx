@@ -38,11 +38,11 @@ const Punishments = () => {
   // const [contador, setContador] = useState(0);
 
   //Lista de palabras prohibidas
-  const bannedWords = ["muerte"];
+  const bannedWords = ["nazi", "violar"];
 
   // verificar si el texto contiene palabras prohibidas
   const containsBannedWords = (text) => {
-    return bannedWords.some((word) =>
+    return bannedWords.filter((word) =>
       text.toLowerCase().includes(word.toLowerCase())
     );
   };
@@ -124,8 +124,12 @@ const Punishments = () => {
       return;
     }
     // Nueva verificación de palabras prohibidas
-    if (containsBannedWords(text)) {
-      showAlert("error", "El pecado contiene palabras prohibidas.");
+    const bannedWord = containsBannedWords(text);
+    if (bannedWord.length > 0) {
+      showAlert(
+        "error",
+        `El pecado contiene palabras prohibidas: ${bannedWord.join(",")}`
+      );
       return;
     }
     setChangeButton(true);
