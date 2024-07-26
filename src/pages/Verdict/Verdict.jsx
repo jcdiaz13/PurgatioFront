@@ -27,6 +27,7 @@ import { Button } from "./Verdict.styles";
 //Alert
 import Alert from "../../components/Alert";
 import { shuffle } from "../../app/utils/utils";
+import Theme from "../../components/Theme";
 
 const Verdict = () => {
   const navigate = useNavigate();
@@ -207,6 +208,7 @@ const Verdict = () => {
     });
 
   return (
+    <Theme>
     <Container>
       <SubContainer>
         <PlayerContainer>
@@ -277,6 +279,7 @@ const Verdict = () => {
       </SubContainer>
       <Button onClick={handleVotaciones}>Enviar</Button>
     </Container>
+    </Theme>
   );
 };
 

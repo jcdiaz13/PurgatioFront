@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import question from "../../app/assets/gifs/question.gif";
 import { css } from "styled-components";
+import lava from "../../app/assets/gifs/lava.gif";
 
 export const Container = styled.div`
   width: 100vw;
@@ -9,14 +10,22 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   z-index: -3;
-  background: url("https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/01073865290819.5d61d475f0072.jpg")
-    no-repeat center center fixed;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   height: 100vh;
   margin: 0;
   overflow: hidden;
+  ${({ theme }) =>
+    theme.name === "verdugo" &&
+    css`
+      background-image: url(${lava});
+    `}
+  ${({ theme }) =>
+    theme.name === "mago" &&
+    css`
+      background-image: url("https://i.pinimg.com/originals/1b/45/63/1b456377a9dce67a7dc3630260aa7572.gif");
+    `}
 `;
 
 export const SubContainer = styled.div`
