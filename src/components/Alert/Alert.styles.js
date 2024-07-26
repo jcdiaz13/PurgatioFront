@@ -14,7 +14,6 @@ export const AlertWrapper = styled.div`
 export const Popup = styled.div`
   display: flex;
   align-items: center;
-  border-radius: 4px;
   padding: 10px;
   font-weight: 300;
   background-color: ${({ type }) =>
@@ -43,7 +42,6 @@ export const CloseIcon = styled.div`
   margin-left: auto;
   cursor: pointer;
   margin-top: 5px;
-
   svg {
     width: 1.25rem;
     height: 1.25rem;
