@@ -36,7 +36,10 @@ function CreateLobby() {
         showAlert("error", "Por favor ingrese un nombre antes de continuar.");
       }
       if (selectedAvatar === null) {
-        showAlert("alert", "Por favor selecciona un avatar antes de continuar.");
+        showAlert(
+          "alert",
+          "Por favor selecciona un avatar antes de continuar."
+        );
       }
     }
   };
@@ -52,7 +55,7 @@ function CreateLobby() {
   };
 
   const removeAlert = (id) => {
-    setAlerts(alerts.filter(alert => alert.id !== id));
+    setAlerts(alerts.filter((alert) => alert.id !== id));
   };
 
   const closePopup = () => {
@@ -118,7 +121,7 @@ function CreateLobby() {
         </AvatarPopup>
       )}
       <div>
-        {alerts.map(alert => (
+        {alerts.map((alert) => (
           <Alert
             key={alert.id}
             id={alert.id}
