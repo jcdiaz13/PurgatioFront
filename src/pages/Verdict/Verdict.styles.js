@@ -34,7 +34,7 @@ export const SubContainer = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
-  width: 85%;
+  width: 90%;
 `;
 export const Button = styled.button`
   margin-top: 15px;
@@ -91,18 +91,18 @@ export const Button = styled.button`
   &:hover:before {
     color: black;
     ${({ theme }) =>
-      theme.name === "verdugo" &&
-      css`
+    theme.name === "verdugo" &&
+    css`
         background-color: #ffd700 !important;
       `}
     ${({ theme }) =>
-      theme.name === "mago" &&
-      css`
+    theme.name === "mago" &&
+    css`
         background-color: #228b22 !important;
       `}
     ${({ theme }) =>
-      theme.name === "hada" &&
-      css`
+    theme.name === "hada" &&
+    css`
         background-color: #228b22 !important;
       `}
     box-shadow: 0 -2px rgb(0 0 0 / 50%) inset, 0 2px rgb(255 255 255 / 20%) inset, -2px 0 rgb(255 255 255 / 20%) inset, 2px 0 rgb(0 0 0 / 50%) inset;
@@ -353,8 +353,8 @@ export const Overlay = styled.div`
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(5px) contrast(60%);
-  -webkit-backdrop-filter: blur(2px) contrast(60%);
+  backdrop-filter: blur(2px) contrast(80%);
+  -webkit-backdrop-filter: blur(2px) contrast(80%);
   z-index: 3;
 `;
 export const OptionContainer = styled.div`
