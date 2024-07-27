@@ -39,6 +39,7 @@ const Verdict = () => {
   const [votesMap, setVotesMap] = useState(new Map());
   const [sendActive, setSendActive] = useState();
   const [alerts, setAlerts] = useState([]);
+  const [victims, setVictims] = useState({});
 
   useEffect(() => {
     const fetchPlayers = async () => {
@@ -47,6 +48,7 @@ const Verdict = () => {
         const res = response.data;
         shuffle(res);
         setPlayers(res);
+        setVictims(players);
       } catch (error) {
         console.error("Error fetching players:", error);
       }
@@ -212,76 +214,76 @@ const Verdict = () => {
 
   return (
     <Theme>
-    <Container>
-      <SubContainer>
-        <PlayerContainer>
-          <h3>¡Selecciona de quién crees que es cada pecado!</h3>
-          {console.log("Inazuma: ", players)}
-          {renderPlayers()}
-        </PlayerContainer>
-        {modalOpen && (
-          <ModalWrapper>
-            <ModalContent>
-              <p>{selectedPlayer ? selectedPlayer.sin : ""}</p>{" "}
-              {/* Mostrar el pecado del jugador */}
-              <ButtonContainer>
-                <OptionButton onClick={closeModal}>Close</OptionButton>
-                <OptionButton onClick={openVictimSelection}>
-                  Elegir Jugador
-                </OptionButton>
-              </ButtonContainer>
-            </ModalContent>
-          </ModalWrapper>
-        )}
-        {victimModalOpen && (
-          <Overlay>
-            <AvatarPopup>
-              {players.map((victim) => {
-                if (victim.id != playerId) {
-                  const avatarId = victim.avatarId;
-                  const imgObj = avatarImages.find(
-                    (avatarImage) => avatarImage.id === avatarId
-                  );
-                  const alreadyClicked = goThroughVotesMap(victim.id);
-                  return (
-                    <AvatarOption
-                      key={victim.id}
-                      onClick={() => handleVictimSelect(victim)}
-                    >
-                      {/* Optimizar esto, no puede ser que tenga que duplicarlo y no hacer un condicional ternario en la propiedad style, solucionar con styled components si no */}
-                      {!alreadyClicked && (
-                        <img
-                          src={imgObj ? imgObj.img : "default_image_path.png"}
-                          alt={victim.playerName}
-                        />
-                      )}
-                      {alreadyClicked && (
-                        <img
-                          src={imgObj ? imgObj.img : "default_image_path.png"}
-                          alt={victim.playerName}
-                          style={{ filter: `grayscale(100%)` }}
-                        />
-                      )}
-                      <p>{victim.playerName}</p>
-                    </AvatarOption>
-                  );
-                }
-              })}
-            </AvatarPopup>
-          </Overlay>
-        )}
-        {alerts.map((alert) => (
-          <Alert
-            key={alert.id}
-            id={alert.id}
-            type={alert.type}
-            message={alert.message}
-            onClose={removeAlert}
-          />
-        ))}
-      </SubContainer>
-      <Button onClick={handleVotaciones}>Enviar</Button>
-    </Container>
+      <Container>
+        <SubContainer>
+          <PlayerContainer>
+            <h3>¡Selecciona de quién crees que es cada pecado!</h3>
+            {console.log("Inazuma: ", players)}
+            {renderPlayers()}
+          </PlayerContainer>
+          {modalOpen && (
+            <ModalWrapper>
+              <ModalContent>
+                <p>{selectedPlayer ? selectedPlayer.sin : ""}</p>{" "}
+                {/* Mostrar el pecado del jugador */}
+                <ButtonContainer>
+                  <OptionButton onClick={closeModal}>Close</OptionButton>
+                  <OptionButton onClick={openVictimSelection}>
+                    Elegir Jugador
+                  </OptionButton>
+                </ButtonContainer>
+              </ModalContent>
+            </ModalWrapper>
+          )}
+          {victimModalOpen && (
+            <Overlay>
+              <AvatarPopup>
+                {victims.map((victim) => {
+                  if (victim.id != playerId) {
+                    const avatarId = victim.avatarId;
+                    const imgObj = avatarImages.find(
+                      (avatarImage) => avatarImage.id === avatarId
+                    );
+                    const alreadyClicked = goThroughVotesMap(victim.id);
+                    return (
+                      <AvatarOption
+                        key={victim.id}
+                        onClick={() => handleVictimSelect(victim)}
+                      >
+                        {/* Optimizar esto, no puede ser que tenga que duplicarlo y no hacer un condicional ternario en la propiedad style, solucionar con styled components si no */}
+                        {!alreadyClicked && (
+                          <img
+                            src={imgObj ? imgObj.img : "default_image_path.png"}
+                            alt={victim.playerName}
+                          />
+                        )}
+                        {alreadyClicked && (
+                          <img
+                            src={imgObj ? imgObj.img : "default_image_path.png"}
+                            alt={victim.playerName}
+                            style={{ filter: `grayscale(100%)` }}
+                          />
+                        )}
+                        <p>{victim.playerName}</p>
+                      </AvatarOption>
+                    );
+                  }
+                })}
+              </AvatarPopup>
+            </Overlay>
+          )}
+          {alerts.map((alert) => (
+            <Alert
+              key={alert.id}
+              id={alert.id}
+              type={alert.type}
+              message={alert.message}
+              onClose={removeAlert}
+            />
+          ))}
+        </SubContainer>
+        <Button onClick={handleVotaciones}>Enviar</Button>
+      </Container>
     </Theme>
   );
 };
