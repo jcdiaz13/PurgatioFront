@@ -8,12 +8,12 @@ function Home() {
   const { setMusicStarted } = useContext(PlayerContext); // Desestructurar setMusicStarted desde el contexto
 
   const handleCreateLobby = () => {
-    // setMusicStarted(true);
+    setMusicStarted(true);
     navigate("/createlobby");
   };
 
   const handleJoinLobby = () => {
-    // setMusicStarted(true);
+    setMusicStarted(true);
     navigate("/joinlobby");
   };
 
