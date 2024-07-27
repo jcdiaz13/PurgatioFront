@@ -7,6 +7,7 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   height: 100vh;
+  width: 100vw;
   background-image: url("https://i.gifer.com/3Q8c.gif");
   background-repeat: no-repeat;
   background-size: cover;
@@ -172,7 +173,7 @@ export const AvatarContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  backdrop-filter: blur(7px)contrast(80%);
+  backdrop-filter: blur(5px)contrast(80%);
     -webkit-backdrop-filter: blur(5px) contrast(80%);
   cursor: pointer;
   overflow: hidden; /* Añadido para que la imagen no se desborde */
@@ -212,7 +213,7 @@ export const AvatarOption = styled.div`
     box-shadow: 1px 1px 10px white;  }
   &:active {
   transform: translateY(4px)contrast(80%);
-  -webkit-backdrop-filter: blur(2px) contrast(80%);
+  -webkit-backdrop-filter: blur(4px) contrast(80%);
   box-shadow: 1px 1px 10px white; 
 }
 

@@ -158,6 +158,7 @@ export const Container = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   height: 100vh;
+  width: 100vw;
   background-position: center;
   ${({ theme }) =>
     theme.name === "verdugo" &&

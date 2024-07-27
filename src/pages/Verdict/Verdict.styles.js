@@ -14,6 +14,7 @@ export const Container = styled.div`
   background-repeat: no-repeat;
   background-position: center;
   height: 100vh;
+  width: 100vw;
   margin: 0;
   overflow: hidden;
   ${({ theme }) =>
@@ -125,7 +126,7 @@ export const Button = styled.button`
 
 export const Cover = styled.div`
   position: relative;
-  backdrop-filter: blur(2px);
+  backdrop-filter:blur(3px);
   width: 100%;
   height: 100%;
   cursor: pointer;
