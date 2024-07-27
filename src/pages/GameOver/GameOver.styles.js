@@ -1,5 +1,6 @@
-import styled from 'styled-components';
-import { css } from 'styled-components';
+import styled from "styled-components";
+import { css } from "styled-components";
+import lava from "../../app/assets/gifs/lava.gif";
 
 export const Container = styled.div`
   width: 100vw;
@@ -8,31 +9,38 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   z-index: -3;
-  background: url("https://img.itch.zone/aW1hZ2UvMTIxNjU4LzU2MDM4MS5wbmc=/315x250%23c/yrkGs9.png") no-repeat center center fixed;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   height: 100vh;
   margin: 0;
   overflow: hidden;
+  ${({ theme }) =>
+    theme.name === "verdugo" &&
+    css`
+      background-image: url(${lava});
+    `}
+  ${({ theme }) =>
+    theme.name === "mago" &&
+    css`
+      background-image: url("https://i.pinimg.com/originals/1b/45/63/1b456377a9dce67a7dc3630260aa7572.gif");
+    `}
 `;
 
 export const SubContainer = styled.div`
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items:center;
-text-align:center;
-width: 85%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 85%;
 `;
 
 export const Title = styled.h1`
   font-size: 1rem;
   margin-bottom: 20px;
   color: #fff;
-
 `;
-
 
 export const OptionButton = styled.button`
   background-color: lightblue;
@@ -49,12 +57,13 @@ export const OptionButton = styled.button`
 `;
 
 export const PlayerCard = styled.div`
-   display: flex;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 5px;
-  height: 150px;
+  padding: 7px;
+  width: 135px;
+  height: 135px;
   margin: 0.5rem;
   text-align: center;
   font-size: 0.9rem;
@@ -96,19 +105,50 @@ export const PlayerName = styled.p`
 export const Message = styled.p`
   font-size: 1.2rem;
   color: red;
+  background-color: white;
+  border: 1px solid red;
 `;
 
+export const MatchItem = styled.div`
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+
+  img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+
+  p {
+    margin: 0;
+  }
+`;
+// export const PlayerContainer = styled.div`
+//   display: grid;
+//   /* flex-wrap: wrap; */
+//   width: 300px;
+//   height: 500px;
+//   flex-direction: column;
+//   justify-content: center;
+//   text-align: center;
+//   align-items: center;
+// `;
 
 export const PlayerContainer = styled.div`
-display: flex;
-flex-wrap: wrap;
-width:300px;
-height:500px;
-flex-direction: column;
-justify-content: center;
-text-align: center;
-align-items: center
-`
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(150px, 1fr)
+  ); /* Cambiado para ajustar automáticamente según el espacio */
+  gap: 25px; /* Reducido el gap entre los jugadores */
+  justify-items: center;
+  align-items: center;
+  width: 100%;
+  max-width: 400px; /* Reducido el max-width para que los jugadores no estén tan separados */
+  margin: 20px auto; /* Ajustado el margen */
+`;
 
 export const Button = styled.button`
   font-family: Pixellari;
@@ -165,18 +205,18 @@ export const Button = styled.button`
   &:hover:before {
     color: black;
     ${({ theme }) =>
-    theme.name === "verdugo" &&
-    css`
+      theme.name === "verdugo" &&
+      css`
         background-color: #ffd700 !important;
       `}
     ${({ theme }) =>
-    theme.name === "mago" &&
-    css`
+      theme.name === "mago" &&
+      css`
         background-color: #228b22 !important;
       `}
     ${({ theme }) =>
-    theme.name === "hada" &&
-    css`
+      theme.name === "hada" &&
+      css`
         background-color: #228b22 !important;
       `}
     box-shadow: 0 -2px rgb(0 0 0 / 50%) inset, 0 2px rgb(255 255 255 / 20%) inset, -2px 0 rgb(255 255 255 / 20%) inset, 2px 0 rgb(0 0 0 / 50%) inset;

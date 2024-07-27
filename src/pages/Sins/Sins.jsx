@@ -12,7 +12,7 @@ import {
   ScrollText,
 } from "./Sins.styles";
 //import Alert
-import Alert from "../../components/Alert"
+import Alert from "../../components/Alert";
 // import sinsData from '../../app/jsons/gameMastersSins.json';
 import Theme from "../../components/Theme";
 import {
@@ -36,11 +36,11 @@ function Sins() {
   const [showContent, setShowContent] = useState(false); // Estado para controlar la visibilidad del contenido
 
   //Lista de palabras prohibidas
-  const bannedWords = ["muerte"];
+  const bannedWords = ["nazi", "violar"];
 
   // verificar si el texto contiene palabras prohibidas
   const containsBannedWords = (text) => {
-    return bannedWords.some((word) =>
+    return bannedWords.filter((word) =>
       text.toLowerCase().includes(word.toLowerCase())
     );
   };
@@ -81,7 +81,7 @@ function Sins() {
   };
 
   const removeAlert = (id) => {
-    setAlerts(alerts.filter(alert => alert.id !== id));
+    setAlerts(alerts.filter((alert) => alert.id !== id));
   };
 
   const handleInputChange = (e) => {
@@ -107,8 +107,12 @@ function Sins() {
     }
 
     // Nueva verificación de palabras prohibidas
-    if (containsBannedWords(sin)) {
-      showAlert("error", "El pecado contiene palabras prohibidas.");
+    const bannedWord = containsBannedWords(sin);
+    if (bannedWord.length > 0) {
+      showAlert(
+        "error",
+        `El pecado contiene palabras prohibidas: ${bannedWord.join(",")}`
+      );
       return;
     }
 
@@ -133,7 +137,7 @@ function Sins() {
   return (
     <Theme>
       <Container>
-        {alerts.map(alert => (
+        {alerts.map((alert) => (
           <Alert
             key={alert.id}
             id={alert.id}

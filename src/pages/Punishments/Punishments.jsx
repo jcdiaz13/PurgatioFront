@@ -21,12 +21,13 @@ import {
   deletePunish,
 } from "../../app/services/player";
 //Alerts
-import Alert from "../../components/Alert"
+import Alert from "../../components/Alert";
+// import { shuffle } from "../../app/utils/utils";
 
 const Punishments = () => {
   const [text, setText] = useState("");
   const navigate = useNavigate();
-  const { roomId, playerId, players, setPlayers } = useContext(PlayerContext);
+  const { roomId, playerId, players } = useContext(PlayerContext);
   const [assignSin, setAssignSin] = useState("");
   const [changeButton, setChangeButton] = useState(false);
   const [judgePlayerId, setJudgePlayerId] = useState("");
@@ -34,13 +35,14 @@ const Punishments = () => {
   const [contentToShow, setContentToShow] = useState(null);
   const [showContent, setShowContent] = useState(false); // Estado para controlar la visibilidad del contenido
   const [alerts, setAlerts] = useState([]);
+  // const [contador, setContador] = useState(0);
 
   //Lista de palabras prohibidas
-  const bannedWords = ["muerte"];
+  const bannedWords = ["nazi", "violar"];
 
   // verificar si el texto contiene palabras prohibidas
   const containsBannedWords = (text) => {
-    return bannedWords.some((word) =>
+    return bannedWords.filter((word) =>
       text.toLowerCase().includes(word.toLowerCase())
     );
   };
@@ -57,25 +59,30 @@ const Punishments = () => {
   };
 
   const removeAlert = (id) => {
-    setAlerts(alerts.filter(alert => alert.id !== id));
+    setAlerts(alerts.filter((alert) => alert.id !== id));
   };
-
 
   useEffect(() => {
     const intervalId = setInterval(async () => {
       const allPlayersDone = await checkPlayersWithoutPunish();
       if (allPlayersDone) {
-        console.log("No shuffled: ", players);
-        if (shuffleArrayPlayers()) {
-          console.log("Shuffled: ", players);
-          navigate("/verdict");
-        }
+        // shuffleArrayPlayers();
+        // console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaa: ", players);
+
+        // if (shuffleArrayPlayers()) {
+        //   console.log("Shuffled: ", players);
+        //   setContador(contador + 1);
+        // }
+        // if (contador == 2) {
+        //   navigate("/verdict");
+        // }
+        navigate("/verdict");
       }
     }, 2000);
 
     return () => clearInterval(intervalId);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [changeButton]);
+  }, [changeButton, players]);
 
   useEffect(() => {
     if (roomId && playerId) {
@@ -101,26 +108,6 @@ const Punishments = () => {
     }
   };
 
-  // Lo utilizamos para guardar el array de players randomizado en el useEffect justo antes de navegar a la pagina Verdict
-  // Utility function to shuffle an array
-  function shuffleArrayPlayers() {
-    // Make a copy of the array to avoid mutating the original array
-    let shuffledArray = players.slice();
-
-    for (let i = shuffledArray.length - 1; i > 0; i--) {
-      // Generate a random index from 0 to i
-      const j = Math.floor(Math.random() * (i + 1));
-
-      // Swap elements at indices i and j
-      [shuffledArray[i], shuffledArray[j]] = [
-        shuffledArray[j],
-        shuffledArray[i],
-      ];
-    }
-    setPlayers(shuffledArray);
-    return true;
-  }
-
   const handleInputChange = (e) => {
     setText(e.target.value);
   };
@@ -137,8 +124,12 @@ const Punishments = () => {
       return;
     }
     // Nueva verificación de palabras prohibidas
-    if (containsBannedWords(text)) {
-      showAlert("error", "El pecado contiene palabras prohibidas.");
+    const bannedWord = containsBannedWords(text);
+    if (bannedWord.length > 0) {
+      showAlert(
+        "error",
+        `El pecado contiene palabras prohibidas: ${bannedWord.join(",")}`
+      );
       return;
     }
     setChangeButton(true);
@@ -228,7 +219,7 @@ const Punishments = () => {
           )}
         </ButtonContainer>
       </Container>
-      {alerts.map(alert => (
+      {alerts.map((alert) => (
         <Alert
           key={alert.id}
           id={alert.id}
@@ -237,7 +228,6 @@ const Punishments = () => {
           onClose={removeAlert}
         />
       ))}
-
     </Theme>
   );
 };

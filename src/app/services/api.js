@@ -1,8 +1,8 @@
 import axios from "axios";
 
-const baseURL = import.meta.env.VITE_PURGATIO_BACKEND_URL;
-
-export const instance = axios.create({ baseURL });
+export const instance = axios.create({
+  baseURL: "https://purgatio-e1997b11ce6e.herokuapp.com",
+});
 
 export default instance;
 

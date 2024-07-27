@@ -13,6 +13,7 @@ import {
 import { getVotedPlayers } from "../../app/services/player";
 import { PlayerContext } from "../../app/contexts/PlayerContext";
 import avatarImages from "../../app/utils/avatarImages";
+import Theme from "../../components/Theme";
 
 const GameOver = () => {
   const navigate = useNavigate();
@@ -44,6 +45,7 @@ const GameOver = () => {
   };
 
   return (
+    <Theme>
     <Container>
       <SubContainer>
         <Title>¡Aquí están los juagores los cuales habéis adivinado su pecado, es hora de que cumplan su castigo!</Title>
@@ -89,6 +91,7 @@ const GameOver = () => {
       )} */}
       </SubContainer>
     </Container>
+    </Theme>
   );
 };
 
