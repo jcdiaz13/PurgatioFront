@@ -45,11 +45,10 @@ const PopupContent = ({ closePopup, image, name, description, difficulty }) => {
       setRoomOwner(true);
       setPlayerId(player.data.id);
 
-      // Ensuring state updates before navigation
       navigate("/lobby");
     } catch (error) {
       console.error("Error creating room or player:", error);
-      setBlockButtons(false); // Re-enable the button in case of error
+      setBlockButtons(false); // Reactiva el botón en caso de error
     }
   };
 
