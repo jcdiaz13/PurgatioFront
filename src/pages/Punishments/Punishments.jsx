@@ -22,6 +22,8 @@ import {
 } from "../../app/services/player";
 //Alerts
 import Alert from "../../components/Alert";
+import gameMasters from "../../app/utils/gameMasters";
+import {getRoomById} from '../../app/services/room';
 // import { shuffle } from "../../app/utils/utils";
 
 const Punishments = () => {
@@ -35,6 +37,7 @@ const Punishments = () => {
   const [contentToShow, setContentToShow] = useState(null);
   const [showContent, setShowContent] = useState(false); // Estado para controlar la visibilidad del contenido
   const [alerts, setAlerts] = useState([]);
+  const [gamemode, setGamemode] = useState(null);
   // const [contador, setContador] = useState(0);
 
   //Lista de palabras prohibidas
@@ -105,6 +108,28 @@ const Punishments = () => {
         setAssignSin(judgePlayer.sin);
         setJudgePlayerId(judgePlayer.id);
       }
+    }
+  };
+
+  useEffect(() => {
+    const getRoomData = async () => {
+      if (roomId) {
+          const room = await getRoomById(roomId);
+          setGamemode(room.gamemode);
+        }
+      }
+    getRoomData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [roomId]);
+
+  const handleClickSuggestSin = async () => {
+    if (gamemode === 2) {
+      const heladito = gameMasters.find((character) => character.id === 2);
+      const randomPunishment =
+        heladito.punishments[
+          Math.floor(Math.random() * heladito.punishments.length)
+        ];
+      setText(randomPunishment);
     }
   };
 
@@ -200,6 +225,9 @@ const Punishments = () => {
                     )}
                     {!changeButton && (
                       <Button onClick={handleNext}>Enviar</Button>
+                    )}
+                    {gamemode === 2 && (
+                      <Button onClick={handleClickSuggestSin}>Sugerencia</Button>
                     )}
                   </ButtonContainer>
                 </>
