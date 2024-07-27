@@ -5,6 +5,7 @@ import {
   Container,
   Textarea,
   ButtonContainer,
+  ButtonContainer2,
   Button,
   SubTitle,
   Scroll,
@@ -12,6 +13,7 @@ import {
   ToggleButton,
   ScrollText,
   Sin,
+  ButtonSugerencia
 } from "./Punishments.styles";
 import Theme from "../../components/Theme";
 import { PlayerContext } from "../../app/contexts/PlayerContext";
@@ -23,7 +25,7 @@ import {
 //Alerts
 import Alert from "../../components/Alert";
 import gameMasters from "../../app/utils/gameMasters";
-import {getRoomById} from '../../app/services/room';
+import { getRoomById } from '../../app/services/room';
 // import { shuffle } from "../../app/utils/utils";
 
 const Punishments = () => {
@@ -114,10 +116,10 @@ const Punishments = () => {
   useEffect(() => {
     const getRoomData = async () => {
       if (roomId) {
-          const room = await getRoomById(roomId);
-          setGamemode(room.gamemode);
-        }
+        const room = await getRoomById(roomId);
+        setGamemode(room.gamemode);
       }
+    }
     getRoomData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [roomId]);
@@ -127,7 +129,7 @@ const Punishments = () => {
       const heladito = gameMasters.find((character) => character.id === 2);
       const randomPunishment =
         heladito.punishments[
-          Math.floor(Math.random() * heladito.punishments.length)
+        Math.floor(Math.random() * heladito.punishments.length)
         ];
       setText(randomPunishment);
     }
@@ -227,7 +229,7 @@ const Punishments = () => {
                       <Button onClick={handleNext}>Enviar</Button>
                     )}
                     {gamemode === 2 && (
-                      <Button onClick={handleClickSuggestSin}>Sugerencia</Button>
+                      <ButtonSugerencia onClick={handleClickSuggestSin}>Sugerencia</ButtonSugerencia>
                     )}
                   </ButtonContainer>
                 </>
@@ -235,7 +237,7 @@ const Punishments = () => {
             </ScrollText>
           </Scroll>
         </ScrollContainer>
-        <ButtonContainer>
+        <ButtonContainer2>
           {contentToShow === "sin" ? (
             <ToggleButton onClick={() => toggleScroll("punish")}>
               Juzgar Pecado
@@ -245,7 +247,7 @@ const Punishments = () => {
               Ver Pecado
             </ToggleButton>
           )}
-        </ButtonContainer>
+        </ButtonContainer2>
       </Container>
       {alerts.map((alert) => (
         <Alert

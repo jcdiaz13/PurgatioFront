@@ -158,6 +158,7 @@ export const Container = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   height: 100vh;
+  width: 100vw;
   background-position: center;
   ${({ theme }) =>
     theme.name === "verdugo" &&
@@ -244,7 +245,7 @@ export const Copy = styled.button`
 `;
 export const Name = styled.span`
   position: absolute;
-  width: 88px;
+ width: 95px;
   letter-spacing: 1px;
   white-space: unset;
   font-family: Pixellari;

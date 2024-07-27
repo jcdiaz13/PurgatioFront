@@ -19,6 +19,7 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   height: 100vh;
+  width: 100vw;
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
@@ -66,7 +67,7 @@ export const Textarea = styled.textarea`
   margin-bottom: 1rem;
   border-radius: 4px;
   font-size: 1rem;
-  height: 222px;
+  height: 185px;
   width: 215px; /* Ajustado para que ocupe todo el ancho disponible */
   text-align: center;
   border: none;
@@ -81,6 +82,16 @@ export const Textarea = styled.textarea`
 export const ButtonContainer = styled.div`
   position: relative;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  margin-top: -2rem;
+`;
+export const ButtonContainer2 = styled.div`
+  position: relative;
+  display: flex;
   justify-content: center;
   width: 100%;
   margin-top: -2rem;
@@ -88,7 +99,7 @@ export const ButtonContainer = styled.div`
 
 export const Button = styled.button`
   padding: 0.5rem 1rem;
-  margin-bottom: 15px;
+  margin-bottom: 5px;
   border: 1px solid #743c09;
   border-radius: 2px;
   font-size: 1rem;
@@ -99,6 +110,22 @@ export const Button = styled.button`
   width: 80px;
   text-align: center;
   margin-top: 2px;
+
+  &:hover {
+    background-color: white;
+  }
+`;
+export const ButtonSugerencia = styled.button`
+  padding: 0.5rem 1rem;
+  margin-bottom: 15px;
+  border: 1px solid #743c09;
+  border-radius: 2px;
+  font-size: 1rem;
+  font-weight: bolder;
+  background-color: transparent;
+  color: #743c09;
+  cursor: pointer;
+  text-align: center;
 
   &:hover {
     background-color: white;
