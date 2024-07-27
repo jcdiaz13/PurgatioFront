@@ -2,6 +2,7 @@ import styled from "styled-components";
 import question from "../../app/assets/gifs/questionVerdict.gif";
 import { css } from "styled-components";
 import lava from "../../app/assets/gifs/lava.gif";
+import brick from "../../app/assets/img/Black_Brick.jpeg"
 
 export const Container = styled.div`
   width: 100vw;
@@ -146,7 +147,7 @@ export const Cover = styled.div`
     position: relative;
     z-index: 2;
     color: white;
-    text-shadow: 1px 1px 8px black;
+    text-shadow: 1px 1px 10px #000;
   }
 `;
 
@@ -403,7 +404,9 @@ export const PlayerContainer = styled.div`
   justify-content: center;
   width: 300px;
   h3 {
-    font-size: 1.2rem;
+    text-shadow: 2px 2px 7px #000;
+    font-weight: bold;
+    font-size: 1.3rem;
     color: white;
     margin-bottom: 10px;
   }

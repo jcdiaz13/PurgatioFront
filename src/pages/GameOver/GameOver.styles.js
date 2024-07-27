@@ -102,11 +102,14 @@ export const PlayerName = styled.p`
   font-size: 1.2rem;
 `;
 
-export const Message = styled.p`
-  font-size: 1.2rem;
-  color: red;
-  background-color: white;
-  border: 1px solid red;
+export const Message = styled.p` 
+    text-shadow: 2px 2px 7px #000;
+   // font-weight: bold;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  color: white;
+  border: 1px solid white;
+  backdrop-filter: blur(2px);
 `;
 
 export const MatchItem = styled.div`
