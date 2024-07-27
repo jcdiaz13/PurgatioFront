@@ -1,5 +1,17 @@
 // src/components/Alert/Alert.styles.js
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+
+const slideDown = keyframes`
+  0% {
+    transform: translateX(-50%) translateY(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+`;
+
 
 export const AlertWrapper = styled.div`
   position: fixed;
@@ -9,6 +21,7 @@ export const AlertWrapper = styled.div`
   margin-top: 20px;
   box-shadow: 4px 4px 10px -10px rgba(0, 0, 0, 1);
   z-index: 1000;
+  animation: ${slideDown} 0.5s ease-out;
 `;
 
 export const Popup = styled.div`

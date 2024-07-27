@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import question from "../../app/assets/gifs/question.gif";
+import question from "../../app/assets/gifs/questionVerdict.gif";
 import { css } from "styled-components";
 import lava from "../../app/assets/gifs/lava.gif";
 
