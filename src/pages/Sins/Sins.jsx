@@ -10,6 +10,7 @@ import {
   Scroll,
   ScrollContainer,
   ScrollText,
+  WaitingPlayers,
 } from "./Sins.styles";
 //import Alert
 import Alert from "../../components/Alert";
@@ -23,6 +24,7 @@ import {
   deleteSin,
 } from "../../app/services/player";
 import { PlayerContext } from "../../app/contexts/PlayerContext"; // Ajusta la ruta según donde tengas PlayerContext
+import Loader from "../../components/StyledComponents/Loader";
 
 function Sins() {
   const [alerts, setAlerts] = useState([]);
@@ -34,6 +36,7 @@ function Sins() {
   const [isOpen, setIsOpen] = useState(false);
   const [contentToShow, setContentToShow] = useState(null);
   const [showContent, setShowContent] = useState(false); // Estado para controlar la visibilidad del contenido
+  const [waiting, setWaiting] = useState(false); // Nuevo estado para controlar la visibilidad de WaitingPlayers
 
   //Lista de palabras prohibidas
   const bannedWords = ["nazi", "violar"];
@@ -117,6 +120,7 @@ function Sins() {
     }
 
     setChangeButton(true);
+    setWaiting(true); // Mostrar WaitingPlayers después de enviar
     try {
       console.log(roomId, sin);
       await createSin(playerId, { sin: sin });
@@ -129,8 +133,10 @@ function Sins() {
       }
     }
   };
+
   const handleEditSin = async () => {
     setChangeButton(false);
+    setWaiting(false); // Ocultar WaitingPlayers al editar
     await deleteSin(playerId);
   };
 
@@ -146,7 +152,6 @@ function Sins() {
             onClose={removeAlert}
           />
         ))}
-
         <ScrollContainer>
           <Scroll isOpen={isOpen}>
             <ScrollText className={showContent ? "fade-in" : ""}>
@@ -169,6 +174,10 @@ function Sins() {
                 )}
                 {!changeButton && <Button onClick={handleNext}>Enviar</Button>}
               </ButtonContainer>
+              <WaitingPlayers className={waiting ? "visible" : ""}>
+                <h3>Esperando al resto de jugadores</h3>
+                <Loader />
+              </WaitingPlayers>
             </ScrollText>
           </Scroll>
         </ScrollContainer>

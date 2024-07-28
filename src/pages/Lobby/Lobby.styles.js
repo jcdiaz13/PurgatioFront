@@ -3,6 +3,7 @@ import helado from "../../app/assets/gifs/ice-cream.gif";
 import verdugo from "../../app/assets/gifs/reaper.gif";
 import lava from "../../app/assets/gifs/lava.gif";
 import nube from "../../app/assets/gifs/nuve.gif";
+import pergaminolado from "../../app/assets/img/pergaminolado.png"
 
 export const PlayerContainer = styled.div`
   display: grid;
@@ -261,4 +262,26 @@ export const Name = styled.span`
   text-align: center;
   overflow: hidden;
   white-space: nowrap;
+`;
+
+export const WaitingPlayers = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  bottom: 0;
+  font-family: Pixellari;
+  text-shadow: 0 2px 0 rgb(0 0 0 / 25%);
+  color: black;
+  background-image: url(${pergaminolado});
+  background-repeat: no-repeat;
+  width: 200px;
+  height: 50px;
+  
+
+  h3 {
+  font-size:0.9rem;
+  margin-left: 3px;
+  margin-right: 2px;   
+     }
 `;

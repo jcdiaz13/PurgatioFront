@@ -1,6 +1,8 @@
 import styled, { css } from "styled-components";
 import pergamino from "../../app/assets/img/pergamino.png";
 import lava from "../../app/assets/gifs/lava.gif";
+import pergaminolado from "../../app/assets/img/pergaminolado.png"
+
 
 export const Container = styled.div`
   @keyframes fadeIn {
@@ -163,5 +165,37 @@ export const ScrollText = styled.div`
     to {
       opacity: 1;
     }
+  }
+`;
+
+export const WaitingPlayers = styled.div`
+  display: flex;
+  align-items: center;        /* Centrar verticalmente */
+  justify-content: center;    /* Centrar horizontalmente */
+  position: fixed;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  font-family: Pixellari;
+  text-shadow: 0 2px 0 rgb(0 0 0 / 25%);
+  color: black;
+  background-repeat: no-repeat;
+  width: 80%;                 /* Ancho adaptativo */
+  max-width: 400px;           /* Ancho máximo */
+  height: 50px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease-in-out, visibility 0.5s;
+
+  &.visible {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  h3 {
+    font-size: 0.9rem;
+    margin-left: 16px;
+    margin-right: 2.2px;
+    color:white;
   }
 `;
