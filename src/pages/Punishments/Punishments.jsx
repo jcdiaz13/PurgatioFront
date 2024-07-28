@@ -129,14 +129,12 @@ const Punishments = () => {
   }, [roomId]);
 
   const handleClickSuggestSin = async () => {
-    if (gamemode === 2) {
-      const heladito = gameMasters.find((character) => character.id === 2);
-      const randomPunishment =
-        heladito.punishments[
-          Math.floor(Math.random() * heladito.punishments.length)
-        ];
-      setText(randomPunishment);
-    }
+    const gameMaster = gameMasters.find((mode) => mode.id === gamemode);
+    const randomPunishment =
+      gameMaster.punishments[
+        Math.floor(Math.random() * gameMaster.punishments.length)
+      ];
+    setText(randomPunishment);
   };
 
   const handleInputChange = (e) => {
@@ -234,11 +232,9 @@ const Punishments = () => {
                     {!changeButton && (
                       <Button onClick={handleNext}>Enviar</Button>
                     )}
-                    {gamemode === 2 && (
-                      <ButtonSugerencia onClick={handleClickSuggestSin}>
-                        Sugerencia
-                      </ButtonSugerencia>
-                    )}
+                    <ButtonSugerencia onClick={handleClickSuggestSin}>
+                      Sugerencia
+                    </ButtonSugerencia>
                   </ButtonContainer>
                 </>
               )}

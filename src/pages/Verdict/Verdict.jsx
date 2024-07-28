@@ -60,7 +60,8 @@ const Verdict = () => {
         const res = response.data;
         shuffle(res);
         setPlayers(res);
-        setVictims(players);
+        // shuffle(res); pabloooo ayudaaaaaaaa
+        setVictims(res);
         setBlockButtons(false);
       } catch (error) {
         console.error("Error fetching players:", error);
@@ -253,7 +254,7 @@ const Verdict = () => {
           {victimModalOpen && (
             <Overlay>
               <AvatarPopup>
-                {players.map((victim) => {
+                {victims.map((victim) => {
                   if (victim.id != playerId) {
                     const avatarId = victim.avatarId;
                     const imgObj = avatarImages.find(

@@ -6,7 +6,7 @@ import { createPlayer, getPlayersByRoomId } from "../../app/services/player";
 import { getGameStatus } from "../../app/services/room";
 import avatarImages from "../../app/utils/avatarImages";
 import interrogante from "../../app/assets/gifs/question.gif";
-import Alert from "../../components/Alert"
+import Alert from "../../components/Alert";
 
 import {
   Container,
@@ -58,9 +58,8 @@ function JoinLobby() {
   };
 
   const removeAlert = (id) => {
-    setAlerts(alerts.filter(alert => alert.id !== id));
+    setAlerts(alerts.filter((alert) => alert.id !== id));
   };
-
 
   const handleAvatarSelect = (avatar) => {
     setSelectedAvatar(avatar);
@@ -87,7 +86,10 @@ function JoinLobby() {
       return;
     }
     if (!trimmedName || !roomId) {
-      showAlert("alert", "Por favor ingrese un nombre y un ID de sala antes de continuar.");
+      showAlert(
+        "alert",
+        "Por favor ingrese un nombre y un ID de sala antes de continuar."
+      );
       return;
     }
 
@@ -96,15 +98,18 @@ function JoinLobby() {
 
     try {
       const players = await getPlayersByRoomId(roomId);
-      if (players.data.length >= 6) {
-        showAlert("alert", "Límite excedido. Máximo 6 jugadores.");
+      if (players.data.length >= 8) {
+        showAlert("alert", "Límite excedido. Máximo 8 jugadores.");
         setBlockButtons(false);
         return;
       }
 
       const gameStatus = await checkGameStatus();
       if (gameStatus === true) {
-        showAlert("alert", "La sala no está accesible porque el juego ya ha comenzado.");
+        showAlert(
+          "alert",
+          "La sala no está accesible porque el juego ya ha comenzado."
+        );
         setBlockButtons(false);
         return;
       }
@@ -180,7 +185,7 @@ function JoinLobby() {
           })}
         </AvatarPopup>
       )}
-      {alerts.map(alert => (
+      {alerts.map((alert) => (
         <Alert
           key={alert.id}
           id={alert.id}
@@ -189,7 +194,6 @@ function JoinLobby() {
           onClose={removeAlert}
         />
       ))}
-
     </Container>
   );
 }

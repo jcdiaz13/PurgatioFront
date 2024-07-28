@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { css } from "styled-components";
 import lava from "../../app/assets/gifs/lava.gif";
+import nube from "../../app/assets/gifs/nuve.gif";
 
 export const Container = styled.div`
   width: 100vw;
@@ -37,18 +38,18 @@ export const SubContainer = styled.div`
   height: 90%;
 `;
 export const Overlay = styled.div`
-display: flex;
-flex-direction: column;
-position: fixed;
-align-items: center;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-background: rgba(0, 0, 0, 0.7);  
-z-index: 3;
-backdrop-filter: blur(5px)contrast(80%);
-    -webkit-backdrop-filter: blur(5px) contrast(80%);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 3;
+  backdrop-filter: blur(5px) contrast(80%);
+  -webkit-backdrop-filter: blur(5px) contrast(80%);
 `;
 export const OptionButton = styled.button`
   background-color: lightblue;
@@ -100,8 +101,13 @@ export const PlayerCard = styled.div`
     margin-top: 0px;
     font-size: 18px;
     font-weight: bold;
-    color: white;
-    background: transparent;
+    color: #cc1818;
+    /* background: white; */
+    background-image: url(${nube});
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 90px;
   }
 `;
 
@@ -157,7 +163,7 @@ export const Button = styled.button`
   display: flex;
   position: relative;
   align-items: center;
-  justify-content: center;  
+  justify-content: center;
   bottom: 10px;
   user-select: none;
   cursor: pointer;
@@ -201,18 +207,18 @@ export const Button = styled.button`
   &:hover:before {
     color: black;
     ${({ theme }) =>
-    theme.name === "verdugo" &&
-    css`
+      theme.name === "verdugo" &&
+      css`
         background-color: #ffd700 !important;
       `}
     ${({ theme }) =>
-    theme.name === "mago" &&
-    css`
+      theme.name === "mago" &&
+      css`
         background-color: #228b22 !important;
       `}
     ${({ theme }) =>
-    theme.name === "hada" &&
-    css`
+      theme.name === "hada" &&
+      css`
         background-color: #228b22 !important;
       `}
     box-shadow: 0 -2px rgb(0 0 0 / 50%) inset, 0 2px rgb(255 255 255 / 20%) inset, -2px 0 rgb(255 255 255 / 20%) inset, 2px 0 rgb(0 0 0 / 50%) inset;
@@ -242,7 +248,7 @@ export const ButtonInfo = styled.button`
   display: flex;
   position: relative;
   align-items: center;
-  justify-content: center;  
+  justify-content: center;
   bottom: 25px;
   user-select: none;
   cursor: pointer;
@@ -287,18 +293,18 @@ export const ButtonInfo = styled.button`
   &:hover:before {
     color: black;
     ${({ theme }) =>
-    theme.name === "verdugo" &&
-    css`
+      theme.name === "verdugo" &&
+      css`
         background-color: #ffd700 !important;
       `}
     ${({ theme }) =>
-    theme.name === "mago" &&
-    css`
+      theme.name === "mago" &&
+      css`
         background-color: #228b22 !important;
       `}
     ${({ theme }) =>
-    theme.name === "hada" &&
-    css`
+      theme.name === "hada" &&
+      css`
         background-color: #228b22 !important;
       `}
     box-shadow: 0 -2px rgb(0 0 0 / 50%) inset, 0 2px rgb(255 255 255 / 20%) inset, -2px 0 rgb(255 255 255 / 20%) inset, 2px 0 rgb(0 0 0 / 50%) inset;
@@ -320,7 +326,7 @@ export const ButtonInfo = styled.button`
 `;
 
 export const AvatarPopup = styled.div`
-margin-top: 20px;
+  margin-top: 20px;
   position: relative;
   width: 320px;
   display: flex;
@@ -332,20 +338,19 @@ margin-top: 20px;
 `;
 
 export const MiniInfo = styled.p`
-font-size: 0.95rem;
-color: #c0c0c0;
-span{
-  text-decoration: underline;
-  font-size: 1.1rem;
-}
+  font-size: 0.95rem;
+  color: #c0c0c0;
+  span {
+    text-decoration: underline;
+    font-size: 1.1rem;
+  }
 `;
 export const MiniInfo2 = styled.p`
-margin-top: 25px;
-font-size: 0.95rem;
-color: #c0c0c0;
+  margin-top: 25px;
+  font-size: 0.95rem;
+  color: #c0c0c0;
 `;
 
 export const Info = styled.p`
-color: white;
+  color: white;
 `;
-

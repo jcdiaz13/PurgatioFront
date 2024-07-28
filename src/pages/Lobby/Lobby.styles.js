@@ -3,7 +3,6 @@ import helado from "../../app/assets/gifs/ice-cream.gif";
 import verdugo from "../../app/assets/gifs/reaper.gif";
 import lava from "../../app/assets/gifs/lava.gif";
 import nube from "../../app/assets/gifs/nuve.gif";
-import pergaminolado from "../../app/assets/img/pergaminolado.png"
 
 export const PlayerContainer = styled.div`
   display: grid;
@@ -73,18 +72,18 @@ export const Button = styled.button`
   &:hover:before {
     color: black;
     ${({ theme }) =>
-    theme.name === "verdugo" &&
-    css`
+      theme.name === "verdugo" &&
+      css`
         background-color: #ffd700 !important;
       `}
     ${({ theme }) =>
-    theme.name === "mago" &&
-    css`
+      theme.name === "mago" &&
+      css`
         background-color: #228b22 !important;
       `}
     ${({ theme }) =>
-    theme.name === "hada" &&
-    css`
+      theme.name === "hada" &&
+      css`
         background-color: #228b22 !important;
       `}
     box-shadow: 0 -2px rgb(0 0 0 / 50%) inset, 0 2px rgb(255 255 255 / 20%) inset, -2px 0 rgb(255 255 255 / 20%) inset, 2px 0 rgb(0 0 0 / 50%) inset;
@@ -233,13 +232,13 @@ export const Copy = styled.button`
   }
   &:hover {
     ${({ theme }) =>
-    theme.name === "verdugo" &&
-    css`
+      theme.name === "verdugo" &&
+      css`
         background-color: #ffd700 !important;
       `}
     ${({ theme }) =>
-    theme.name === "mago" &&
-    css`
+      theme.name === "mago" &&
+      css`
         background-color: #228b22 !important;
       `}
   }
@@ -275,11 +274,10 @@ export const WaitingPlayers = styled.div`
   color: white;
   width: 400px;
   height: 50px;
-  
 
   h3 {
-  font-size:0.9rem;
-  margin-left: 3px;
-  margin-right: 2px;   
-     }
+    font-size: 0.9rem;
+    margin-left: 3px;
+    margin-right: 2px;
+  }
 `;
