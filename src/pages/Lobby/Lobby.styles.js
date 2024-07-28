@@ -246,7 +246,7 @@ export const Copy = styled.button`
 `;
 export const Name = styled.span`
   position: absolute;
- width: 95px;
+  width: 90px;
   letter-spacing: 1px;
   white-space: unset;
   font-family: Pixellari;
