@@ -26,16 +26,12 @@ const gameMasters = [
     "description": "Esta es la dificultad estándar, podrás añadir tus pecados e historias y la gente te juzgará y castigará dependiendo de la magnitud de ellos!",
     "img": helado,
     "punishments": [
-      "Hacer 20 sentadillas.",
-      "Comer una cucharadita de mostaza.",
-      "Bailar sin música durante 1 minuto.",
-      "Beber un vaso de agua de un solo trago.",
-      "Hablar con un acento extraño durante 5 minutos.",
-      "Hacer 15 flexiones.",
-      "Llevar la ropa al revés durante 10 minutos.",
-      "Cantar una canción de amor enfrente de todos.",
-      "Pintar un bigote en tu cara con un marcador lavable.",
-      "Hablar como un robot por los próximos 3 minutos."
+      "Ir hasta la orilla de la playa y mientras miras el mar gritar ¡SOY POSEIDON! el dios de los mares.",
+      "Ir de rodillas de donde esta tu toalla hasta el mar y no pares hasta que el agua te llegue por las costillas",
+      "Caminar de espaldas desde tu toalla hasta la orilla del mar sin mirar hacia adelante.",
+      "Correr desde la orilla hasta el mar y volver arrastrándote sobre tu estómago en la arena.",
+      "Te conviertes en un perro durante 2 minutos",
+      "Acercate a otra persona y dile si te puede poner de su crema",
     ]
   }
 ]

@@ -1,7 +1,8 @@
 import styled from "styled-components";
-import question from "../../app/assets/gifs/question.gif";
+import question from "../../app/assets/gifs/questionVerdict.gif";
 import { css } from "styled-components";
 import lava from "../../app/assets/gifs/lava.gif";
+import brick from "../../app/assets/img/Black_Brick.jpeg"
 
 export const Container = styled.div`
   width: 100vw;
@@ -14,6 +15,7 @@ export const Container = styled.div`
   background-repeat: no-repeat;
   background-position: center;
   height: 100vh;
+  width: 100vw;
   margin: 0;
   overflow: hidden;
   ${({ theme }) =>
@@ -29,15 +31,15 @@ export const Container = styled.div`
 `;
 
 export const SubContainer = styled.div`
-display: flex;
-flex-wrap: wrap;
-justify-content: center;
-align-items:center;
-text-align:center;
-width: 85%;
-`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 90%;
+`;
 export const Button = styled.button`
-margin-top:15px;
+  margin-top: 15px;
   font-family: Pixellari;
   font-size: 1rem;
   background-color: black;
@@ -125,7 +127,7 @@ margin-top:15px;
 
 export const Cover = styled.div`
   position: relative;
-  backdrop-filter: blur(2px);
+  backdrop-filter:blur(3px);
   width: 100%;
   height: 100%;
   cursor: pointer;
@@ -145,7 +147,7 @@ export const Cover = styled.div`
     position: relative;
     z-index: 2;
     color: white;
-    text-shadow: 1px 1px 8px black;
+    text-shadow: 1px 1px 10px #000;
   }
 `;
 
@@ -170,7 +172,7 @@ export const Book = styled.div`
 `;
 
 export const ModalWrapper = styled.div`
-   position: absolute;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100vw;
@@ -186,14 +188,14 @@ export const ModalWrapper = styled.div`
 `;
 
 export const ModalContent = styled.div`
-width:80%;
+  width: 80%;
   color: white;
   align-items: center;
   justify-content: center;
   text-align: center;
   overflow: hidden;
   word-wrap: break-word; /* Permite el corte de palabras largas */
-    white-space: normal; /* Permite que el texto ocupe múltiples líneas */
+  white-space: normal; /* Permite que el texto ocupe múltiples líneas */
   h3 {
     font-size: 1.1rem;
     margin-bottom: 10px;
@@ -228,7 +230,7 @@ export const OptionButton = styled.button`
   border: 0;
   z-index: 1;
   user-select: none;
-  margin-top:5px;
+  margin-top: 5px;
   cursor: pointer;
   letter-spacing: 1px;
   white-space: unset;
@@ -305,13 +307,13 @@ export const AvatarOption = styled.div`
   cursor: pointer;
   overflow: hidden; /* Asegura que la imagen no se desborde del contenedor */
   box-sizing: border-box; /* Incluye padding en el tamaño total del elemento */
-  
+
   &:focus {
     transform: translateY(4px);
     box-shadow: 1px 1px 10px white;
     background-color: white;
   }
-  
+
   &:hover {
     box-shadow: 1px 1px 10px white;
   }
@@ -333,25 +335,28 @@ export const AvatarOption = styled.div`
 
 // Estilo para el contenedor padre
 export const AvatarPopup = styled.div`
- display: flex;
+  display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  width: 340px;
   align-items: center;
-  height: 100vh; /* Asegura que el contenedor ocupe toda la altura de la pantalla */
-  width: 100vw; /* Asegura que el contenedor ocupe toda la anchura de la pantalla */
+  /* height: 100vh; Asegura que el contenedor ocupe toda la altura de la pantalla */
+  /* width: 100vw; Asegura que el contenedor ocupe toda la anchura de la pantalla */
   overflow: auto; /* Permite el desplazamiento si hay desbordamiento */
   box-sizing: border-box;
 `;
 export const Overlay = styled.div`
-
   position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(5px)contrast(60%);
-  -webkit-backdrop-filter: blur(2px) contrast(60%);
+  backdrop-filter: blur(2px) contrast(80%);
+  -webkit-backdrop-filter: blur(2px) contrast(80%);
   z-index: 3;
 `;
 export const OptionContainer = styled.div`
@@ -383,24 +388,26 @@ export const Message = styled.div`
 `;
 
 export const ButtonContainer = styled.div`
-display:flex;
+  display: flex;
   position: relative;
   justify-content: center;
-  text-align:center;
-  align-items:center;
+  text-align: center;
+  align-items: center;
   width: 100%;
   gap: 10px;
   margin-top: 10px;
 `;
 
 export const PlayerContainer = styled.div`
-display: flex;
-flex-wrap: wrap;
-justify-content: center;
-width: 300px;
-h3{
-  font-size: 1.2rem;
-  color: white;
-  margin-bottom:10px;
-}
-`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 300px;
+  h3 {
+    text-shadow: 2px 2px 7px #000;
+    font-weight: bold;
+    font-size: 1.3rem;
+    color: white;
+    margin-bottom: 10px;
+  }
+`;

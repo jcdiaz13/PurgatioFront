@@ -62,8 +62,8 @@ export const PlayerCard = styled.div`
   justify-content: center;
   align-items: center;
   padding: 7px;
-  width: 135px;
-  height: 135px;
+  width: 150px;
+  height: 150px;
   margin: 0.5rem;
   text-align: center;
   font-size: 0.9rem;
@@ -102,11 +102,14 @@ export const PlayerName = styled.p`
   font-size: 1.2rem;
 `;
 
-export const Message = styled.p`
-  font-size: 1.2rem;
-  color: red;
-  background-color: white;
-  border: 1px solid red;
+export const Message = styled.p` 
+    text-shadow: 2px 2px 7px #000;
+   // font-weight: bold;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  color: white;
+  border: 1px solid white;
+  backdrop-filter: blur(2px);
 `;
 
 export const MatchItem = styled.div`
@@ -125,30 +128,30 @@ export const MatchItem = styled.div`
     margin: 0;
   }
 `;
+export const PlayerContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  width: 340px;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  overflow: auto; /* Permite el desplazamiento si hay desbordamiento */
+  box-sizing: border-box;
+`;
+
 // export const PlayerContainer = styled.div`
 //   display: grid;
-//   /* flex-wrap: wrap; */
-//   width: 300px;
-//   height: 500px;
-//   flex-direction: column;
-//   justify-content: center;
-//   text-align: center;
+//   grid-template-columns: repeat(
+//     auto-fill,
+//     minmax(150px, 1fr)
+//   ); /* Cambiado para ajustar automáticamente según el espacio */
+//   gap: 25px; /* Reducido el gap entre los jugadores */
+//   justify-items: center;
 //   align-items: center;
+//   width: 100%;
+//   max-width: 400px; /* Reducido el max-width para que los jugadores no estén tan separados */
+//   margin: 20px auto; /* Ajustado el margen */
 // `;
-
-export const PlayerContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(
-    auto-fill,
-    minmax(150px, 1fr)
-  ); /* Cambiado para ajustar automáticamente según el espacio */
-  gap: 25px; /* Reducido el gap entre los jugadores */
-  justify-items: center;
-  align-items: center;
-  width: 100%;
-  max-width: 400px; /* Reducido el max-width para que los jugadores no estén tan separados */
-  margin: 20px auto; /* Ajustado el margen */
-`;
 
 export const Button = styled.button`
   font-family: Pixellari;
@@ -205,18 +208,18 @@ export const Button = styled.button`
   &:hover:before {
     color: black;
     ${({ theme }) =>
-      theme.name === "verdugo" &&
-      css`
+    theme.name === "verdugo" &&
+    css`
         background-color: #ffd700 !important;
       `}
     ${({ theme }) =>
-      theme.name === "mago" &&
-      css`
+    theme.name === "mago" &&
+    css`
         background-color: #228b22 !important;
       `}
     ${({ theme }) =>
-      theme.name === "hada" &&
-      css`
+    theme.name === "hada" &&
+    css`
         background-color: #228b22 !important;
       `}
     box-shadow: 0 -2px rgb(0 0 0 / 50%) inset, 0 2px rgb(255 255 255 / 20%) inset, -2px 0 rgb(255 255 255 / 20%) inset, 2px 0 rgb(0 0 0 / 50%) inset;

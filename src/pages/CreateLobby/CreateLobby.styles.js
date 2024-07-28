@@ -8,6 +8,7 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   height: 100vh;
+  width: 100vw;
   background-image: url(https://i.gifer.com/3Q8c.gif);
   background-repeat: no-repeat;
   background-size: cover;

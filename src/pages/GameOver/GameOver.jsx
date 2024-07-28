@@ -46,36 +46,35 @@ const GameOver = () => {
 
   return (
     <Theme>
-    <Container>
-      <SubContainer>
-        <Title>¡Aquí están los juagores los cuales habéis adivinado su pecado, es hora de que cumplan su castigo!</Title>
-        <Message>Los Condenados:</Message>
-        <PlayerContainer>
-          {showGameOverText && <></>
-          }
+      <Container>
+        <SubContainer>
+          <Message>¡Aquí están los jugadores los cuales habéis adivinado su pecado, es hora de que cumplan su castigo!</Message>
+          <PlayerContainer>
+            {showGameOverText && <></>
+            }
 
-          {losers.length > 0 ? (
-            losers.map((player) => {
-              const avatarId = player.avatarId;
-              const imgObj = avatarImages.find(
-                (avatarImage) => avatarImage.id === avatarId
-              );
-              return (
-                <PlayerCard key={player.id}>
-                  <img src={imgObj.img} alt="avatar" />
-                  <PlayerName>{player.playerName}</PlayerName>
-                </PlayerCard>
-              );
-            })
-          ) : (
-            // <Message>No players have lost the game.</Message>
-            <>
-              {/* AQUI PONER UNA INTERFAZ QUE INDIQUE QUE NO HAY GENTE QUE CUMPLA LAS CONDICIONES PARA SER CASTIGADA*/}
-            </>
-          )}</PlayerContainer>
-        <Button onClick={goToNextPage}>Volver</Button>
-        {/* ESTE CODIGO ACTUALMENTE NO TIENE SENTIDO PORQUE VOTES NO DEVUELVE QUIEN TE HA VOTADO */}
-        {/* {matches.length > 0 && (
+            {losers.length > 0 ? (
+              losers.map((player) => {
+                const avatarId = player.avatarId;
+                const imgObj = avatarImages.find(
+                  (avatarImage) => avatarImage.id === avatarId
+                );
+                return (
+                  <PlayerCard key={player.id}>
+                    <img src={imgObj.img} alt="avatar" />
+                    <PlayerName>{player.playerName}</PlayerName>
+                  </PlayerCard>
+                );
+              })
+            ) : (
+              // <Message>No players have lost the game.</Message>
+              <>
+                {/* AQUI PONER UNA INTERFAZ QUE INDIQUE QUE NO HAY GENTE QUE CUMPLA LAS CONDICIONES PARA SER CASTIGADA*/}
+              </>
+            )}</PlayerContainer>
+          <Button onClick={goToNextPage}>Volver</Button>
+          {/* ESTE CODIGO ACTUALMENTE NO TIENE SENTIDO PORQUE VOTES NO DEVUELVE QUIEN TE HA VOTADO */}
+          {/* {matches.length > 0 && (
         <MatchList>
           <h2>Matches:</h2>
           {matches.map((match) => (
@@ -89,8 +88,8 @@ const GameOver = () => {
           ))}
         </MatchList>
       )} */}
-      </SubContainer>
-    </Container>
+        </SubContainer>
+      </Container>
     </Theme>
   );
 };

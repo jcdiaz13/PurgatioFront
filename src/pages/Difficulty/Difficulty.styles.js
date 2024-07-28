@@ -7,6 +7,7 @@ export const Container = styled.div`
   background-size: cover;
   background-attachment: fixed;
   height: 100vh;
+  width: 100vw;
   position: relative;
   background-position: center;
 `;
