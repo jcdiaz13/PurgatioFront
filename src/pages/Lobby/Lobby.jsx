@@ -10,6 +10,7 @@ import {
   DeletePlayerButton,
   Copy,
   Name,
+  WaitingPlayers,
 } from "./Lobby.styles";
 import Theme from "../../components/Theme";
 import { PlayerContext } from "../../app/contexts/PlayerContext";
@@ -17,6 +18,7 @@ import { getPlayersByRoomId, deletePlayer } from "../../app/services/player";
 import avatarImages from "../../app/utils/avatarImages";
 import { setGameStatus, getGameStatus } from "../../app/services/room";
 import Alert from "../../components/Alert/Alert"; // Importar el componente Alert
+import Loader from "../../components/StyledComponents/Loader";
 
 const { Meta } = Card;
 
@@ -30,7 +32,7 @@ const Lobby = () => {
   };
 
   const removeAlert = (id) => {
-    setAlerts(alerts.filter(alert => alert.id !== id));
+    setAlerts(alerts.filter((alert) => alert.id !== id));
   };
 
   const {
@@ -103,8 +105,12 @@ const Lobby = () => {
   };
 
   const handleStartGame = async () => {
-    if (players.length < 0) { //Modificar la cantidad mínima de jugadores
-      showAlert("alert", "Debe haber al menos 3 jugadores para comenzar el juego.");
+    if (players.length < 0) {
+      //Modificar la cantidad mínima de jugadores
+      showAlert(
+        "alert",
+        "Debe haber al menos 3 jugadores para comenzar el juego."
+      );
       return;
     }
     await setGameStatus(roomId, true);
@@ -129,7 +135,7 @@ const Lobby = () => {
 
   return (
     <Theme>
-      {alerts.map(alert => (
+      {alerts.map((alert) => (
         <Alert
           key={alert.id}
           id={alert.id}
@@ -190,6 +196,10 @@ const Lobby = () => {
             );
           })}
         </PlayerContainer>
+        <WaitingPlayers>
+          <h3>Esperando jugadores</h3>
+          <Loader />
+        </WaitingPlayers>
       </Container>
     </Theme>
   );
