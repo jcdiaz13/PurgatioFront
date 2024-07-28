@@ -272,10 +272,8 @@ export const WaitingPlayers = styled.div`
   bottom: 0;
   font-family: Pixellari;
   text-shadow: 0 2px 0 rgb(0 0 0 / 25%);
-  color: black;
-  background-image: url(${pergaminolado});
-  background-repeat: no-repeat;
-  width: 200px;
+  color: white;
+  width: 400px;
   height: 50px;
   
 

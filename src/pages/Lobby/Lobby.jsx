@@ -41,8 +41,8 @@ const Lobby = () => {
     setPlayers,
     roomOwner,
     playerId,
-    gameStarted,
     setGameStarted,
+    setBlockButtons,
   } = useContext(PlayerContext);
   const playerIdRef = useRef(playerId);
   const navigate = useNavigate();
@@ -77,6 +77,7 @@ const Lobby = () => {
       );
       //Si un jugador no existe lo redireccionamos a home
       if (!playerIsPlaying) {
+        setBlockButtons(false);
         navigate("/");
       }
     } catch (error) {
@@ -193,7 +194,7 @@ const Lobby = () => {
           })}
         </PlayerContainer>
         <WaitingPlayers>
-          <h3>Esperando jugadores</h3>
+          <h3>Esperando que se unan jugadores</h3>
           <Loader />
         </WaitingPlayers>
       </Container>
