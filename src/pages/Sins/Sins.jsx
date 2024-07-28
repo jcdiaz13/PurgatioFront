@@ -31,12 +31,12 @@ function Sins() {
   const [sin, setSin] = useState("");
   const navigate = useNavigate();
   const [changeButton, setChangeButton] = useState(false);
-  const { playerId, roomId, setPlayers, roomOwner } = useContext(PlayerContext);
+  const { playerId, roomId, setPlayers, roomOwner, waiting, setWaiting } =
+    useContext(PlayerContext);
   const [requestOneTime, setRequestOneTime] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [contentToShow, setContentToShow] = useState(null);
   const [showContent, setShowContent] = useState(false); // Estado para controlar la visibilidad del contenido
-  const [waiting, setWaiting] = useState(false); // Nuevo estado para controlar la visibilidad de WaitingPlayers
 
   //Lista de palabras prohibidas
   const bannedWords = ["nazi", "violar"];
@@ -68,6 +68,7 @@ function Sins() {
         const response = await getPlayersWithAssign(roomId);
         if (response.data[0].judgeSin != 0) {
           setPlayers(response.data);
+          setWaiting(false);
           navigate("/punishments");
         }
       }
@@ -174,7 +175,7 @@ function Sins() {
                 )}
                 {!changeButton && <Button onClick={handleNext}>Enviar</Button>}
               </ButtonContainer>
-              <WaitingPlayers className={waiting ? "visible" : ""}>
+              <WaitingPlayers visible={waiting}>
                 <h3>Esperando al resto de jugadores</h3>
                 <Loader />
               </WaitingPlayers>

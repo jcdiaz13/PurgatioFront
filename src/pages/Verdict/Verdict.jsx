@@ -20,9 +20,12 @@ import {
   PlayerContainer,
   Overlay,
   SubContainer,
+  Button,
+  WaitingPlayers,
+  Styledh3,
 } from "./Verdict.styles";
 import avatarImages from "../../app/utils/avatarImages";
-import { Button } from "./Verdict.styles";
+import Loader from "../../components/StyledComponents/Loader";
 
 //Alert
 import Alert from "../../components/Alert";
@@ -31,7 +34,16 @@ import Theme from "../../components/Theme";
 
 const Verdict = () => {
   const navigate = useNavigate();
-  const { roomId, players, setPlayers, playerId } = useContext(PlayerContext);
+  const {
+    roomId,
+    players,
+    setPlayers,
+    playerId,
+    waiting,
+    setWaiting,
+    blockButtons,
+    setBlockButtons,
+  } = useContext(PlayerContext);
   const [modalOpen, setModalOpen] = useState(false);
   const [victimModalOpen, setVictimModalOpen] = useState(false);
   const [selectedPlayer, setSelectedPlayer] = useState(null);
@@ -49,6 +61,7 @@ const Verdict = () => {
         shuffle(res);
         setPlayers(res);
         setVictims(players);
+        setBlockButtons(false);
       } catch (error) {
         console.error("Error fetching players:", error);
       }
@@ -79,6 +92,7 @@ const Verdict = () => {
 
       if (allPlayersDone) {
         console.log("Estas en useEffect");
+        setWaiting(false);
         navigate("/gameover");
       }
     }, 2000);
@@ -176,12 +190,13 @@ const Verdict = () => {
       return;
     }
     showAlert("success", "Se ha enviado correctamente.");
-
+    setBlockButtons(true);
     try {
       iterateVotesMap();
       await updateIVoted(playerId);
       goThroughVotesMap();
       setSendActive(true);
+      setWaiting(true);
     } catch (error) {
       showAlert(
         "error",
@@ -216,8 +231,8 @@ const Verdict = () => {
     <Theme>
       <Container>
         <SubContainer>
+          <Styledh3>¡Selecciona de quién crees que es cada pecado!</Styledh3>
           <PlayerContainer>
-            <h3>¡Selecciona de quién crees que es cada pecado!</h3>
             {console.log("Inazuma: ", players)}
             {renderPlayers()}
           </PlayerContainer>
@@ -282,7 +297,13 @@ const Verdict = () => {
             />
           ))}
         </SubContainer>
-        <Button onClick={handleVotaciones}>Enviar</Button>
+        <Button onClick={handleVotaciones} disabled={blockButtons}>
+          Enviar
+        </Button>
+        <WaitingPlayers visible={waiting}>
+          <h3>Esperando al resto de jugadores</h3>
+          <Loader />
+        </WaitingPlayers>
       </Container>
     </Theme>
   );

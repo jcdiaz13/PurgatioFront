@@ -9,6 +9,11 @@ import {
   PlayerContainer,
   SubContainer,
   AvatarPopup,
+  Overlay,
+  Info,
+  MiniInfo,
+  ButtonInfo,
+  MiniInfo2,
 } from "./GameOver.styles";
 import { getVotedPlayers } from "../../app/services/player";
 import { PlayerContext } from "../../app/contexts/PlayerContext";
@@ -17,7 +22,7 @@ import Theme from "../../components/Theme";
 
 const GameOver = () => {
   const navigate = useNavigate();
-  const { roomId, setBlockButtons } = useContext(PlayerContext);
+  const { roomId, setBlockButtons, setPlayers } = useContext(PlayerContext);
   const [losers, setLosers] = useState([]);
   const [openInfo, setOpenInfo] = useState(false);
   const [selectedPlayer, setSelectedPlayer] = useState(null);
@@ -40,12 +45,19 @@ const GameOver = () => {
 
   const goToNextPage = () => {
     setBlockButtons(false);
+    setPlayers([]);
     navigate("/");
   };
 
   const handlePlayerCard = (player) => {
     setSelectedPlayer(player);
     setOpenInfo(true);
+  };
+
+  const closeInfo = () => {
+    setOpenInfo(false);
+    console.log(selectedPlayer);
+    setSelectedPlayer(null);
   };
 
   return (
@@ -76,15 +88,22 @@ const GameOver = () => {
                 })}
               </PlayerContainer>
               {openInfo && selectedPlayer && (
-                <AvatarPopup>
-                  <div>
-                    <p>{selectedPlayer.sin}</p>
-                    <br />
-                    <p>{selectedPlayer.punish}</p>
-                  </div>
-                </AvatarPopup>
+                <Overlay onClick={closeInfo}>
+                  <AvatarPopup>
+                    <MiniInfo>
+                      Este es el pecado que cometió{" "}
+                      <span>{selectedPlayer.playerName}</span> :
+                    </MiniInfo>
+                    <Info>{selectedPlayer.sin}</Info>
+                    <MiniInfo2>
+                      Deberá realizar este castigo para expiar sus pecados:
+                    </MiniInfo2>
+                    <Info>{selectedPlayer.punish}</Info>
+                  </AvatarPopup>
+                  <ButtonInfo onClick={closeInfo}>Volver</ButtonInfo>
+                </Overlay>
               )}
-              <Button onClick={goToNextPage}>Volver</Button>
+              <Button onClick={goToNextPage}>HOME</Button>
             </>
           ) : (
             <p>No players have been voted out.</p>

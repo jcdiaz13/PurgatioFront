@@ -41,8 +41,8 @@ const Lobby = () => {
     setPlayers,
     roomOwner,
     playerId,
-    gameStarted,
     setGameStarted,
+    setBlockButtons,
   } = useContext(PlayerContext);
   const playerIdRef = useRef(playerId);
   const navigate = useNavigate();
@@ -51,10 +51,8 @@ const Lobby = () => {
     if (roomId) {
       const intervalId = setInterval(async () => {
         if (await checkGameStatus()) {
-          console.log(111, players, "GAME STATUS ", gameStarted);
           navigate("/sins");
         } else {
-          console.log(222, players);
           showPlayers();
         }
       }, 2000);
@@ -79,7 +77,7 @@ const Lobby = () => {
       );
       //Si un jugador no existe lo redireccionamos a home
       if (!playerIsPlaying) {
-        console.log("bbbbbbbbbbbbbbbb", playerId, playerIsPlaying);
+        setBlockButtons(false);
         navigate("/");
       }
     } catch (error) {
@@ -98,14 +96,13 @@ const Lobby = () => {
       await deletePlayer(id);
       const response = await getPlayersByRoomId(roomId);
       setPlayers(response.data);
-      console.log("Jugadores activos:", response.data);
     } catch (error) {
       console.error("Error eliminando al jugador:", error);
     }
   };
 
   const handleStartGame = async () => {
-    if (players.length < 0) {
+    if (players.length < 2) {
       //Modificar la cantidad mínima de jugadores
       showAlert(
         "alert",
@@ -197,7 +194,7 @@ const Lobby = () => {
           })}
         </PlayerContainer>
         <WaitingPlayers>
-          <h3>Esperando jugadores</h3>
+          <h3>Esperando que se unan jugadores</h3>
           <Loader />
         </WaitingPlayers>
       </Container>

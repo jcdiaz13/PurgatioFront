@@ -15,8 +15,8 @@ export const Button = styled.button`
   justify-content: center;
   align-items: center;
   position: fixed; /* Asegúrate de que esté en posición fija */
-  top: 20px;       /* Ajusta esto para la distancia desde la parte superior */
-  right: 20px;     /* Ajusta esto para la distancia desde la derecha */
+  top: 5px;       /* Ajusta esto para la distancia desde la parte superior */
+  right: 5px;     /* Ajusta esto para la distancia desde la derecha */
   z-index: 1000;   /* Asegúrate de que el botón esté sobre otros elementos */
 
   &:hover {

@@ -1,14 +1,14 @@
 import styled from "styled-components";
+import isPropValid from '@emotion/is-prop-valid';
 import question from "../../app/assets/gifs/questionVerdict.gif";
 import { css } from "styled-components";
 import lava from "../../app/assets/gifs/lava.gif";
-import brick from "../../app/assets/img/Black_Brick.jpeg"
 
 export const Container = styled.div`
   width: 100vw;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  // justify-content: center;
   align-items: center;
   z-index: -3;
   background-size: cover;
@@ -32,14 +32,27 @@ export const Container = styled.div`
 
 export const SubContainer = styled.div`
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
   width: 90%;
+  height: 90%;
 `;
+
+export const PlayerContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  height: 70%;
+  width: 300px;
+`;
+
 export const Button = styled.button`
   margin-top: 15px;
+  bottom:0;
+  margin-bottom:50px;
   font-family: Pixellari;
   font-size: 1rem;
   background-color: black;
@@ -48,7 +61,7 @@ export const Button = styled.button`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  position: relative;
+  position: fixed;
   border: 0;
   z-index: 1;
   user-select: none;
@@ -153,8 +166,8 @@ export const Cover = styled.div`
 
 export const Book = styled.div`
   //position: relative;
-  width: 130px;
-  height: 150px;
+  width: 110px;
+  height: 110px;
   background-image: url(${question});
   background-position: center;
   background-size: cover;
@@ -398,16 +411,42 @@ export const ButtonContainer = styled.div`
   margin-top: 10px;
 `;
 
-export const PlayerContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  width: 300px;
-  h3 {
+
+
+export const Styledh3 = styled.h3`
+    color:white;
     text-shadow: 2px 2px 7px #000;
     font-weight: bold;
     font-size: 1.3rem;
     color: white;
-    margin-bottom: 10px;
+  
+`;
+
+export const WaitingPlayers = styled.div.withConfig({
+  shouldForwardProp: (prop) => isPropValid(prop) && prop !== 'isOpen'
+})`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  font-family: Pixellari;
+  text-shadow: 0 2px 0 rgb(0 0 0 / 25%);
+  color: black;
+  background-repeat: no-repeat;
+  width: 80%;
+  max-width: 400px;
+  height: 50px;
+  opacity: ${(props) => (props.visible ? 1 : 0)};
+  visibility: ${(props) => (props.visible ? 'visible' : 'hidden')};
+  transition: opacity 0.5s ease-in-out, visibility 0.5s;
+
+  h3 {
+    font-size: 0.9rem;
+    margin-left: 16px;
+    margin-right: 2.2px;
+    color: white;
   }
 `;
