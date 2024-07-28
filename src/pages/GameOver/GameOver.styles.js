@@ -102,11 +102,11 @@ export const PlayerName = styled.p`
   font-size: 1.2rem;
 `;
 
-export const Message = styled.p` 
-    text-shadow: 2px 2px 7px #000;
-   // font-weight: bold;
-    font-size: 1.2rem;
-    margin-bottom: 10px;
+export const Message = styled.p`
+  text-shadow: 2px 2px 7px #000;
+  // font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
   color: white;
   border: 1px solid white;
   backdrop-filter: blur(2px);
@@ -208,18 +208,18 @@ export const Button = styled.button`
   &:hover:before {
     color: black;
     ${({ theme }) =>
-    theme.name === "verdugo" &&
-    css`
+      theme.name === "verdugo" &&
+      css`
         background-color: #ffd700 !important;
       `}
     ${({ theme }) =>
-    theme.name === "mago" &&
-    css`
+      theme.name === "mago" &&
+      css`
         background-color: #228b22 !important;
       `}
     ${({ theme }) =>
-    theme.name === "hada" &&
-    css`
+      theme.name === "hada" &&
+      css`
         background-color: #228b22 !important;
       `}
     box-shadow: 0 -2px rgb(0 0 0 / 50%) inset, 0 2px rgb(255 255 255 / 20%) inset, -2px 0 rgb(255 255 255 / 20%) inset, 2px 0 rgb(0 0 0 / 50%) inset;
@@ -238,4 +238,17 @@ export const Button = styled.button`
     color: black;
     box-shadow: 0 0px 0 0 rgb(0 0 0 / 15%);
   }
+`;
+
+export const AvatarPopup = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 330px;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
 `;

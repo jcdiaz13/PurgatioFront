@@ -8,7 +8,8 @@ import {
   Message,
   Title,
   PlayerContainer,
-  SubContainer
+  SubContainer,
+  AvatarPopup,
 } from "./GameOver.styles";
 import { getVotedPlayers } from "../../app/services/player";
 import { PlayerContext } from "../../app/contexts/PlayerContext";
@@ -17,9 +18,11 @@ import Theme from "../../components/Theme";
 
 const GameOver = () => {
   const navigate = useNavigate();
-  const { roomId } = useContext(PlayerContext);
+  const { roomId, setBlockButtons } = useContext(PlayerContext);
   const [losers, setLosers] = useState([]);
   const [showGameOverText, setShowGameOverText] = useState(false);
+  const [openInfo, setOpenInfo] = useState(false);
+  const [selectedPlayer, setSelectedPlayer] = useState(null);
 
   useEffect(() => {
     const fetchVotedPlayers = async () => {
@@ -41,18 +44,25 @@ const GameOver = () => {
   }, [roomId]);
 
   const goToNextPage = () => {
+    setBlockButtons(false);
     navigate("/");
+  };
+
+  const handlePlayerCard = (player) => {
+    setSelectedPlayer(player);
+    setOpenInfo(true);
   };
 
   return (
     <Theme>
       <Container>
         <SubContainer>
-          <Message>¡Aquí están los jugadores los cuales habéis adivinado su pecado, es hora de que cumplan su castigo!</Message>
+          <Message>
+            ¡Aquí están los jugadores los cuales habéis adivinado su pecado, es
+            hora de que cumplan su castigo!
+          </Message>
           <PlayerContainer>
-            {showGameOverText && <></>
-            }
-
+            {/* {showGameOverText && <></>} */}
             {losers.length > 0 ? (
               losers.map((player) => {
                 const avatarId = player.avatarId;
@@ -60,34 +70,29 @@ const GameOver = () => {
                   (avatarImage) => avatarImage.id === avatarId
                 );
                 return (
-                  <PlayerCard key={player.id}>
+                  <PlayerCard
+                    key={player.id}
+                    onClick={() => handlePlayerCard(player)}
+                  >
                     <img src={imgObj.img} alt="avatar" />
                     <PlayerName>{player.playerName}</PlayerName>
                   </PlayerCard>
                 );
               })
             ) : (
-              // <Message>No players have lost the game.</Message>
-              <>
-                {/* AQUI PONER UNA INTERFAZ QUE INDIQUE QUE NO HAY GENTE QUE CUMPLA LAS CONDICIONES PARA SER CASTIGADA*/}
-              </>
-            )}</PlayerContainer>
+              <p>No players have been voted out.</p>
+            )}
+          </PlayerContainer>
+          {openInfo && selectedPlayer && (
+            <AvatarPopup>
+              <div>
+                <p>{selectedPlayer.sin}</p>
+                <br />
+                <p>{selectedPlayer.punish}</p>
+              </div>
+            </AvatarPopup>
+          )}
           <Button onClick={goToNextPage}>Volver</Button>
-          {/* ESTE CODIGO ACTUALMENTE NO TIENE SENTIDO PORQUE VOTES NO DEVUELVE QUIEN TE HA VOTADO */}
-          {/* {matches.length > 0 && (
-        <MatchList>
-          <h2>Matches:</h2>
-          {matches.map((match) => (
-            <MatchItem key={match.id}>
-              <img
-                src={getAvatarImg(match.avatar_id)}
-                alt={match.player_name}
-              />
-              <p>{match.player_name}</p>
-            </MatchItem>
-          ))}
-        </MatchList>
-      )} */}
         </SubContainer>
       </Container>
     </Theme>
