@@ -13,6 +13,7 @@ export const PlayerProvider = ({ children }) => {
   const [gameStarted, setGameStarted] = useState(false);
   const [blockButtons, setBlockButtons] = useState(false);
   const [musicStarted, setMusicStarted] = useState(false);
+  const [waiting, setWaiting] = useState(false);
 
   return (
     <PlayerContext.Provider
@@ -35,6 +36,8 @@ export const PlayerProvider = ({ children }) => {
         setBlockButtons,
         musicStarted,
         setMusicStarted,
+        waiting,
+        setWaiting,
       }}
     >
       {children}

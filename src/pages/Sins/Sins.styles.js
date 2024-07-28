@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
+import isPropValid from '@emotion/is-prop-valid';
 import pergamino from "../../app/assets/img/pergamino.png";
 import lava from "../../app/assets/gifs/lava.gif";
-import pergaminolado from "../../app/assets/img/pergaminolado.png"
 
 
 export const Container = styled.div`
@@ -133,19 +133,20 @@ export const ToggleButton = styled.button`
 `;
 
 // Pergamino (scroll)
-export const Scroll = styled.div`
+export const Scroll = styled.div.withConfig({
+  shouldForwardProp: (prop) => isPropValid(prop) && prop !== 'isOpen'
+})`
   width: 330px;
-  height: ${(props) =>
-    props.isOpen ? "480px" : "50px"}; /* Altura inicial y dinámica */
+  height: ${(props) => (props.isOpen ? '480px' : '50px')}; /* Altura inicial y dinámica */
   overflow: hidden;
   background-image: url(${pergamino}); /* Ruta correcta */
   padding: 10px;
   border: none;
   transition: height 0.5s ease-in-out; /* Transición para la altura */
   display: flex;
-  //align-items: center;
   justify-content: center;
 `;
+
 
 // Texto dentro del pergamino
 export const ScrollText = styled.div`
@@ -168,10 +169,12 @@ export const ScrollText = styled.div`
   }
 `;
 
-export const WaitingPlayers = styled.div`
+export const WaitingPlayers = styled.div.withConfig({
+  shouldForwardProp: (prop) => isPropValid(prop) && prop !== 'isOpen'
+})`
   display: flex;
-  align-items: center;        /* Centrar verticalmente */
-  justify-content: center;    /* Centrar horizontalmente */
+  align-items: center;
+  justify-content: center;
   position: fixed;
   left: 50%;
   bottom: 0;
@@ -180,22 +183,17 @@ export const WaitingPlayers = styled.div`
   text-shadow: 0 2px 0 rgb(0 0 0 / 25%);
   color: black;
   background-repeat: no-repeat;
-  width: 80%;                 /* Ancho adaptativo */
-  max-width: 400px;           /* Ancho máximo */
+  width: 80%;
+  max-width: 400px;
   height: 50px;
-  opacity: 0;
-  visibility: hidden;
+  opacity: ${(props) => (props.visible ? 1 : 0)};
+  visibility: ${(props) => (props.visible ? 'visible' : 'hidden')};
   transition: opacity 0.5s ease-in-out, visibility 0.5s;
-
-  &.visible {
-    opacity: 1;
-    visibility: visible;
-  }
 
   h3 {
     font-size: 0.9rem;
     margin-left: 16px;
     margin-right: 2.2px;
-    color:white;
+    color: white;
   }
 `;
