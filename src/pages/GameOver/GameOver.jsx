@@ -22,7 +22,7 @@ import Theme from "../../components/Theme";
 
 const GameOver = () => {
   const navigate = useNavigate();
-  const { roomId, setBlockButtons } = useContext(PlayerContext);
+  const { roomId, setBlockButtons, setPlayers } = useContext(PlayerContext);
   const [losers, setLosers] = useState([]);
   const [openInfo, setOpenInfo] = useState(false);
   const [selectedPlayer, setSelectedPlayer] = useState(null);
@@ -45,6 +45,7 @@ const GameOver = () => {
 
   const goToNextPage = () => {
     setBlockButtons(false);
+    setPlayers([]);
     navigate("/");
   };
 
@@ -55,9 +56,9 @@ const GameOver = () => {
 
   const closeInfo = () => {
     setOpenInfo(false);
-    console.log(selectedPlayer)
+    console.log(selectedPlayer);
     setSelectedPlayer(null);
-  }
+  };
 
   return (
     <Theme>
@@ -89,12 +90,15 @@ const GameOver = () => {
               {openInfo && selectedPlayer && (
                 <Overlay onClick={closeInfo}>
                   <AvatarPopup>
-                    <MiniInfo>Este es el pecado que cometió <span>{selectedPlayer.playerName}</span> :</MiniInfo>
-                    <Info>
-                      {selectedPlayer.sin}</Info>
-                    <MiniInfo2>Deberá realizar este castigo para expiar sus pecados:</MiniInfo2>
+                    <MiniInfo>
+                      Este es el pecado que cometió{" "}
+                      <span>{selectedPlayer.playerName}</span> :
+                    </MiniInfo>
+                    <Info>{selectedPlayer.sin}</Info>
+                    <MiniInfo2>
+                      Deberá realizar este castigo para expiar sus pecados:
+                    </MiniInfo2>
                     <Info>{selectedPlayer.punish}</Info>
-
                   </AvatarPopup>
                   <ButtonInfo onClick={closeInfo}>Volver</ButtonInfo>
                 </Overlay>
