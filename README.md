@@ -38,7 +38,7 @@
     <a href="https://github.com/jcdiaz13/PurgatioFront"><strong>Explora la documentación »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/jcdiaz13/PurgatioFront">Ver Demo</a>
+    <a href="https://purgatio.es">Ver Demo</a>
     ·
     <a href="https://github.com/jcdiaz13/PurgatioFront/issues/new?labels=bug&template=bug-report---.md">Reportar Bug</a>
     ·
