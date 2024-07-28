@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { css } from "styled-components";
 import lava from "../../app/assets/gifs/lava.gif";
-import pergamino from "../../app/assets/img/pergamino.png";
 
 export const Container = styled.div`
   width: 100vw;
