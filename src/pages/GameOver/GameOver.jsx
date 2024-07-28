@@ -6,7 +6,6 @@ import {
   PlayerCard,
   PlayerName,
   Message,
-  Title,
   PlayerContainer,
   SubContainer,
   AvatarPopup,

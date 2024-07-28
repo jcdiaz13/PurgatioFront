@@ -35,13 +35,6 @@ export const SubContainer = styled.div`
   text-align: center;
   width: 85%;
 `;
-
-export const Title = styled.h1`
-  font-size: 1rem;
-  margin-bottom: 20px;
-  color: #fff;
-`;
-
 export const OptionButton = styled.button`
   background-color: lightblue;
   border: none;
@@ -138,20 +131,6 @@ export const PlayerContainer = styled.div`
   overflow: auto; /* Permite el desplazamiento si hay desbordamiento */
   box-sizing: border-box;
 `;
-
-// export const PlayerContainer = styled.div`
-//   display: grid;
-//   grid-template-columns: repeat(
-//     auto-fill,
-//     minmax(150px, 1fr)
-//   ); /* Cambiado para ajustar automáticamente según el espacio */
-//   gap: 25px; /* Reducido el gap entre los jugadores */
-//   justify-items: center;
-//   align-items: center;
-//   width: 100%;
-//   max-width: 400px; /* Reducido el max-width para que los jugadores no estén tan separados */
-//   margin: 20px auto; /* Ajustado el margen */
-// `;
 
 export const Button = styled.button`
   font-family: Pixellari;
