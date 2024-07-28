@@ -267,11 +267,9 @@ export const Name = styled.span`
 export const WaitingPlayers = styled.div`
   display: flex;
   align-items: center;
-  jsutify-content:center;
+  justify-content: center;
   position: fixed;
-  // right: 0;
   bottom: 0;
-  margin-right: 5px;
   font-family: Pixellari;
   text-shadow: 0 2px 0 rgb(0 0 0 / 25%);
   color: black;
@@ -283,8 +281,7 @@ export const WaitingPlayers = styled.div`
 
   h3 {
   font-size:0.9rem;
-  margin-left: 16px;
-  margin-right: 2.2px;
-  // overflow:hidden;    
+  margin-left: 3px;
+  margin-right: 2px;   
      }
 `;
