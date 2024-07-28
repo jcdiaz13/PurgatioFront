@@ -13,7 +13,8 @@ import {
   ToggleButton,
   ScrollText,
   Sin,
-  ButtonSugerencia
+  ButtonSugerencia,
+  WaitingPlayers,
 } from "./Punishments.styles";
 import Theme from "../../components/Theme";
 import { PlayerContext } from "../../app/contexts/PlayerContext";
@@ -25,13 +26,15 @@ import {
 //Alerts
 import Alert from "../../components/Alert";
 import gameMasters from "../../app/utils/gameMasters";
-import { getRoomById } from '../../app/services/room';
+import { getRoomById } from "../../app/services/room";
+import Loader from "../../components/StyledComponents/Loader";
 // import { shuffle } from "../../app/utils/utils";
 
 const Punishments = () => {
   const [text, setText] = useState("");
   const navigate = useNavigate();
-  const { roomId, playerId, players } = useContext(PlayerContext);
+  const { roomId, playerId, players, waiting, setWaiting } =
+    useContext(PlayerContext);
   const [assignSin, setAssignSin] = useState("");
   const [changeButton, setChangeButton] = useState(false);
   const [judgePlayerId, setJudgePlayerId] = useState("");
@@ -81,6 +84,7 @@ const Punishments = () => {
         // if (contador == 2) {
         //   navigate("/verdict");
         // }
+        setWaiting(false);
         navigate("/verdict");
       }
     }, 2000);
@@ -119,7 +123,7 @@ const Punishments = () => {
         const room = await getRoomById(roomId);
         setGamemode(room.gamemode);
       }
-    }
+    };
     getRoomData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [roomId]);
@@ -129,7 +133,7 @@ const Punishments = () => {
       const heladito = gameMasters.find((character) => character.id === 2);
       const randomPunishment =
         heladito.punishments[
-        Math.floor(Math.random() * heladito.punishments.length)
+          Math.floor(Math.random() * heladito.punishments.length)
         ];
       setText(randomPunishment);
     }
@@ -141,6 +145,7 @@ const Punishments = () => {
 
   const handleEditPunish = async () => {
     setChangeButton(false);
+    setWaiting(false); // Ocultar WaitingPlayers al editar
     await deletePunish(judgePlayerId);
   };
 
@@ -160,6 +165,7 @@ const Punishments = () => {
       return;
     }
     setChangeButton(true);
+    setWaiting(true); // Mostrar WaitingPlayers después de enviar
     try {
       await createPunish(judgePlayerId, { punish: text });
     } catch (error) {
@@ -229,7 +235,9 @@ const Punishments = () => {
                       <Button onClick={handleNext}>Enviar</Button>
                     )}
                     {gamemode === 2 && (
-                      <ButtonSugerencia onClick={handleClickSuggestSin}>Sugerencia</ButtonSugerencia>
+                      <ButtonSugerencia onClick={handleClickSuggestSin}>
+                        Sugerencia
+                      </ButtonSugerencia>
                     )}
                   </ButtonContainer>
                 </>
@@ -248,6 +256,10 @@ const Punishments = () => {
             </ToggleButton>
           )}
         </ButtonContainer2>
+        <WaitingPlayers visible={waiting}>
+          <h3>Esperando al resto de jugadores</h3>
+          <Loader />
+        </WaitingPlayers>
       </Container>
       {alerts.map((alert) => (
         <Alert

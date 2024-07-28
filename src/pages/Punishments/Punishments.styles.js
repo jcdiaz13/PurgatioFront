@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import isPropValid from '@emotion/is-prop-valid';
 import { css } from "styled-components";
 import lava from "../../app/assets/gifs/lava.gif";
 import pergamino from "../../app/assets/img/pergamino.png";
@@ -160,7 +161,9 @@ export const ToggleButton = styled.button`
 `;
 
 // Pergamino (scroll)
-export const Scroll = styled.div`
+export const Scroll = styled.div.withConfig({
+  shouldForwardProp: (prop) => isPropValid(prop) && prop !== 'isOpen'
+})`
   width: 330px;
   height: ${(props) =>
     props.isOpen ? "480px" : "50px"}; /* Altura inicial y dinámica */
@@ -205,10 +208,12 @@ margin-top: 10px;
   white-space: normal; /* Permite que el texto ocupe múltiples líneas */
 `;
 
-export const WaitingPlayers = styled.div`
+export const WaitingPlayers = styled.div.withConfig({
+  shouldForwardProp: (prop) => isPropValid(prop) && prop !== 'isOpen'
+})`
   display: flex;
-  align-items: center;        /* Centrar verticalmente */
-  justify-content: center;    /* Centrar horizontalmente */
+  align-items: center;
+  justify-content: center;
   position: fixed;
   left: 50%;
   bottom: 0;
@@ -217,22 +222,17 @@ export const WaitingPlayers = styled.div`
   text-shadow: 0 2px 0 rgb(0 0 0 / 25%);
   color: black;
   background-repeat: no-repeat;
-  width: 80%;                 /* Ancho adaptativo */
-  max-width: 400px;           /* Ancho máximo */
+  width: 80%;
+  max-width: 400px;
   height: 50px;
-  opacity: 0;
-  visibility: hidden;
+  opacity: ${(props) => (props.visible ? 1 : 0)};
+  visibility: ${(props) => (props.visible ? 'visible' : 'hidden')};
   transition: opacity 0.5s ease-in-out, visibility 0.5s;
-
-  &.visible {
-    opacity: 1;
-    visibility: visible;
-  }
 
   h3 {
     font-size: 0.9rem;
     margin-left: 16px;
     margin-right: 2.2px;
-    color:white;
+    color: white;
   }
 `;
