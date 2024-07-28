@@ -32,13 +32,23 @@ export const Container = styled.div`
 
 export const SubContainer = styled.div`
   display: flex;
-  margin-top:60px;
-  flex-wrap: wrap;
+  flex-direction: column;
   justify-content: center;
-  // align-items: center;
+  align-items: center;
   text-align: center;
   width: 90%;
+  height: 90%;
 `;
+
+export const PlayerContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  height: 70%;
+  width: 300px;
+`;
+
 export const Button = styled.button`
   margin-top: 15px;
   bottom:0;
@@ -401,13 +411,7 @@ export const ButtonContainer = styled.div`
   margin-top: 10px;
 `;
 
-export const PlayerContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  width: 300px;
-  margin-top:50px;
-`;
+
 
 export const Styledh3 = styled.h3`
     color:white;

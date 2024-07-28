@@ -31,10 +31,11 @@ export const Container = styled.div`
 export const SubContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  //justify-content: center;
   align-items: center;
   text-align: center;
-  width: 85%;
+  width: 90%;
+  height: 90%;
 `;
 export const Overlay = styled.div`
 display: flex;
@@ -140,6 +141,7 @@ export const PlayerContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   width: 340px;
+  height: 90%;
   justify-content: center;
   text-align: center;
   align-items: center;
@@ -153,12 +155,11 @@ export const Button = styled.button`
   background-color: black;
   color: #fff;
   text-shadow: 0 2px 0 rgb(0 0 0 / 25%);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  display: flex;
   position: relative;
-  border: 0;
-  z-index: 1;
+  align-items: center;
+  justify-content: center;  
+  bottom: 10px;
   user-select: none;
   cursor: pointer;
   letter-spacing: 1px;
@@ -167,7 +168,6 @@ export const Button = styled.button`
   text-decoration: none;
   transition: all 0.7s cubic-bezier(0, 0.8, 0.26, 0.99);
   width: 80px;
-  margin-top: 10px;
 
   &:before {
     position: absolute;
@@ -321,33 +321,32 @@ export const ButtonInfo = styled.button`
 `;
 
 export const AvatarPopup = styled.div`
-margin-top: 60px;
+margin-top: 20px;
   position: relative;
   width: 320px;
   display: flex;
   flex-direction: column;
-  //justify-content: center;
+  justify-content: center;
   align-items: center;
   z-index: 4;
   height: 95%;
 `;
 
 export const MiniInfo = styled.p`
-font-size: 0.9rem;
+font-size: 0.95rem;
 color: #c0c0c0;
 span{
   text-decoration: underline;
-  font-size: 1rem;
+  font-size: 1.1rem;
 }
 `;
 export const MiniInfo2 = styled.p`
 margin-top: 25px;
-font-size: 0.9rem;
+font-size: 0.95rem;
 color: #c0c0c0;
 `;
 
 export const Info = styled.p`
 color: white;
-
 `;
 
