@@ -2,6 +2,8 @@ import styled from "styled-components";
 import { css } from "styled-components";
 import lava from "../../app/assets/gifs/lava.gif";
 import nube from "../../app/assets/gifs/nuve.gif";
+import beach from "../../app/assets/gifs/beach1left.gif";
+
 
 export const Container = styled.div`
   width: 100vw;
@@ -24,7 +26,7 @@ export const Container = styled.div`
   ${({ theme }) =>
     theme.name === "mago" &&
     css`
-      background-image: url("https://i.pinimg.com/originals/1b/45/63/1b456377a9dce67a7dc3630260aa7572.gif");
+      background-image: url(${beach});
     `}
 `;
 
@@ -70,16 +72,16 @@ export const PlayerCard = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 7px;
+  // padding: 7px;
   width: 150px;
   height: 150px;
-  margin: 0.5rem;
+  margin: 0;
   text-align: center;
   font-size: 0.9rem;
   color: white;
   cursor: pointer;
   overflow: hidden; /* Asegura que la imagen no se desborde del contenedor */
-  box-sizing: border-box; /* Incluye padding en el tamaño total del elemento */
+  // box-sizing: border-box; /* Incluye padding en el tamaño total del elemento */
 
   &:focus {
     transform: translateY(4px);
@@ -95,19 +97,19 @@ export const PlayerCard = styled.div`
     width: 120px;
     height: 120px;
     object-fit: cover; /* Asegura que la imagen se ajuste bien al contenedor */
+    margin-bottom:0;
   }
 
   p {
-    margin-top: 0px;
+    margin: 0;
     font-size: 18px;
     font-weight: bold;
     color: #cc1818;
-    /* background: white; */
     background-image: url(${nube});
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    width: 90px;
+    width: 100px;
   }
 `;
 
@@ -120,9 +122,9 @@ export const Message = styled.p`
   text-shadow: 2px 2px 7px #000;
   // font-weight: bold;
   font-size: 1.2rem;
+  margin-top:10px;
   margin-bottom: 10px;
   color: white;
-  border: 1px solid white;
   backdrop-filter: blur(2px);
 `;
 
@@ -142,6 +144,7 @@ export const MatchItem = styled.div`
     margin: 0;
   }
 `;
+
 export const PlayerContainer = styled.div`
   display: flex;
   flex-wrap: wrap;

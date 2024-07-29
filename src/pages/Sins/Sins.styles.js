@@ -2,6 +2,7 @@ import styled, { css } from "styled-components";
 import isPropValid from '@emotion/is-prop-valid';
 import pergamino from "../../app/assets/img/pergamino.png";
 import lava from "../../app/assets/gifs/lava.gif";
+import beach from "../../app/assets/gifs/beach1left.gif";
 
 
 export const Container = styled.div`
@@ -25,6 +26,7 @@ export const Container = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  overflow: hidden;
   ${({ theme }) =>
     theme.name === "verdugo" &&
     css`
@@ -33,7 +35,7 @@ export const Container = styled.div`
   ${({ theme }) =>
     theme.name === "mago" &&
     css`
-      background-image: url("https://i.pinimg.com/originals/1b/45/63/1b456377a9dce67a7dc3630260aa7572.gif");
+      background-image: url(${beach});
     `}
 `;
 export const Overlay = styled.div`
@@ -83,7 +85,7 @@ export const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
-  margin-top: -2rem;
+  margin-top: 2rem;
 `;
 
 export const Button = styled.button`
@@ -98,7 +100,7 @@ export const Button = styled.button`
   cursor: pointer;
   width: 80px;
   text-align: center;
-  margin-top: 2px;
+  margin-top: 20px;
 
   &:hover {
     background-color: white;
@@ -173,27 +175,26 @@ export const WaitingPlayers = styled.div.withConfig({
   shouldForwardProp: (prop) => isPropValid(prop) && prop !== 'isOpen'
 })`
   display: flex;
+  text-align: center;
   align-items: center;
   justify-content: center;
   position: fixed;
-  left: 50%;
   bottom: 0;
-  transform: translateX(-50%);
   font-family: Pixellari;
   text-shadow: 0 2px 0 rgb(0 0 0 / 25%);
-  color: black;
-  background-repeat: no-repeat;
-  width: 80%;
-  max-width: 400px;
-  height: 50px;
+  background-color:black;
+  color: white;
+  width: 250px;
+  height: 25px;
+  border-radius:30px;
+  margin-bottom:5px;
   opacity: ${(props) => (props.visible ? 1 : 0)};
   visibility: ${(props) => (props.visible ? 'visible' : 'hidden')};
   transition: opacity 0.5s ease-in-out, visibility 0.5s;
 
-  h3 {
-    font-size: 0.9rem;
-    margin-left: 16px;
-    margin-right: 2.2px;
-    color: white;
+ h3 {
+    font-size: 0.8rem;
+    margin-left: 5px;
+    margin-right: 2px;
   }
 `;

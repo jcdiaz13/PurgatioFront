@@ -26,12 +26,12 @@ const gameMasters = [
     "description": "Esta es la dificultad estándar, podrás añadir tus pecados e historias y la gente te juzgará y castigará dependiendo de la magnitud de ellos!",
     "img": helado,
     "punishments": [
-      "Ir hasta la orilla de la playa y mientras miras el mar gritar ¡SOY POSEIDON! el dios de los mares.",
+      "Ir hasta la orilla de la playa y mientras miras el mar gritar ¡SOY POSEIDÓN, el dios de los mares!",
       "Ir de rodillas de donde esta tu toalla hasta el mar y no pares hasta que el agua te llegue por las costillas",
       "Caminar de espaldas desde tu toalla hasta la orilla del mar sin mirar hacia adelante.",
       "Correr desde la orilla hasta el mar y volver arrastrándote sobre tu estómago en la arena.",
       "Te conviertes en un perro durante 2 minutos",
-      "Acercate a otra persona y dile si te puede poner de su crema",
+      "Acércate a otra persona y dile si te puede poner de su crema",
     ]
   }
 ]
