@@ -53,10 +53,10 @@ const Verdict = () => {
       try {
         const response = await getPlayersByRoomId(roomId);
         const res = response.data;
-        shuffle(res);
-        setPlayers(res);
-        // shuffle(res); pabloooo ayudaaaaaaaa
-        setVictims(res);
+        const res2= shuffle(res);
+        setPlayers(res2);
+        const res3 = shuffle(res);
+        setVictims(res3);
         setBlockButtons(false);
       } catch (error) {
         console.error("Error fetching players:", error);
