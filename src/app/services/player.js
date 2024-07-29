@@ -45,6 +45,11 @@ export const updateVotesById = async (playerId) =>
 export const updateIVoted = async (playerId) =>
   await instance.put(`player/${playerId}/hasvoted`);
 
+export const updateVoterList = async (playerId, voterId) =>
+  await instance.put(`/player/${playerId}/voters`, null, {
+    params: { voterId },
+  });
+
 //DELETE
 
 export const deletePlayer = async (playerId) =>
