@@ -39,7 +39,29 @@ function Sins() {
   const [showContent, setShowContent] = useState(false); // Estado para controlar la visibilidad del contenido
 
   //Lista de palabras prohibidas
-  const bannedWords = ["nazi", "violar"];
+  const bannedWords = [
+    "puta",
+    "puto",
+    "gilipollas",
+    "zorra",
+    "bastardo",
+    "bastarda",
+    "idiota",
+    "mamón",
+    "mamona",
+    "maricón",
+    "maricona",
+    "chupapijas",
+    "come mierda",
+    "come-mierda",
+    "come pollas",
+    "hijueputa",
+    "hijo de puta",
+    "hija de puta",
+    "nazi",
+    "violar",
+    "violación",
+  ];
 
   // verificar si el texto contiene palabras prohibidas
   const containsBannedWords = (text) => {

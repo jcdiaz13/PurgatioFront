@@ -46,7 +46,29 @@ const Punishments = () => {
   // const [contador, setContador] = useState(0);
 
   //Lista de palabras prohibidas
-  const bannedWords = ["nazi", "violar"];
+  const bannedWords = [
+    "puta",
+    "puto",
+    "gilipollas",
+    "zorra",
+    "bastardo",
+    "bastarda",
+    "idiota",
+    "mamón",
+    "mamona",
+    "maricón",
+    "maricona",
+    "chupapijas",
+    "come mierda",
+    "come-mierda",
+    "come pollas",
+    "hijueputa",
+    "hijo de puta",
+    "hija de puta",
+    "nazi",
+    "violar",
+    "violación",
+  ];
 
   // verificar si el texto contiene palabras prohibidas
   const containsBannedWords = (text) => {
