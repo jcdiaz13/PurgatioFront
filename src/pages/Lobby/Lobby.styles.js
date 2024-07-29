@@ -3,6 +3,8 @@ import helado from "../../app/assets/gifs/ice-cream.gif";
 import verdugo from "../../app/assets/gifs/reaper.gif";
 import lava from "../../app/assets/gifs/lava.gif";
 import nube from "../../app/assets/gifs/nuve.gif";
+import beach from "../../app/assets/gifs/beach1left.gif";
+
 
 export const PlayerContainer = styled.div`
   display: grid;
@@ -146,7 +148,8 @@ export const Circle = styled.div`
 `;
 
 export const Id = styled.p`
-  color: white;
+  color: black;
+  font-weight: bold;
   padding: 10px;
 `;
 
@@ -172,7 +175,7 @@ export const Container = styled.div`
     css`
       background-repeat: no-repeat;
       background-size: cover;
-      background-image: url("https://i.pinimg.com/originals/1b/45/63/1b456377a9dce67a7dc3630260aa7572.gif");
+      background-image: url(${beach});
     `}
 `;
 
@@ -239,7 +242,7 @@ export const Copy = styled.button`
     ${({ theme }) =>
       theme.name === "mago" &&
       css`
-        background-color: #228b22 !important;
+        background-color: blue !important;
       `}
   }
 `;
@@ -265,19 +268,23 @@ export const Name = styled.span`
 
 export const WaitingPlayers = styled.div`
   display: flex;
+  text-align: center;
   align-items: center;
   justify-content: center;
   position: fixed;
   bottom: 0;
   font-family: Pixellari;
   text-shadow: 0 2px 0 rgb(0 0 0 / 25%);
+  background-color:black;
   color: white;
-  width: 400px;
-  height: 50px;
+  width: 250px;
+  height: 25px;
+  border-radius:30px;
+  margin-bottom:5px;
 
   h3 {
-    font-size: 0.9rem;
-    margin-left: 3px;
+    font-size: 0.8rem;
+    margin-left: 5px;
     margin-right: 2px;
   }
 `;
