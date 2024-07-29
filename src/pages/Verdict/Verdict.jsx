@@ -1,11 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  getPlayersByRoomId,
-  updateVotesById,
-  getPlayersWithoutVoting,
-  updateIVoted,
-} from "../../app/services/player";
+import {getPlayersByRoomId, updateVotesById, getPlayersWithoutVoting, updateIVoted, updateVoterList} from '../../app/services/player';
 import { PlayerContext } from "../../app/contexts/PlayerContext";
 import {
   Book,
@@ -164,6 +159,7 @@ const Verdict = () => {
     entries.forEach(async ([keySelectedPlayerId, valueVictimId]) => {
       if (keySelectedPlayerId === valueVictimId) {
         await updateVotesById(valueVictimId);
+        await updateVoterList(valueVictimId, playerId);
       }
     });
   };
