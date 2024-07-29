@@ -37,7 +37,7 @@ export const SubContainer = styled.div`
   align-items: center;
   text-align: center;
   width: 90%;
-  height: 90%;
+  height: 92%;
 `;
 export const Overlay = styled.div`
   display: flex;
@@ -68,13 +68,15 @@ export const OptionButton = styled.button`
 `;
 
 export const PlayerCard = styled.div`
+box-shadow: 1px 1px 12px #000;
+border-radius: 25%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   // padding: 7px;
-  width: 150px;
-  height: 150px;
+  width: 130px;
+  height: 140px;
   margin: 0;
   text-align: center;
   font-size: 0.9rem;
@@ -94,14 +96,16 @@ export const PlayerCard = styled.div`
   }
 
   img {
-    width: 120px;
-    height: 120px;
+    width: 110px;
+    height: 110px;
     object-fit: cover; /* Asegura que la imagen se ajuste bien al contenedor */
     margin-bottom:0;
   }
 
-  p {
-    margin: 0;
+`;
+
+export const PlayerName = styled.p`
+margin-top: -12px;
     font-size: 18px;
     font-weight: bold;
     color: #cc1818;
@@ -110,12 +114,6 @@ export const PlayerCard = styled.div`
     background-repeat: no-repeat;
     background-size: cover;
     width: 100px;
-  }
-`;
-
-export const PlayerName = styled.p`
-  margin-top: 10px;
-  font-size: 1.2rem;
 `;
 
 export const Message = styled.p`
@@ -155,6 +153,7 @@ export const PlayerContainer = styled.div`
   align-items: center;
   overflow: auto; /* Permite el desplazamiento si hay desbordamiento */
   box-sizing: border-box;
+  gap: 10px;
 `;
 
 export const Button = styled.button`
@@ -167,7 +166,7 @@ export const Button = styled.button`
   position: relative;
   align-items: center;
   justify-content: center;
-  bottom: 10px;
+  bottom: 0px;
   user-select: none;
   cursor: pointer;
   letter-spacing: 1px;
