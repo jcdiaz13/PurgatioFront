@@ -83,7 +83,7 @@ export const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
-  margin-top: -2rem;
+  margin-top: 2rem;
 `;
 
 export const Button = styled.button`
@@ -98,7 +98,7 @@ export const Button = styled.button`
   cursor: pointer;
   width: 80px;
   text-align: center;
-  margin-top: 2px;
+  margin-top: 20px;
 
   &:hover {
     background-color: white;
