@@ -356,3 +356,46 @@ export const MiniInfo2 = styled.p`
 export const Info = styled.p`
   color: white;
 `;
+
+export const StyledVotes = styled.div`
+  margin-top: 25px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 180px; /* Limita a 2 jugadores por fila con un ancho de 80px + espacio entre ellos */
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    justify-content: center;
+    gap: 10px; /* Espacio entre los elementos */
+  }
+
+  li {
+    width: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+    text-align: center;
+    color: white;
+  }
+
+  img {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 5px;
+  }
+
+  h2 {
+    font-size: 14px;
+    margin: 0;
+    color: white;
+  }
+`;
+

@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import CaractersCounter from "../../components/CaractersCounter";
+import { GiPerspectiveDiceSixFacesRandom } from "react-icons/gi";
 import {
   Container,
   Textarea,
@@ -15,6 +16,7 @@ import {
   Sin,
   ButtonSugerencia,
   WaitingPlayers,
+  StyledIcon,
 } from "./Punishments.styles";
 import Theme from "../../components/Theme";
 import { PlayerContext } from "../../app/contexts/PlayerContext";
@@ -255,7 +257,7 @@ const Punishments = () => {
                       <Button onClick={handleNext}>Enviar</Button>
                     )}
                     <ButtonSugerencia onClick={handleClickSuggestSin}>
-                      Sugerencia
+                      <GiPerspectiveDiceSixFacesRandom />
                     </ButtonSugerencia>
                   </ButtonContainer>
                 </>

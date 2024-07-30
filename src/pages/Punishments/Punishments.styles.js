@@ -4,6 +4,7 @@ import { css } from "styled-components";
 import lava from "../../app/assets/gifs/lava.gif";
 import pergamino from "../../app/assets/img/pergamino.png";
 import beach from "../../app/assets/gifs/beach1left.gif";
+import { GiPerspectiveDiceSixFacesRandom } from "react-icons/gi";
 
 
 export const Container = styled.div`
@@ -84,15 +85,17 @@ export const Textarea = styled.textarea`
 `;
 
 export const ButtonContainer = styled.div`
-  position: relative;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  justify-content: center; /* Centra todos los botones en el contenedor */
   align-items: center;
-  text-align: center;
-  width: 100%;
-  margin-top: -2rem;
+  gap: 10px;
+  margin-top: 10px;
+  width: 100%; /* Asegúrate de que el contenedor ocupe el ancho disponible */
+  position: relative; /* Necesario para posicionar el botón del dado en la esquina derecha */
 `;
+
+
+
 export const ButtonContainer2 = styled.div`
   position: relative;
   display: flex;
@@ -101,40 +104,64 @@ export const ButtonContainer2 = styled.div`
   margin-top: -2rem;
 `;
 
+
+export const StyledIcon = styled(GiPerspectiveDiceSixFacesRandom)`
+  width: 20px; /* Ajusta el tamaño del ícono */
+  height: 20px; /* Ajusta el tamaño del ícono */
+`;
+
+
 export const Button = styled.button`
   padding: 0.5rem 1rem;
-  margin-bottom: 5px;
   border: 1px solid #743c09;
-  border-radius: 2px;
+  border-radius: 4px;
   font-size: 1rem;
-  font-weight: bolder;
+  font-weight: bold;
   background-color: transparent;
   color: #743c09;
   cursor: pointer;
-  width: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  margin-top: 2px;
+  margin: 0; /* Elimina márgenes para evitar desalineación */
+  height: 40px; /* Asegúrate de que ambos botones tengan la misma altura */
+  width: 80px; /* Ajusta el ancho si es necesario */
 
   &:hover {
     background-color: white;
   }
 `;
+
+
 export const ButtonSugerencia = styled.button`
-  padding: 0.5rem 1rem;
-  margin-bottom: 15px;
+  padding: 0; /* Elimina padding para usar todo el espacio del botón */
   border: 1px solid #743c09;
-  border-radius: 2px;
+  border-radius: 4px; /* Asegura que el borde sea consistente */
   font-size: 1rem;
-  font-weight: bolder;
+  font-weight: bold;
   background-color: transparent;
   color: #743c09;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-
+  margin: 0; /* Elimina márgenes para evitar desalineación */
+  height: 40px; /* Asegúrate de que la altura sea la misma que el botón de enviar */
+  width: 40px; /* Ajusta el ancho para que el ícono llene el botón */
   &:hover {
     background-color: white;
   }
+
+  svg {
+    width: 100%; /* Ocupa todo el ancho del botón */
+    height: 100%; /* Ocupa toda la altura del botón */
+    fill: #743c09; /* Cambia el color del ícono si es necesario */
+  }
 `;
+
+
 
 export const ButtonTrash = styled(Button)`
   background-color: #ff0000;
