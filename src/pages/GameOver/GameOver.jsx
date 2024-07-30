@@ -180,6 +180,7 @@ const GameOver = () => {
     setOpenInfo(false);
     console.log(selectedPlayer);
     setSelectedPlayer(null);
+    setVotersDetails([]);
   };
 
   return (
@@ -221,7 +222,7 @@ const GameOver = () => {
                       Deberá realizar este castigo para expiar sus pecados:
                     </MiniInfo2>
                     <Info>{selectedPlayer.punish}</Info>
-                    <MiniInfo2>Te ha votado:</MiniInfo2>
+                    <MiniInfo2>Te han votado:</MiniInfo2>
                     <StyledVotes>
                       <ul>
                         {votersDetails.map((voter) => {
