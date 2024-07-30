@@ -86,12 +86,13 @@ export const Textarea = styled.textarea`
 
 export const ButtonContainer = styled.div`
   display: flex;
-  justify-content: center; /* Centra todos los botones en el contenedor */
+  //justify-content: center; /* Centra todos los botones en el contenedor */
   align-items: center;
   gap: 10px;
   margin-top: 10px;
   width: 100%; /* Asegúrate de que el contenedor ocupe el ancho disponible */
   position: relative; /* Necesario para posicionar el botón del dado en la esquina derecha */
+  margin-left:25px;
 `;
 
 

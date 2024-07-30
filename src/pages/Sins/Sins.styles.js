@@ -85,7 +85,7 @@ export const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
-  margin-top: 2rem;
+  bottom: 48px;
 `;
 
 export const Button = styled.button`

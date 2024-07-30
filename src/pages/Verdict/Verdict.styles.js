@@ -47,7 +47,7 @@ export const PlayerContainer = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  height: 70%;
+  //height: 70%;
   width: 300px;
 `;
 
@@ -416,6 +416,8 @@ export const ButtonContainer = styled.div`
 
 
 export const Styledh3 = styled.h3`
+position: relative;
+bottom: 120px;
     color:white;
     text-shadow: 2px 2px 7px #000;
     font-weight: bold;
