@@ -33,7 +33,7 @@ export const Container = styled.div`
 export const SubContainer = styled.div`
   display: flex;
   flex-direction: column;
-  //justify-content: center;
+  justify-content: center;
   align-items: center;
   text-align: center;
   width: 90%;
@@ -69,12 +69,10 @@ export const OptionButton = styled.button`
 
 export const PlayerCard = styled.div`
 box-shadow: 1px 1px 12px #000;
-border-radius: 25%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  // padding: 7px;
   width: 130px;
   height: 140px;
   margin: 0;
@@ -105,6 +103,7 @@ border-radius: 25%;
 `;
 
 export const PlayerName = styled.p`
+position: relative;
 margin-top: -12px;
     font-size: 18px;
     font-weight: bold;
@@ -117,6 +116,8 @@ margin-top: -12px;
 `;
 
 export const Message = styled.p`
+position: relative;
+bottom: 110px;
   text-shadow: 2px 2px 7px #000;
   // font-weight: bold;
   font-size: 1.2rem;
@@ -144,10 +145,10 @@ export const MatchItem = styled.div`
 `;
 
 export const PlayerContainer = styled.div`
+padding: 10px;
   display: flex;
   flex-wrap: wrap;
   width: 340px;
-  height: 90%;
   justify-content: center;
   text-align: center;
   align-items: center;
@@ -166,7 +167,7 @@ export const Button = styled.button`
   position: relative;
   align-items: center;
   justify-content: center;
-  bottom: 0px;
+  top: 120px;
   user-select: none;
   cursor: pointer;
   letter-spacing: 1px;
@@ -209,18 +210,18 @@ export const Button = styled.button`
   &:hover:before {
     color: black;
     ${({ theme }) =>
-      theme.name === "verdugo" &&
-      css`
+    theme.name === "verdugo" &&
+    css`
         background-color: #ffd700 !important;
       `}
     ${({ theme }) =>
-      theme.name === "mago" &&
-      css`
+    theme.name === "mago" &&
+    css`
         background-color: #228b22 !important;
       `}
     ${({ theme }) =>
-      theme.name === "hada" &&
-      css`
+    theme.name === "hada" &&
+    css`
         background-color: #228b22 !important;
       `}
     box-shadow: 0 -2px rgb(0 0 0 / 50%) inset, 0 2px rgb(255 255 255 / 20%) inset, -2px 0 rgb(255 255 255 / 20%) inset, 2px 0 rgb(0 0 0 / 50%) inset;
@@ -251,7 +252,7 @@ export const ButtonInfo = styled.button`
   position: relative;
   align-items: center;
   justify-content: center;
-  bottom: 25px;
+  bottom: 45px;
   user-select: none;
   cursor: pointer;
   letter-spacing: 1px;
@@ -295,18 +296,18 @@ export const ButtonInfo = styled.button`
   &:hover:before {
     color: black;
     ${({ theme }) =>
-      theme.name === "verdugo" &&
-      css`
+    theme.name === "verdugo" &&
+    css`
         background-color: #ffd700 !important;
       `}
     ${({ theme }) =>
-      theme.name === "mago" &&
-      css`
+    theme.name === "mago" &&
+    css`
         background-color: #228b22 !important;
       `}
     ${({ theme }) =>
-      theme.name === "hada" &&
-      css`
+    theme.name === "hada" &&
+    css`
         background-color: #228b22 !important;
       `}
     box-shadow: 0 -2px rgb(0 0 0 / 50%) inset, 0 2px rgb(255 255 255 / 20%) inset, -2px 0 rgb(255 255 255 / 20%) inset, 2px 0 rgb(0 0 0 / 50%) inset;

@@ -156,7 +156,7 @@ const Punishments = () => {
     const gameMaster = gameMasters.find((mode) => mode.id === gamemode);
     const randomPunishment =
       gameMaster.punishments[
-        Math.floor(Math.random() * gameMaster.punishments.length)
+      Math.floor(Math.random() * gameMaster.punishments.length)
       ];
     setText(randomPunishment);
   };
@@ -250,15 +250,16 @@ const Punishments = () => {
                   />
                   <CaractersCounter text={text} maxLength={300} />{" "}
                   <ButtonContainer>
+                    <ButtonSugerencia onClick={handleClickSuggestSin}>
+                      <GiPerspectiveDiceSixFacesRandom />
+                    </ButtonSugerencia>
                     {changeButton && (
                       <Button onClick={handleEditPunish}>Editar</Button>
                     )}
                     {!changeButton && (
                       <Button onClick={handleNext}>Enviar</Button>
                     )}
-                    <ButtonSugerencia onClick={handleClickSuggestSin}>
-                      <GiPerspectiveDiceSixFacesRandom />
-                    </ButtonSugerencia>
+
                   </ButtonContainer>
                 </>
               )}
