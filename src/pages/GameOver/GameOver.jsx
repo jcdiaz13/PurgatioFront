@@ -132,6 +132,7 @@ import {
   MiniInfo,
   ButtonInfo,
   MiniInfo2,
+  StyledVotes,
 } from "./GameOver.styles";
 import { getVotedPlayers, getVoterDetails } from "../../app/services/player";
 import { PlayerContext } from "../../app/contexts/PlayerContext";
@@ -173,7 +174,7 @@ const GameOver = () => {
     setOpenInfo(true);
     const response = await getVoterDetails(player.id);
     setVotersDetails(response.data);
-  }
+  };
 
   const closeInfo = () => {
     setOpenInfo(false);
@@ -221,29 +222,21 @@ const GameOver = () => {
                     </MiniInfo2>
                     <Info>{selectedPlayer.punish}</Info>
                     <MiniInfo2>Te ha votado:</MiniInfo2>
-                    <ul>
-                      {votersDetails.map((voter) => {
-                        const imgObj = avatarImages.find(
-                          (avatarImage) => avatarImage.id === voter.avatarId
-                        );
-                        return (
-                          <li key={voter.id}>
-                            <img
-                              src={imgObj.img}
-                              alt="avatar"
-                              style={{
-                                width: "40px",
-                                height: "40px",
-                              }}
-                            />
-                            <br />
-                            <span style={{ color: "white" }}>
-                              {voter.playerName}
-                            </span>
-                          </li>
-                        );
-                      })}
-                    </ul>
+                    <StyledVotes>
+                      <ul>
+                        {votersDetails.map((voter) => {
+                          const imgObj = avatarImages.find(
+                            (avatarImage) => avatarImage.id === voter.avatarId
+                          );
+                          return (
+                            <li key={voter.id}>
+                              <img src={imgObj.img} alt="avatar" />
+                              <h2>{voter.playerName}</h2>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    </StyledVotes>
                   </AvatarPopup>
                   <ButtonInfo onClick={closeInfo}>Volver</ButtonInfo>
                 </Overlay>
@@ -251,7 +244,7 @@ const GameOver = () => {
               <Button onClick={goToNextPage}>HOME</Button>
             </>
           ) : (
-            <p>No players have been voted out.</p>
+            <p>Ningún jugador ha sido votado, os habeis salvado esta vez.</p>
           )}
         </SubContainer>
       </Container>

@@ -94,7 +94,7 @@ function JoinLobby() {
     }
 
     setBlockButtons(true);
-    console.log(blockButtons);
+    console.log(11111, blockButtons);
 
     try {
       const players = await getPlayersByRoomId(roomId);
