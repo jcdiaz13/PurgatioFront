@@ -70,7 +70,7 @@ export const Textarea = styled.textarea`
   margin-bottom: 1rem;
   border-radius: 4px;
   font-size: 1rem;
-  height: 222px;
+  height: 185px;
   width: 215px; /* Ajustado para que ocupe todo el ancho disponible */
   text-align: center;
   border: none;
@@ -85,7 +85,7 @@ export const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
-  bottom: 48px;
+  bottom: 9px;
 `;
 
 export const Button = styled.button`

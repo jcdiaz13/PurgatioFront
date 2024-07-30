@@ -63,7 +63,7 @@ export const Button = styled.button`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  position: fixed;
+  position: relative;
   border: 0;
   z-index: 1;
   user-select: none;
