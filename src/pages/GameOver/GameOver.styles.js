@@ -122,9 +122,8 @@ bottom: 110px;
   // font-weight: bold;
   font-size: 1.2rem;
   margin-top:10px;
-  margin-bottom: 10px;
   color: white;
-  backdrop-filter: blur(2px);
+  backdrop-filter: blur(1px);
 `;
 
 export const MatchItem = styled.div`
