@@ -1,6 +1,12 @@
 import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import {getPlayersByRoomId, updateVotesById, getPlayersWithoutVoting, updateIVoted, updateVoterList} from '../../app/services/player';
+import {
+  getPlayersByRoomId,
+  updateVotesById,
+  getPlayersWithoutVoting,
+  updateIVoted,
+  updateVoterList,
+} from "../../app/services/player";
 import { PlayerContext } from "../../app/contexts/PlayerContext";
 import {
   Book,
@@ -53,7 +59,7 @@ const Verdict = () => {
       try {
         const response = await getPlayersByRoomId(roomId);
         const res = response.data;
-        const res2= shuffle(res);
+        const res2 = shuffle(res);
         setPlayers(res2);
         const res3 = shuffle(res);
         setVictims(res3);
@@ -241,7 +247,7 @@ const Verdict = () => {
                 <ButtonContainer>
                   <OptionButton onClick={closeModal}>Close</OptionButton>
                   <OptionButton onClick={openVictimSelection}>
-                    Elegir Jugador
+                    Elegir Pecador
                   </OptionButton>
                 </ButtonContainer>
               </ModalContent>
