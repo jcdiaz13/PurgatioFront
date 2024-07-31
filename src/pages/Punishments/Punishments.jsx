@@ -47,38 +47,6 @@ const Punishments = () => {
   const [gamemode, setGamemode] = useState(null);
   // const [contador, setContador] = useState(0);
 
-  //Lista de palabras prohibidas
-  const bannedWords = [
-    "puta",
-    "puto",
-    "gilipollas",
-    "zorra",
-    "bastardo",
-    "bastarda",
-    "idiota",
-    "mamón",
-    "mamona",
-    "maricón",
-    "maricona",
-    "chupapijas",
-    "come mierda",
-    "come-mierda",
-    "come pollas",
-    "hijueputa",
-    "hijo de puta",
-    "hija de puta",
-    "nazi",
-    "violar",
-    "violación",
-  ];
-
-  // verificar si el texto contiene palabras prohibidas
-  const containsBannedWords = (text) => {
-    return bannedWords.filter((word) =>
-      text.toLowerCase().includes(word.toLowerCase())
-    );
-  };
-
   const checkPlayersWithoutPunish = async () => {
     const response = await getPlayersWithoutPunish(roomId);
     const playersWithoutPunish = response.data;
@@ -156,7 +124,7 @@ const Punishments = () => {
     const gameMaster = gameMasters.find((mode) => mode.id === gamemode);
     const randomPunishment =
       gameMaster.punishments[
-      Math.floor(Math.random() * gameMaster.punishments.length)
+        Math.floor(Math.random() * gameMaster.punishments.length)
       ];
     setText(randomPunishment);
   };
@@ -177,15 +145,7 @@ const Punishments = () => {
       showAlert("alert", "Introduzca un texto");
       return;
     }
-    // Nueva verificación de palabras prohibidas
-    const bannedWord = containsBannedWords(text);
-    if (bannedWord.length > 0) {
-      showAlert(
-        "error",
-        `El pecado contiene palabras prohibidas: ${bannedWord.join(",")}`
-      );
-      return;
-    }
+
     setChangeButton(true);
     setWaiting(true); // Mostrar WaitingPlayers después de enviar
     try {
@@ -259,7 +219,6 @@ const Punishments = () => {
                     {!changeButton && (
                       <Button onClick={handleNext}>Enviar</Button>
                     )}
-
                   </ButtonContainer>
                 </>
               )}

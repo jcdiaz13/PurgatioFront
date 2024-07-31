@@ -38,38 +38,6 @@ function Sins() {
   const [contentToShow, setContentToShow] = useState(null);
   const [showContent, setShowContent] = useState(false); // Estado para controlar la visibilidad del contenido
 
-  //Lista de palabras prohibidas
-  const bannedWords = [
-    "puta",
-    "puto",
-    "gilipollas",
-    "zorra",
-    "bastardo",
-    "bastarda",
-    "idiota",
-    "mamón",
-    "mamona",
-    "maricón",
-    "maricona",
-    "chupapijas",
-    "come mierda",
-    "come-mierda",
-    "come pollas",
-    "hijueputa",
-    "hijo de puta",
-    "hija de puta",
-    "nazi",
-    "violar",
-    "violación",
-  ];
-
-  // verificar si el texto contiene palabras prohibidas
-  const containsBannedWords = (text) => {
-    return bannedWords.filter((word) =>
-      text.toLowerCase().includes(word.toLowerCase())
-    );
-  };
-
   const checkPlayersWithoutSin = async () => {
     const response = await getPlayersWithoutSin(roomId);
     const playersWithoutSin = response.data;
@@ -129,16 +97,6 @@ function Sins() {
     // Verificación de entrada vacía
     if (sin === "") {
       showAlert("alert", "Introduzca un texto!!");
-      return;
-    }
-
-    // Nueva verificación de palabras prohibidas
-    const bannedWord = containsBannedWords(sin);
-    if (bannedWord.length > 0) {
-      showAlert(
-        "error",
-        `El pecado contiene palabras prohibidas: ${bannedWord.join(",")}`
-      );
       return;
     }
 
