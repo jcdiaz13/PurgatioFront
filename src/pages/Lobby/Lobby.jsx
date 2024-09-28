@@ -106,7 +106,7 @@ const Lobby = () => {
       //Modificar la cantidad mínima de jugadores
       showAlert(
         "alert",
-        "Debe haber al menos 3 jugadores para comenzar el juego."
+        "Debe haber al menos 2 jugadores para comenzar el juego."
       );
       return;
     }
